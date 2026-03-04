@@ -477,13 +477,20 @@ export const useCharacterStore = defineStore('character', {
           }
         }
       }
-      
-      // In HardLimits mode, only allow eligible potentials
-      if (this.editorMode === EditorMode.HardLimits && !this.eligiblePotentials.has(potential)) {
-        return
+      if (
+        potential.isAttainable(
+          this.cult,
+          this.attributeValues,
+          this.skillValues,
+          this.originValues,
+          this.rank,
+          this.mentalPowerSkill,
+          this.mentalResistanceSkill,
+          this.clan
+        )
+      ) {
+        this.potentials.set(potential, newValue())
       }
-      
-      this.potentials.set(potential, newValue())
     },
     setLegacy(legacy: Legacy, value: number) {
       const newValue = () => {

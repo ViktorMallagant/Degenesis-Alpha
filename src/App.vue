@@ -263,7 +263,8 @@ watch(
   () => store.$state,
   (state) => {
     // we can't sensibly persist characters without a name, as the name is the storage key
-    if (state.characterName && state.characterName.length > 0) {
+    // and we must not save while a character is being loaded (state would be partial/corrupt)
+    if (state.characterName && state.characterName.length > 0 && !state.isLoading) {
       browserStorage.storeCharacter(store.asCharacter)
       appStore.refresh()
     }
