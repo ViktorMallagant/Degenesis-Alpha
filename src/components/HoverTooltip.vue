@@ -67,8 +67,9 @@ function onAnchorEnter(e: MouseEvent) {
   overAnchor = true
   if (hideTimer) clearTimeout(hideTimer)
   if (showTimer) clearTimeout(showTimer)
+  const anchor = e.currentTarget as HTMLElement
   showTimer = setTimeout(() => {
-    position(e.currentTarget as HTMLElement)
+    position(anchor)
     visible.value = true
   }, 500)
 }
@@ -97,6 +98,6 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .hover-tooltip-wrapper {
-  display: contents;
+  display: inherit;
 }
 </style>
