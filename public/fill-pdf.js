@@ -330,7 +330,7 @@
       // Only show the button when a character is actually open (not on the welcome page).
       var s = window.__charStore;
       var locale = localStorage.getItem("locale");
-      if (s && s.characterName && s.characterName.length > 0 && locale === "fr") {
+      if (s && s.characterName && s.characterName.length > 0 && (locale === "fr" || locale === null)) {
         btn.style.display = "block";
       } else {
         btn.style.display = "none";
