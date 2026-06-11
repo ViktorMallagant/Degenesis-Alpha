@@ -205,6 +205,9 @@ export const messages = {
     concept: 'Concept',
     culture: 'Culture',
     cult: 'Culte',
+    chooseCulture: 'Choisir la Culture',
+    chooseConcept: 'Choisir le Concept',
+    chooseCult: 'Choisir le Culte',
     clan: 'Clan',
     legacies: 'Héritages',
     characterName: 'Nom',
@@ -225,7 +228,7 @@ export const messages = {
       displayOriginalLabels: 'Original',
     },
     characters: 'Personnages',
-    exportCharacter: 'Exporter le JSON',
+    exportCharacter: 'Partager votre fiche',
     importCharacter: 'Importer un personnage',
     editorModes: {
       label: 'Modes d\'édition',
@@ -235,9 +238,9 @@ export const messages = {
       hints: {
         hardLimits: 'La limite de points ne peut pas être excédée.',
         softLimits: 'La limite de points peut être excédée. Les points excédants seront marqués.',
-        free: 'Aucunes limites.'
+        free: 'Aucunes limites.',
       },
-      hintHardLimitModeImpossible: 'Le mode d\'édition strict ne peut pas être sélectionné si une limite de points a déjà été dépassée.'
+      hintHardLimitModeImpossible: 'Le mode d\'édition strict ne peut pas être sélectionné si une limite de points a déjà été dépassée.',
     },
     hint: 'Indice',
     buildPoints: 'Répartition des Points',
@@ -246,35 +249,17 @@ export const messages = {
     createNewCharacter: 'Nouveau Personnage',
     cancel: 'Annuler',
     close: 'Fermer',
-    characterAlreadyExists:
-      'Un personnage portant ce nom existe déjà. Veuillez en choisir un autre.',
+    characterAlreadyExists: 'Un personnage portant ce nom existe déjà. Veuillez en choisir un autre.',
     noPrerequisites: 'Pas de prérequis',
     rename: 'renommer',
     renameCharacter: 'Renommer le personnage',
     createRenamedCopy: 'Faire une copie',
     welcome: 'Bienvenue à Parasite !',
     introduction: {
-      whatIsIt: '<p>Qu\'est-ce que c\'est ? </p><a href="./midona.gif"  style="color: white;">MIDONA DID NOTHING WRONG</a>',
-      whatIsItText1:
-  'Ceci est un éditeur de personnage pour Katharsys et Artéfacts, le système de règles ' +
-  'utilisé par le jeu de rôle Degenesis. Vous pouvez utiliser ce site pour créer de nouveaux personnages ainsi que ' +
-  'consulter et modifier ceux que vous avez créés précédemment. Pour chaque personnage, vous pouvez consulter un aperçu ' +
-  'de la feuille de personnage. Cette feuille de personnage peut également être exportée sous forme de fichier PDF imprimable.' +
-  'Le texte a été traduit des pdf et du site par Katsu. Il peut y avoir des différences entre la traduction d\'Edge et celle de Katsu.',
-whatIsItText2:
-  'Tous vos personnages, ainsi que toutes les modifications qui leur sont apportées, sont sauvegardés dans le stockage local de votre navigateur. ' +
-  'Cela signifie qu\'à chaque fois que vous visitez cette page avec le même navigateur, vous pourrez voir vos ' +
-  'personnages dans le tiroir de navigation sur la gauche. Cliquez dessus pour les consulter et les modifier. ' +
-  'Malheureusement, étant donné que les personnages sont stockés uniquement dans votre navigateur, vous ne pouvez pas créer ' +
-  'de liens vers vos personnages pour que d\'autres personnes puissent les voir. Cependant, vous pouvez exporter n\'importe quel personnage. ' +
-  'Vous pouvez donner ce fichier d\'exportation à quelqu\'un d\'autre. Cette personne peut ensuite également visiter cette page et ' +
-  'importer ce fichier. Ce mode de fonctionnement a été choisi (certes quelque peu limitant) pour réduire les ' +
-  'contraintes techniques et légales liées à la gestion de ce site.',
-whatIsItText3:
-  'Diskordanz (Développeur originel du site) : « Le code source de cette page est disponible sur {0}. L\'intention est de rendre cette application ' +
-  'accessible à toute personne souhaitant l\'exécuter elle-même. Je veux éviter une situation similaire à celle du ' +
-  'générateur officiel, qui a précédemment été indisponible pendant de longues périodes. » La communauté française remercie Diskordanz pour son travail.' +
-  'Merci également à Miokido pour le développement.'
-    }
+      whatIsIt: `<p>Qu'est-ce que c'est ? </p><a href="./midona.gif"  class="midona-egg" style="opacity:0;">MIDONA DID NOTHING WRONG</a>`,
+      whatIsItText1: `Ceci est un éditeur de personnage pour Katharsys et Artéfacts, le système de règles utilisé par le jeu de rôle Degenesis. Vous pouvez utiliser ce site pour créer de nouveaux personnages ainsi que consulter et modifier ceux que vous avez créés précédemment. Pour chaque personnage, vous pouvez consulter un aperçu de la feuille de personnage. Cette feuille de personnage peut également être exportée sous forme de fichier PDF imprimable.Le texte a été traduit des pdf et du site par Katsu. Il peut y avoir des différences entre la traduction d'Edge et celle de Katsu.`,
+      whatIsItText2: `Tous vos personnages, ainsi que toutes les modifications qui leur sont apportées, sont sauvegardés dans le stockage local de votre navigateur. Cela signifie qu'à chaque fois que vous visitez cette page avec le même navigateur, vous pourrez voir vos personnages dans le tiroir de navigation sur la gauche. Cliquez dessus pour les consulter et les modifier. Malheureusement, étant donné que les personnages sont stockés uniquement dans votre navigateur, vous ne pouvez pas créer de liens vers vos personnages pour que d'autres personnes puissent les voir. Cependant, vous pouvez exporter n'importe quel personnage. Vous pouvez donner ce fichier d'exportation à quelqu'un d'autre. Cette personne peut ensuite également visiter cette page et importer ce fichier. Ce mode de fonctionnement a été choisi (certes quelque peu limitant) pour réduire les contraintes techniques et légales liées à la gestion de ce site.`,
+      whatIsItText3: `Diskordanz (Développeur originel du site) : « Le code source de cette page est disponible sur {0}. L'intention est de rendre cette application accessible à toute personne souhaitant l'exécuter elle-même. Je veux éviter une situation similaire à celle du générateur officiel, qui a précédemment été indisponible pendant de longues périodes. » La communauté française remercie Diskordanz pour son travail.Merci également à Miokido pour le développement.`,
+    },
   }
 }

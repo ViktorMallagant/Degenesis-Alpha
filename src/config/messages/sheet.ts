@@ -42,24 +42,24 @@ export const sheet = {
           }
     },
     fr: {
-        weapon: {
-            name: 'Nom de l\'arme',
-            handling: 'Maniabilité',
-            distance: 'Portée',
-            damage: 'Dégâts',
-            magazine: 'Charg',
-            properties: 'Propriétés',
-            encumbrance: 'Enc',
-            tech: 'Tech',
-            slots: 'Emp'
-          },
-          armor: {
-            name: 'Armure',
-            value: 'Valeur',
-            properties: 'Propriétés',
-            encumbrance: 'Enc',
-            tech: 'Tech',
-            slots: 'Emp'
-          }
+      weapon: {
+        name: 'Nom de l\'arme',
+        handling: 'Maniabilité',
+        distance: 'Portée',
+        damage: 'Dégâts',
+        magazine: 'Charg',
+        properties: 'Propriétés',
+        encumbrance: 'Enc',
+        tech: 'Tech',
+        slots: 'Emp',
+      },
+      armor: {
+        name: 'Armure',
+        value: 'Valeur',
+        properties: 'Propriétés',
+        encumbrance: 'Enc',
+        tech: 'Tech',
+        slots: 'Emp',
+      },
     },
 }

@@ -4,9 +4,9 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // SI ton repo s'appelle "miokido.github.io", la base doit être '/'
-  // SI ton repo s'appelle "autre-nom", la base doit être '/autre-nom/'
-  base: '/', 
+  // Chemins relatifs : le site est déployé dans un sous-chemin
+  // (github.com/Katsu6624/degenesis-parasite.github.io -> /degenesis-parasite.github.io/)
+  base: './',
   
   plugins: [
     vue(),

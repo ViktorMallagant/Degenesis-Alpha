@@ -33,7 +33,6 @@ export const clanNames = {
     resistance: 'Résistance',
     pneumancers: 'Pneumanciens',
     exalters: 'Exaltiens',
-    
     hunterGatherersDescription: 'Chasseurs Cueilleurs description',
     touloniDescription: 'Touloni description',
     sanglierDescription: 'Sanglier description',

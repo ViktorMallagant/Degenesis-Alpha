@@ -210,14 +210,28 @@ import {
 } from '@mdi/js'
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useDisplay } from 'vuetify'
+import { useDisplay, useTheme } from 'vuetify'
 import type { VFileInput, VForm } from 'vuetify/components'
 import Editor from './components/EditorTab.vue'
 import { useApplicationStore } from './store/application'
+import { ranksByCult } from '@/config/cults/cults'
 
 const store = useCharacterStore()
 const appStore = useApplicationStore()
 const i18n = useI18n()
+const theme = useTheme()
+
+// Expose globals for the standalone rank-tree.js and fill-pdf.js scripts.
+// Done in App.vue (always mounted) rather than AppPreferences (lazy dialog).
+// Note: window.__i18n (the instance, with .global.t) is exposed in main.ts.
+;(window as any).__charStore = store
+;(window as any).__getRanks = (cult: any, clan: any) => ranksByCult(cult, clan)
+
+// Restore persisted theme
+const _savedTheme = localStorage.getItem('parasite-theme')
+if (_savedTheme === 'light' || _savedTheme === 'dark') {
+  theme.global.name.value = _savedTheme
+}
 
 /*
 Show a password overlay if the beta password has been set. This doesn't need to really prevent access.

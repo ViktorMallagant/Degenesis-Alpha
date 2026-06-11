@@ -12,6 +12,9 @@ const i18n = createI18n({
   messages
 })
 
+// Expose the i18n instance (has .global.t) for the standalone rank-tree.js script
+;(window as any).__i18n = i18n
+
 const app = createApp(App)
 
 setMapStoreSuffix('')
@@ -31,9 +34,13 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { createVuetify } from 'vuetify'
 
+const savedTheme = localStorage.getItem('parasite-theme')
 const vuetify = createVuetify({
   components,
   directives,
+  theme: {
+    defaultTheme: savedTheme === 'light' ? 'light' : 'dark',
+  },
   icons: {
     defaultSet: "mdi",
     aliases,

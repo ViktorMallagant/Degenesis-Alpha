@@ -26,6 +26,21 @@
     </div>
   </div>
   <v-divider class="my-4"></v-divider>
+  <div class="pa-1">
+    <div class="pa-1 text-subtitle-2">Thème</div>
+    <v-btn-toggle
+      :model-value="currentTheme"
+      @update:model-value="setTheme"
+      color="grey-darken-4"
+      variant="outlined"
+      density="comfortable"
+      mandatory
+    >
+      <v-btn value="dark" :prepend-icon="mdiWeatherNight">Sombre</v-btn>
+      <v-btn value="light" :prepend-icon="mdiWhiteBalanceSunny">Clair</v-btn>
+    </v-btn-toggle>
+  </div>
+  <v-divider class="my-4"></v-divider>
   <v-form>
     <div class="pa-1 text-subtitle-2">
       {{ $t('messages.locale') }}
@@ -41,12 +56,23 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useCharacterStore } from '@/store'
 import browserStorage from '@/store/browserStorage'
-import { mdiTranslate, mdiTranslateOff } from '@mdi/js'
+import { mdiTranslate, mdiTranslateOff, mdiWeatherNight, mdiWhiteBalanceSunny } from '@mdi/js'
 import { useI18n } from 'vue-i18n'
+import { useTheme } from 'vuetify'
 const store = useCharacterStore()
 const i18n = useI18n()
+const theme = useTheme()
+
+const currentTheme = ref(theme.global.name.value)
+
+function setTheme(value: string) {
+  theme.global.name.value = value
+  currentTheme.value = value
+  localStorage.setItem('parasite-theme', value)
+}
 
 function updateTranslatedLabels(value: boolean) {
   browserStorage.storeDisplayTranslatedLabels(value)
