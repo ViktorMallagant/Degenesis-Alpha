@@ -172,24 +172,55 @@
         var groups = findConvergenceGroups(children);
         var allChildRows = [];
 
+        // Convergence groups before singles so isolated branches end up at the bottom
+        groups.sort(function (a, b) {
+          return (a.type === "group" ? 0 : 1) - (b.type === "group" ? 0 : 1);
+        });
+
         groups.forEach(function (g) {
           if (g.type === "single") {
             allChildRows.push(assign(g.rank));
           } else {
-            // Convergence group: items are leaves at same level, convergence continues
+            // Sort items: those with extra children (beyond the convergence target) come first
+            // so they appear at the top and their extra connections are short
+            var convName = g.convergence ? g.convergence.name : null;
+            g.items.sort(function (a, b) {
+              var aExtra = (childrenOf[a.name] || []).filter(function (c) {
+                return c.name !== convName && !visited[c.name];
+              }).length;
+              var bExtra = (childrenOf[b.name] || []).filter(function (c) {
+                return c.name !== convName && !visited[c.name];
+              }).length;
+              return bExtra - aExtra;
+            });
+
             var groupRows = [];
+            var extraPlaced = {};
             g.items.forEach(function (item) {
               if (!visited[item.name]) {
                 visited[item.name] = true;
                 posOf[item.name] = { col: item.hierarchyLevel - 1, row: nextRow };
                 groupRows.push(nextRow);
                 nextRow++;
+
+                // Place leaf extra children inline right after their parent
+                (childrenOf[item.name] || []).forEach(function (child) {
+                  if (child.name === convName) return;
+                  if (visited[child.name] || extraPlaced[child.name]) return;
+                  // Only leaves (no own children): non-leaves handled by normal assign
+                  if (childrenOf[child.name] && childrenOf[child.name].length > 0) return;
+                  extraPlaced[child.name] = true;
+                  visited[child.name] = true;
+                  posOf[child.name] = { col: child.hierarchyLevel - 1, row: nextRow };
+                  nextRow++;
+                });
               }
             });
+
             // Process convergence target
             if (g.convergence && !visited[g.convergence.name]) {
               assign(g.convergence);
-              // Shift convergence + descendants to center of group
+              // Shift convergence + descendants to center of group items
               if (groupRows.length > 0) {
                 var center = (groupRows[0] + groupRows[groupRows.length - 1]) / 2;
                 var convRow = posOf[g.convergence.name] ? posOf[g.convergence.name].row : center;
