@@ -123,18 +123,18 @@
                         </v-container>
                       </div>
                     </v-col>
-                    <v-col cols="12" md="6" lg="4" xl="3" class="d-flex flex-column align-center justify-center">
-                      <div class="text-center">
+                    <v-col cols="12" md="6" lg="4" xl="3" class="d-flex flex-column" style="position: relative; min-height: 200px;">
+                      <div style="position: relative; width: 100%; height: 100%; flex: 1;">
                         <img
                           v-if="store.portrait"
                           :src="store.portrait"
-                          style="width: 260px; height: 260px; object-fit: cover; border: 1px solid #888; cursor: pointer;"
+                          style="width: 100%; height: 100%; object-fit: cover; border: 1px solid #888; cursor: pointer; display: block;"
                           @click="triggerPortraitUpload"
                         />
                         <div
                           v-else
                           @click="triggerPortraitUpload"
-                          style="width: 260px; height: 260px; border: 2px dashed #888; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #888;"
+                          style="width: 100%; height: 100%; min-height: 200px; border: 2px dashed #888; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #888;"
                         >
                           Portrait
                         </div>
@@ -145,9 +145,9 @@
                           style="display: none;"
                           @change="onPortraitChange"
                         />
-                        <div class="mt-2">
+                        <div style="position: absolute; bottom: 8px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px;">
                           <v-btn size="small" @click="triggerPortraitUpload">Choisir</v-btn>
-                          <v-btn v-if="store.portrait" size="small" class="ml-2" @click="store.portrait = ''">Supprimer</v-btn>
+                          <v-btn v-if="store.portrait" size="small" @click="store.portrait = ''">Supprimer</v-btn>
                         </div>
                       </div>
                     </v-col>
