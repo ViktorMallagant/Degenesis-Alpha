@@ -232,6 +232,15 @@
       }
     });
 
+    var legacyFields = ["HÉRITAGE", "HÉRITAGE 1", "HÉRITAGE 2", "HÉRITAGE 3"];
+    var legacyIndex = 0;
+    store.legacies.forEach(function (value, legacy) {
+      if (value > 0 && legacyIndex < legacyFields.length) {
+        safeSetText(form, legacyFields[legacyIndex], tr(i18n, legacy.name, "legacies"));
+        legacyIndex++;
+      }
+    });
+
     var egoMax = store.maxEgo || 0;
     for (var i = 1; i <= 24; i++) {
       try {
