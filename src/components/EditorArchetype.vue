@@ -1,8 +1,6 @@
 <template>
-  <v-tooltip location="end" max-width="400" open-delay="500">
-    <span v-html="description"></span>
-    <template v-slot:activator="{ props }">
-      <div v-bind="props" class="d-flex flex-column align-center">
+  <HoverTooltip :description="description">
+    <div class="d-flex flex-column align-center">
         <v-img
           class="archetypeLogo"
           :class="{ invert: inverted }"
@@ -16,11 +14,11 @@
         </div>
         <slot></slot>
       </div>
-    </template>
-  </v-tooltip>
+  </HoverTooltip>
 </template>
 
 <script setup lang="ts">
+import HoverTooltip from '@/components/HoverTooltip.vue'
 export interface Props {
   type: string
   typeLabel: string

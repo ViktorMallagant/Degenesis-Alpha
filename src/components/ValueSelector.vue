@@ -1,8 +1,6 @@
 <template>
-  <v-tooltip location="end"  max-width="300" open-delay="500">
-    <span v-html="$t(`${props.type}.${props.name}Description`)"></span>
-    <template v-slot:activator="{ props: tooltipProps }">
-      <div v-bind="tooltipProps" class="valueSelector">
+  <HoverTooltip :description="$t(`${props.type}.${props.name}Description`)">
+    <div class="valueSelector">
         <div
           class="label"
           :class="{
@@ -32,12 +30,12 @@
           v-on:change="selectionChanged"
         />
       </div>
-    </template>
-  </v-tooltip>
+  </HoverTooltip>
 </template>
 
 <script setup lang="ts">
 import Boxes from '@/components/ValueBoxes.vue'
+import HoverTooltip from '@/components/HoverTooltip.vue'
 export interface Props {
   name: string
   label: string
