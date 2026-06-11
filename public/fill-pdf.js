@@ -76,7 +76,7 @@
   }
 
   function tr(i18n, key, prefix) {
-    try { return i18n.t(prefix + "." + key); }
+    try { return (i18n.global || i18n).t(prefix + "." + key); }
     catch (e) { return key; }
   }
 
