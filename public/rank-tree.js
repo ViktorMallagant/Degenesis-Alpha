@@ -373,8 +373,10 @@
 
     // ─── Tooltip ───
     var tip = null;
+    var tooltipTimer = null;
 
     function showTooltip(rank, anchor) {
+      clearTimeout(tooltipTimer);
       if (!tip) {
         tip = document.createElement("div");
         tip.className = "rank-tip";
@@ -402,10 +404,13 @@
       tip.style.top = top + "px";
 
       tip.offsetHeight;
-      tip.classList.add("show");
+      tooltipTimer = setTimeout(function () {
+        tip.classList.add("show");
+      }, 500);
     }
 
     function hideTooltip() {
+      clearTimeout(tooltipTimer);
       if (tip) tip.classList.remove("show");
     }
   });
