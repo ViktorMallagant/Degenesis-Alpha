@@ -40,6 +40,44 @@ const vuetify = createVuetify({
   directives,
   theme: {
     defaultTheme: savedTheme === 'light' ? 'light' : 'dark',
+    themes: {
+      light: {
+        dark: false,
+        colors: {
+          background: '#FFFFFF',
+          surface: '#FFFFFF',
+          'surface-bright': '#FFFFFF',
+          'surface-variant': '#E0E0E0',
+          'on-surface-variant': '#424242',
+          primary: '#B71C1C',
+          'primary-darken-1': '#7f0000',
+          secondary: '#D32F2F',
+          'secondary-darken-1': '#B71C1C',
+          error: '#B00020',
+          info: '#2196F3',
+          success: '#4CAF50',
+          warning: '#FB8C00'
+        }
+      },
+      dark: {
+        dark: true,
+        colors: {
+          background: '#0a0a0a',
+          surface: '#1a1a1a',
+          'surface-bright': '#2a2a2a',
+          'surface-variant': '#333333',
+          'on-surface-variant': '#e0e0e0',
+          primary: '#B71C1C',
+          'primary-darken-1': '#7f0000',
+          secondary: '#D32F2F',
+          'secondary-darken-1': '#B71C1C',
+          error: '#CF6679',
+          info: '#78909C',
+          success: '#4CAF50',
+          warning: '#FB8C00'
+        }
+      }
+    }
   },
   icons: {
     defaultSet: "mdi",
