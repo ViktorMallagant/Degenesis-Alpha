@@ -128,7 +128,7 @@
                         <img
                           v-if="store.portrait"
                           :src="store.portrait"
-                          style="max-width: 260px; max-height: 260px; border: 1px solid #888; cursor: pointer;"
+                          style="width: 260px; height: 260px; object-fit: cover; border: 1px solid #888; cursor: pointer;"
                           @click="triggerPortraitUpload"
                         />
                         <div
