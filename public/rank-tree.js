@@ -351,6 +351,7 @@
 
       // Hover: highlight requirements
       div.addEventListener("mouseenter", function (ev) {
+        tipOverBadge = true;
         var items = [];
         rank.requiredSkills.forEach(function (s) { s.items.forEach(function (c) { items.push(c.skill); }); });
         rank.requiredOrigins.forEach(function (s) { s.items.forEach(function (o) { items.push(o); }); });
@@ -360,12 +361,13 @@
       });
 
       div.addEventListener("mouseleave", function () {
+        tipOverBadge = false;
         var items = [];
         rank.requiredSkills.forEach(function (s) { s.items.forEach(function (c) { items.push(c.skill); }); });
         rank.requiredOrigins.forEach(function (s) { s.items.forEach(function (o) { items.push(o); }); });
         items = items.concat(rank.parentRanks);
         store.unsetHighlighted.apply(store, items);
-        hideTooltip();
+        scheduleHide();
       });
 
       return div;
@@ -374,12 +376,25 @@
     // ─── Tooltip ───
     var tip = null;
     var tooltipTimer = null;
+    var hideTimer = null;
+    var tipOverBadge = false;
+    var tipOverTip = false;
+
+    function scheduleHide() {
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(function () {
+        if (!tipOverBadge && !tipOverTip) hideTooltip();
+      }, 80);
+    }
 
     function showTooltip(rank, anchor) {
       clearTimeout(tooltipTimer);
+      clearTimeout(hideTimer);
       if (!tip) {
         tip = document.createElement("div");
         tip.className = "rank-tip";
+        tip.addEventListener("mouseenter", function () { tipOverTip = true; clearTimeout(hideTimer); });
+        tip.addEventListener("mouseleave", function () { tipOverTip = false; scheduleHide(); });
         document.body.appendChild(tip);
       }
       var desc = t("ranks." + rank.name + "Description");
@@ -411,6 +426,9 @@
 
     function hideTooltip() {
       clearTimeout(tooltipTimer);
+      clearTimeout(hideTimer);
+      tipOverBadge = false;
+      tipOverTip = false;
       if (tip) tip.classList.remove("show");
     }
   });
