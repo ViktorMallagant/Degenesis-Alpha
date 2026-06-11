@@ -285,6 +285,30 @@
 
       // Draw SVG lines after layout
       requestAnimationFrame(function () {
+        // Compute per-column widths based on actual rendered badge widths
+        var colWidths = {};
+        layout.nodes.forEach(function (node) {
+          var el = badgeEls[node.rank.name];
+          if (!el) return;
+          var w = el.getBoundingClientRect().width + 16; // 16px gap between columns
+          if (!colWidths[node.col] || w > colWidths[node.col]) colWidths[node.col] = w;
+        });
+
+        // Compute cumulative X offsets per column
+        var maxCol = Math.max.apply(null, Object.keys(colWidths).map(Number).concat([0]));
+        var colX = {};
+        var x = 0;
+        for (var c = 0; c <= maxCol; c++) {
+          colX[c] = x;
+          x += colWidths[c] || COL_WIDTH;
+        }
+
+        // Reposition badges to computed X
+        layout.nodes.forEach(function (node) {
+          var el = badgeEls[node.rank.name];
+          if (el) el.style.left = colX[node.col] + "px";
+        });
+
         var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.setAttribute("class", "rank-tree-svg");
         svg.style.cssText = "position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible";
