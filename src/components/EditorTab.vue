@@ -35,7 +35,7 @@
               <v-card-text>
                 <v-container fluid class="ma-0 pa-0">
                   <v-row>
-                    <v-col cols="12" md="6" lg="5" xl="5">
+                    <v-col cols="12">
                       <div class="text-h4">
                         <v-container class="pa-0">
                           <v-row>
@@ -123,36 +123,8 @@
                         </v-container>
                       </div>
                     </v-col>
-                    <v-col cols="12" md="6" lg="7" xl="7" class="d-flex flex-column" style="position: relative; min-height: 200px;">
-                      <div style="position: relative; width: 100%; height: 100%; flex: 1;">
-                        <img
-                          v-if="store.portrait"
-                          :src="store.portrait"
-                          style="width: 100%; height: 100%; object-fit: cover; border: 1px solid #888; cursor: pointer; display: block;"
-                          @click="triggerPortraitUpload"
-                        />
-                        <div
-                          v-else
-                          @click="triggerPortraitUpload"
-                          style="width: 100%; height: 100%; min-height: 200px; border: 2px dashed #888; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #888;"
-                        >
-                          Portrait
-                        </div>
-                        <input
-                          ref="portraitInput"
-                          type="file"
-                          accept="image/*"
-                          style="display: none;"
-                          @change="onPortraitChange"
-                        />
-                        <div style="position: absolute; bottom: 8px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px;">
-                          <v-btn size="small" @click="triggerPortraitUpload">Choisir</v-btn>
-                          <v-btn v-if="store.portrait" size="small" @click="store.portrait = ''">Supprimer</v-btn>
-                        </div>
-                      </div>
-                    </v-col>
                   </v-row>
-                  <v-row>
+                  <v-row style="align-items: stretch;">
                     <v-col cols="12" sm="4" md="4" lg="3" xl="2">
                       <EditorArchetypeSelector
                         type="culture"
@@ -204,6 +176,34 @@
                         :descriptions="clanDescriptions()"
                         @change="store.setClan"
                       ></EditorArchetypeSelector>
+                    </v-col>
+                    <v-col class="d-flex flex-column" style="position: relative; min-height: 150px;">
+                      <div style="position: relative; width: 100%; height: 100%; flex: 1;">
+                        <img
+                          v-if="store.portrait"
+                          :src="store.portrait"
+                          style="width: 100%; height: 100%; object-fit: cover; border: 1px solid #888; cursor: pointer; display: block;"
+                          @click="triggerPortraitUpload"
+                        />
+                        <div
+                          v-else
+                          @click="triggerPortraitUpload"
+                          style="width: 100%; height: 100%; min-height: 150px; border: 2px dashed #888; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #888;"
+                        >
+                          Portrait
+                        </div>
+                        <input
+                          ref="portraitInput"
+                          type="file"
+                          accept="image/*"
+                          style="display: none;"
+                          @change="onPortraitChange"
+                        />
+                        <div style="position: absolute; bottom: 8px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px;">
+                          <v-btn size="small" @click="triggerPortraitUpload">Choisir</v-btn>
+                          <v-btn v-if="store.portrait" size="small" @click="store.portrait = ''">Supprimer</v-btn>
+                        </div>
+                      </div>
                     </v-col>
                   </v-row>
                   <v-row>
