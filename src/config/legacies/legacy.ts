@@ -1,6 +1,7 @@
 import type { Concept } from '../model'
 import type { Attribute, Origin, Skill, SkillWithAttribute, Value } from '../properties'
 import type { Requirement } from '../requirements'
+import type { LegacyEffect } from './effects'
 
 export class Legacy {
   constructor(
@@ -10,7 +11,8 @@ export class Legacy {
     readonly requiredOrigins: Requirement<Origin>[],
     readonly mentalPowerSkill?: Skill,
     readonly mentalResistanceSkill?: Skill,
-    readonly requiredConcepts: string[] = []
+    readonly requiredConcepts: string[] = [],
+    readonly effects: LegacyEffect[] = []
   ) {}
 
   isAttainable(

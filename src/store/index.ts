@@ -130,6 +130,64 @@ export const useCharacterStore = defineStore('character', {
     originMax(): number {
       return config.pointLimits.origins.max
     },
+    // ── Legacy effect helpers ────────────────────────────────────────────────
+    activeLegacyEffects(): import('@/config/legacies/effects').LegacyEffect[] {
+      const effects: import('@/config/legacies/effects').LegacyEffect[] = []
+      this.legacies.forEach((v, legacy) => {
+        if (v > 0) effects.push(...legacy.effects)
+      })
+      return effects
+    },
+    legacyAttributeBonus(): (name: string) => number {
+      return (name: string) =>
+        this.activeLegacyEffects
+          .filter(e => e.type === 'attribute' && e.name === name)
+          .reduce((sum, e) => sum + (e as any).bonus, 0)
+    },
+    legacySkillBonus(): (name: string) => number {
+      return (name: string) =>
+        this.activeLegacyEffects
+          .filter(e => e.type === 'skill' && e.name === name)
+          .reduce((sum, e) => sum + (e as any).bonus, 0)
+    },
+    legacyOriginBonus(): (name: string) => number {
+      return (name: string) =>
+        this.activeLegacyEffects
+          .filter(e => e.type === 'origin' && e.name === name)
+          .reduce((sum, e) => sum + (e as any).bonus, 0)
+    },
+    legacyEgoMaxBonus(): number {
+      return this.activeLegacyEffects
+        .filter(e => e.type === 'egoMax')
+        .reduce((sum, e) => sum + (e as any).bonus, 0)
+    },
+    legacySporeMaxBonus(): number {
+      return this.activeLegacyEffects
+        .filter(e => e.type === 'sporeMax')
+        .reduce((sum, e) => sum + (e as any).bonus, 0)
+    },
+    legacyXPSkillBonus(): number {
+      return this.activeLegacyEffects
+        .filter(e => e.type === 'xpSkillBonus')
+        .reduce((sum, e) => sum + (e as any).points, 0)
+    },
+    legacyModifiers(): string[] {
+      return this.activeLegacyEffects
+        .filter(e => e.type === 'modifier')
+        .map(e => (e as any).description)
+    },
+    effectiveAttributeValue(): (attr: Attribute) => number {
+      return (attr: Attribute) =>
+        Math.max(1, (this.attributeValue(attr) || 1) + this.legacyAttributeBonus(attr.name))
+    },
+    effectiveSkillValue(): (skill: Skill) => number {
+      return (skill: Skill) =>
+        Math.max(0, (this.skillValue(skill) || 0) + this.legacySkillBonus(skill.name))
+    },
+    effectiveOriginValue(): (origin: Origin) => number {
+      return (origin: Origin) =>
+        Math.max(0, (this.originValue(origin) || 0) + this.legacyOriginBonus(origin.name))
+    },
     spentPoints: (state): SpentPoints => {
       let spentAttributePoints = 0
       state.attributes.forEach((v) => {
@@ -213,23 +271,25 @@ export const useCharacterStore = defineStore('character', {
       )
     },
     maxEgo(): number {
+      const bonus = this.legacyEgoMaxBonus
       switch (this.mentalPowerSkill) {
         case Skills.focus:
-          return 2 * (this.attributeValue(Attributes.intellect) + this.skillValue(Skills.focus))
+          return 2 * (this.effectiveAttributeValue(Attributes.intellect) + this.effectiveSkillValue(Skills.focus)) + bonus
         default:
-          return 2 * (this.attributeValue(Attributes.instinct) + this.skillValue(Skills.primal))
+          return 2 * (this.effectiveAttributeValue(Attributes.instinct) + this.effectiveSkillValue(Skills.primal)) + bonus
       }
     },
     maxSporeInfestations(): number {
       return (
-        2 * (this.attributeValue(Attributes.psyche) + this.skillValue(this.mentalResistanceSkill))
+        2 * (this.effectiveAttributeValue(Attributes.psyche) + this.effectiveSkillValue(this.mentalResistanceSkill))
+        + this.legacySporeMaxBonus
       )
     },
     maxFleshwounds(): number {
-      return 2 * (this.attributeValue(Attributes.body) + this.skillValue(Skills.toughness))
+      return 2 * (this.effectiveAttributeValue(Attributes.body) + this.effectiveSkillValue(Skills.toughness))
     },
     maxTrauma(): number {
-      return this.attributeValue(Attributes.body) + this.attributeValue(Attributes.psyche)
+      return this.effectiveAttributeValue(Attributes.body) + this.effectiveAttributeValue(Attributes.psyche)
     },
     // Starting wealth per cult: [amount, currency]. Total = (rankLevel + resources) * amount.
     computedDinars(): { value: number; factor: number; currency: string; rankLevel: number; resources: number } | null {
@@ -254,7 +314,7 @@ export const useCharacterStore = defineStore('character', {
       const rankLevel = this.rank ? this.rank.hierarchyLevel || 1 : 1
       let resources = 0
       this.origins.forEach((v, o) => {
-        if (o.name === 'resources') resources = v
+        if (o.name === 'resources') resources = v + this.legacyOriginBonus('resources')
       })
       return {
         value: (rankLevel + resources) * factor[0],
@@ -345,7 +405,7 @@ export const useCharacterStore = defineStore('character', {
     anyPointLimitExceeded(): boolean {
       return (
         this.spentPoints.attributes > config.availablePoints.attributes ||
-        this.spentPoints.skills > config.availablePoints.skills ||
+        this.spentPoints.skills > config.availablePoints.skills + this.legacyXPSkillBonus ||
         this.spentPoints.origins > config.availablePoints.origins ||
         this.spentPoints.potentials > config.availablePoints.potentials ||
         this.spentPoints.legacies > config.availablePoints.legacies
@@ -537,7 +597,7 @@ export const useCharacterStore = defineStore('character', {
             const boundedValue = Math.min(value, this.skillMax(skill))
             const currentValue = this.skillValue(skill)
             const expectedPointSpend = boundedValue - currentValue
-            const maximumPointSpend = config.availablePoints.skills - this.spentPoints.skills
+            const maximumPointSpend = config.availablePoints.skills + this.legacyXPSkillBonus - this.spentPoints.skills
             const boundedPointSpend = Math.min(expectedPointSpend, maximumPointSpend)
             return currentValue + boundedPointSpend
           }
