@@ -211,6 +211,16 @@
               </HoverTooltip>
             </template>
           </v-checkbox>
+          <v-checkbox
+            v-model="showAllCults"
+            density="compact"
+            hide-details
+            class="mt-1"
+          >
+            <template #label>
+              <span class="inv-checkbox-label">Montrez tous les équipements de Culte</span>
+            </template>
+          </v-checkbox>
         </div>
 
         <!-- Groupes par catégorie -->
@@ -418,6 +428,7 @@ const search = ref('')
 const selectedCategory = ref<ItemCategory | null>(null)
 const showOnlyAffordable = ref(true)
 const showOnlyCult = ref(false)
+const showAllCults = ref(false)
 const collapsedCategories = ref(new Set<ItemCategory>(CATEGORY_ORDER))
 
 function toggleCategory(cat: ItemCategory) {
@@ -478,10 +489,10 @@ function canAffordAny(item: Item): boolean {
 const visibleItems = computed(() => {
   const q = search.value.trim().toLowerCase()
   return ITEMS.filter(item => {
-    // Masquer les items d'un autre culte
-    if (item.cult !== undefined && item.cult !== store.cult?.name) return false
+    // Masquer les items d'un autre culte (sauf si "Montrez tous les équipements de Culte" est coché)
+    if (!showAllCults.value && item.cult !== undefined && item.cult !== store.cult?.name) return false
     // Filtre équipement de culte
-    if (showOnlyCult.value && (item.cult === undefined || item.cult !== store.cult?.name)) return false
+    if (showOnlyCult.value && item.cult === undefined) return false
     // Recherche texte
     if (q && !item.name.toLowerCase().includes(q)) return false
     // Filtre catégorie
