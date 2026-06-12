@@ -26,6 +26,7 @@
           :count="1"
           :active="store.editorMode === EditorMode.HardLimits ? store.eligibleLegacies.has(legacy) : true"
           :ineligible="store.editorMode === EditorMode.SoftLimits && !store.eligibleLegacies.has(legacy)"
+          :missingInfo="store.editorMode !== EditorMode.Free && !store.eligibleLegacies.has(legacy) ? missingConditionsHtml(legacy) : ''"
           :min="config.pointLimits.potentials.min"
           @change="(v) => store.setLegacy(legacy, v)"
           :display-max="store.editorMode != EditorMode.Free"
@@ -90,5 +91,34 @@ function requirements(legacy: Legacy) {
     ...(legacy.mentalPowerSkill ? [legacy.mentalPowerSkill] : []),
     ...(legacy.mentalResistanceSkill ? [legacy.mentalResistanceSkill] : []),
   ]
+}
+
+function missingConditionsHtml(legacy: Legacy): string {
+  const tr = (key: string) => i18n.t(key) as string
+  const missing: string[] = []
+
+  if (legacy.requiredConcepts.length > 0 && !legacy.requiredConcepts.includes(store.concept.name)) {
+    const names = legacy.requiredConcepts.map(c => tr(`culturesConceptsCults.${c}`)).join(' / ')
+    missing.push(`${tr('messages.concept')} : ${names}`)
+  }
+  for (const req of legacy.requiredOrigins) {
+    if (!req.check(store.originValues)) missing.push(req.format(tr))
+  }
+  for (const req of legacy.requiredSkills) {
+    if (!req.check(store.skillValues)) missing.push(req.format(tr))
+  }
+  for (const req of legacy.requiredAttributes) {
+    if (!req.check(store.attributeValues)) missing.push(req.format(tr))
+  }
+  if (legacy.mentalPowerSkill && legacy.mentalPowerSkill.name !== store.mentalPowerSkill.name) {
+    missing.push(legacy.mentalPowerSkill.format(tr))
+  }
+  if (legacy.mentalResistanceSkill && legacy.mentalResistanceSkill.name !== store.mentalResistanceSkill.name) {
+    missing.push(legacy.mentalResistanceSkill.format(tr))
+  }
+
+  if (missing.length === 0) return ''
+  return `<hr style="border-color:#555;margin:10px 0"><span style="color:#ef9a9a;font-weight:bold">${tr('messages.missingConditions')}</span><br>` +
+    missing.map(m => `• ${m}`).join('<br>')
 }
 </script>

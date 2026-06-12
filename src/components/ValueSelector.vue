@@ -1,5 +1,5 @@
 <template>
-  <HoverTooltip :description="$t(`${props.type}.${props.name}Description`)">
+  <HoverTooltip :description="fullDescription">
     <div class="valueSelector">
         <div
           class="label"
@@ -10,7 +10,7 @@
           }"
         >
           <div class="wrap" v-if="type == 'potentials' || type == 'legacies'">
-            <span :class="{mainLabel: props.altLabel, 'text-decoration-line-through': !active || ineligible}" :style="{fontSize: type == 'potentials' ? 'small' : 'inherit'}">{{ props.altLabel ? props.altLabel : props.label }}</span>
+            <span :class="{mainLabel: props.altLabel, 'text-decoration-line-through': !active || ineligible, ineligible: !active || ineligible}" :style="{fontSize: type == 'potentials' ? 'small' : 'inherit'}">{{ props.altLabel ? props.altLabel : props.label }}</span>
             <span v-if="props.label != ''" class="altLabel text-grey-darken-1 text-caption">{{ props.label }}</span>
           </div>
           <div class="wrap" v-else>
@@ -34,6 +34,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Boxes from '@/components/ValueBoxes.vue'
 import HoverTooltip from '@/components/HoverTooltip.vue'
 export interface Props {
@@ -49,7 +51,8 @@ export interface Props {
   displayMax?: boolean
   description?: string,
   type?: string,
-  ineligible?: boolean
+  ineligible?: boolean,
+  missingInfo?: string,
 }
 const props = withDefaults(defineProps<Props>(), {
   altLabel: '',
@@ -60,11 +63,20 @@ const props = withDefaults(defineProps<Props>(), {
   active: true,
   highlighted: false,
   displayMax: true,
-  ineligible: false
+  ineligible: false,
+  missingInfo: '',
 })
 const emit = defineEmits<{
   (e: 'change', value: number): void
 }>()
+
+const { t } = useI18n()
+
+const fullDescription = computed(() => {
+  const base = t(`${props.type}.${props.name}Description`)
+  if (!props.missingInfo) return base
+  return base + props.missingInfo
+})
 
 const selectionChanged = (event: any) => emit('change', event)
 </script>
@@ -119,5 +131,9 @@ const selectionChanged = (event: any) => emit('change', event)
 .highlighted {
   text-shadow: 0 0 1em #ff8a80;
   color: #b71c1c;
+}
+
+.ineligible {
+  opacity: 0.45;
 }
 </style>

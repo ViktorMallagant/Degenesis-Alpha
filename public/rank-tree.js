@@ -640,13 +640,50 @@
         document.body.appendChild(tip);
       }
       var desc = t("ranks." + rank.name + "Description");
-      if (!desc || desc === "ranks." + rank.name + "Description") {
+      var descEmpty = !desc || desc === "ranks." + rank.name + "Description";
+
+      var isEligible = store.editorMode === "free" || (store.eligibleRanks && Array.from(store.eligibleRanks).some(function(r){ return r.name === rank.name; }));
+      var missingHtml = "";
+      if (!isEligible) {
+        var missing = [];
+        rank.requiredSkills.forEach(function(req) {
+          try { if (!req.check(store.skillValues)) missing.push(req.format(t)); } catch(e){}
+        });
+        rank.requiredOrigins.forEach(function(req) {
+          try { if (!req.check(store.originValues)) missing.push(req.format(t)); } catch(e){}
+        });
+        if (rank.parentRanks.length > 0) {
+          var anyParentEligible = rank.parentRanks.some(function(p) {
+            return p.isEligible(store.cult, store.skillValues, store.originValues, store.clan);
+          });
+          if (!anyParentEligible) {
+            var parentNames = rank.parentRanks.map(function(p) { return t("ranks." + p.name); }).join(" / ");
+            missing.push(parentNames);
+          }
+        }
+        if (rank.requiredRanks && rank.requiredRanks.length > 0) {
+          var anyRequiredEligible = rank.requiredRanks.some(function(r) {
+            return r.isEligible(store.cult, store.skillValues, store.originValues, store.clan);
+          });
+          if (!anyRequiredEligible) {
+            var reqNames = rank.requiredRanks.map(function(r) { return t("ranks." + r.name); }).join(" / ");
+            missing.push(reqNames);
+          }
+        }
+        if (missing.length > 0) {
+          var label = t("messages.missingConditions") || "Conditions manquantes";
+          missingHtml = '<hr style="border-color:#555;margin:10px 0"><span style="color:#ef9a9a;font-weight:bold">' + label + '</span><br>' +
+            missing.map(function(m){ return "• " + m; }).join("<br>");
+        }
+      }
+
+      if (descEmpty && !missingHtml) {
         tip.classList.remove("show");
         return;
       }
 
       tip.classList.remove("show");
-      tip.innerHTML = desc;
+      tip.innerHTML = (descEmpty ? "" : desc) + missingHtml;
 
       var rect = anchor.getBoundingClientRect();
       var tipW = Math.min(420, window.innerWidth - 20);

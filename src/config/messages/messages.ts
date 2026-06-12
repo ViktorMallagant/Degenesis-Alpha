@@ -65,6 +65,7 @@ export const messages = {
     characterAlreadyExists:
       'Ein Charakter mit diesem Namen existiert bereits. Bitte wähle einen anderen Namen.',
     noPrerequisites: 'Keine Voraussetzungen',
+    missingConditions: 'Fehlende Bedingungen',
     rename: 'Umbenennen',
     renameCharacter: 'Charakternamen ändern',
     createRenamedCopy: 'Kopie erstellen',
@@ -159,6 +160,7 @@ export const messages = {
     characterAlreadyExists:
       'A character with the given name already exists. Please choose another name.',
     noPrerequisites: 'No prerequisites',
+    missingConditions: 'Missing conditions',
     rename: 'rename',
     renameCharacter: 'Rename character',
     createRenamedCopy: 'Create copy',
@@ -257,6 +259,7 @@ export const messages = {
     close: 'Fermer',
     characterAlreadyExists: 'Un personnage portant ce nom existe déjà. Veuillez en choisir un autre.',
     noPrerequisites: 'Pas de prérequis',
+    missingConditions: 'Conditions manquantes',
     rename: 'renommer',
     renameCharacter: 'Renommer le personnage',
     createRenamedCopy: 'Faire une copie',
