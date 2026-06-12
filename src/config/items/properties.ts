@@ -52,8 +52,6 @@ export const WEAPON_PROPERTY_DESCRIPTIONS: Record<string, string> = {
 
   'régularité': '<b>RÉGULARITÉ (DÉCLENCHEUR)</b><br>L\'arme parfaite pour des attaques à succession rapide. Si le combattant atteint sur son jet d\'attaque le nombre de déclencheurs indiqué, il peut immédiatement attaquer de nouveau, mais avec un malus de -2D cette fois-ci. Cela peut se produire plusieurs fois d\'affilée, mais les malus se cumulent à raison de -2D à chaque attaque supplémentaire.',
 
-  'rechargement long': '<b>RECHARGEMENT LONG</b><br>Recharger cette arme est une procédure longue qui nécessite plusieurs actions ou un temps hors-combat.',
-
   'sensible': '<b>SENSIBLE</b><br>Les armes à haute précision comme les fusils de sniper sont sensibles aux chocs. Lorsqu\'un combattant équipé d\'une telle arme est contraint de se battre au corps à corps ou lorsqu\'il est attaqué, 1DC suffit à son adversaire pour endommager l\'arme : sa Maniabilité baisse de manière permanente de 1D.<br><br>Un artisan doué peut réparer l\'arme endommagée avec un test d\'AGI+Artisanat.',
 
   'spécial': '<b>SPÉCIAL</b><br>Cette arme possède des règles spéciales décrites dans sa fiche détaillée.',
