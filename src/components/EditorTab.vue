@@ -123,7 +123,7 @@
                               ></v-text-field>
                               <v-text-field
                                 v-else
-                                :model-value="store.computedDinars ? `${store.computedDinars.value} ${store.computedDinars.currency}` : ''"
+                                :model-value="store.computedDinars ? `${store.remainingLC} ${store.computedDinars.currency}` : ''"
                                 :label="$t('messages.dinars')"
                                 variant="underlined"
                                 readonly

@@ -173,11 +173,7 @@
     };
     if (store.cult && store.cult.name && CULT_FACTORS[store.cult.name]) {
       var cf = CULT_FACTORS[store.cult.name];
-      var rankLevel = store.rank ? (store.rank.hierarchyLevel || 1) : 1;
-      var resources = 0;
-      store.origins.forEach(function (v, o) { if (o.name === "resources") resources = v; });
-      var dinarsVal = (rankLevel + resources) * cf[0];
-      safeSetText(form, "LC-DINARS", dinarsVal + " " + cf[1]);
+      safeSetText(form, "LC-DINARS", store.remainingLC + " " + cf[1]);
     }
 
     if (store.culture && store.culture.name) {
@@ -438,11 +434,7 @@
     };
     if (store.cult && store.cult.name && CULT_FACTORS[store.cult.name]) {
       var cf = CULT_FACTORS[store.cult.name];
-      var rankLevel = store.rank ? (store.rank.hierarchyLevel || 1) : 1;
-      var resources = 0;
-      store.origins.forEach(function (v, o) { if (o.name === "resources") resources = v; });
-      var dinarsVal = (rankLevel + resources) * cf[0];
-      safeSetText(form, "Dinars/Drafts", dinarsVal + " " + cf[1]);
+      safeSetText(form, "Dinars/Drafts", store.remainingLC + " " + cf[1]);
     }
 
     if (store.culture && store.culture.name) {
