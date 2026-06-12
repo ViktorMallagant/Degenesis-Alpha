@@ -279,7 +279,8 @@ export const useCharacterStore = defineStore('character', {
         this.skillValues,
         this.originValues,
         this.mentalPowerSkill,
-        this.mentalResistanceSkill
+        this.mentalResistanceSkill,
+        this.concept,
       )
     },
     anyPointLimitExceeded(): boolean {

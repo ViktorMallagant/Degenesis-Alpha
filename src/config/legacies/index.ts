@@ -1,4 +1,5 @@
 import type { Attribute, Origin, Skill, SkillWithAttribute, Value } from '../properties'
+import type { Concept } from '../model'
 
 import type { Legacy } from './legacy'
 import { Legacies } from './legacies'
@@ -15,6 +16,7 @@ export function eligibleLegacies(
   origins: Array<Value<Origin>>,
   mentalPowerSkill: Skill,
   mentalResistanceSkill: Skill,
+  concept: Concept,
 ): Set<Legacy> {
   return new Set(
     AllLegacies.filter((legacy) =>
@@ -24,6 +26,7 @@ export function eligibleLegacies(
         origins,
         mentalPowerSkill,
         mentalResistanceSkill,
+        concept,
       )
     )
   )

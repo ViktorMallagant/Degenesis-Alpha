@@ -9,7 +9,8 @@ export class Legacy {
     readonly requiredAttributes: Requirement<Attribute>[],
     readonly requiredOrigins: Requirement<Origin>[],
     readonly mentalPowerSkill?: Skill,
-    readonly mentalResistanceSkill?: Skill
+    readonly mentalResistanceSkill?: Skill,
+    readonly requiredConcepts: string[] = []
   ) {}
 
   isAttainable(
@@ -18,14 +19,20 @@ export class Legacy {
     origins: Array<Value<Origin>>,
     mentalPowerSkill: Skill,
     mentalResistanceSkill: Skill,
+    concept: Concept,
   ): boolean {
     return (
+      this.conceptEligible(concept) &&
       this.attributesEligible(attributes) &&
       this.skillsEligible(skills) &&
       this.originsEligible(origins) &&
       this.mentalPowerSkillEligible(mentalPowerSkill) &&
       this.mentalResistanceSkillEligible(mentalResistanceSkill)
     )
+  }
+
+  private conceptEligible(concept: Concept): boolean {
+    return this.requiredConcepts.length === 0 || this.requiredConcepts.includes(concept.name)
   }
 
   private attributesEligible(attributes: Array<Value<Attribute>>): boolean {
