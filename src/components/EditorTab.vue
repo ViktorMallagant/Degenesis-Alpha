@@ -179,11 +179,11 @@
                       </v-row>
                     </div>
                     <!-- Right side: portrait spanning full height -->
-                    <div style="flex: 0 0 40%; position: relative; min-height: 200px;">
+                    <div style="flex: 0 0 40%; position: relative; min-height: 200px; overflow: hidden;">
                       <img
                         v-if="store.portrait"
                         :src="store.portrait"
-                        style="width: 100%; height: 100%; object-fit: cover; border: 1px solid #888; cursor: pointer; display: block;"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; cursor: pointer;"
                         @click="triggerPortraitUpload"
                       />
                       <div
@@ -201,7 +201,7 @@
                         @change="onPortraitChange"
                       />
                       <div style="position: absolute; bottom: 8px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px;">
-                        <v-btn size="small" @click="triggerPortraitUpload">Choisir</v-btn>
+                        <v-btn v-if="!store.portrait" size="small" @click="triggerPortraitUpload">Choisir</v-btn>
                         <v-btn v-if="store.portrait" size="small" @click="store.portrait = ''">Supprimer</v-btn>
                       </div>
                     </div>
