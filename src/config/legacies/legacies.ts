@@ -1,10 +1,10 @@
 import { Legacy } from './legacy'
 import { Attributes, Skills, Origins } from '../properties'
-import { atLeastAttribute, atLeastSkill, either, atLeastOrigin } from '../requirements'
+import { atLeastAttribute, atLeastSkill, either, atLeastOrigin, atMostOrigin } from '../requirements'
 
 export const Entrepreneur = new Legacy('entrepreneur', [], [], [atLeastOrigin(Origins.resources, 3)], undefined, undefined, ['creator', 'conqueror', 'visionary'])
 export const Patron = new Legacy('patron', [], [], [atLeastOrigin(Origins.allies, 2)], undefined, undefined)
-export const Outcast = new Legacy('outcast', [], [], [], undefined, undefined)
+export const Outcast = new Legacy('outcast', [], [], [atMostOrigin(Origins.allies, 1), atMostOrigin(Origins.authority, 1), atMostOrigin(Origins.network, 1)], undefined, undefined)
 export const Optimized = new Legacy('optimized', [], [], [], undefined, undefined, ['seeker', 'healer', 'chosen', 'disciple'])
 export const Firebrand = new Legacy('firebrand', [], [], [atLeastOrigin(Origins.renown, 3)], undefined, undefined, ['conqueror', 'zealot', 'righteous'])
 export const Landlord = new Legacy('landlord', [], [], [atLeastOrigin(Origins.resources, 3), atLeastOrigin(Origins.authority, 1)], undefined, undefined)
@@ -25,7 +25,7 @@ export const Vindicated = new Legacy('vindicated', [], [], [atLeastOrigin(Origin
 export const Unforgiven = new Legacy('unforgiven', [], [], [], undefined, undefined)
 export const Lurker = new Legacy('lurker', [], [], [atLeastOrigin(Origins.network, 2)], undefined, undefined)
 export const Solo = new Legacy('solo', [], [], [], undefined, undefined)
-export const Abducted = new Legacy('abducted', [], [], [atLeastOrigin(Origins.secrets, 3)], undefined, undefined)
+export const Abducted = new Legacy('abducted', [], [], [atLeastOrigin(Origins.secrets, 3)], undefined, undefined, ['abomination'])
 export const Veteran = new Legacy('veteran', [], [], [atLeastOrigin(Origins.renown, 2), atLeastOrigin(Origins.authority, 2)], undefined, undefined)
 export const Journeyman = new Legacy('journeyman', [], [], [atLeastOrigin(Origins.network, 2), atLeastOrigin(Origins.resources, 1)], undefined, undefined, ['adventurer', 'traveler'])
 export const Superstitious = new Legacy('superstitious', [], [], [], undefined, undefined, ['healer', 'traditionalist', 'zealot', 'disciple'])
@@ -43,7 +43,7 @@ export const Mesmerized = new Legacy('mesmerized', [], [], [atLeastOrigin(Origin
 export const Programmed = new Legacy('programmed', [], [], [atLeastOrigin(Origins.secrets, 2)], undefined, undefined)
 export const Primordial = new Legacy('primordial', [], [], [], Skills.primal, undefined)
 export const Idolatrist = new Legacy('idolatrist', [], [], [atLeastOrigin(Origins.renown, 3)], undefined, undefined, ['ruler', 'conqueror', 'chosen', 'visionary'])
-export const Inheritor = new Legacy('inheritor', [], [], [atLeastOrigin(Origins.resources, 2), atLeastOrigin(Origins.allies, 1)], undefined, undefined)
+export const Inheritor = new Legacy('inheritor', [], [], [atLeastOrigin(Origins.allies, 2), atLeastOrigin(Origins.authority, 1)], undefined, undefined)
 export const Impostor = new Legacy('impostor', [atLeastSkill(Skills.deception, 7)], [], [atLeastOrigin(Origins.secrets, 2), atLeastOrigin(Origins.allies, 2)], undefined, undefined)
 
 export const Legacies = [

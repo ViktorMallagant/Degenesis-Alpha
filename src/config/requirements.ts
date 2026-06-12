@@ -31,6 +31,27 @@ export function atLeastOrigin(item: Origin, value: number): Requirement<Origin> 
   return new MinimumValue(item, value)
 }
 
+class MaximumValue<T extends Translatable> implements Requirement<T> {
+  constructor(
+    private item: T,
+    private value: number
+  ) {
+    this.items = [item]
+  }
+  readonly items: T[]
+  check(items: Array<Value<T>>): boolean {
+    const actualItem = items.find((v) => v.property.name == this.item.name)
+    return actualItem ? actualItem.value <= this.value : true
+  }
+  format(translator: Translator): string {
+    return `${this.item.format(translator)} <= ${this.value}`
+  }
+}
+
+export function atMostOrigin(item: Origin, value: number): Requirement<Origin> {
+  return new MaximumValue(item, value)
+}
+
 export function atLeastSkill(item: Skill, value: number): Requirement<SkillWithAttribute> {
   return new MinimumValue(new SkillWithAttribute(item), value)
 }
