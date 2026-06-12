@@ -44,8 +44,6 @@ export const WEAPON_PROPERTY_DESCRIPTIONS: Record<string, string> = {
 
   'nuage': '<b>NUAGE (RAYON, DURÉE)</b><br>Lorsqu\'une grenade explose, ses agents actifs se dispersent et recouvrent une zone d\'un rayon de plusieurs mètres. En l\'absence de vent, le nuage plane au-dessus du champ de bataille pendant quelques rounds de combat avant de se dissiper. Sauf indication contraire, les dégâts sont cumulatifs pour quiconque reste dans le nuage.',
 
-  'panique': '<b>PANIQUE</b><br>La violence soudaine de l\'attaque plonge les cibles dans la panique. Les cibles touchées doivent réussir un test de PSY+Foi/Volonté contre la difficulté indiquée ou fuir.',
-
   'pénétration': '<b>PÉNÉTRATION (VALEUR D\'ARMURE)</b><br>La balle ou la charge explosive pénètre complètement une armure de valeur inférieure ou égale à celle indiquée entre parenthèses. Toute valeur supérieure sera soustraite des points de dégât comme à l\'accoutumée ou bien, en fonction de l\'arme, la balle sera simplement déviée.',
 
   'rafale': '<b>RAFALE (NOMBRE DE BALLES)</b><br>Certaines armes automatiques possèdent une forte cadence de tir. Le tireur peut tirer plusieurs balles en succession rapide en 1 action (nombre indiqué entre parenthèses). Chaque balle accroît la Maniabilité de +1D et les dégâts de 1 point.<br><br>Si plusieurs cibles sont proches les unes des autres, les dés d\'attaque sont divisés de manière égale entre les cibles. Une rafale ne peut pas toucher plus de cibles qu\'elle ne tire de balles.',
