@@ -147,8 +147,7 @@ export const TechTuned = new Legacy('techtuned', [atLeastSkill(Skills.artifactLo
 ])
 export const Vigilante = new Legacy('vigilante', [], [], [], undefined, undefined, ['conqueror', 'chosen', 'protector', 'righteous'], [
   { type: 'xpPotentialBonus' as const, points: 1 },
-  skill('faith', 1),
-  skill('willpower', 1),
+  { type: 'choiceSkill' as const, bonus: 2, count: 1, scope: 'faithOrWillpower' as const, description: '+2 dans Foi ou Volonté au choix' },
   m('-2D interactions sociales avec forces de l\'ordre et entités criminelles.'),
 ])
 export const CannonFodder = new Legacy('cannonfodder', [], [], [atLeastOrigin(Origins.renown, 2)], undefined, undefined, ['martyr', 'conqueror', 'destroyer'], [
