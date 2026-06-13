@@ -337,7 +337,7 @@
             <LegacySelector></LegacySelector>
           </v-card>
         </v-col>
-        <v-col cols="12" v-if="store.legacyModifiers.length > 0">
+        <v-col cols="12" v-if="store.legacyModifiers.length > 0 || store.entrepreneurSocialPenalties.length > 0">
           <v-card class="pa-4">
             <v-card-title class="text-uppercase text-caption font-weight-bold">
               Modificateurs
@@ -347,6 +347,12 @@
                 v-for="(mod, i) in store.legacyModifiers"
                 :key="i"
                 :subtitle="mod"
+                class="modifier-item"
+              ></v-list-item>
+              <v-list-item
+                v-for="({ cultKey, count }) in store.entrepreneurSocialPenalties"
+                :key="'entr-' + cultKey"
+                :subtitle="`Entrepreneur : -${count}D interactions sociales avec les ${$t('culturesConceptsCults.' + cultKey)} (${count} utilisation${count > 1 ? 's' : ''})`"
                 class="modifier-item"
               ></v-list-item>
             </v-list>

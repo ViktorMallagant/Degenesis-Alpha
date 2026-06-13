@@ -237,6 +237,19 @@ export const useCharacterStore = defineStore('character', {
         .filter(e => e.type === 'xpPotentialBonus')
         .reduce((sum, e) => sum + (e as any).points, 0)
     },
+    entrepreneurSocialPenalties(): Array<{ cultKey: string; count: number }> {
+      if (!this.hasEntrepreneur) return []
+      const playerCult = this.cult?.name
+      if (!playerCult) return []
+      const penaltiesByCult: Record<string, number> = {}
+      for (const purchase of this.inventory) {
+        const item = ITEMS.find(i => i.id === purchase.itemId)
+        if (item?.cult && item.cult !== playerCult) {
+          penaltiesByCult[item.cult] = (penaltiesByCult[item.cult] || 0) + 1
+        }
+      }
+      return Object.entries(penaltiesByCult).map(([cultKey, count]) => ({ cultKey, count }))
+    },
     legacyModifiers(): string[] {
       return this.activeLegacyEffects
         .filter(e => e.type === 'modifier')
