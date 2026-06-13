@@ -435,6 +435,11 @@ export const useCharacterStore = defineStore('character', {
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'entrepreneur') found = true })
       return found
     },
+    hasLandlord(): boolean {
+      let found = false
+      this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'landlord') found = true })
+      return found
+    },
     hasSuperstitious(): boolean {
       let found = false
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'superstitious') found = true })
@@ -456,13 +461,14 @@ export const useCharacterStore = defineStore('character', {
       const base = (this.editorMode === EditorMode.Free && this.manualLC !== null)
         ? this.manualLC
         : (this.computedDinars?.value ?? 0)
+      const landlordBonus = this.hasLandlord ? 1000 : 0
       const spent = this.inventory
         .filter(p => !p.purchasedWithResources)
         .reduce((sum, p) => {
           const item = ITEMS.find(i => i.id === p.itemId)
           return sum + (item?.value ?? 0) * (p.level ?? 1)
         }, 0)
-      return base - spent
+      return base + landlordBonus - spent
     },
     inventoryItems(): Array<{ purchase: InventoryPurchase; index: number }> {
       return this.inventory.map((purchase, index) => ({ purchase, index }))
