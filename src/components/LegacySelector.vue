@@ -439,7 +439,7 @@ const renegadeCult2 = ref<string>('')
 
 function openRenegadeDialog(value: number) {
   renegadePendingValue.value = value
-  const existing = store.renegadeCultNames
+  const existing = store.renegadeCultNames ?? []
   renegadeCult1.value = existing[0] ?? ''
   renegadeCult2.value = existing[1] ?? ''
   renegadeDialogOpen.value = true
