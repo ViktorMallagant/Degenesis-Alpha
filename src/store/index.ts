@@ -392,6 +392,15 @@ export const useCharacterStore = defineStore('character', {
     effectiveResourcesLevelForModeC(): number {
       return advancementsToLevel(this.remainingAdvancements)
     },
+    hasEntrepreneur(): boolean {
+      let found = false
+      this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'entrepreneur') found = true })
+      return found
+    },
+    effectiveResourcesLevelForOtherCult(): number {
+      if (!this.hasEntrepreneur) return 0
+      return Math.max(0, this.effectiveResourcesLevel - 2)
+    },
     remainingLC(): number {
       const base = (this.editorMode === EditorMode.Free && this.manualLC !== null)
         ? this.manualLC
@@ -780,6 +789,16 @@ export const useCharacterStore = defineStore('character', {
     buyItemWithResources(itemId: string) {
       const item = ITEMS.find(i => i.id === itemId)
       if (!item || item.resources === undefined) return
+
+      const isOtherCult = item.cult !== undefined && item.cult !== this.cult?.name
+
+      if (isOtherCult) {
+        if (!this.hasEntrepreneur) return
+        const level = this.effectiveResourcesLevelForOtherCult
+        if (level < 1 || item.resources > level) return
+        this.inventory.push({ itemId, purchasedWithResources: true, decrementedResources: false })
+        return
+      }
 
       let canBuy = false
       let decrements = false
