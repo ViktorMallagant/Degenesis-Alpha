@@ -270,6 +270,7 @@
                 <th>Empl.</th>
                 <th>Prix</th>
                 <th v-if="hasResources(group.items)">Res.</th>
+                <th>Culte</th>
                 <th>Acheter</th>
               </tr>
             </thead>
@@ -312,6 +313,10 @@
                 </td>
                 <td v-if="hasResources(group.items)">
                   <span v-if="item.resources !== undefined">{{ item.resources }}</span>
+                  <span v-else class="inv-muted">—</span>
+                </td>
+                <td class="text-caption">
+                  <span v-if="item.cult">{{ $t(`culturesConceptsCults.${item.cult}`) }}</span>
                   <span v-else class="inv-muted">—</span>
                 </td>
                 <td class="text-no-wrap">
