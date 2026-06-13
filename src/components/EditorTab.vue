@@ -677,7 +677,7 @@ const renameCharacter = () => {
 .gifted-cancel-btn {
   position: fixed;
   bottom: 24px;
-  left: 24px;
+  left: 310px;
   z-index: 100;
   box-shadow: 0 4px 24px rgba(198,40,40,0.5);
 }
