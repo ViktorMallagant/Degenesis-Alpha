@@ -160,6 +160,12 @@ export const useCharacterStore = defineStore('character', {
         return total
       }
     },
+    legacySkillStaticBonus(): (name: string) => number {
+      return (name: string) =>
+        this.activeLegacyEffects
+          .filter(e => e.type === 'skill' && (e as any).name === name)
+          .reduce((sum, e) => sum + (e as any).bonus, 0)
+    },
     legacySkillBonus(): (name: string) => number {
       return (name: string) => {
         if (this.hasSuperstitious && (name === 'science' || name === 'engineering')) return 0
@@ -681,7 +687,7 @@ export const useCharacterStore = defineStore('character', {
           case EditorMode.Free:
             return Math.min(value, 6)
           default: {
-            const boundedValue = Math.min(value, this.skillMax(skill))
+            const boundedValue = Math.min(value, this.skillMax(skill) - this.legacySkillStaticBonus(skill.name))
             const currentValue = this.skillValue(skill)
             const expectedPointSpend = boundedValue - currentValue
             const maximumPointSpend = config.availablePoints.skills + this.legacyXPSkillBonus - this.spentPoints.skills

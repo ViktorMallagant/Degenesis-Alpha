@@ -17,7 +17,7 @@ export type LegacyEffect =
   | { type: 'modifier'; description: string }
 
 export const INS_SKILLS = ['empathy', 'orienteering', 'perception', 'primal', 'survival', 'taming']
-export const COMBAT_SKILLS = ['brawl', 'force', 'melee', 'projectiles', 'athletics']
+export const COMBAT_SKILLS = ['brawl', 'melee', 'projectiles']
 export const CHA_SKILLS = ['arts', 'conduct', 'expression', 'leadership', 'negotiation', 'seduction']
 export const INT_SKILLS = ['artifactLore', 'engineering', 'legends', 'medicine', 'science', 'focus']
 export const SCOPE_SKILLS: Record<string, string[]> = {

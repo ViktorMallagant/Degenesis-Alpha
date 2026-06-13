@@ -129,10 +129,10 @@ function boxClasses(field: number): Record<string, boolean> {
       if (field <= props.value) {
         return {
           'bg-grey-darken-4': field > h,
-          'bg-red-darken-4': field <= h,
+          'hover-preview': field <= h,
         }
       } else if (field <= h) {
-        return { 'bg-red': true }
+        return { 'hover-preview': true }
       }
     } else {
       if (field <= props.value) return { 'bg-grey-darken-4': true }
@@ -169,10 +169,10 @@ function boxClasses(field: number): Record<string, boolean> {
     if (field > props.max) {
       return {
         'bg-grey-lighten-2': field > hovered.value,
-        'bg-red': props.max <= hovered.value && field <= hovered.value,
+        'hover-preview': props.max <= hovered.value && field <= hovered.value,
       }
     } else {
-      return { 'bg-red': field <= hovered.value }
+      return { 'hover-preview': field <= hovered.value }
     }
   }
   return {}
@@ -208,6 +208,11 @@ function boxClasses(field: number): Record<string, boolean> {
 
 .bonus-box {
   cursor: default;
+}
+
+.hover-preview {
+  background-color: #c62828 !important;
+  border-color: #7f0000 !important;
 }
 
 .bonus-filled {

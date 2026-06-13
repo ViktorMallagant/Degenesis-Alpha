@@ -16,7 +16,7 @@
       :name="skill.name"
       :label="localizeSkillName(skill)"
       :value="store.skillValue(skill)"
-      :max="store.skillMax(skill)"
+      :max="store.skillMax(skill) - store.legacySkillStaticBonus(skill.name)"
       :min="skillMin()"
       :bonus="store.legacySkillBonus(skill.name)"
       :active="store.isActiveSkill(skill)"
