@@ -11,6 +11,7 @@
     :display-max="store.editorMode != EditorMode.Free"
     :labelStar="isPreferredAttribute(attribute)"
     :lockedLast="store.experiencedLockedAttributes.has(attribute.name) ? 1 : 0"
+    :active="!store.hasGifted"
     type="attributes"
   />
   <v-divider class="mb-4"></v-divider>
@@ -22,13 +23,18 @@
       :max="store.skillMax(skill) - store.legacySkillStaticBonus(skill.name)"
       :min="skillMin()"
       :bonus="store.legacySkillBonus(skill.name)"
-      :active="store.isActiveSkill(skill)"
+      :active="store.isActiveSkill(skill) && (!store.hasGifted || isGiftedSkill(skill))"
+      :count="skillCount(skill)"
       @change="(v) => store.setSkill(skill, v)"
+      @giftedChange="(v) => store.setGiftedBonus(skill.name, v)"
       :highlighted="store.isHighlighted(skill)"
       :display-max="store.editorMode != EditorMode.Free"
       @mouseenter="skill.antagonist && store.setHighlighted(skill, skill.antagonist)"
       @mouseleave="skill.antagonist && store.unsetHighlighted(skill, skill.antagonist)"
       @touchstart="skill.antagonist && store.flashHighlighted(skill, skill.antagonist)"
+      :giftedClickable="store.hasGifted && isGiftedSkill(skill)"
+      :giftedPoints="store.hasGifted && isGiftedSkill(skill) ? (store.giftedBonuses[skill.name] || 0) : 0"
+      :giftedRemaining="store.hasGifted && isGiftedSkill(skill) ? store.giftedRemaining : 0"
       type="skills"
     />
   </div>
@@ -71,5 +77,16 @@ const isPreferredAttribute = (attribute: Attribute): boolean => {
   if (store.mentalPowerChoice === 'focus') return FOCUS_ATTRIBUTES.includes(attribute.name)
   return false
 }
-</script>
 
+const GIFTED_ATTRIBUTES = ['charisma', 'intellect']
+
+const isGiftedSkill = (skill: Skill): boolean =>
+  GIFTED_ATTRIBUTES.includes(skill.attribute.name)
+
+const skillCount = (skill: Skill): number => {
+  if (!store.hasGifted || !isGiftedSkill(skill)) return 6
+  const giftedPoints = store.giftedBonuses[skill.name] || 0
+  const hasAvailableSlot = store.giftedRemaining > 0 && giftedPoints < 6
+  return 6 + giftedPoints + (hasAvailableSlot ? 1 : 0)
+}
+</script>

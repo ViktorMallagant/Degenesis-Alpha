@@ -307,7 +307,7 @@
           <MentalDilemmaSelector />
         </v-col>
       </v-row>
-      <v-row>
+      <v-row id="skills-section">
         <v-col sm="6" md="4" cols="12" v-for="attr in attributes" v-bind:key="attr.name">
           <v-card class="pa-4">
             <AttributeAndSkillSelector :attribute="attr"></AttributeAndSkillSelector>
@@ -436,6 +436,25 @@
   >
     {{ store.errorMessage }}
   </v-snackbar>
+
+  <!-- Panneau flottant Doué -->
+  <div v-if="store.hasGifted" class="gifted-panel">
+    <div class="gifted-panel-title">HÉRITAGE DOUÉ</div>
+    <div class="gifted-panel-counter">
+      Points restants :
+      <span :class="store.giftedRemaining === 0 ? 'gifted-done' : 'gifted-remaining'">
+        {{ store.giftedRemaining }}/6
+      </span>
+    </div>
+    <div class="gifted-panel-hint">Cliquez sur les compétences<br>de CHA ou INT pour allouer</div>
+    <v-btn
+      size="small"
+      variant="outlined"
+      color="grey"
+      class="mt-2"
+      @click="store.setLegacy(giftedLegacy!, 0)"
+    >Annuler</v-btn>
+  </div>
   </div>
 </template>
 
@@ -465,7 +484,8 @@ mdiDelete,
 mdiExport,
 mdiPencil
 } from '@mdi/js'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { AllLegacies } from '@/config/legacies'
 import { useI18n } from 'vue-i18n'
 import { useDisplay } from 'vuetify'
 import EditorArchetypeSelector from './EditorArchetypeSelector.vue'
@@ -568,6 +588,8 @@ const downloadCharacter = () => {
   createDownload('character.json', JSON.stringify(store.asCharacter))
 }
 
+const giftedLegacy = computed(() => AllLegacies.find(l => l.name === 'gifted'))
+
 const { mobile } = useDisplay()
 const showNavigationDrawer = ref(!mobile.value)
 
@@ -654,6 +676,45 @@ const renameCharacter = () => {
   color: #ffe082;
   border-top: 1px solid rgba(255,255,255,0.1);
   padding-top: 6px;
+}
+
+.gifted-panel {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 100;
+  background: #1a0a2e;
+  border: 1px solid #7b1fa2;
+  border-radius: 10px;
+  padding: 14px 18px;
+  min-width: 180px;
+  box-shadow: 0 4px 24px rgba(123,31,162,0.4);
+}
+.gifted-panel-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #ce93d8;
+  margin-bottom: 8px;
+}
+.gifted-panel-counter {
+  font-size: 14px;
+  color: #eee;
+  margin-bottom: 4px;
+}
+.gifted-remaining {
+  font-weight: 700;
+  color: #ce93d8;
+}
+.gifted-done {
+  font-weight: 700;
+  color: #a5d6a7;
+}
+.gifted-panel-hint {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.4;
+  margin-bottom: 4px;
 }
 
 #appBarIcon {

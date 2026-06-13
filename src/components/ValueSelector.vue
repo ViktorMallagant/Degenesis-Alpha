@@ -30,7 +30,11 @@
         :ineligible="props.ineligible"
         :bonus="props.bonus"
         :lockedLast="props.lockedLast"
+        :giftedClickable="props.giftedClickable"
+        :giftedPoints="props.giftedPoints"
+        :giftedRemaining="props.giftedRemaining"
         v-on:change="selectionChanged"
+        v-on:giftedChange="(v) => emit('giftedChange', v)"
       />
   </div>
 </template>
@@ -58,6 +62,9 @@ export interface Props {
   bonus?: number,
   labelStar?: boolean,
   lockedLast?: number,
+  giftedClickable?: boolean,
+  giftedPoints?: number,
+  giftedRemaining?: number,
 }
 const props = withDefaults(defineProps<Props>(), {
   altLabel: '',
@@ -73,9 +80,13 @@ const props = withDefaults(defineProps<Props>(), {
   bonus: 0,
   labelStar: false,
   lockedLast: 0,
+  giftedClickable: false,
+  giftedPoints: 0,
+  giftedRemaining: 0,
 })
 const emit = defineEmits<{
   (e: 'change', value: number): void
+  (e: 'giftedChange', newPoints: number): void
 }>()
 
 const { t } = useI18n()

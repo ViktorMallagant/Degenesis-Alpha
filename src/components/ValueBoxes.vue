@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export interface Props {
   count?: number
@@ -45,6 +45,9 @@ export interface Props {
   ineligible?: boolean
   bonus?: number
   lockedLast?: number
+  giftedClickable?: boolean
+  giftedPoints?: number
+  giftedRemaining?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -59,12 +62,16 @@ const props = withDefaults(defineProps<Props>(), {
   ineligible: false,
   bonus: 0,
   lockedLast: 0,
+  giftedClickable: false,
+  giftedPoints: 0,
+  giftedRemaining: 0,
 })
 const emit = defineEmits<{
   (e: 'change', value: number): void
+  (e: 'giftedChange', newPoints: number): void
 }>()
 
-const fieldValues = [...Array(props.count).keys()].map((x) => x + 1)
+const fieldValues = computed(() => [...Array(props.count).keys()].map((x) => x + 1))
 
 // hovered: -1 = not hovering (rest layout), 0 = hovering bonus zone, >0 = hovering field N
 const hovered = ref(-1)
@@ -73,6 +80,12 @@ const handleClick = (event: any) => {
   if (props.interactive) {
     const field = parseInt(event.target.attributes['data-value'].value)
     if (props.lockedLast && field > props.count - props.lockedLast) return
+    if (props.giftedClickable && field > props.max) {
+      const newPoints = field - props.max
+      emit('giftedChange', newPoints === props.giftedPoints ? 0 : newPoints)
+      hovered.value = -1
+      return
+    }
     const bonus = props.bonus ?? 0
     if (bonus > 0) {
       // In hover layout: bonus zone is max+1..max+bonus → ignore
@@ -145,6 +158,16 @@ function boxClasses(field: number): Record<string, boolean> {
       if (field <= props.value) return { 'bg-grey-darken-4': true }
     }
     return {}
+  }
+
+  // ── Gifted bonus boxes ────────────────────────────────────────────────────
+  if (props.giftedClickable && field > props.max) {
+    const giftedSlot = field - props.max
+    if (giftedSlot <= props.giftedPoints) return { 'gifted-filled': true }
+    if (giftedSlot === props.giftedPoints + 1 && props.giftedRemaining > 0) {
+      return { 'gifted-available': field <= hovered.value }
+    }
+    return { 'bg-grey-lighten-2': true }
   }
 
   // ── Original behavior (no bonus) ──────────────────────────────────────────
@@ -234,6 +257,17 @@ function boxClasses(field: number): Record<string, boolean> {
   height: 20%;
   opacity: 0;
   transition: opacity .2s;
+}
+
+.gifted-filled {
+  background-color: #7b1fa2 !important;
+  border-color: #4a0072 !important;
+}
+
+.gifted-available {
+  background-color: #ce93d8 !important;
+  border-color: #7b1fa2 !important;
+  cursor: pointer;
 }
 
 .locked-x {

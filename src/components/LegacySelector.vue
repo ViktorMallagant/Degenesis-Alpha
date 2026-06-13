@@ -396,6 +396,13 @@ function autoFillChoices(legacy: Legacy): { attributes: Record<string, string>; 
 }
 
 function handleLegacyChange(legacy: Legacy, value: number) {
+  if (legacy.name === 'gifted' && value > 0) {
+    store.setLegacy(legacy, value)
+    setTimeout(() => {
+      document.getElementById('skills-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 100)
+    return
+  }
   if (legacy.name === 'techtuned' && value > 0) {
     openArtefactDialog(value)
     return

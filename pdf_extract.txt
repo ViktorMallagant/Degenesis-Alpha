@@ -1,0 +1,1241 @@
+
+=== PAGE 1 ===
+É Q U I P E M E N T D E S C U LT E S
+EMBLÈMES
+On reconnaît un Juge à son manteau, son chapeau, et son Les Cultes ne font preuve d’aucune pitié lorsqu’ils
+Marteau de jugement, et un Fléau à son casque et son gilet voient leur équipement entre les mauvaises mains. Les
+pare-balles. Un Spitalier sans combinaison en néoprène ni réactions varient en fonction du délit commis et de la
+dilacérateur ne pourra être différencié d’un simple chirur- rareté des objets détenus. Par exemple, un Ferrailleur se
+gien militaire. contentera de lancer un crachat s’il voit un Apocalyp-
+Les armes et les armures emblématiques d’un Culte sym- tique avec une charrette à bras. Les Blafards détestent
+bolisent l’appartenance d’un individu, ses traditions, mais voir ces mitraillettes d’antan, dons des dieux qui leur
+aussi son autorité. Elles revêtent une importance toute étaient réservés, entre les mains des habitants de la
+particulière. Elles sont uniques et singularisent un Culte surface. Mais ils se retiennent de faire quoi que ce soit.
+et ses membres par rapport aux autres. Quiconque arbore Toutefois, si un Juge était surpris à se promener avec un
+un emblème contrefait ou volé et qui se fait prendre devra Disque Solaire…
+s’attendre au pire : les Hellvétiques lâchent nu au beau Les membres d’un Culte attaquent rarement à vue, ce
+milieu des Alpes enneigées tout individu pris en possession serait stupide. Ils demandent d’abord la provenance de ce
+d’un défricheur sans autorisation légale, puis se lancent à joli objet, puis si son détenteur sait que seuls les membres
+sa poursuite. Les Justitiens tatouent une bande rouge de la d’un Culte sont autorisés à en posséder un. Au mieux, les
+bouche au front de tout individu surpris à se faire passer interactions sociales deviennent plus difficiles (jusque -4D
+pour un Juge. Si un Fléau capture quelqu’un qui porte un sur les tests d’action sous Charisme). Cependant, lorsque
+de leurs masques, ils humilieront d’abord l’imposteur puis les membres du Culte sont en supériorité numérique, la
+le roueront de coups d’un bout à l’autre du village. situation risque de mal tourner.
+DILACÉRATEUR > LUMIÈRE FROIDE
+De vieilles histoires prétendent que l’OEU fit usage de L’énergie cinétique du dilacérateur se transforme en éner-
+dilacérateurs lors d’opérations de pacification à l’époque gie électrique à la sortie du branchement. Cette éner-
+d’antan. Il paraîtrait que les branchements servaient de gie allume un gaz à l’intérieur du piston qui brille d’une
+modules de contrôle pour les lames des AMSUMO. intense lumière blanche. En théorie, elle peut rester active
+Les fonctions restent identiques : dans la hampe réside indéfiniment tant que le stockage cinétique peut l’alimen-
+un cylindre de stockage cinétique, constamment alimen- ter, c’est à dire tant que le pompage dure.
+té par un levier de pompage, ce qui écarte les lames. Si le b Embout de dilacérateur
+levier est rabattu, les lames extérieures se ferment rapide-
+ment et puissamment sur la lame centrale. Divers acces- > PINCES
+soires peuvent être vissés au sommet de la hampe, bien Les pinces s’ajustent avec une petite molette pour ser-
+que le choix habituel se porte sur un cylindre à mollusk. vir lors d’opérations de récupération qui requièrent une
+SPÉCIALITÉ : capacité spéciale « Lacération » – Si une grande précision motrice, ou bien pour maintenir quelque
+attaque réussit avec 2 déclencheurs, le Spitalier peut refer- chose fermement.
+mer les lames d’un coup sec et infliger ainsi 1D de dégâts Elles peuvent aussi s’utiliser pour saisir le cou d’un Psy-
+supplémentaires. Les 2DC utilisés ne comptent pas dans chonaute et le maintenir à distance (avec PHY+Corps à
+le calcul des dégâts. Cela signifie que si le joueur n’ob- corps, Maniabilité -2D, aucun dégât). Pour pouvoir s’en
+tient que 1 en dégâts supplémentaires, il infligera 1 point libérer, le prisonnier doit réussir un test de PHY+Force (5).
+de dégâts en moins que s’il avait décidé de ne pas utiliser b Embout de dilacérateur
+« Lacération ». Au mieux, il peut infliger +4 dégâts.
+b Armes de corps à corps VOCALISATEUR NOUMENON
+Un vocalisateur noumenon transforme au travers de
+> MOLLUSK mollusks les appels éthériques des Psychonautes et de
+Un mollusk permet de repérer toute créature en lien leurs Chakras terrestres en mélodies. Cela permet d’iden-
+ouvert avec un Chakra terrestre : des Psychonautes, des tifier et de localiser avec précision les ondes porteuses
+Brûlés en phase d’euphorie, des porteurs de germes, ou des psychonautiques.
+Anabaptistes qui s’oignent avec de l’huile d’Achéron. Un SPÉCIALITÉ : pour mesurer une signature correctement,
+Psychonaute entièrement dépourvu de spores ou un Spo- le Spitalier doit réussir une combinaison d’INS+Percep-
+ruleux ne fera que légèrement trembler un mollusk. tion et INT+Science de difficulté 4. De grandes quantités
+Il possède une portée de 30 m. de sources noumènes peuvent être détectées sur de larges
+b Embout de dilacérateur distances. En outre, un seul Aberrant peut être détecté
+Lucas Flohr (Order #41761180)
+
+=== PAGE 2 ===
+VOCALISATEUR
+sur une portée de 100 m, et cinq d’entre eux sur une por- SPÉCIALITÉ : cette combinaison change un homme banal
+tée de 500 m. Les déclencheurs influent sur la qualité en véritable sauveur, du moins aux yeux d’un malade.
+de l’analyse. Aucun déclencheur : « Psychonautes dans Son porteur obtient +1D aux jets d’interactions sociales.
+les environs » ; 1 déclencheur : détection du nombre de Un Spitalier entièrement équipé qui se retrouve exposé à
+Psychonautes et une direction approximative ; 2 déclen- une sporulation, à une maladie ou à un environnement
+cheurs : détection de l’Extase et donne une direction plus empoisonné obtient +4 succès à son jet de résistance, tout
+précise ; et avec 3 déclencheurs, le Spitalier connaît la dis- comme avec la propriété « Hermétique (+4S) ».
+tance exacte. La combinaison spitalière comporte un masque à gaz de
+b Orientation / Pistage niveau II. Si le docteur se procure un meilleur appareil de
+filtrage, le bonus de résistance se change en +5S.
+SUBSTANCES DE MESURE b Armures
+Grâce à des extraits de spores épigénétiquement modifiés,
+des vocalisateurs noumenon et des mollusks peuvent être COMBINAISON
+calibrés sur un Chakra bien particulier. D’HYGIÉNISTE
+SPÉCIALITÉ : la difficulté pour détecter un Psychonaute Plus imposante que la spitalière, la combinaison d’hygié-
+ou un champ de spores d’Extase similaire est réduite d’un niste est équipée d’un casque intégralement fermé et d’une
+nombre de points équivalent au niveau de la substance de bouteille d’oxygène. Elle est particulièrement adaptée aux
+mesure (niveau 1 à 3). Néanmoins, la difficulté augmente missions dans des zones à forte contamination.
+d’un nombre de points similaire pour toutes les autres SPÉCIALITÉ : très encombrante. Toutefois, elle procure +6
+Extases. Tout calibrage est permanent, et un intercalibrage succès contre les sporulations, les maladies et les toxines.
+détruira les tissus du Mollusk. La bouteille d’oxygène équivaut à un masque à gaz de
+b Orientation / Pistage niveau III.
+b Armures
+COMBINAISON SPITALIÈRE
+Cette combinaison en néoprène est hermétique, et ne TROUSSE DE TERRAIN
+laisse donc passer aucune bactérie. Avec en plus un masque Au minimum, un docteur dans chaque escouade spitalière
+à gaz et leur crâne couvert de poudre, elle donne aux doc- de taille normale transporte sur lui une trousse de terrain.
+teurs une protection relativement complète contre des Cette trousse de secours comprend du matériel pour les
+environnements infectés. Pour les longues missions, la premiers soins, des instruments chirurgicaux et d’analyse,
+combinaison est dotée d’une bouteille à urine pour que des fongicides, des pesticides, ainsi que des médicaments.
+le Spitalier réduise au maximum tout contact avec l’en- SPÉCIALITÉ : +2D sur INT+Médecine. La trousse de ter-
+vironnement contaminé. De fines membranes dans le rain est utilisable 5 fois avant de devoir la remplir à nou-
+creux des bras permettent d’utiliser une seringue à travers veau dans une base spitalière.
+la combinaison. b Équipement médical
+DEGENESIS 125
+Lucas Flohr (Order #41761180)
+
+=== PAGE 3 ===
+DILACÉRATEUR
+MOUCHARDS ET SÉQUENCEUR
+APPAREILS D’ÉCOUTE Les Épigénéticiens portent un intérêt tout particu-
+Les Hippocrates assurent le maintien de l’ordre dans le lier aux composants mêmes de la vie. Ils accumulent
+Spital. Grâce à des mouchards et autres appareils d’écoute, les échantillons de sang comme un Apocalyptique les
+ils restent au fait des différentes opinions et idées expri- conquêtes amoureuses. Ils analysent leurs trouvailles
+mées ici ou là. dans un séquenceur qui, au bout de quelques minutes,
+SPÉCIALITÉ : pour planter un mouchard, l’Hippocrate lance recrache un code en 20 caractères alphanumériques. Ils
+AGI+Furtivité. Grâce à sa petite taille, il obtient +2 succès. peuvent ainsi chercher dans leur catalogue génétique
+Pour le localiser, il sera nécessaire d’effectuer une confron- différentes parties de ce code pour déterminer les ori-
+tation. En cas de réussite, l’individu trouvera le mouchard. gines de la personne, ses maladies congénitales, mais
+La distance de transmission est d’environ 20 m. aussi ses faiblesses.
+b Technologie SPÉCIALITÉ : lorsqu’un Épigénéticien analyse un échan-
+tillon, il peut personnaliser un médicament ou un poison
+INSTRUMENTS en fonction de l’individu. Pour ce dernier, la PUISSANCE
+CHIRURGICAUX du remède augmente de +2.
+Scalpels, agrafes, et scies constituent les outils d’un Chirur- b Équipement médical
+gien, et indiquent de manière flagrante sa position au sein
+de la hiérarchie de son service. Alors que le Spital procure FUSIL À FONGICIDE
+aux Chirurgiens tout le nécessaire pour une opération, Le fusil à fongicide spitalier fonctionne comme un lance-
+cela fait cinq siècles que ces instruments-là furent sortis flamme alimenté par cartouches ou réservoir externe.
+de leur emballage stérile. Tout docteur digne de ce nom Il peut projeter divers produits chimiques : fongicides,
+possède ses propres instruments chirurgicaux, conçus à pesticides, produits incendiaires à deux réactifs, agents
+partir des meilleurs matériaux par les maîtres de l’acier ou chimiques. L’éventail des produits à la disposition des
+en Purgare par la famille Sforza. Néanmoins, le coût est Spitaliers est impressionnant et ne fera aucun bien à
+proportionnel à la qualité. votre santé.
+SPÉCIALITÉ : il existe 3 niveaux d’outils chirurgicaux. Ils SPÉCIALITÉ : un antidote prévu pour l’utilisateur peut
+procurent +1D par niveau pour le traitement de Trauma- être rangé dans la crosse de ce fusil. Une cartouche
+tismes par opération chirurgicale. pour fusil fongicide contient assez d’agents actifs pour
+b Armes de corps à corps > Équipement médical 10 utilisations.
+b Fusils
+APOTHÉCARIUM
+Brûleurs à gaz, pilons, éprouvettes, d’autres accessoires LANCE-CARTOUCHES
+accompagnés d’un large panel de produits chimiques et Un fusil à fongicide projette son produit sur une faible
+d’ingrédients pour médicaments contenus dans des verres distance (quelques pas), mais les grenades tirées par un
+et des petits sachets, le tout rangé dans une valise. Un apo- lance-cartouches peuvent atteindre une portée bien plus
+thécarium fournit au Pharmacien un laboratoire portable grande. En outre, elles peuvent libérer les mêmes agents
+avec lequel il peut créer poisons ou médicaments, mais actifs sur un rayon de plusieurs pas.
+aussi analyser diverses maladies. SPÉCIALITÉ : une grenade rebondit, roule et n’atter-
+SPÉCIALITÉ : il existe 3 niveaux d’apothécariums. Ils oc- rit généralement jamais là où le tireur le souhaite, ce
+troient au Pharmacien +1 succès par niveau lors d’un qui lui donne la propriété « Déviation ». Les grenades
+test d’INT+Science lors d’une analyse, ou bien lors de la d’un lance-cartouches peuvent aussi être lancées à la
+confection de médicaments. Dans tous les cas, un apothé- main, équipées d’un minuteur, ou bien être utilisées
+carium peut produire 10 médicaments avant de devoir être comme mines à pression. Pour cela, il suffit de changer
+réapprovisionné dans une base spitalière. le détonateur.
+b Équipement médical b Armes lourdes
+Lucas Flohr (Order #41761180)
+
+=== PAGE 4 ===
+PISTOLET À INJECTION > LACRYMOGÈNE
+Un Anesthésiste préfère l’utilisation d’un pistolet à injec- La bromoacétone constitue le principal composant de tout
+tion lorsqu’il s’agit d’introduire dans un point précis de l’or- agent lacrymogène. Ce liquide à l’odeur âcre provoque de
+ganisme un agent chimique ou une substance médicinale. sérieuses irritations lorsqu’il entre en contact avec les yeux
+SPÉCIALITÉ : sur une attaque de Corps à corps réussie, le et les muqueuses.
+pistolet est pressé contre la cible et lui injecte son contenu. EFFET : les dégâts provoqués par un agent lacrymogène
+Un pistolet à injection ne peut pénétrer que des protec- (Puissance 5) ne causent aucune blessure, mais infligent un
+tions qui possèdent une valeur d’armure maximale de 4. malus général (-3D) par le biais de sa propriété « Empoi-
+Cette arme ne peut contenir que 1 dose à la fois. sonné ». Ne convient pas aux pistolets à injection.
+b Armes de corps à corps b Agents chimiques
+AGENTS CHIMIQUES > AÉROSOL D’EX / EG-1
+L’arsenal des Spitaliers comprend n’importe quel type Lorsqu’un Psychonaute entre en contact avec cet aéro-
+d’agents chimiques, de l’aérosol exsporiateur aux agents sol, ce dernier bloque les effets catalytiques des spores à
+expérimentaux. un niveau épigénétique. En substance, il détruit toutes
+les spores de l’Aberrant. Cependant, cet agent chimique
+> SP 4016 TH se détériore en l’espace de quelques minutes, au bout des-
+Ce fongicide s’utilise principalement pour combattre la quelles le Psychonaute retrouve tout l’éventail de Phéno-
+Sepsie. Sa forte contenance en soufre assèche les champs mènes octroyés par les spores.
+de spores et les toxines présentes les empêchent d’y sur- EFFET : pour chaque dose ou cartouche explosive, la
+vivre. Une pulvérisation sur un lit de Sepsie la fera dis- sporulation diminue de 10 minutes (voir la propriété
+paraître en l’espace de quelques heures. Ce fongicide se « Exsporiateur virtuel »).
+désagrège très lentement, ce qui évite ainsi l’émergence de b Agents chimiques
+nouvelles spores pendant plusieurs mois, voire des années.
+EFFET : tout contact avec le SP 4016 (Puissance 4) pro- > POUSSIÈRE DE FEU
+voque l’apparition de pustules irritantes et suppurantes Enduit de phosphore sous forme de poussière blanche, elle
+sur tout le corps (-2D à toutes les actions). Elles dispa- s’enflamme à la seconde même de son contact avec l’oxy-
+raissent après un jour complet. Les dégâts ne se cumulent gène et produit de puissantes flammes blanches.
+pas. Ne convient pas aux pistolets à injection. EFFET : la poussière de feu ne forme pas de nuage. Les
+b Agents chimiques dégâts se produisent immédiatement et ne s’infligent
+qu’une seule fois (dégâts de feu).
+> MARQUEUR PHÉROMONAL b Agents chimiques
+Les Pharmaciens parviennent de mieux en mieux à répli-
+quer le marquage phéromonal des nuées d’insectes en > BANDE NOIRE
+Franka. Dissouts dans un liquide sirupeux puis chargés Une bande noire sur une cartouche symbolise l’anes-
+dans des cartouches, ils permettent aux Spitaliers de scin- thésiant de combat le plus puissant produit par le Spi-
+der des nuées en plusieurs parties et de les attirer vers tal, d’où son nom. Officiellement, seuls les Anesthésistes
+des brasiers. sont autorisés à utiliser cet agent chimique. Cependant,
+EFFET : une dose de marqueur phéromonal attire tout les Préservistes exigent constamment d’y avoir accès.
+insecte dans un rayon de 20 pas, mais uniquement pen- Inhalé, cet aérosol incolore à base d’opioïdes et d’anes-
+dant quelques minutes. Les phéromones de synthèse thésiants provoque une perte de conscience dans la
+se détériorent par oxydation et perdent tout effet. Ne majorité des cas.
+convient pas aux pistolets à injection. Utile uniquement EFFET : la bande noire inflige une perte de points d’Égo
+contre la peste phéromancienne. (voir la propriété « Narcotique »).
+b Agents chimiques b Agents chimiques
+DEGENESIS 127
+Lucas Flohr (Order #41761180)
+
+=== PAGE 5 ===
+LANCE-CARTOUCHES
+> GAZ CHLORÉ
+Le gaz chloré fait partie des agents chimiques les plus dan- Les Préservistes s’y réfèrent sans l’ombre d’une plaisanterie
+gereux du Spital. Inhalé, il détruit les tissus pulmonaires. comme le « meilleur acier chirurgical ». L’acier est certes
+Des morceaux rosâtres se déchirent puis se retrouvent plus souple que celui de l’espadon anabaptiste, et plus
+expulsés par de violentes quintes de toux. Les bronches se précis et élégant que la houe de cavalier jehammétanne.
+remplissent de liquide, la respiration devient rauque. Puis, Cependant, ce qui rend l’épée Preservalis supérieure à
+lorsque la peau de la victime passe du pâle au bleuâtre, toute autre arme ne réside pas dans ses qualités intrin-
+cette dernière a déjà perdu conscience. La chlorine est bien sèques, mais dans la main jugée apte à la brandir.
+plus lourde que l’air. Elle retombe donc sur le sol. Elle est SPÉCIALITÉ : aucune
+donc parfaitement adaptée à l’extermination de Psycho- b Armes de corps à corps
+nautes ainsi qu’à la contamination des vallées à anneaux
+concentriques, signes de champs de spores. CHEVAL DE NEWCREST
+EFFET : le gaz chloré n’existe que sous la forme de muni- Les chevaux sont une véritable passion pour le Recteur
+tions pour le lance-cartouches, de grenades ou de mines. Il Kranzler. Le programme pour la reproduction d’étalons
+ne convient ni au fusil à fongicide ni au pistolet à injection. à Newcrest, sa ferme équestre, produit régulièrement ces
+Il ne se dissipe que lors de forts vents. légendaires montures noires. Kranzler les offre ensuite à
+Ses effets sont identiques à une toxine de Puissance 5. Il ses alliés hauts placés et à ses meilleurs Préservistes. Che-
+inflige 1 Traumatisme par round, mais peut être contré par vaucher un cheval de Newcrest est une véritable respon-
+un jet réussi de PHY+Résistance (Force) (voir la propriété sabilité. Un mauvais cavalier qui ruinerait la santé d’un de
+« Empoisonné »). ces chevaux devrait faire face au courroux de Kranzler.
+b Agents chimiques SPÉCIALITÉ : meilleur cheval de selle connu de l’homme,
+il ne peut être acquis avec des Ressources, mais avec de la
+ÉPÉE PRESERVALIS Renommée. Une valeur en Renommée de 5 ou plus sera
+La lame d’acier noir, bien huilée et coupante comme un nécessaire avant que Kranzler ne songe à laisser un Préser-
+scalpel, peut trancher os et tendons en un seul coup. Elle viste chevaucher au combat avec l’un de ses chevaux.
+est parfaitement équilibrée et d’une excellente ergonomie. b Montures
+Lucas Flohr (Order #41761180)
+
+=== PAGE 6 ===
+IMPRIMANTE À LETTRES Il surmodule aussi les voix et les amplifie. Elles prennent
+DE CHANGE alors une sonorité mécanique et métallique. Un micro est
+Un clavier numérique aux touches effacées, des chiffres placé dans le masque en cuir au niveau de la bouche ; le
+de couleur ambre clignotant sur l’écran d’affichage. Le modulateur et le haut-parleur sont accrochés au niveau
+Chroniqueur entre son code, appuie sur la touche dièse de la cage thoracique. Le volume d’un vocodeur peut être
+pour le valider, puis ajoute de nouveaux chiffres : le mon- réglé en continu, du murmure subtil au tintamarre infer-
+tant de la lettre de change. Autre pression sur dièse, et nal audible des kilomètres à la ronde. Grâce à des boutons
+la machine recrache dans un bruit mécanique un mor- supplémentaires, un retardateur peut être ajouté, la fré-
+ceau de papier thermique imprimé : une lettre de change quence peut être modifiée et un larsen assourdissant peut
+des Chroniqueurs. être produit. Un vocodeur utilisé de manière appropriée
+Les imprimantes à lettres de change produisent de constitue l’arme la plus efficace d’un Chroniqueur. Au sein
+l’argent papier. Ces machines auraient le pouvoir de dés- du Serveur, les distorsions de voix ne sont jamais utilisées.
+tabiliser l’économie européenne. Par conséquent, chacune SPÉCIALITÉ : l’alimentation par E-Cube d’un vocodeur
+est limitée à un montant maximal. Seul un Fragment, situé reste minime. Ainsi, l’appareil peut continuer à produire
+dans un Serveur, peut réinitialiser le compteur interne ses sons pendant plusieurs jours sans interruption. Tant
+d’une imprimante et la réactiver. qu’un Chroniqueur recharge régulièrement son vocodeur
+SPÉCIALITÉ : une imprimante à lettres de change dans un Serveur ou une Alcôve, sa voix électrique le suivra
+peut produire 50 LC × Ressources du Chroniqueur toujours partout.
+par mois. b Armes soniques
+b Technologie
+RACCORDEUR
+GANT DE DIFFUSEUR Un vocodeur à pleine puissance est déjà douloureux, mais
+Comme l’imprimante à lettres de change, le gant de branché à un raccordeur, une sorte de sceptre muni de blocs
+Diffuseur est désormais un des symboles du Culte. Le amplificateurs et de haut-parleurs, il transforme une voix
+petit doigt levé d’un Chroniqueur force le respect par nasillarde en un rugissement de colère divine. Les pentes de
+pure crainte des décharges électriques douloureuses montagnes se mettent à trembler, des avalanches se créent
+produites par la pointe du doigt. Il s’agit foncièrement pour ensuite s’abattre sur la vallée en contrebas dans un
+d’un gant en plastique isolé et muni d’une électrode sur fracas tonitruant. Des vagues se forment sur les plans d’eau
+l’auriculaire. Un E-Cube placé sur le poignet alimente calmes, et la poussière virevolte sur les huttes. La pression
+cet appareil sonore perfore les tympans, mais est aussi capable de faire
+SPÉCIALITÉ : aucune tomber un individu au sol puis de le repousser plus loin. Les
+b Lutte côtes se brisent et les veines éclatent.
+SPÉCIALITÉ : les raccordeurs sont des armes de zone qui
+ÉLECTROCUTEUR touchent indifféremment alliés et ennemis. Ils causent de
+Les Chroniqueurs se tiennent généralement éloignés des sérieux traumatismes dans un cône de 45°.
+combats. Mais dans le cas où cela n’est pas possible, et b Armes soniques
+lorsqu’un gant de Diffuseur ne suffit pas à maîtriser son
+adversaire, les Chroniqueurs sont aussi équipés de son DRONE DU FLUX
+grand frère : l’électrocuteur. Cette arme, particulière- Les drones du Flux orbitent autour des Fragments comme
+ment utile dans les zones à risque, a la taille d’un bras des planètes autour de leur soleil. Des gyropropulseurs
+et est alimentée par six E-Cubes qui se déchargent sur vrombissants les soulèvent du sol, des objectifs oculaires
+le corps de l’adversaire par simple pression d’un bouton. ajustent leur contraste, puis transfèrent leurs images sta-
+Une douce odeur de viande rôtie se propage ensuite dans bilisées sur un écran d’affichage grand comme la paume de
+les environs… la main, situé sur le bras du Chroniqueur.
+SPÉCIALITÉ : aucune SPÉCIALITÉ : un Chroniqueur équipé de drones de Flux
+b Armes de corps à corps actifs ne peut être pris par surprise. Sa perception visuelle
+augmente de +1D par drone, jusqu’à un maximum de +4D
+VOCODEUR (utiliser plus de drones rendra confus n’importe quel Chro-
+Le vocodeur appartient à l’arsenal de dissuasion des Chro- niqueur, même un Fragment). L’écran d’affichage représente
+niqueurs. Cet appareil module les sons et les distord. le centre vital des drones. Leurs positions sont calculées par
+TTEECCHHNNOOLLOOGGIIEESS CCOONNSSAACCRRÉÉEESS
+TToouuttee aarrmmee mmoorrtteellllee eesstt ccoonnssiiddéérrééee dd’’ééqquuiippeemmeenntt nnoorrmmaall.. LLeess RReessssoouurrcceess
+ccoommmmee ccoonnssaaccrrééee.. LLoorrssqquu’’uunn CChhrroonnii-- nnéécceessssaaiirreess àà lleeuurr aaccqquuiissiittiioonn ééqquuiivvaa--
+qquueeuurr uuttiilliissee ccee ttyyppee dd’’ééqquuiippeemmeenntt,, lleenntt aauu NNiivveeaauu tteecchhnnoollooggiiqquuee..
+iill eeffffeeccttuuee ssoonn cchhooiixx ssuurr llee ttaabblleeaauu
+DEGENESIS 129
+Lucas Flohr (Order #41761180)
+
+=== PAGE 7 ===
+GANT DE DIFFUSEUR
+rapport à lui. Si le Chroniqueur se déplace ou gesticule, ils microcontrôleurs situés sous le vocodeur. Grâce des séries
+se mettent en formation et suivent sa position. Un drone se de mouvements programmés et répétés de nombreuses fois,
+contrôle au travers de cet écran et ne peut s’éloigner de plus des impulsions sont envoyées jusqu’aux connexions afin de
+de 10 m de lui. Si cela devait se produire, il tomberait lente- contrôler les différents modules fixés sur la combinaison.
+ment vers le sol où il attendrait que l’écran se rapproche à SPÉCIALITÉ : une combinaison de Chroniqueur est tou-
+nouveau. Un drone possède une valeur d’armure de 3 et une jours équipée d’applications lumineuses qu’ils surnom-
+valeur de structure (l’équivalent de Traumatisme) de 2. ment « éclats » et impressionnantes à voir. Nombre de
+b Technologie Clanistes reculent d’un pas face à elles. Le Chroniqueur
+bénéficie de +1D sur sa première interaction sociale face à
+LIAISON MONTANTE sa cible (propriété « Première impression »).
+PORTATIVE b Armures
+Même au beau milieu des désolations, les Paradigmes refusent
+de rester coupé du savoir diffusé par le Serveur. Grâce à un MODULES
+terminal radio, ils contactent l’Alcôve la plus proche, peuvent Il existe de nombreux modules pour les combinaisons de
+émettre et recevoir des communications, et peuvent aussi Chroniqueurs (voir ci-dessous). Une fois fixé, le Chroni-
+chercher d’anciennes connaissances dans le Flux statique. queur active le module avec un test d’INT+Technologie (1).
+Cependant, les capacités de transmissions restent limitées. En combat, cela compte pour 1 action. Tout module sup-
+Généralement, le Paradigme devra escalader une montagne plémentaire installé rendra leur utilisation plus difficile,
+ou accrocher une antenne dipolaire entre deux cimes d’arbres. car les mouvements doivent être bien distincts. La difficul-
+SPÉCIALITÉ : avec un peu d’effort, elle procure +2D à la té augmente donc de +1 par module. Cela signifie que si le
+compétence Légendes et +1D en Technologie. Tout appel Chroniqueur a installé les modules source, fumigateur, et
+de détresse coûte 1 point de Renommée et déclenchera dôme rayonnant, l’activation se fera à difficulté (3).
+l’envoi d’un Occulteur. Selon la distance, ce dernier pourra La plupart des modules peuvent être améliorés à l’aide
+mettre jusqu’à plusieurs jours pour arriver. de mises à jour de niveau I à III. La valeur en Ressources
+b Communication augmente de 1 par niveau. Par conséquent, un fumigateur
+de niveau III coûtera Ressources 4.
+TRAQUEUR b Modules pour combinaison de Chroniqueur
+Un transpondeur est injecté dans le corps des Fusibles et par-
+fois aussi d’autres Chroniqueurs afin de pouvoir les localiser > SOURCE
+par la suite à l’aide d’un traqueur. Cependant, cet appareil Le module central, la « source », est une cellule de stockage
+n’indique pas de direction. Il se contente de clignoter de plus d’énergie porté à la ceinture, et constitué d’E-Cubes reliés entre
+en plus rapidement lorsqu’il se rapproche de sa cible. eux. Le niveau d’amélioration détermine le nombre de niveaux
+SPÉCIALITÉ : les traqueurs ont une portée maximale de 100 m. de module pouvant être alimentés en énergie en même temps.
+b Orientation / Pistage Le niveau maximum est de 3, mais rien n’empêche un Chroni-
+queur d’être équipé de plusieurs sources à la fois. Néanmoins,
+COMBINAISON une seule cellule énergétique pèse déjà son poids.
+DE CHRONIQUEUR b Modules pour combinaison de Chroniqueur
+Une combinaison de Chroniqueur regorge d’appareils tech-
+nologiques. Des câbles relient les blocs E-Cubes à des fixa- > FUMIGATEUR
+tions velcro sur le dos, les bras, et les jambes. Des capteurs Une épaisse fumée grise s’échappe de fentes sur la combi-
+enregistrent tous les mouvements et les transmettent à des naison, puis enveloppe le Chroniqueur, qui obtient +1 en
+Lucas Flohr (Order #41761180)
+
+=== PAGE 8 ===
+IMPRIMANTE À LETTRES DE CHANGE
+défense passive par niveau pendant 2 rounds de combat. vivante dans un combat. S’il est attaqué, son adversaire
+Le niveau détermine aussi le nombre de charges fumi- subit une perte de points d’Égo égale au niveau du module.
+gènes. Au niveau 1, le Chroniqueur ne peut activer son Cependant, une armure entièrement isolante offre une
+fumigateur qu’une seule fois avant de devoir recharger protection complète contre ce module. Le Chroniqueur
+ce module dans une Alcôve. Une impulsion électrique peut aussi attaquer avec un test d’AGI+Mobilité. Il se jette
+est nécessaire à son activation. Ce module dépend donc sur son adversaire pour provoquer la décharge électrique.
+d’une source. Suite à son utilisation, le module doit se recharger pendant
+b Modules pour combinaison de Chroniqueur 2 rounds de combat. Néanmoins, ce module représente un
+véritable danger lorsque le Chroniqueur est sous la pluie ou
+> DÔME RAYONNANT dans la neige, car il risque de mourir d’électrocution. Ce mo-
+Dans cette version avancée de l’éclat, des rayons laser dule doit rester désactivé dans tout environnement humide.
+sortent de l’épaulière et confèrent au Chroniqueur l’au- b Modules pour combinaison de Chroniqueur
+ra d’un dieu. Il obtient donc +1D par niveau à toutes ses
+interactions sociales. Des Clanistes superstitieux, pris de > HURLEUR
+panique, s’enfuiront ou se jetteront aux pieds du Chroni- Des capteurs de pression sont répartis sur tout le corps
+queur, le front dans la poussière. du Chroniqueur. Lors de tout contact avec ce dernier, ils
+b Modules pour combinaison de Chroniqueur déclenchent un hurlement d’alarme à haute fréquence. Si
+le Chroniqueur est endormi, il se réveille aussitôt. Si un
+> LUMIÈRE VERTE pickpocket déclenche l’alarme, il lui faut réussir un jet de
+Des lasers verts sortent de la combinaison, changent PSY+Foi/Volonté (4) ou bien s’enfuir, paniqué.
+sa couleur et se mettent à vibrer. Quiconque fixe cette Les hurleurs ne peuvent être améliorés. Ils ne dépassent
+lumière verte est pris de nausée, a l’impression que ses donc pas le niveau 1.
+yeux sortent de ses orbites, et ce qui n’est qu’un léger pico- b Modules pour combinaison de Chroniqueur
+tement au début se transforme en une migraine atroce. Les
+rayons peuvent être dirigés par le Chroniqueur. Les émet- > FRÉON
+teurs sont généralement montés sur les épaules et la cage Ce gaz réfrigérant s’échappe de sa cartouche par un tuyau
+thoracique, et couvrent un cône d’à peu près 45° devant lui. flexible qui parcourt le bras du Chroniqueur jusqu’à la
+Fixer ces rayons laser sans lunettes polarisantes inflige un paume de sa main. Ce gaz provoque des engelures graves,
+malus général de -1D par niveau de lumière verte, pendant mais ne peut pénétrer des protections dont la valeur d’ar-
+2 rounds de combat (celui où la lumière verte touche, et mure dépasse 4. Le Chroniqueur doit effectuer une combi-
+le suivant). Après utilisation, le module doit refroidir pen- naison entre son activation et AGI+Armes à projectiles. La
+dant 3 rounds de combat. maniabilité d’un lance-fréon est de +2D. La difficulté reste
+b Modules pour combinaison de Chroniqueur celle d’une attaque normale. La projection de gaz porte sur
+environ 3 m, et toute personne touchée subit 1D de dégâts
+> DÉCHARGE ÉLECTRIQUE par niveau de module, peu importe la valeur d’armure dont
+Des filaments métalliques sortent de la combinaison pour elle dispose. Le niveau détermine le nombre de charges de
+couvrir les bras, les épaules et la cage thoracique. Si le fréon dans une cartouche, qui devra être rechargée dans
+Chroniqueur est touché à ces endroits, la source produit une Alcôve ou un Distributeur. Un Chroniqueur ne peut
+une puissance de plusieurs milliers de volts libérés sous la être équipé de plus de deux modules de fréon à la fois : un
+forme de décharges lumineuses et qui électrocutent l’at- à la main gauche, l’autre à la main droite.
+taquant. Le Chroniqueur devient alors une véritable arme b Modules pour combinaison de Chroniqueur
+DEGENESIS 131
+Lucas Flohr (Order #41761180)
+
+=== PAGE 9 ===
+BOUCLIER
+DES TUNNELS
+DÉFRICHEUR MUNITIONS
+Le défricheur est en réalité un fusil d’assaut Sagur-II doté Il existe plusieurs types de munitions pour un défricheur.
+de trois canons de calibre 5.45 mm. Les munitions peuvent
+provenir d’un chargeur, mais aussi d’une cartouchière. La > BALLE BLINDÉE À HAUTE FRÉQUENCE
+crosse peut se transformer en baïonnette, en couteau de Munition standard pour les trois canons. Haute fréquence
+combat ou en bipied. de tir.
+Dans la Forteresse alpine, chaque arme est réguliè-
+rement contrôlée à l’aide d’une interface qui vérifie le > BALLE À POINTE CREUSE À HAUTE
+nombre de munitions utilisées, les cycles d’entretien FRÉQUENCE
+et la correspondance entre les dates de tir et les dates Au contact avec une cible, la balle s’ouvre et occasionne
+de mission. des blessures conséquentes : +2 dégâts. Cependant, sa
+SPÉCIALITÉ : un défricheur peut être modifié sans utiliser pénétration reste limitée : dégâts divisés de moitié sur une
+d’Emplacements. Une baïonnette peut être tirée de la crosse valeur d’armure de 3 ou plus.
+puis montée sur l’un des canons en un rien de temps. Cela
+permet alors de l’utiliser comme arme de corps à corps et de > CARTOUCHE DE FUSIL DE CHASSE
+causer des dégâts similaires à ceux d’un stylet. Les trois canons peuvent être chargés puis tirés séparé-
+Le bipied lui aussi est tiré de la crosse. Il est ensuite ment. Recharger prend 1 round.
+ouvert puis positionné sous les canons. Le fusil, qui béné-
+ficie désormais d’un support, gagne +2D en maniabilité. DÉFRICHEUR À CANON SCIÉ
+Cependant, comme l’utilisation du bipied change l’équi- Les forces spéciales utilisent aussi une version à canon scié
+libre de l’arme, il infligera un malus de -2D à la maniabilité du défricheur, plus légère. Sa portée est certes bien plus
+si le défricheur est tiré en position debout. réduite, mais sa conception permet toutefois d’effectuer
+Lorsqu’un Hellvétique gravit les rangs, il peut réaffecter des missions en endroits clos, et de mener des combats
+les Emplacements de son défricheur, qui sera personnalisé au Corps à corps sans difficulté. On peut s’en servir d’une
+dans les usines de la forteresse. seule main.
+b Fusils SPÉCIALITÉ : aucune
+b Armes de poing
+Lucas Flohr (Order #41761180)
+
+=== PAGE 10 ===
+BOUCLIER DES TUNNELS grande force, ils sont néanmoins trop lents à utiliser en
+Principalement utilisés par les Sapeurs, les boucliers des tant qu’arme. Tout obstacle subit 20 points de dégâts par
+tunnels offrent une protection mobile lors d’opérations de round. Cependant, les lames nécessitent des points de
+démolition. Les plaques des boucliers sont pliables, ce qui prise, ce qui explique pourquoi les cloisons en acier ne
+facilite leur transport dans les tunnels. risquent rien (3 Emplacements).
+SPÉCIALITÉ : un bouclier des tunnels donne +2 en défense b Modules pour harnais ultrarésistant
+passive et +4D en défense active. Toutefois, il est lourd et dif-
+ficilement maniable (Encombrement +3). Seules des armes à > CIRCUIT DE REFROIDISSEMENT
+1 main peuvent être utilisées conjointement au bouclier, et De fins tuyaux parcourent les plaques d’armure afin de dis-
+elles subissent aussi un malus de -2D sur leurs jets d’attaque. siper la chaleur. Des ventilateurs évacuent l’accumulation
+b Boucliers de chaleur. Ainsi, un Soldat peut pénétrer dans les profon-
+deurs de la Malédiction de la Faucheuse sans craindre de
+HARNAIS se retrouver calciné (1 Emplacement).
+Le harnais hellvétique représente le deuxième équipement b Modules pour harnais ultrarésistant
+le plus important pour les soldats après leur défricheur.
+Cette armure fut perfectionnée à l’époque où les Hellvé- > SOUDEUSE À ARC
+tiques construisirent leurs ponts au-dessus de la Malédic- Une soudeuse à arc est fixée à une main. Un réservoir à
+tion de la Faucheuse, et une nouvelle fonction fut ajou- gaz est situé sous l’armure au niveau du dos. Bien que ce
+tée : on l’a rendue réfractaire. Aujourd’hui, elle n’offre pas module puisse être utilisé en combat au Corps à corps,
+seulement une excellente protection balistique, mais elle il est déconseillé de prendre part à une bataille avec. En
+limite aussi la chaleur infernale dans les passages près de effet, la fragilité du réservoir signifie qu’un coup direc-
+Malédiction de la Faucheuse. tement porté dessus (coup visé, difficulté +2) qui inflige
+SPÉCIALITÉ : les plaques protectrices du harnais peuvent au minimum 4 points de dégâts le percera et enflammera
+être renforcées et vernies dans les usines de la forteresse. le gaz. L’explosion détruira l’exosquelette, et le soldat n’y
+Le résultat donne une meilleure valeur d’armure, mais survivra pas. En tant qu’outil, une soudeuse à l’arc cause
+cela les fragilise aussi (-1 point d’armure permanent après 15 points de dégâts par round à une surface en métal
+12 points de dégâts infligés en un seul coup, voir la proprié- (3 Emplacements).
+té « Cassant »). b Modules pour harnais ultrarésistant
+b Armures
+> FOREUSE À TUNNEL
+HARNAIS DE La foreuse à tunnel est à la fois le module le plus volu-
+RECONNAISSANCE mineux et le plus avancé. Pour la transporter, les bras
+Sur cette variante conçue pour les missions de reconnais- et les épaules doivent être renforcés. Des stabilisateurs
+sance et d’infiltration, les plaques en céramique du harnais absorbent les vibrations et transforment l’énergie ciné-
+normal sont remplacées par un maillage de fibres renfor- tique en chaleur. Alimenté par pétro, le réservoir se situe
+cées, plus souple. Cette armure, bien plus légère et fine, sur le dos. Les harnais ultrarésistants équipés de foreuses
+permet de porter par-dessus une tenue de camouflage. à tunnel interviennent sur des missions de sauvetage
+SPÉCIALITÉ : tenter de repérer le camouflage nécessite lors d’éboulement. Ils percent la roche et le béton avec
+un test d’action sur INS+Perception (5 ; voir la propriété 10 points de dégât par round. Cependant, ils sont totale-
+« Camouflage »). ment inutiles en combat : -6D à l’attaque et en défense
+b Armures active. Le réservoir court les mêmes risques que celui de la
+soudeuse à l’arc (3 Emplacements).
+HARNAIS ULTRARÉSISTANT b Modules pour harnais ultrarésistant
+Le harnais ultrarésistant est un exosquelette recouvert de
+plaques. Il est personnalisé à chaque mission. SAC RADIO
+SPÉCIALITÉ : un exosquelette octroie Force +3D. Toute Un sac radio étend le champ d’action d’une escouade hell-
+attaque et défense active, ainsi que toute action basée sur vétique sur plus de 200 km. Un soldat peut ainsi commu-
+la motricité précise subit un malus de -2D. Les modules niquer avec le haut commandement à très grande distance
+peuvent être combinés pourvu qu’ils rentrent dans le de la Forteresse alpine, ou avec d’autres soldats équipés de
+nombre d’Emplacements de l’armure. sacs radio.
+b Armures SPÉCIALITÉ : aucune
+b Communication
+> POIDS LOURD
+Le module poids lourd octroie Force +6D (2 Emplacements) LIAISON MONTANTE
+b Modules pour harnais ultrarésistant D’APPROVISIONNEUR
+Les Approvisionneurs se connectent au réseau de la For-
+> DÉCOUPEUR teresse alpine à partir de leur ordinateur portatif afin
+Les mains de l’Hellvétique sont recouvertes d’une paire de commander armes et munitions. L’ordinateur à liai-
+de ciseaux hydrauliques aux lames en acier. D’une très son montante est une merveille de l’Âge Ancien conçue
+DEGENESIS 133
+Lucas Flohr (Order #41761180)
+
+=== PAGE 11 ===
+MARTEAU DE JUGE
+précisément pour des opérations militaires. Résistante JUMELLES
+et équipée d’une batterie longue durée, la liaison vers Toutes les paires de jumelles dont dispose l’armée hellvé-
+l’ordinateur central bénéficie du plus haut niveau de tique proviennent de stocks datant de l’époque d’antan.
+cryptage, ce qui attise la convoitise des Chroniqueurs. Elles font partie de l’équipement standard de tout abri
+Qui sait, peut-être parviendraient-ils à accéder au cœur périphérique et de tout Éclaireur.
+numérique de la forteresse par le biais de cette liaison SPÉCIALITÉ : +4D à INS+Perception pour observer à
+montante. distance.
+SPÉCIALITÉ : les Ressources pour les réquisitions d’armes, b Orientation / Pistage
+de munitions et de nourriture passent à 6. Les armures, les
+véhicules, et les améliorations sont exclus. NAVIGATEUR
+b Technologie Cet ordinateur de navigation dispose d’un écran de
+25 centimètres, d’une boussole intégrée et d’un module
+EXPLOSIFS de réception. Les cartes enregistrées datent de l’époque
+Les minerais et agents chimiques nécessaires à la pro- d’antan, mais des marqueurs désignant différentes villes
+duction d’explosifs sont extraits de la montagne, fournis post-Eshaton ont été rajoutés depuis. Tout changement
+par les Néolybiens ou achetés au Protectorat. Le tout est politique, zone à risques, particularité géographique, ou
+ensuite raffiné au cœur même de la forteresse. L’arsenal vecteur d’approche peut être ajouté par le biais de petites
+des Hellvétique force le respect. Répartis sur des centaines plaquettes, les balises de navigation. En règle générale,
+d’abris souterrains dans toutes les Régions Territoriales, les Hellvétiques de haut rang fournissent ces balises aux
+ces explosifs n’attendent plus qu’une armée de Sapeurs et détenteurs de navigateurs en prévision d’une mission.
+d’Ingénieurs s’en serve. En combat, les Hellvétiques uti- SPÉCIALITÉ : un navigateur octroie +4D à INS+Orientation.
+lisent principalement du plastique explosif, qui se place b Orientation / Pistage
+facilement sur des cibles, et se déclenche avec un minu-
+teur ou un détonateur à distance. Pour creuser un tunnel, BRACELET TRANSPONDEUR
+les Hellvétiques utilisent des explosifs maintenus par des Les Éclaireurs camouflent généralement le transmetteur
+tiges à forte poussée. (un cordon enroulé) avec des lanières de cuir, et le portent
+SPÉCIALITÉ : les Ressources des Hellvétiques leur autour du cou ou du poignet. Un navigateur peut détecter
+donnent accès à tous types d’explosifs et de détona- le signal du transmetteur à 20 pas de distance pour ensuite
+teurs. Cependant, si un Soldat sort de la Forteresse al- le représenter par un point sur la carte. Ainsi, un Hellvé-
+pine avec plus de 2 explosifs, cela sera considéré comme tique peut identifier un Éclaireur au beau milieu d’une
+du gaspillage. La limite pour un Sapeur se monte à foule pour lui laisser la vie sauve lors d’une attaque.
+4 charges. SPÉCIALITÉ : aucune
+b Explosifs b Orientation / Pistage
+Lucas Flohr (Order #41761180)
+
+=== PAGE 12 ===
+MOUSQUET DE JUGE
+CODEX MARTEAU DE JUGEMENT
+Sur les terres sans foi ni loi, le Codex, avec ses règles, ses lois et Le Juge Suprême a instauré la tradition qui veut que l’on
+ses épigrammes, est le refuge du Juge. Ce livre qui tient dans rende un jugement avec un marteau, tradition qui persiste
+la paume d’une main est relié en cuir de vache, et il est généra- jusqu’à aujourd’hui. Chaque Juge des Villes reçoit un de ces
+lement transporté dans une sacoche accrochée à la ceinture. solides marteaux en acier lorsqu’il est nommé. Il n’atten-
+SPÉCIALITÉ : lorsqu’un Juge médite sur son Codex pen- dra pas longtemps avant de pouvoir l’utiliser.
+dant 1 round de combat, il récupère 1 point d’Égo. Cela ne Un Marteau de jugement ne sert pas juste de décoration.
+peut s’effectuer qu’une seule fois par jour. Les Juges de haut Il symbolise le pouvoir exécutif du Juge, ce qui explique
+rang possèdent un Codex annoté et doté d’un glossaire. l’absence de décoration sur sa tête en acier cylindrique.
+Cette version spéciale leur procure +2D à CHA+Expression Le manche mesure 1 m de long, et lui aussi ne comprend
+lorsqu’ils prononcent un jugement. aucune décoration.
+b Talismans / Emblèmes SPÉCIALITÉ : un Marteau de jugement possède la proprié-
+té négative « Choc (3DC) ». Cela peut être atténué par un
+MOUSQUET DE JUGE Potentiel.
+Ce fusil à chargement par la bouche fabriqué dans les usines b Armes de corps à corps
+des Maîtres de l’Acier à Justitienne est la réplique exacte des
+mousquets du XVIIe et XVIIIe siècle, à l’époque d’antan. On OUTILS DE JUGEMENT
+le charge de poudre et d’une balle en plomb, et la charge est Rares sont les crimes que les Juges punissent de mort ou
+ensuite comprimée avec une tige. Cette arme ne peut tirer d’emprisonnement. Au lieu de cela, les coupables sont
+qu’une seule fois et doit ensuite être rechargée. marqués de couleurs particulières. Celles-ci font partie des
+Chaque mousquet est orné de décorations standard qui outils de jugement contenus dans la sacoche en cuir du
+indiquent l’année de fabrication ainsi que le Maître de l’Acier Juge. D’autres outils y sont inclus, comme un fer à mar-
+qui l’a conçu. Le clapet de la crosse, qui contient pièces déta- quer, un briquet, et des charbons utilisés sur les récidi-
+chées et matériel de maintenance, est lui aussi standard. vistes, les violeurs, et les assassins.
+SPÉCIALITÉ : il existe quelques mousquets à double SPÉCIALITÉ : aucune
+canon, et chacun dispose de sa propre détente. Si les deux b Talismans / Emblèmes
+canons sont utilisés en même temps, la précision diminue
+de 2D, mais les dégâts de base sont multipliés par deux. CHEVAL DE JUGEMENT
+Charger un mousquet de Juge prend 2 actions (par canon). Le cheval reste le moyen de transport préféré des Juges.
+b Fusils Un jeune Protecteur devra se contenter de vieux canas-
+sons et de chevaux au pas lent. Toutefois, avec le temps,
+PISTOLET À SILEX le Judiciaire lui octroiera un cheval d’assaut, voire peut-
+La technologie de mise à feu et la conception du pistolet à être un jour, un de ces chevaux de jugement entraînés
+silex sont similaires à son grand frère, le mousquet du Juge. au combat.
+La portée et la pénétration sont plus faibles, mais il compense SPÉCIALITÉ : quand le Juge attaque avec son marteau de
+par sa taille réduite : lorsqu’un mousquet est déchargé, le Juge jugement du haut de son cheval, il lui faut effectuer une
+le lâche puis dégaine son pistolet à silex de sa ceinture. Une combinaison d’AGI+Navigation et PHY+Corps à corps. La
+fois qu’il a tiré avec, il dégaine un autre pistolet. vitesse d’un cheval de jugement augmente la force du coup
+SPÉCIALITÉ : un Juge peut porter sur lui plusieurs pistolets. (voir règles de combat).
+Comme pour le mousquet, le recharger prend 2 actions. b Montures
+b Armes de poing
+DEGENESIS 135
+Lucas Flohr (Order #41761180)
+
+=== PAGE 13 ===
+MOULINETTE
+MERVEILLE
+Le fusil d’un Ferrailleur est aussi unique que la main qui le SPÉCIALITÉ : les munitions de la moulinette infligent
+tient et la rune de ce dernier. Très peu de fouilles- poussière d’horribles dégâts, mais elles n’offrent pas de grande péné-
+accordent une quelconque confiance aux armes retrouvées tration (dégâts réduits de moitié contre une valeur d’ar-
+sous les ruines. Après tout, elles n’ont pas été capables de mure de 2 ou plus).
+sauver la peau de leurs propriétaires. De ce fait, ils vissent, b Armes de poing
+soudent et assemblent leur propre fusil à partir de ce qu’ils
+trouvent sur leur route. Esthétiquement parlant, le résul- BROYEUR
+tat final est rarement probant, mais au moins, l’objet est Comme dans le cas des Merveilles, les Ferrailleurs
+unique. La plupart des merveilles sont des fusils à charge- construisent des armes de Corps à corps à partir de frag-
+ment par la bouche qui tirent des balles en plomb à l’aide ments d’artefacts. Ils assemblent des lames de scie, des pics
+de poudre. Cependant, certaines rumeurs prétendent qu’il et des éclats de verre, et construisent des épées à partir de
+existe des versions qui tireraient des balles personnalisées feuilles de métal. La seule chose qui compte est que l’as-
+datant de l’époque d’antan. semblage tienne et que ça semble douloureux. Les Ferrail-
+Il n’est pas rare de voir une lame ou une longue pointe leurs ne sont pas des guerriers, donc la dissuasion prime.
+vissée dessus, mais uniquement en guise de mécanisme de SPÉCIALITÉ : le Broyeur possède plus d’Emplacements
+sécurité. que n’importe quelle autre arme.
+SPÉCIALITÉ : les merveilles disposent du plus haut b Armes de corps à corps
+nombre d’Emplacements.
+b Fusils BOÎTE À OUTILS
+Pendant leurs voyages et leurs expéditions de récupéra-
+MOULINETTE tion, les Ferrailleurs dénichent des outils, ce qui contribue
+Cette variante légendaire de la merveille est un canon scié à modifier leurs équipements, à réparer des artefacts, ou
+maniable à une main. Conçue par l’Artisan Wismuth il y a bien à forcer des serrures.
+50 hivers de cela, elle est équipée d’un moulin à manivelle SPÉCIALITÉ : la qualité d’un outil peut être améliorée du
+qui broie des vis et des pierres pour en faire des munitions. niveau 1 au niveau 3. Chaque niveau donne +1D aux tests
+Il suffit donc de trouver des petits morceaux de ferrailles, d’d’AGI+Artisanat ou d’AGI+Dextérité (selon les cas). Il est
+ce qui n’est pas difficile pour qui sait chercher, puis il ne toujours possible d’acheter de meilleurs outils.
+reste plus qu’à rajouter de la poudre avant de tirer. b Technologie
+Lucas Flohr (Order #41761180)
+
+=== PAGE 14 ===
+BROYEUR
+TONFA
+CHARRETTE À BRAS CHARRETTE AUTOPORTÉE
+Un véhicule ou une monture ne survit généralement pas Équipée d’un moteur à pétro, d’une boite de vitesse avec
+longtemps là où les Ferrailleurs opèrent. Le sol est trop axe rotatif à entraînement direct, et de deux roues à
+cahoteux : de trop nombreux trous dans lesquels les sabots pneus larges qui se cramponnent bien au sol poussiéreux,
+d’un cheval peuvent se coincer, et les barres d’armatures en les charrettes autoportées des Récupérateurs ne sont cer-
+fer déchirent les pneus. tainement pas des modèles d’esthétisme. Toutefois, ces
+Les fouilles-poussière doivent donc utiliser d’autres monstrueuses bêtes de trait en acier sont capables de
+moyens pour transporter leurs trouvailles hors des ruines. déloger tout type d’obstacle, ou bien de remonter à la
+Avec le temps, ils sont parvenus à développer et à parfaire surface de lourds artefacts piégés dans les profondeurs.
+de nombreuses sortes de chariots et charrettes à bras. En règle générale, une charrette autoportée est ache-
+Aujourd’hui, la taille et la maniabilité de ces appareils tée par un groupe de Récupérateurs qui l’utilisent tous
+dépendent beaucoup du succès de l’Excavateur. ensemble. Elle constitue ainsi le noyau central de toutes
+SPÉCIALITÉ : il existe 3 niveaux de charrettes à bras : chaque leurs opérations.
+niveau réduit de 1 point l’encombrement des débris. Seuls des Ferrailleurs ayant déjà fait leurs preuves avec
+b Transport des moteurs sont autorisés à assurer la maintenance d’une
+charrette autoportée, et ce, sous surveillance.
+CISAILLES À MÉTAUX SPÉCIALITÉ : la charrette autoportée possède une Force
+PNEUMATIQUES moyenne de 30.
+Afin d’atteindre les profondeurs de l’époque d’antan, avec b Véhicules
+tous ses artefacts, les Récupérateurs dépendent énormé-
+ment de l’utilisation d’équipements encombrants. Grâce PÉRISCOPE
+aux cisailles à métaux pneumatiques, ils peuvent ouvrir Conçu à partir d’un simple assemblage de miroirs, cet
+des endroits condamnés et découper des montagnes en- appareil aide les Ferrailleurs à explorer les abris souter-
+tières de métal. rains au travers de fissures qu’ils auront créées eux-mêmes,
+SPÉCIALITÉ : du moment que les cisailles à métaux ou à observer toute menace dans les désolations sans se
+possèdent un point d’appui, elles donnent un bonus faire repérer.
+de +4D à PHY+Force pour dégager d’énormes obstacles SPÉCIALITÉ : lorsqu’un Ferrailleur utilise un périscope, il
+en métal. devient plus difficile à repérer : +2D au test d’AGI+Furtivité.
+b Technologie b Dans l’ombre
+DEGENESIS 137
+Lucas Flohr (Order #41761180)
+
+=== PAGE 15 ===
+MASSUE PRIMITIVE PEINTURES CORPORELLES
+Seule une civilisation est en mesure de concevoir une L’application de peintures corporelles est une tradition que
+forme d’artisanat élaborée, et pour de nombreux Clans, partagent de nombreuses tribus. Qu’il s’agisse des Massaïs
+toutes ces notions demeurent encore inconnues. Ils ou des nomades de Pollen, chacune possède ses propres
+retirent des ruines ce dont ils ont besoin : de vieux tuyaux motifs traditionnels que ses membres peignent sur leur
+leur servent de massues. Avec des câbles électriques ou des peau pour mieux combattre, pour se camoufler ou pour
+lanières en cuir, ils nouent à une extrémité des briques certains rituels. Voilà pourquoi de nombreux Clanistes
+ou des plaques de métal aiguisées. Ces armes peuvent transportent toujours sur eux une bourse remplie de pein-
+certes sembler primitives, mais elles n’en demeurent pas tures faites à partir de plantes ou de graisses animales.
+moins efficaces. SPÉCIALITÉ : une peinture de camouflage donne +2D aux
+Bien souvent, les Clans apposent sur leurs armes leurs tests d’AGI+Furtivité ; les peintures de guerre tradition-
+propres symboles personnalisés. Certains nouent aussi sur nelles renforcent PSY+Foi/Volonté de 2D.
+le manche les cheveux des ennemis qu’ils ont tués, ou bien b Talismans / Emblèmes
+des crocs et des griffes.
+SPÉCIALITÉ : aucune PIÈGES
+b Armes de corps à corps Partir à la chasse avec un arc et une lance ne garantit pas tou-
+jours de rapporter assez de gibier pour nourrir tout le Clan.
+ATLATL Et ces Clans n’auraient d’ailleurs pas pu survivre si leurs chas-
+Tout comme les massues primitives, les atlatls sont des seurs n’étaient pas non plus de parfaits trappeurs. Cependant,
+armes simples, faciles à fabriquer, et qui se déclinent en la capture de gibiers n’est pas toujours le centre des activités
+différentes variétés. Ces appareils d’apparence grossière d’un trappeur. Parfois, il est nécessaire d’empêcher des ani-
+propulsent des lances à une vitesse conséquente. Ainsi, maux sauvages ou les guerriers d’un Clan ennemi de péné-
+leur portée et leur force de pénétration sont supérieures à trer dans leur territoire. Les chasseurs et les guerriers trans-
+des lances projetées à la main. portent souvent plusieurs pièges attachés à leur corps.
+SPÉCIALITÉ : aucune SPÉCIALITÉ : aucune
+b Armes de jet b Pièges
+Lucas Flohr (Order #41761180)
+
+=== PAGE 16 ===
+PNEUMO-MARTEAU
+MASSUE EN FER DU
+ROI CAFARD
+Le Clan des Cafards est réputé pour ses raids nocturnes. et ses possesseurs fondèrent leur propre caste : les Pneu-
+Ses guerriers assoiffés de sang surgissent des ruines, pour manciens. Cette arme est chauffée au charbon jusqu’à ce
+ensuite disparaître à nouveau dans leur monde dévasté que l’eau du réservoir latéral génère assez de pression. Un
+une fois le jour venu. Leurs rois sont différents : gigan- système de valves redirige la vapeur dans les canons l’un
+tesques, boursouflés, la tête enfoncée dans les épaules. après l’autre, propulse des clous similaires à des carreaux
+Les Cafards les vénèrent et prennent soin d’eux comme d’arbalète, et se recharge en même temps.
+de dangereux animaux mis en cage. Les femmes n’ont SPÉCIALITÉ : le pneumo-marteau requiert un peu plus de
+aucune réticence à ce qu’ils les fécondent, car elles engen- 5 minutes pour atteindre sa température opérationnelle et
+dreront alors des enfants forts qui rejoindront leur nid. devenir utilisable. Cette arme peut aussi servir de bombe.
+Quand l’un de ces rois est lâché sur leurs ennemis, il Si toutes les valves sont fermées, la température et la pres-
+traîne sur le sol une poutre en fer recouvert de plaques de sion augmentent jusqu’à ce qu’une détonation retentis-
+métal aiguisées et maintenues par des fils de fer barbelés. sante déchire la structure en fer moulé. La puissance de la
+Il abat les chevaux des Juges avec cette arme de manière détonation est de 12.
+brutale et sanglante. Les guerriers s’occupent ensuite b Armes lourdes
+du reste.
+SPÉCIALITÉ : aucune ARMURE EN SOIE
+b Armes de corps à corps DRUSCHINNIK
+Des plastrons en fils de soie fins de Wroclaw équipent les
+PNEUMO-MARTEAU gardes du Piast. Plusieurs couches de soie sont superpo-
+Les Mékans de la région du Ramein conçurent un jour sées puis cousues les unes aux autres. Ce tissu à la formi-
+un marteau cloueur pneumatique à l’aide des documents dable résistance dévie flèches et coups de poignard.
+rédigés par leur légendaire fondateur, le Mécanicien. Des SPÉCIALITÉ : aucune
+années plus tard, cet appareil devint le pneumo-marteau, b Armures
+DEGENESIS 139
+Lucas Flohr (Order #41761180)
+
+=== PAGE 17 ===
+GOURDIN
+MASQUE D’ANUBIS KHÉPESH
+Lorsqu’un Anubien porte ce masque, le corps peint en noir Les mythes prétendent que seul un khépesh choisi par
+avec de la résine d’arbre, il devient Anubis de manière sym- Anubis peut trancher la ligne de vie d’une créature sans
+bolique. Il est désormais intouchable, et les légendes pré- toucher sa chair et ses organes, au contraire de ce que
+tendent qu’il possède la puissance d’un dieu. Ce masque font les Fléaux. Ce sont principalement les Faucilles et les
+est utilisé lors de tout rituel important. Ammout qui emmènent cette épée au pays des Corbeaux,
+SPÉCIALITÉ : le porteur du masque obtient +1D lors de afin d’éliminer les vagues de Psychonautes.
+toute interaction sociale avec un Afrikain. Tous les khépeshs sont anciens. Ils furent retirés des
+b Talismans / Emblèmes chambres du Caire par ceux du Premier Cercle et trans-
+mis aux Anubiens qui s’en sont montrés dignes par les
+DOIGT D’ANUBIS Hogons. Seuls une centaine d’entre eux existent tou-
+Cet os orné de cercles et de spirales gravées a la taille d’un jours, transmis par les nouveaux Hogons aux jeunes
+avant-bras. Sa surface brille, polie par les milliers de mains Faucilles.
+entre lesquelles il est passé. Une extrémité est pointue et Il viendra un jour où les Faucilles devront voyager au
+jaunie. Cet os ressemble à une arme préhistorique, mais nord sans cette arme.
+date en réalité de l’époque du premier peuple, et n’a jamais SPÉCIALITÉ : +2 dégâts contre les Psychonautes.
+servi au combat. b Armes de corps à corps
+Si une ampoule de la taille d’un ongle apparaît sur la
+peau d’un Afrikain après qu’un Anubien l’a égratignée FAUCILLE D’AMMOUT
+avec cet os, alors cet Afrikain est destiné à suivre la voie La faucille d’Ammout est bien plus rare que le khépesh.
+d’Anubis et devient un membre du Culte. D’après les légendes, sa lame fut forgée en fer de météo-
+SPÉCIALITÉ : moins le corps de l’Anubien est couvert de rite il y a plusieurs millénaires de cela dans un cratère
+peintures concentriques, plus vite la marque apparaîtra. d’Afrique centrale. Le tout premier roi nubien, Alara,
+Sur un Initié potentiel, elle prendra 12 heures pour appa- aurait soi-disant porté une de ces armes lorsqu’il accéda
+raître, alors que sur un Hogon, cela se produira en l’espace au trône, pour symboliser le fait que sa dynastie et le
+de quelques secondes. peuple nubien prospéreraient sous la protection de la
+b Talismans / Emblèmes faucille d’Ammout.
+Les lames sont marquées et noircies par le temps, seules
+CREUSET leurs extrémités sont encore tranchantes. Des formes sub-
+Dans ces réceptacles en pierre noire, les guérisseurs anu- tiles semblables aux lignes de cartes topographiques les
+biens broient différentes terres et plantes, les mélangent recouvrent, mais leur lien originel avec Ammout demeure
+et lient le tout à de la graisse pour fabriquer des baumes et toutefois incertain. Peut-être que les Anubiens du Caire
+des potions. Les rumeurs prétendent que ces creusets sont possèdent la réponse à cette question.
+fabriqués en pierre de météorite. Cette arme porte ce nom, car les Hogons firent cadeau
+SPÉCIALITÉ : le matériau avec lequel les creusets sont fabri- de ces faucilles aux énigmatiques Ammouts.
+qués est antibactérien et antimycosique. L’Anubien obtient SPÉCIALITÉ : +3 dégâts contre les Aberrants.
+ainsi +1D lors de la fabrication de remèdes ou de poisons. b Armes de corps à corps
+b Équipements médicaux
+Lucas Flohr (Order #41761180)
+
+=== PAGE 18 ===
+FRUIT DE DOUÂT
+Récoltés au plus profond des Psychovores, ils portent en mélangé à différentes terres, roulé en boulettes ou dissout
+eux la Vorace. Ces fruits n’éclatent pas en un mélange de dans de l’huile de plantes, puis il est offert comme panacée
+jus sucré et d’écorce, mais en fragments qui pénètrent la aux Afrikains qui s’en montrent dignes.
+peau et nécrosent les tissus autour. SPÉCIALITÉ : la qualité d’un sang de Douât dépend de la
+Les Anubiens, en partie immunisés contre ces effets, Puissance du fruit catalysé, ainsi que de la catalyse elle-
+pourraient tout à fait lancer ce fruit sur leurs ennemis, même, représentée par son niveau. Pris comme remède, il
+si ce n’était pas contraire à leurs lois et à leurs traditions. purifie le corps de tout germe, mais aussi de la Vorace. Le
+Bien qu’en cas d’absolue nécessité… sang de Douât est considéré comme un antidote universel
+Les Anubiens mâchent le fruit de Douât qui se dont la Puissance est égale à son niveau.
+fragmente dans leur bouche. Cela leur permet d’ini- b Pharmacopée
+tier une catalyse, une opération extrêmement dange-
+reuse que seuls les guérisseurs et les Hécatéens osent PIERRES D’ÂME
+entreprendre. L’astéroïde Dhoruba fit pleuvoir du ciel de la roche en
+SPÉCIALITÉ : plus ils sont récoltés profondément dans fusion qui refroidit dans sa descente et toucha le sol sous
+les Psychovores, plus les fruits de Douât sont puissants. la forme de perles de verre. Avant que les Psychovores ne
+Ce niveau de puissance est quantifié de 1 à 6. Un niveau 1 recouvrent le Dhoruba, les Afrikains récoltèrent ce verre
+représente une récolte en bordure du Psychovore, tandis noir, croyant que ces gouttes contenaient les âmes de ceux
+qu’un niveau 6 désigne les champs qui entourent Le Caire. qui furent écrasés et calcinés par l’astéroïde.
+Une légère pression suffit à faire voler un fruit en éclats. Des siècles plus tard, tout le monde appelle ces mor-
+Tout contact avec la peau inocule alors la Vorace. ceaux de Verre noir des pierres d’âme. Les Anubiens s’en
+Un Anubien peut catalyser un fruit sans danger tant que servent pour alimenter les superstitions et prétendent
+le niveau de ce dernier ne dépasse pas son rang. Ainsi, un entrer en contact avec les ancêtres par leur entremise.
+Hécatéen (Rang 4) peut manger un fruit de niveau 4 au SPÉCIALITÉ : les pierres impressionnent quiconque
+maximum sans crainte d’être infecté par la Vorace. croit aux superstitions ou a la foi. Un Anubien béné-
+b Pharmacopée ficie de +1D lors de toute interaction sociale avec ces
+personnes. Ces pierres doivent être visibles pour que cet
+SANG DE DOUÂT effet se produise.
+Lorsqu’un Anubien survit à la catalyse d’un fruit de Douât, b Talismans / Emblèmes
+la source de toute vie coule alors dans ses veines. Son
+sang devient extrêmement puissant. Celui-ci est prélevé,
+MASQUE DE FLÉAU BOUCLIER OVALE
+Symbole des rapports étroits que les Fléaux entretiennent Les Fléaux qui portent un bouclier ovale couvert de peaux
+avec leurs ancêtres et leurs traditions, le masque sert aussi lors d’une bataille ne respectent pas les règles de la guerre
+de moyen d’intimidation. Chaque Fléau façonne le sien à moderne, mais les préceptes de leurs traditions. Le fusil
+partir d’un morceau de bois en provenance de son pays, d’assaut reste sous la tente, enveloppé dans son tissu huilé,
+et le peint comme son père le lui a enseigné. La perte de tandis que le guerrier s’arme de son bouclier et de sa lance.
+ce second visage terrifiant en pays étranger est considé- Ainsi, il marche sur les traces de ses ancêtres lointains,
+rée comme un signe funeste, car les fantômes des ennemis réduit ses ennemis au stade d’animaux, et transforme la
+vaincus par ce Fléau connaissent désormais l’identité de guerre en simple partie de chasse.
+celui qui les a condamnés à l’anéantissement total. SPÉCIALITÉ : ce bouclier octroie +2D en défense active et
+SPÉCIALITÉ : un masque fortifie l’esprit en conférant +2D +1 en défense passive. Cependant, il gêne son porteur, qui
+aux attaques mentales (PSY+Foi/Volonté). subit un malus de -1D à ses jets d’attaque.
+b Talismans / Emblèmes b Boucliers
+CASQUE ET GILET LANCE
+PARE-BALLES Avant d’obtenir son premier fusil, le jeune guerrier doit
+L’armure du Fléau provient de vieux stocks de l’OAU, qui apprendre à maîtriser la lance, l’arme traditionnelle des
+sont réparés et maintenus en état par les meilleurs tail- Fléaux. S’il accomplit un fait héroïque avec celle-ci, l’ex-
+leurs et forgerons du territoire. ploit sera aussi attribué à l’arme elle-même. Elle sera alors
+SPÉCIALITÉ : aucune considérée comme bénie, porte-bonheur et dotée d’une
+b Armures âme, probablement celle d’un ancêtre ou d’un esprit bien-
+veillant qui guide la main du Fléau. Les guerriers traient
+DEGENESIS 141
+Lucas Flohr (Order #41761180)
+
+=== PAGE 19 ===
+FUSTIGATEUR
+une telle lance avec respect, puis la font passer de main en l’époque d’antan. Aujourd’hui, Tunis est occupée par des
+main au sein du groupe à la mort de son propriétaire. esclaves en révolte. Pour le moment, les Fléaux évitent de
+SPÉCIALITÉ : les armes dotées d’une âme sont reconnais- se confronter à ce problème. Ils préfèrent fouiller des for-
+sables aux remerciements gravés dessus et à leurs corde- teresses abandonnées à la recherche d’armes. Cependant,
+lettes de couleur. Elles ne sont jamais vendues. Un Fléau il leur faudra vite trouver une solution, et celle-ci risque
+doit prouver sa valeur sur le champ de bataille afin de rece- fort de virer au bain de sang.
+voir de son Dumisaï l’honneur de porter une telle arme. SPÉCIALITÉ : aucune
+Entre ses mains, le guerrier se sent alors invincible : +2D aux b Fusils
+tests de PSY+Foi/Volonté (voir la propriété « Talisman »).
+b Armes de corps à corps KOM
+Des buggys rugissent à toute allure sur les plaines. Les
+FUSTIGATEUR Fléaux se tiennent debout les mains sur les barres d’arceau,
+Les Afrikains subirent le fustigateur introduit par l’enva- fléchissant les genoux pour compenser chaque bosse. Leur
+hisseur hybrispagnol avant de se soulever et d’arracher ces masque prend de plein fouet la terre et la poussière qui
+fouets électriques des mains de leur oppresseur. Depuis vole. Le nom de kom que les Afrikains donnent à ces véhi-
+ce jour, le fustigateur ou fléau est devenu le symbole de la cules est probablement tiré d’un vieux mot afrikain signi-
+liberté afrikaine. fiant « trône », un trône pour dominer le monde.
+La conception de cette arme n’a jamais changé : un Ces buggys ne possèdent ni capot ni blindage. Certains
+manche isolé contenant un E-Cube qui alimente des fils disposent à l’avant d’un chalut en bout de poutre, et tout à
+sous tension de plus de 3 m de long et terminés par des l’arrière, d’une cage pour les cargaisons humaines. Parfois,
+crochets. Les câbles rétractables permettent de porter le une mitrailleuse vient remplacer la cage. L’équipement
+fustigateur à la ceinture. d’un kom dépend généralement de sa mission ainsi que de
+Lorsqu’un fustigateur touche sa cible, les fils créent une l’atelier présent dans l’autobastion.
+décharge électrique sous la forme d’éclairs bleus, dans une SPÉCIALITÉ : aucune
+odeur d’ozone et de chair brûlée. b Véhicules
+SPÉCIALITÉ : aucune
+b Armes de corps à corps CASQUE DE LION
+Seul le Simba possède le droit de porter le casque de lion au
+FUSIL D’ASSAUT combat. Cet énorme crâne de lion au poids conséquent sym-
+Quiconque parvient à prouver sa valeur aux yeux de bolise l’union de l’homme et de l’animal. Il rappelle aux Afri-
+la meute est autorisé à affûter ses griffes et à porter un kains qu’ils occupent le sommet de la chaîne alimentaire.
+fusil d’assaut. Ces armes et leurs munitions proviennent SPÉCIALITÉ : dans le pays des Corbeaux, les effets associés
+de réserves de l’OAU, trouvées en partie au beau milieu au rang de Simba fonctionnent uniquement lorsqu’il porte
+de la jungle, bien que la plupart soient toujours entre- le casque de lion.
+posées à Tunis dans des casernes de l’OAU qui datent de b Armures
+Lucas Flohr (Order #41761180)
+
+=== PAGE 20 ===
+CARABINE DE CHASSE
+Il serait soi-disant possible de déterminer la richesse d’un Tout espion qui souhaite forcer le livre de comptes sans en
+Néolybien à ses vêtements, aux dents saines de ses sui- posséder la clé devra effectuer un test d’AGI+Dextérité (5).
+vants et à sa carabine. Ces armes de grande précision éla- b Talismans / Emblèmes
+borées dans les manufactures afrikaines sont de superbes
+objets faits main et personnalisés. Certains Néolybiens > PIÈGE
+possèdent des carabines incrustées d’or et d’argent, tandis Le verrou peut aussi contenir un piège. Quiconque tente
+que d’autres préfèrent l’ivoire et les pierres précieuses. de forcer le livre de comptes sans désarmer le mécanisme
+SPÉCIALITÉ : des Emplacements supplémentaires afin secret d’un mouvement du poignet verra trop tard l’ai-
+d’ajouter des décorations à une carabine peuvent être guille qui vient de s’enfoncer dans son doigt. Le poison de
+montés au prix de 10 000 dinars l’unité. Chaque Empla- contact qui l’enduit possède une Puissance de 5 et draine
+cement à décoration donne au Néolybien +1D aux interac- 1 point d’Égo par round. L’effet s’estompe au bout de
+tions sociales avec d’autres Néolybiens. 4 heures.
+b Fusils b Talismans / Emblèmes
+FUSIL D’EXCEPTION AUTOBASTION
+Seuls les plus grands chasseurs peuvent espérer abattre un L’autobastion fait figure de géant au milieu de tous les
+jour un Psychonaute à l’aide d’un fusil d’exception. autres véhicules post-Eshaton. Il se déplace sur ses che-
+Chaque arme est une œuvre d’art unique ouvragée par nilles dans un grondement sourd, et se dresse, invincible,
+un maître artisan pendant plusieurs mois. D’apparence face aux Clanistes barbares d’Europe. Pour les Néolybiens,
+sobre, et au damasquinage d’argent réduit, le fusil d’excep- ce véhicule sert de quartier général mobile qui leur pro-
+tion manifeste des performances qui font l’unanimité, et cure tout le luxe auquel ils sont habitués, en plus de leur
+de loin supérieures à celles de l’élégante carabine de chasse. assurer une sécurité renforcée lors de leurs longues mis-
+SPÉCIALITÉ : extrêmement prisé. D’une qualité inégalable. sions de pillage ou de leurs visites d’affaires.
+b Fusils Les soutes peuvent contenir plusieurs tonnes d’arte-
+facts, et leur hangar permet de garer 12 koms.
+DAGUE COURBE SPÉCIALITÉ : les autobastions peuvent être améliorés. Les
+Pour un Néolybien, une dague courbe sert plus de sym- Emplacements peuvent être utilisés pour ajouter des ca-
+bole que d’arme. La lame symbolise ses rapports à l’Afrique nons supplémentaires.
+antique où l’homme ne pouvait survivre sans dague. À b Véhicules
+l’instar des fusils de chasse, les dagues courbes sont incrus-
+tées d’or et de pierres précieuses. Elles sont portées à la NAVIRE MARCHAND
+ceinture, à la vue de tous. Des navires capturés ou libérés de plusieurs siècles d’en-
+SPÉCIALITÉ : ici aussi il est possible d’utiliser des Empla- lisement sont réparés puis vendus aux Néolybiens. Ces
+cements pour ajouter des décorations. derniers montent une armée de charpentiers et d’orfèvres
+b Armes de corps à corps qui effaceront des cabines des Marchands toute trace de
+pauvreté ou de vulgarité. Un navire marchand offre aussi
+LIVRE DE COMPTES assez d’espaces à leurs scribes et à leur famille. À son bord,
+Ce livre épais à la couverture décorée avec de la fourrure de un Néolybien ne manquera jamais de rien.
+lion ou des bandes de métal est utilisé pour rassembler les SPÉCIALITÉ : à l’instar de ceux des autobastions, les Em-
+concessions de vente, les accords de tractations importantes placements des navires peuvent être utilisés pour ajouter
+et les factures. Pour qui peut se le permettre, il est possible des canons supplémentaires.
+d’ajouter à son livre de comptes une calculette d’antan, et de b Bateaux et navires
+le protéger avec un verrou ou un piège. Aucun Néolybien ne
+se sépare jamais de son livre de comptes. ASTROLABE
+SPÉCIALITÉ : si le livre de comptes d’un Néolybien est Les astrolabes, bien plus décoratifs qu’utiles, sont encore
+volé par l’un de ses concurrents, son nouveau propriétaire utilisés par les navigateurs pour déterminer les points car-
+bénéficie pendant une année entière de +4D pour toute dinaux en fonction de la hauteur du soleil ou des astres.
+affaire commerciale menée contre la victime du vol. SPÉCIALITÉ : +1D à INS+Orientation
+b Talismans / Emblèmes b Orientation / Pistage
+> CALCULETTE ATLAS
+Un livre de comptes peut être amélioré à l’aide d’une Pour un navigateur, un atlas contient toute sa vie : ses
+calculette. Cela donne au Néolybien +4D à son test découvertes, les littoraux dont il a corrigé le tracé et les
+d’INT+Scien ce lorsque celui-ci se rapporte à des calculs. hauts-fonds qu’il a répertoriés.
+b Talismans / Emblèmes SPÉCIALITÉ : un atlas peut être amélioré du niveau 1 au
+niveau 3. Son propriétaire obtient +1D par niveau à ses
+> VERROU tests d’INS+Orientation. +1 niveau est obtenu toutes les
+Un simple verrou permet d’empêcher les curieux de prendre trois découvertes importantes.
+connaissance des données commerciales qu’il protège. b Orientation / Pistage
+DEGENESIS 143
+Lucas Flohr (Order #41761180)
+
+=== PAGE 21 ===
+BRACELET POIGNARD TROUSSEAU DE CLÉS
+Les bracelets poignards font généralement fureur chez Les Pics-verts ont bâti des centaines d’établissements, et
+les Apocalyptiques. Leurs mains restent libres, et ces bra- ils possèdent une clé pour chacun d’entre eux. Il est même
+celets à la lame repliable se distinguent difficilement des probable que parmi toutes ces clés, il en existe quelques-
+bijoux classiques. En règle générale, ces armes sont aussi unes capables d’ouvrir d’autres serrures.
+de superbes œuvres d’art. Les meilleures lames, et les plus SPÉCIALITÉ : entre les mains d’un Pic-vert, un trousseau
+acérées, furent conçues par une Corneille des Charognards de clés octroie +1D en crochetage (AGI+Dextérité).
+il y a 200 ans de cela. b Dans l’ombre
+La légende prétend que la Mère Corbeau dévora le
+cœur de cet artisan lorsque ses yeux se posèrent sur une DAGUE KOUMMYA
+autre femme. Cette dague courbe traditionnelle sert aux jeunes Apo-
+SPÉCIALITÉ : un jet réussi d’INS+Perception (4) (voir la pro- calyptiques afrikains à afficher leur force… lorsqu’ils n’en
+priété « Camouflage ») permet de reconnaître un bracelet possèdent aucune. Cela fait bien évidemment sourire les
+poignard à la lame repliable. Les bracelets poignards fabriqués Apocalyptiques plus âgés comme les Marabouts et les Ibis,
+par la légendaire Corneille sont bien plus difficile à repérer : qui furent jeunes autrefois, et qui, eux aussi, avaient bien
+INS+Perception (6), et ils infligent +1 dégât. Ils ne peuvent pas besoin d’un objet auquel se raccrocher.
+être achetés. Les Ressources ou les lettres de change ne sont Toutefois, entre des mains habiles, la dague koummya
+d’aucune utilité. Un Apocalyptique doit mériter les siens. reste une arme dangereuse, et certains migrateurs afri-
+b Lutte kains s’en servent toute leur vie durant.
+SPÉCIALITÉ : aucune
+ARBALÈTE HARPON b Armes de corps à corps
+L’arbalète apocalyptique projette des harpons crochus avec
+une puissance incroyable. Les projectiles pénètrent profon- GOUPILLES EN ACIER
+dément dans le corps d’un ennemi et peuvent percer le blin- Cette arme est utilisée par les assassins qui l’enfoncent
+dage d’un véhicule. Une corde relie en toute sécurité l’arme sournoisement dans la chair de leur victime. Celle-ci, prise
+au projectile. Si l’Apocalyptique fixe son arbalète à sa moto, de spasmes, palpe sa blessure et tente d’extraire les gou-
+il peut traîner sa victime sur le sol à toute vitesse derrière lui. pilles sans jamais y parvenir. Elle succombe à une mort
+SPÉCIALITÉ : aucune lente et douloureuse.
+b Armes à projectiles SPÉCIALITÉ : sur un jet d’attaque réussi, les goupilles
+se retrouvent dans le corps de l’adversaire et infligent
+MOTO 1 point de dégât par round (qui ignore l’armure). Afin
+Les motos demeurent entièrement inadaptées aux déso- d’extraire les morceaux de métal et d’arrêter les dégâts
+lations. Chaque pierre représente un danger potentiel, et continus, il faut réussir un test d’AGI+Dextérité (3).
+c’est exactement ce que les Apocalyptiques adorent ! Peu L’Apocalyptique se retrouve sans arme après avoir réus-
+d’entre eux savent réparer leur moto. Cette tâche est géné- si son attaque.
+ralement confiée à un Ferrailleur, rémunéré ou en escla- b Armes de corps à corps
+vage. Une moto symbolise le statut de son propriétaire,
+savoir en conduire une suscite l’envie de tous les autres BÂTON D’IBIS
+migrateurs. Ce bâton permet aux Ibis afrikains d’afficher clairement
+SPÉCIALITÉ : les motos d’une nuée disposent toutes d’un leur rang, mais il est totalement inutile au combat. Ses
+Emplacement supplémentaire prévu pour des modifications. gravures délicates et la tête d’ibis au bec recourbé sculptée
+b Véhicules sont fragiles et peuvent se briser aisément.
+SPÉCIALITÉ : ce bâton offre à l’Ibis un sauf-conduit en ter-
+TAROT APOCALYPTIQUE ritoire Fléau.
+Les cartes déterminent la route que doivent prendre les b Armes de corps à corps
+migrateurs. Elles mélangent fortune, destinée, et la volonté
+de la Corneille. Outils de pouvoir et objet de contempla- FLISSA
+tion, chaque tarot est guidé par le plus ancien de tous, le La Flissa est un sabre à large lame au dos droit. Prisée par
+tarot de la Mère Corbeau. Les symboles archétypaux n’ont les Busards afrikains, elle est signe de haut rang.
+pas changé depuis plusieurs siècles et se superposent SPÉCIALITÉ : aucune
+aux évènements mondiaux, aux Clans, aux Cultes, ou à b Armes de corps à corps
+diverses personnes. Chaque paquet de cartes est superbe-
+ment conçu sur le plan artistique.
+SPÉCIALITÉ : entre les mains d’une Corneille, le tarot
+octroie +1D à CHA+Commandement.
+b Talismans / Emblèmes
+Lucas Flohr (Order #41761180)
+
+=== PAGE 22 ===
+BRACELET POIGNARD
+CIMETERRE
+Cette arme traditionnelle fait partie des lames préférées mais heureux, car Dieu a entendu ses prières et a accordé
+des Jehammétans. Les Ismaeli portent de simples sabres à sa tribu un témoignage de sa faveur : une Icône. Qu’il
+d’acier mal équilibrés tandis que les Issaki utilisent des s’agisse d’une corne rougie, d’un casque de Fléau criblé de
+sabres en acier de Damas superbement décorés, et qui balles ou d’une de ces étranges babioles, l’Icône comporte
+valent une fortune. une dimension religieuse. Son porteur devient l’exécuteur
+SPÉCIALITÉ : aucune de la volonté de Dieu.
+b Armes de corps à corps SPÉCIALITÉ : les Icônes sont toujours en rapport avec un
+acte ou une mission. Si le porteur fait face à la situation
+BOUTEILLE EXPLOSIVE concernée, il obtient +2D à toutes ses actions jusqu’à ce
+Les bouteilles explosives jehammétanes contiennent un que l’acte ait été accompli. Dès lors, l’Icône devient un ob-
+mélange de goudron et de pétro. Un morceau de tissu enfoncé jet sacré, puis est ramenée au sein de la communauté.
+dans le goulot de ces bouteilles en argile sert de mèche. Au b Talismans / Emblèmes
+combat, elle est allumée, puis la bouteille est jetée dans les
+rangs ennemis. Cela crée une énorme explosion. En outre, le BÂTON DE BÉLIER
+mélange incandescent colle comme de la résine, et on ne peut Symbole de la puissance du Culte et de son unité d’esprit.
+pas le retirer. Les flammes brûlent la chair des victimes qui se Avant une bataille importante, l’Icônide confie ce bâton à
+roulent au sol en hurlant de douleur, tandis que leurs cama- l’Isaaki qui mènera les Glaives de Jehammet à la victoire
+rades, impuissants, observent ce spectacle d’un œil désespéré. ou à leur perte.
+Quiconque utilise ces armes cruelles doit s’attendre aux pires SPÉCIALITÉ : lors d’un combat, les Jehammétans ralliés
+représailles de la part de ses ennemis. autour du bâton se sentent inspirés : sur un rayon de 20
+SPÉCIALITÉ : une bouteille inflige des dégâts pendant plu- pas, ils bénéficient de +1D à leurs jets d’attaque (propriété
+sieurs rounds. Ces dégâts diminuent de 1 point à chaque « Étendard »)
+round. Si la victime tente d’éteindre les flammes avec du b Armes de corps à corps
+sable ou de la terre pendant 1 round de combat, les dégâts
+diminuent de 1 point supplémentaire. LES ENSEIGNEMENTS
+b Explosifs DE JEHAMMET
+Ces parchemins contenant les enseignements de Jeham-
+ICÔNE met sont conservés dans des étuis en laiton. Ils ne sont sor-
+Un Icônide se bat contre Dieu pour le destin de sa tribu. tis et déroulés que lors des jours saints. Le souffle de Dieu
+Pendant plusieurs jours, il tente de négocier : chaque touche quiconque est autorisé à lire ces écrits.
+mouvement de poignet, chaque mot est soigneusement SPÉCIALITÉ : le propriétaire de tels parchemins obtient
+pesé, selon la tradition. Après plusieurs jours de priva- +2D sur toutes les interactions sociales au sein du Culte.
+tions et de prières, l’Icônide quitte ses quartiers affaibli, b Talismans / Emblèmes
+DEGENESIS 145
+Lucas Flohr (Order #41761180)
+
+=== PAGE 23 ===
+HOUE DE CAVALIER
+LE TESTAMENT DE
+JEHAMMET/LES BIENFAITS
+D’ARIÈS
+Les rumeurs prétendent que ces parchemins conservés toutes les 10 minutes. Cependant, pour chaque jour que le
+dans des étuis dorés révéleraient les véritables buts et Jehammétan passe sans cette concoction, son maximum
+intentions de Jehammet. Il écrivit son testament à l’abri de points d’Égo diminue de 1. Lorsqu’il atteint 0, son corps
+des regards, puis garda le secret sur son contenu. Le « Tes- a dépassé le stade de la dépendance. Son maximum en
+tament de Jehammet » est transmis de Prophète en Pro- points d’Égo augmente à nouveau, mais il perd sa capacité
+phète, mais à ce jour, aucun d’entre eux n’est parvenu à de régénération. Une simple gorgée de sang d’Ariès ravive
+déchiffrer ces textes. Curieusement, les Arianoï nomment l’Arianoï : son maximum en points d’Égo revient à son
+ces mêmes parchemins les « Bienfaits d’Ariès ». Selon eux, stade normal, ainsi que la dépendance du Jehammétan.
+Ariès se serait ouvert à l’espèce humaine à travers ces écrits. b Pharmacopée
+SPÉCIALITÉ : le propriétaire de tels parchemins obtient
++2D sur toutes les interactions sociales au sein du Culte. CORNE
+b Talismans / Emblèmes Cette épée inhabituelle ressemble à une corne allongée.
+Tranchante comme une lame de rasoir et dentelée, elle est
+PIERRE SIGILLAIRE aussi résistante que le diamant et d’une blancheur imma-
+Ces petits disques en argile cuite estampillés du nom de culée. Il faut être très proche d’Ariès pour obtenir le droit
+« Jehammet » se trouvent un peu partout. La légende pré- de porter cette arme.
+tend que le prophète en personne aurait gravé son nom SPÉCIALITÉ : aucune
+dessus. Bien qu’il s’agisse sûrement de contrefaçons, ces b Armes de corps à corps
+pierres sigillaires permettent à ceux qui en ressentent le
+besoin de se rapprocher un peu plus du divin, et malgré CASQUE DE BÉLIER
+tous les doutes qu’on peut éprouver à leur égard, elles sont Un Arianoï ne porte généralement ce casque encombrant
+tout de même tenues en haute estime. qu’au combat.
+SPÉCIALITÉ : +1 en Autorité. SPÉCIALITÉ : la vision d’un crâne de bélier sur un corps
+b Talismans / Emblèmes humain choque les faibles d’esprit ou les personnes de peu
+de foi (propriété « Terrifiant »).
+ÉTOILE DE JEHAMMET b Armures
+Lorsqu’une Saraeli donne naissance à un Isaaki, l’Abra-
+mi de la tribu, les yeux baignés de larmes, donne à cette TOISON NOIRE
+femme l’étoile de Jehammet. Cette étoile en feuille d’or Cette toison d’un noir profond et liquide a des boucles qui
+accrochée à un fil tressé confirme qu’elle a répondu aux s’agitent comme prises dans une tempête, même si aucune
+attentes de Jehammet. brise ne souffle. Les Spitaliers connaissent ce phénomène,
+SPÉCIALITÉ : +2 en Renommée. car ils l’ont déjà observé dans la Suppuration : un essaim
+b Talismans / Emblèmes de nanites. Cependant, ils ne parviennent pas à expliquer
+comment les nanites parviennent à rester accrochées à
+SANG D’ARIÈS cette toison ni pourquoi ils n’ont pas déjà réduit à l’état de
+Ceux qui boivent de ce sang servi dans des crânes de bélier coraux de carbone tout ce avec quoi ils rentrent en contact.
+ne font plus qu’un avec Ariès, et ressentent sa vitalité par- SPÉCIALITÉ : la simple vision de cette toison envelop-
+courir leur corps. Les Arianoï qui quittent leur commu- pée de nanites peut terrifier n’importe qui. Ces individus
+nauté afin d’accomplir la volonté d’Ariès dans le monde doivent alors réussir un test de PSY+Volonté/Foi (5) pour
+sont autorisés à transporter son sang dans des gourdes. éviter de subir un malus de -2D lors de toute attaque
+SPÉCIALITÉ : l’Arianoï guérit d’une Blessure Superfi- contre l’Arianoï qui la porte (propriété « Terrifiant »).
+cielle par heure, et un Sang d’Ariès (rang 4) guérit 1 point b Armures
+Lucas Flohr (Order #41761180)
+
+=== PAGE 24 ===
+FLÉAU DE GUERRE
+ARMES LONGUES
+Les Anabaptistes sont essentiellement des fermiers qui SPÉCIALITÉ : cette arme terrifiante possède néanmoins un
+labourent les champs corrompus et abandonnés de Dieu. point faible : son réservoir pressurisé. Un coup visé (difficul-
+Rebus leur apprit à brandir leurs houes et leurs fléaux face té +2) qui inflige au minimum 4 points de dégâts parviendra
+à l’obscurité. Parti d’un petit groupe de justes, un Culte à le percer. Le gaz s’en échappera. Il suffira de la flamme d’al-
+entier se développa pour mener l’ultime guerre pour le lumage du calcinateur ou d’un fusil dont le canon a chauffé
+genre humain, avec pour arme leurs outils agricoles. après avoir tiré pour enflammer le gaz et faire exploser le
+SPÉCIALITÉ : les armes longues comprennent les houes, réservoir. Un Orgiastique qui remarque que son calcinateur
+les râteaux, les fourches, les faux, et les fléaux. Bien que est endommagé dispose de 1D rounds avant l’explosion du
+dangereuses contre des groupes denses, elles ne font pas réservoir. Le Maître de Jeu lance ce dé pour déterminer le
+le poids face à une lame en acier. Néanmoins, l’aura qui temps restant, mais n’en informe pas le joueur. L’Orgias-
+entoure le Culte et sa prédominance octroient à tout tique peut lâcher le calcinateur ainsi que son réservoir pour
+Anabaptiste qui est équipé d’une telle arme +1D à ses tests s’enfuir. Les dégâts d’explosion se montent à 14 points.
+de PSY+Foi/Volonté (voir la propriété « Talisman »). b Armes lourdes
+b Armes de corps à corps
+HUILES ÉLYSÉENNES
+ESPADON Les huiles élyséennes tirent les noms des quatre rivières du
+Brandir une houe peut certes rappeler Rebus et réchauf- paradis : Perat, Hiddékel, Géhon, et Pischon. Les légendes
+fer les cœurs, mais les Orgiastiques préfèrent utiliser les prétendent que ces rivières transportèrent de précieuses
+deux mètres de lame acérée en acier forgé de leur espa- graines, écorces, et pépins en provenance du Jardin d’Éden,
+don. Énormes, difficiles à manier, ces armes insensées comme la coriandre et la cannelle. Ce paradis ensemença
+furent conçues pour des guerres qui le sont elles-mêmes. le monde.
+Certains espadons disposent d’un mécanisme à ressort Aujourd’hui, les Élyséens récoltent des épices et des
+qui permet de faire jaillir une dague dissimulée dans la racines, les pressent puis en extraient des huiles essen-
+poignée. tielles. Grâce à plusieurs purifications et pressages, leur
+SPÉCIALITÉ : possède la propriété « Choc (2DC) ». Si l’Or- qualité augmente. Ensuite, ils mélangent ces essences
+giastique ne parvient pas à manier son arme correctement selon d’antiques recettes afin de produire ces quatre huiles
+(moins de 2 déclencheurs), il peut tout de même sortir élyséennes si renommées et appréciées. Il existe toutefois
+la dague de la poignée et s’en servir pour combattre lors d’autres mélanges sur le marché, comme le Styx et l’Aché-
+du round suivant. Pour cela, il faudra néanmoins lâcher ron pour citer les deux plus célèbres, aux noms tirés des
+son espadon. deux fleuves qui coulent dans le royaume des morts. Ces
+b Armes de corps à corps deux huiles sont mélangées à de la Brûlure, ce qui consti-
+tue une utilisation condamnable. Tout Anabaptiste pris en
+CALCINATEUR possession de ces deux huiles en subira les conséquences.
+Les épées sont impuissantes face aux nuées de spores et SPÉCIALITÉ : les huiles élyséennes sont disponibles sur
+aux épidémies des Aberrant. Cependant, le jet de flamme trois niveaux de qualité (niveaux 1 à 3). La qualité de l’Aché-
+produit par un calcinateur les réduira en cendres. Les ron et du Styx se détermine au dé lors de son utilisation
+Ascètes baptisent le sol asséché avec de l’eau, et les Orgias- (1-2 : niveau 1, 3-4 : niveau 2, et 5-6 : niveau 3)
+tiques baptisent leurs ennemis par le feu. b Huiles élyséennes
+DEGENESIS 147
+Lucas Flohr (Order #41761180)
+
+=== PAGE 25 ===
+ESPADON
+> PERAT > STYX
+La Perat est l’huile élyséenne la plus répandue. Les Orgias- Toute blessure infligée ne saignera qu’un bref instant avant
+tiques et les Ascètes s’en oignent et elle les accompagne lors de se changer en ouverture de couleur pâle. Quiconque se
+de leurs toutes premières années. Elle inspire les esprits retrouve oint des eaux du Styx ne ressent aucune douleur
+et aiguise les sens : +1D par niveau aux tests de PSY+Foi/ et se considère comme invincible. En réalité, le personnage
+Volonté et d’INS+Perception pendant 4 heures. subit moins de dégâts au combat, sur une base de 1 point
+b Huiles élyséennes par niveau de l’huile.
+Ce bonus ne s’applique pas à chaque attaque indivi-
+> HIDDÉKEL duelle, mais au montant total des dégâts subis sur un
+Les Fureurs considèrent la Hiddékel comme une bénédic- round. De ce fait, si la première attaque du round inflige
+tion divine. Massée sur le cuir chevelu, elle attise leur agres- 4 points de dégâts, une huile de niveau 3 réduira ce total à
+sivité, enflamme leur résolution et les élève au rang d’avatars 1 point. Cependant, une autre attaque infligera la totalité
+dans leur guerre contre le Démiurge. +1D par niveau aux des dégâts, car le potentiel de l’huile aura déjà été entière-
+tests d’INS+Pulsions (pas d’effet sur la Concentration) et de ment utilisé ce round-ci.
+PSY+Réactivité pendant les 4 prochaines heures. Malgré sa puissance, le Styx ronge l’Anabaptiste de l’in-
+b Huiles élyséennes térieur. Lorsque les effets s’estompent une demi-heure
+plus tard, l’Anabaptiste subit un nombre de points de
+> GÉHON Traumatisme équivalent au niveau de l’huile.
+La douleur et la fatigue disparaissent, consumées par le feu b Huiles élyséennes
+brûlant de la Géhon. Puis, plus profondément, un océan de
+contemplation et de focalisation s’ouvre : +1D par niveau > ACHÉRON
+aux tests d’INT+Concentration. Les malus dus aux trau- Le Styx détruit le corps, et l’Achéron l’âme. Massée sur
+matismes se réduisent de 1 point par niveau. Cette huile le cuir chevelu, cette huile ouvre un champ de percep-
+fonctionne pendant 4 heures. tion bien plus large que celui du commun des mortels,
+b Huiles élyséennes et donne un aperçu du monde éthéré du Démiurge.
+L’Anabaptiste ressent toute créature à 100 pas à la ronde,
+> PISCHON et son regard brûlant pénètre au travers des obstacles
+Les Anabaptistes considèrent les arbres poussant sur les comme s’ils n’étaient qu’une vulgaire brume matinale.
+rives de la rivière Pischon comme les plus sacrés de tous : Aucun champ de spores, Psychonaute, ou Léperos ne peut
+lors d’une de ses visions, Rebus vit l’arbre de l’illumination se soustraire à sa vision. Et pourtant ils le contemplent
+dont les feuilles mortes virevoltaient en cercle dans les airs tous en retour, car ils ont tous conscience de cet étranger
+pour ensuite se poser doucement sur l’eau. parmi eux.
+Les ingrédients qui composent la Pischon sont rares Plus le niveau est élevé, plus la vision de l’Anabaptiste
+et précieux, et le mélange lui-même n’est connu que porte loin (ce qui en retour permet à autrui de le détecter
+des Élyséens les plus vénérables. Quiconque apprend de plus loin…). Au niveau 1, la vision éthérique porte uni-
+cette recette fera partie des Élyséens jusqu’à sa mort. La quement sur 10 pas, au niveau 2 sur 100 pas, et au niveau 3
+Pischon est une véritable manne pour les Baptistes et les sur 300 pas. Les effets de l’Achéron s’estompent au bout de
+Conseillers. Elle ouvre l’esprit aux émanations : +1D par 30 minutes.
+niveau aux tests de CHA+Expression et PSY+Foi pendant Suite à cela, l’Anabaptiste subit une sporulation équiva-
+4 heures. lente au niveau de l’huile
+b Huiles élyséennes b Huiles élyséennes
+Lucas Flohr (Order #41761180)
+
+=== PAGE 26 ===
+ŒIL DE CYCLOPE PISTOLET MITRAILLEUR
+Les yeux de cyclope sont des lunettes de vision nocturne Les gardiens des Dormeurs étaient équipés de pistolets
+issues des entrepôts RG. Des générations entières de Bla- mitrailleurs à silencieux. Ces armes convenaient parfaite-
+fards les décorèrent de gravures et d’autres fioritures. Ils ment aux combats rapprochés dans les réseaux de tunnels
+les vénérèrent et se battirent pour elles. Le soleil stylisé des Distributeurs. Aujourd’hui, ces armes sont en posses-
+y figure systématiquement. Les légendes prétendent que sion des Blafards.
+le soleil fut emprisonné à l’intérieur de ces appareils afin SPÉCIALITÉ : certains pistolets mitrailleurs sont équipés
+d’éclairer leurs porteurs. d’une baïonnette, qui peut être utilisée comme couteau,
+Ces précieux objets sont désormais étroitement gardés bien que cela reste de la manipulation d’arme à feu et non
+par les Démagogues, et seuls les Cyclopes sont autorisés à d’arme de corps à corps légère. Une baïonnette prend
+en faire usage. 1 Emplacement.
+SPÉCIALITÉ : les réserves d’énergie de ces yeux de cyclope b Armes de poing
+sont faibles, et leur vision s’obscurcit au bout de quelques
+minutes. Cependant, si ces appareils sont agités, ils se DISQUE SOLAIRE
+rechargent lentement. Un blafard avec deux jambes de Dans les profondeurs des Distributeurs, les Blafards décou-
+taille différente ou qui boite n’aura aucune difficulté à uti- vrirent les disques solaires, déchets des dieux, derrière des
+liser son œil de cyclope. panneaux secrets ou dans des pièces qui s’étaient subitement
+Associé à la capacité naturelle de vision nocturne des déverrouillées. Composés de céramique pour la majorité, leur
+Blafards, l’œil de cyclope annule tout malus dû à l’obscurité. face supérieure comporte des décorations d’une grande beauté
+b Sources lumineuses / Feu artistique, en métal ou à partir d’autres matériaux : visages de
+bronze austères, figures géométriques, laiton usé ou verre noir
+RAYON DE SOLEIL parfaitement poli. Le nom que les Blafards utilisent pour se
+Dans leurs abris souterrains éclairés d’écrans LCD et référer à cet artefact est gravé sur l’autre côté de l’objet.
+d’ampoules LED clignotantes, les Blafards n’ont besoin SPÉCIALITÉ : il existe probablement des centaines de
+d’aucune autre source de lumière. Cependant, dans disques solaires différents, et la plupart interagissent entre
+les couloirs inexplorés et les nuits sans étoile, ils rede- eux : ils s’amplifient, débloquent de nouvelles fonctions ou
+viennent aussi aveugles que n’importe qui. Aussi, la plu- bien en bloquent des anciennes.
+part portent sur eux une de ces vieilles lampes-torche Ils peuvent tous être améliorés à l’aide des codes présents
+qu’ils enveloppent de cuir et de bandelettes de tissus dans les abris du RG. Une mise à jour se signale par un bour-
+sacrés. Elles sont décorées avec des condensateurs, des donnement, une lumière clignotante ou bien en vibrant. À ce
+morceaux de carte-mère, des miroirs ou d’autres débris jour, aucun disque solaire n’est parvenu à dépasser le niveau 3.
+trouvés dans les anciens entrepôts. Ces artefacts robustes Sur certains disques solaires, de nouvelles capacités
+peuvent aussi servir de matraque et en réalité, cela apparaissent après une mise à jour, tandis que d’autres ne
+constitue leur utilisation principale. En effet, il existe un servent que de clés à des installations du RG. Les disques
+problème d’approvisionnement en énergie : les E-Cubes solaires fonctionnent à l’énergie. Leur réservoir leur per-
+utilisés dans ces lampes sont pour la plupart vides, et met de fonctionner pendant des centaines et des centaines
+les stations de rechargement situées dans les abris sont d’heures, mais lorsqu’il est vide, l’indicateur énergétique se
+depuis longtemps hors service. met à vaciller et le bourdonnement s’éteint.
+SPÉCIALITÉ : un E-Cube entièrement chargé permet une Les disques peuvent être rechargés dans les stations de
+utilisation sans interruption de 100 heures. rechargement des abris, si elles sont toujours opérationnelles.
+b Sources lumineuses / Feu b Disques solaires
+DEGENESIS 149
+Lucas Flohr (Order #41761180)
+
+=== PAGE 27 ===
+ŒIL DE CYCLOPE
+> PHAÉTON > ARBITRE
+Les légendes rapportent que Phaéton est le fils du dieu La face extérieure de l’arbitre est recouverte d’une plaque
+du soleil. Les disques qui portent ce nom font partie de métal terne et crénelée sous forme de doigts stylisés,
+des plus réputés, et tout enfant Blafard est capable de qui partent du centre du disque pour pointer vers l’ex-
+reconnaître l’austère visage en bronze qui les décore. térieur, et former une étoile étrange. L’arbitre crée une
+Un phaéton s’illumine au contact. Au niveau 3, il brille connexion radio avec les systèmes du RG pour ensuite
+d’une lumière vive. Les interférences avec d’autres s’y infiltrer : les moniteurs affichent le curseur de saisie
+disques demeurent toujours inconnues. Au niveau 1, un de texte pour entrer les lignes de commande adminis-
+phaéton ouvre presque tous les portails extérieurs des trateurs. En outre, ce disque réinitialise d’innombrables
+Distributeurs. artefacts RG, et peut désactiver n’importe quel disque
+b Disques solaires solaire dans un rayon de 2 m. Il peut aussi les redémar-
+rer. Chaque niveau d’un arbitre donne au Blafard +2D en
+> CATARACTE INT+Con naissance des artefacts lorsqu’il souhaite modi-
+Avec sa surface de laiton recouverte de vert-de-gris, ce fier un système RG.
+disque aux lignes incurvées parallèles bourdonne conti- b Disques solaires
+nuellement lorsqu’il est chargé. Lorsqu’un doigt suit ces
+lignes, le bourdonnement se change en rugissement de > QUANTUM
+cascade au point d’atteindre une haute fréquence sonore. La surface de ce disque est rugueuse, et des anneaux sont
+Ce son perçant et désagréable provoque des nausées chez gravés à sa surface. Ce disque interagit avec d’autres quan-
+toutes les personnes à proximité. tums. Ils bourdonnent et vibrent lorsqu’ils se retrouvent à
+La cataracte interagit avec l’orbital. Tandis que l’orbital proximité les uns des autres. Un disque de niveau 1 recon-
+révèle les environs, la cataracte sert de capteur à ultrason, naîtra d’autres disques à 100 pas de distances, un niveau 2
+et transmet tous les obstacles détectés à l’orbital, qui les à 500 pas, et un niveau 3 à 1 km.
+restitue sous la forme d’un nuage de points. b Disques solaires
+b Disques solaires
+> QUASAR
+> ORBITAL Le quasar dépeint un disque solaire embrasé, et il est décoré
+L’orbital est un disque d’un blanc marbré rugueux. Il s’ac- de superbes lignes ondulées qui réfléchissent la lumière. Ce
+tive par simple pression, et de petits points à sa surface se disque se recharge à la lumière du soleil et sert de réserve
+déplacent pour constituer des formes noires. Le disque d’énergie. Lorsqu’un autre disque est posé sur sa surface exté-
+produit un cliquetis puis bourdonne, comme s’il conte- rieure, le quasar lui transmet son énergie. À ce jour ce disque
+nait une demi-douzaine de cafards. Les formes affichent solaire est le seul moyen connu pour raviver des disques
+des veines noires qui imitent les voies ferrées et fluviales déchargés qui se trouvent hors des installations souterraines.
+de l’époque d’antan. Près de ses extrémités, des petits b Disques solaires
+triangles pointent vers l’extérieur : ils mènent aux abris
+qui utilisent les codes commandos stockés dans ce disque. SOLEIL SINISTRE
+Interagit avec le disque cataracte. Les Blafards ne sont pas tous jugés dignes de posséder un
+b Disques solaires disque solaire. Par conséquent, les moins chanceux d’entre
+Lucas Flohr (Order #41761180)
+
+=== PAGE 28 ===
+PISTOLET MITRAILLEUR
+eux travaillent sous la froide lueur de leurs moniteurs à la précautionneusement l’artefact d’avant en arrière, modifie
+création de talismans embossés de plaques de métal circu- l’inclinaison, jusqu’à ce qu’un claquement survienne et que
+laires ornées d’un soleil sinistre. Puis ils y percent un trou la serrure s’ouvre.
+et les accrochent à leur ceinture. Ces copies ne possèdent SPÉCIALITÉ : pour forcer une serrure mécanique, le
+aucune fonction, mais elles inspirent tout de même leur Blafard obtient +3D à son jet d’AGI+Dextérité. Cet arte-
+porteur. fact ne peut s’utiliser sur les serrures électroniques des
+SPÉCIALITÉ : porter un soleil sinistre procure +1D à la dé- Distributeurs.
+fense mentale. b Dans l’ombre
+b Talismans / Emblèmes
+GRENADE À IMPULSION
+OUTILS ÉLECTRONIQUES Un feu de St Elme virevolte dans le tube, quand tout à coup
+Getrell lui-même n’aurait jamais imaginé que les Distri- les lampes fluorescentes explosent en une pluie d’étin-
+buteurs puissent survivre sans encombre au passage des celles. Les écrans d’affichage clignotent puis s’éteignent.
+siècles. Les abris souterrains recèlent de nombreux outils Tous les appareils électroniques qui se trouvent dans un
+et pièces détachées qui n’attendent que d’être retrouvés rayon de 10 m sont définitivement morts.
+afin de réparer les pannes du système électrique. SPÉCIALITÉ : la grenade à impulsion est une grenade
+SPÉCIALITÉ : +1D aux tests d’action pour la manipulation à main qui libère une puissante impulsion électroma-
+d’appareils électriques. gnétique lorsqu’elle est déclenchée. Cela surcharge puis
+b Technologie détruit tout appareil électronique.
+Seuls les agrégats équipés d’une protection spéciale
+ATLAS RG peuvent encaisser le choc. Les AMSUMO, bien que
+Les Blafards ne possèdent pas tous un disque solaire résistants eux aussi, subissent tout de même 2 points de
+orbital pour leur montrer le chemin jusqu’au prochain Traumatisme. Les disques solaires et les mécanismes de
+abri. Dans ces cas-là, il leur faut se fier aux bons vieux verrouillage des Distributeurs sont immunisés contre les
+atlas RG. grenades à impulsion
+SPÉCIALITÉ : les cartes montrent des routes qui n’existent b Technologie
+plus et des lacs devenus aujourd’hui des cuves couvertes
+de poussière. Seuls les points de repère récemment ajou- BANDE DORÉE
+tés par les Blafards permettent de s’orienter avec elles, ce Ces fines bandes en or sont la monnaie des dieux. Chez les
+qui donne à leur utilisateur +2D à INS+Orientation. Blafards, elles passent de main en main, et les Ferrailleurs
+b Orientation / Pistage les acceptent aussi parfois à cause de leur apparence mys-
+tique et précieuse.
+SÉSAMITE SPÉCIALITÉ : les bandes dorées sont rares et représentent
+Qui dit serrure dit ouverture, un état d’esprit qui convient plus un objet de collection qu’une véritable devise. Dans
+aux Blafards équipés d’une sésamite, un crochet élec- le monde du soleil, les Éveilleurs les troquent contre des
+trique. Les mécanismes de la sésamite cliquettent et bour- lettres de change ou des dinars pour pouvoir enfin s’établir
+donnent une fois dans la serrure. Pendant ce temps, le Bla- hors des abris souterrains.
+fard, les yeux fermés, prête une oreille attentive et déplace
+DEGENESIS 151
+Lucas Flohr (Order #41761180)

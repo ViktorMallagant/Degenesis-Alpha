@@ -77,6 +77,7 @@ export type State = {
   sidewinderOldCultName: string | null
   mentalPowerChoice: 'primal' | 'focus' | null
   mentalResistanceChoice: 'faith' | 'willpower' | null
+  giftedBonuses: Record<string, number>
 }
 
 export const useCharacterStore = defineStore('character', {
@@ -110,6 +111,7 @@ export const useCharacterStore = defineStore('character', {
     sidewinderOldCultName: null,
     mentalPowerChoice: null,
     mentalResistanceChoice: null,
+    giftedBonuses: {},
   }),
   getters: {
     attributeValue:
@@ -209,6 +211,9 @@ export const useCharacterStore = defineStore('character', {
             }
           }
         })
+        if (this.hasGifted && this.giftedBonuses[name]) {
+          total += this.giftedBonuses[name]
+        }
         return total
       }
     },
@@ -253,6 +258,17 @@ export const useCharacterStore = defineStore('character', {
       let found = false
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'optimized') found = true })
       return found
+    },
+    hasGifted(): boolean {
+      let found = false
+      this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'gifted') found = true })
+      return found
+    },
+    giftedSpent(): number {
+      return Object.values(this.giftedBonuses).reduce((s, v) => s + v, 0)
+    },
+    giftedRemaining(): number {
+      return Math.max(0, 6 - this.giftedSpent)
     },
     experiencedLockedAttributes(): Set<string> {
       const chosen = this.legacyChoices['experienced']?.attributes || []
@@ -404,6 +420,7 @@ export const useCharacterStore = defineStore('character', {
         state.sidewinderOldCultName,
         state.mentalPowerChoice,
         state.mentalResistanceChoice,
+        Object.keys(state.giftedBonuses).length > 0 ? state.giftedBonuses : undefined,
       )
     },
     maxEgo(): number {
@@ -659,6 +676,7 @@ export const useCharacterStore = defineStore('character', {
       this.sidewinderOldCultName = character.sidewinderOldCultName ?? null
       this.mentalPowerChoice = character.mentalPowerChoice ?? null
       this.mentalResistanceChoice = character.mentalResistanceChoice ?? null
+      this.giftedBonuses = character.giftedBonuses ? { ...character.giftedBonuses } : {}
       this.isLoading = false
     },
     adjustProperties() {
@@ -909,6 +927,9 @@ export const useCharacterStore = defineStore('character', {
         if (legacy.name === 'techtuned') {
           this.inventory = this.inventory.filter(p => p.fromLegacy !== 'techtuned')
         }
+        if (legacy.name === 'gifted') {
+          this.giftedBonuses = {}
+        }
       } else {
         this.legacies.set(legacy, newValue())
       }
@@ -1020,6 +1041,19 @@ export const useCharacterStore = defineStore('character', {
     },
     removeInventoryItem(index: number) {
       this.inventory.splice(index, 1)
+    },
+    setGiftedBonus(skillName: string, points: number) {
+      const capped = Math.max(0, Math.min(points, (this.giftedBonuses[skillName] || 0) + this.giftedRemaining))
+      if (capped === 0) {
+        const updated = { ...this.giftedBonuses }
+        delete updated[skillName]
+        this.giftedBonuses = updated
+      } else {
+        this.giftedBonuses = { ...this.giftedBonuses, [skillName]: capped }
+      }
+    },
+    clearGiftedBonuses() {
+      this.giftedBonuses = {}
     },
     addItemFree(itemId: string, fromLegacy?: string) {
       this.inventory.push({ itemId, purchasedWithResources: false, decrementedResources: false, fromLegacy })
