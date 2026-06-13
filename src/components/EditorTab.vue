@@ -119,6 +119,8 @@
                                 :label="$t('messages.dinars')"
                                 variant="underlined"
                                 type="number"
+                                :hint="store.hasLandlord ? `+1 000 Propriétaire → ${store.remainingLC} total` : ''"
+                                persistent-hint
                                 @update:model-value="val => store.setManualLC(val === '' || val === null ? null : Number(val))"
                               ></v-text-field>
                               <v-text-field

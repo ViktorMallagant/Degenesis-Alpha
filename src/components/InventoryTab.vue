@@ -17,6 +17,7 @@
           {{ store.remainingLC }}
         </span>
         <span v-if="store.editorMode !== 'free'" class="inv-stat-sub inv-muted">(base : {{ store.computedDinars?.value ?? 0 }})</span>
+        <span v-if="store.hasLandlord" class="inv-stat-sub" style="color:#81c784">+1 000 Propriétaire</span>
       </div>
 
       <v-divider vertical class="mx-2" style="height:40px"></v-divider>
