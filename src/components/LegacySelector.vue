@@ -136,10 +136,10 @@
   <!-- Dialog Doué -->
   <v-dialog v-model="giftedDialogOpen" max-width="460" persistent>
     <v-card>
-      <v-card-title class="text-h6 pa-4" style="color:#ce93d8">Héritage Doué</v-card-title>
+      <v-card-title class="text-h6 pa-4" style="color:#ef5350">Héritage Doué</v-card-title>
       <v-card-text class="pa-4 pt-0">
         <p style="font-size:14px;line-height:1.7;color:#ccc">
-          Vous disposez de <strong style="color:#ce93d8">6 points bonus</strong> à répartir librement entre les compétences de
+          Vous disposez de <strong style="color:#ef5350">6 points bonus</strong> à répartir librement entre les compétences de
           <strong>CHARISME</strong> (CHA) et d'<strong>INTELLECT</strong> (INT).
         </p>
         <p style="font-size:14px;line-height:1.7;color:#ccc;margin-top:8px">
@@ -152,7 +152,7 @@
       </v-card-text>
       <v-card-actions class="pa-4 pt-0">
         <v-spacer></v-spacer>
-        <v-btn variant="flat" color="purple-darken-2" @click="giftedDialogOpen = false">Commencer l'allocation</v-btn>
+        <v-btn variant="flat" color="red-darken-2" @click="giftedDialogOpen = false; document.getElementById('skills-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })">COMMENCER L'ALLOCATION</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -425,9 +425,6 @@ function handleLegacyChange(legacy: Legacy, value: number) {
   if (legacy.name === 'gifted' && value > 0) {
     store.setLegacy(legacy, value)
     giftedDialogOpen.value = true
-    setTimeout(() => {
-      document.getElementById('skills-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 100)
     return
   }
   if (legacy.name === 'techtuned' && value > 0) {

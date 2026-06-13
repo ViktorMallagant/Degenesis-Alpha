@@ -683,18 +683,18 @@ const renameCharacter = () => {
   bottom: 24px;
   left: 24px;
   z-index: 100;
-  background: #1a0a2e;
-  border: 1px solid #7b1fa2;
+  background: #1a0808;
+  border: 1px solid #c62828;
   border-radius: 10px;
   padding: 14px 18px;
   min-width: 180px;
-  box-shadow: 0 4px 24px rgba(123,31,162,0.4);
+  box-shadow: 0 4px 24px rgba(198,40,40,0.4);
 }
 .gifted-panel-title {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #ce93d8;
+  color: #ef5350;
   margin-bottom: 8px;
 }
 .gifted-panel-counter {
@@ -704,7 +704,7 @@ const renameCharacter = () => {
 }
 .gifted-remaining {
   font-weight: 700;
-  color: #ce93d8;
+  color: #ef5350;
 }
 .gifted-done {
   font-weight: 700;
