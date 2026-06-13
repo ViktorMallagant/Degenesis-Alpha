@@ -266,14 +266,15 @@ function boxClasses(field: number): Record<string, boolean> {
 }
 
 .gifted-bonus {
-  background-color: #7b1fa2 !important;
-  border-color: #4a0072 !important;
+  background-color: #bf360c !important;
+  border-color: #6d1f06 !important;
+  opacity: 0.85;
   cursor: pointer;
 }
 
 .gifted-preview {
-  background-color: rgba(206, 147, 216, 0.45) !important;
-  border-color: #7b1fa2 !important;
+  background-color: rgba(198, 40, 40, 0.45) !important;
+  border-color: #b71c1c !important;
   cursor: pointer;
 }
 

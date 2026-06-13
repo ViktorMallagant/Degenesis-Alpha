@@ -18,7 +18,7 @@
   <div
     v-for="skill in SkillsByAttribute.get(attribute) || []"
     v-bind:key="skill.name"
-    :class="{ 'gifted-pulse': store.hasGifted && isGiftedSkill(skill) }"
+    :class="{ 'gifted-pulse': store.hasGifted && isGiftedSkill(skill) && store.giftedRemaining > 0 }"
   >
     <ValueSelector
       :name="skill.name"
