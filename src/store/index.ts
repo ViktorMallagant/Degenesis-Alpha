@@ -259,6 +259,20 @@ export const useCharacterStore = defineStore('character', {
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'optimized') found = true })
       return found
     },
+    legacyChoiceAttributeTotalBonus(): number {
+      let total = 0
+      this.legacies.forEach((v, legacy) => {
+        if (v > 0) {
+          const chosen = this.legacyChoices[legacy.name]?.attributes || []
+          for (const e of legacy.effects) {
+            if (e.type === 'choiceAttribute') {
+              total += (e as any).bonus * Math.min(chosen.length, (e as any).count)
+            }
+          }
+        }
+      })
+      return total
+    },
     hasGifted(): boolean {
       let found = false
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'gifted') found = true })
@@ -591,6 +605,12 @@ export const useCharacterStore = defineStore('character', {
         this.mentalResistanceSkillForEligibility,
         this.concept,
       )
+      if (this.editorMode !== EditorMode.Free) {
+        const age = parseInt(this.age)
+        if (isNaN(age) || age < 40) {
+          set.forEach(l => { if (l.name === 'experienced') set.delete(l) })
+        }
+      }
       if (this.editorMode !== EditorMode.Free && this.spentPoints.origins > 1) {
         set.forEach(l => { if (l.name === 'optimized') set.delete(l) })
       }

@@ -15,7 +15,11 @@
     type="attributes"
   />
   <v-divider class="mb-4"></v-divider>
-  <div v-for="skill in SkillsByAttribute.get(attribute) || []" v-bind:key="skill.name">
+  <div
+    v-for="skill in SkillsByAttribute.get(attribute) || []"
+    v-bind:key="skill.name"
+    :class="{ 'gifted-pulse': store.hasGifted && isGiftedSkill(skill) }"
+  >
     <ValueSelector
       :name="skill.name"
       :label="localizeSkillName(skill)"
@@ -90,3 +94,15 @@ const skillCount = (skill: Skill): number => {
   return 6 + giftedPoints + (hasAvailableSlot ? 1 : 0)
 }
 </script>
+
+<style scoped>
+@keyframes gifted-glow {
+  0%, 100% { box-shadow: none; background: transparent; }
+  50% { box-shadow: 0 0 8px 2px rgba(239, 83, 80, 0.5); background: rgba(239, 83, 80, 0.06); }
+}
+
+.gifted-pulse {
+  border-radius: 4px;
+  animation: gifted-glow 1.8s ease-in-out infinite;
+}
+</style>

@@ -235,7 +235,7 @@
                       <PointMeter
                         :active="store.editorMode != EditorMode.Free"
                         :title="$t('messages.attributePoints')"
-                        :value="store.spentPoints.attributes"
+                        :value="store.spentPoints.attributes + store.legacyChoiceAttributeTotalBonus"
                         :max="availablePoints.attributes + store.legacyXPAttributeBonus"
                       ></PointMeter>
                     </v-col>

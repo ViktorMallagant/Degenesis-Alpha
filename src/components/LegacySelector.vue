@@ -133,6 +133,30 @@
     </v-card>
   </v-dialog>
 
+  <!-- Dialog Doué -->
+  <v-dialog v-model="giftedDialogOpen" max-width="460" persistent>
+    <v-card>
+      <v-card-title class="text-h6 pa-4" style="color:#ce93d8">Héritage Doué</v-card-title>
+      <v-card-text class="pa-4 pt-0">
+        <p style="font-size:14px;line-height:1.7;color:#ccc">
+          Vous disposez de <strong style="color:#ce93d8">6 points bonus</strong> à répartir librement entre les compétences de
+          <strong>CHARISME</strong> (CHA) et d'<strong>INTELLECT</strong> (INT).
+        </p>
+        <p style="font-size:14px;line-height:1.7;color:#ccc;margin-top:8px">
+          Ces points peuvent <strong>dépasser le maximum normal</strong> à la création.
+        </p>
+        <p style="font-size:13px;color:#888;margin-top:10px">
+          Les compétences éligibles <span style="color:#ef5350;font-weight:700">clignotent en rouge</span>.
+          Cliquez sur les cases au-delà du maximum pour allouer vos points.
+        </p>
+      </v-card-text>
+      <v-card-actions class="pa-4 pt-0">
+        <v-spacer></v-spacer>
+        <v-btn variant="flat" color="purple-darken-2" @click="giftedDialogOpen = false">Commencer l'allocation</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
   <!-- Dialog Transfuge -->
   <v-dialog v-model="sidewinderDialogOpen" max-width="480" persistent>
     <v-card>
@@ -281,6 +305,8 @@ const legendaryArtefactItems = computed(() =>
     .sort((a, b) => a.title.localeCompare(b.title))
 )
 
+const giftedDialogOpen = ref(false)
+
 const artefactDialogOpen = ref(false)
 const artefactDialogPendingValue = ref(0)
 const artefactPickMode = ref<'none' | 'random' | 'choose' | null>(null)
@@ -398,6 +424,7 @@ function autoFillChoices(legacy: Legacy): { attributes: Record<string, string>; 
 function handleLegacyChange(legacy: Legacy, value: number) {
   if (legacy.name === 'gifted' && value > 0) {
     store.setLegacy(legacy, value)
+    giftedDialogOpen.value = true
     setTimeout(() => {
       document.getElementById('skills-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }, 100)
