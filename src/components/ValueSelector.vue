@@ -14,7 +14,7 @@
             <span v-if="props.label != ''" class="altLabel text-grey-darken-1 text-caption">{{ props.label }}</span>
           </div>
           <div class="wrap" v-else>
-            <span :class="{mainLabel: props.altLabel, 'text-decoration-line-through': !active}">{{ props.label }}<span v-if="props.labelStar" class="label-star">*</span></span>
+            <span :class="{mainLabel: props.altLabel, 'text-decoration-line-through': !active, 'skill-inactive': !active}">{{ props.label }}<span v-if="props.labelStar" class="label-star">*</span></span>
             <span v-if="props.altLabel != ''" class="altLabel text-grey-darken-1 text-caption">{{ props.altLabel }}</span>
           </div>
           <slot></slot>
@@ -100,6 +100,10 @@ const selectionChanged = (event: any) => emit('change', event)
 
 .boxes-end {
   flex-shrink: 0;
+}
+
+.skill-inactive {
+  opacity: 0.35;
 }
 
 .label-star {
