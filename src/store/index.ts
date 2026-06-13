@@ -254,6 +254,13 @@ export const useCharacterStore = defineStore('character', {
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'optimized') found = true })
       return found
     },
+    experiencedLockedAttributes(): Set<string> {
+      const chosen = this.legacyChoices['experienced']?.attributes || []
+      let hasExperienced = false
+      this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'experienced') hasExperienced = true })
+      if (!hasExperienced) return new Set()
+      return new Set(chosen)
+    },
     hasCreatureOfHabit(): boolean {
       let found = false
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'creatureofhabit') found = true })

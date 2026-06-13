@@ -20,6 +20,10 @@
             :class="{ opaque: field > max && hovered >= field }"
             class="bg-red-darken-4 partial-fill"
           ></div>
+          <svg v-if="lockedLast && field > count - lockedLast" class="locked-x" viewBox="0 0 10 12" xmlns="http://www.w3.org/2000/svg" :data-value="field">
+            <line x1="1" y1="1" x2="9" y2="11" stroke="white" stroke-width="1.8" stroke-linecap="round" :data-value="field"/>
+            <line x1="9" y1="1" x2="1" y2="11" stroke="white" stroke-width="1.8" stroke-linecap="round" :data-value="field"/>
+          </svg>
         </div>
       </div>
     </div>
@@ -40,6 +44,7 @@ export interface Props {
   displayMax?: boolean
   ineligible?: boolean
   bonus?: number
+  lockedLast?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -53,6 +58,7 @@ const props = withDefaults(defineProps<Props>(), {
   displayMax: true,
   ineligible: false,
   bonus: 0,
+  lockedLast: 0,
 })
 const emit = defineEmits<{
   (e: 'change', value: number): void
@@ -66,6 +72,7 @@ const hovered = ref(-1)
 const handleClick = (event: any) => {
   if (props.interactive) {
     const field = parseInt(event.target.attributes['data-value'].value)
+    if (props.lockedLast && field > props.count - props.lockedLast) return
     const bonus = props.bonus ?? 0
     if (bonus > 0) {
       // In hover layout: bonus zone is max+1..max+bonus → ignore
@@ -200,6 +207,7 @@ function boxClasses(field: number): Record<string, boolean> {
   height: 1.5em;
   border: 1px #212121 solid;
   display: inline-block;
+  position: relative;
   transition:
     border 0.2s,
     background-color 0.2s,
@@ -226,6 +234,15 @@ function boxClasses(field: number): Record<string, boolean> {
   height: 20%;
   opacity: 0;
   transition: opacity .2s;
+}
+
+.locked-x {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .partial-fill.opaque {

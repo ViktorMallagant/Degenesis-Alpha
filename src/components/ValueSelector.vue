@@ -29,6 +29,7 @@
         :value="props.value"
         :ineligible="props.ineligible"
         :bonus="props.bonus"
+        :lockedLast="props.lockedLast"
         v-on:change="selectionChanged"
       />
   </div>
@@ -56,6 +57,7 @@ export interface Props {
   missingInfo?: string,
   bonus?: number,
   labelStar?: boolean,
+  lockedLast?: number,
 }
 const props = withDefaults(defineProps<Props>(), {
   altLabel: '',
@@ -70,6 +72,7 @@ const props = withDefaults(defineProps<Props>(), {
   missingInfo: '',
   bonus: 0,
   labelStar: false,
+  lockedLast: 0,
 })
 const emit = defineEmits<{
   (e: 'change', value: number): void

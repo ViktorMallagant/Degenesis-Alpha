@@ -10,6 +10,7 @@
     :highlighted="store.isHighlighted(attribute)"
     :display-max="store.editorMode != EditorMode.Free"
     :labelStar="isPreferredAttribute(attribute)"
+    :lockedLast="store.experiencedLockedAttributes.has(attribute.name) ? 1 : 0"
     type="attributes"
   />
   <v-divider class="mb-4"></v-divider>

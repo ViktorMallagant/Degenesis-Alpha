@@ -247,6 +247,10 @@ function missingConditionsHtml(legacy: Legacy): string {
     missing.push(`Compétence Spéciale requise :${legacy.mentalResistanceSkill.format(tr)}`)
   }
 
+  if (legacy.name === 'experienced') {
+    const age = parseInt(store.age)
+    if (isNaN(age) || age < 40) missing.push('Âge requis : 40 ans ou plus')
+  }
   if (legacy.name === 'optimized' && store.spentPoints.origins > 1) {
     missing.push(`${tr('messages.origins')} ≤ 1 (actuellement : ${store.spentPoints.origins})`)
   }
