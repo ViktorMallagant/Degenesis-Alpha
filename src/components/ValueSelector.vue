@@ -30,7 +30,7 @@
         :ineligible="props.ineligible"
         :bonus="props.bonus"
         :lockedLast="props.lockedLast"
-        :giftedClickable="props.giftedClickable"
+        :giftedMode="props.giftedMode"
         :giftedPoints="props.giftedPoints"
         :giftedRemaining="props.giftedRemaining"
         v-on:change="selectionChanged"
@@ -62,7 +62,7 @@ export interface Props {
   bonus?: number,
   labelStar?: boolean,
   lockedLast?: number,
-  giftedClickable?: boolean,
+  giftedMode?: boolean,
   giftedPoints?: number,
   giftedRemaining?: number,
 }
@@ -80,7 +80,7 @@ const props = withDefaults(defineProps<Props>(), {
   bonus: 0,
   labelStar: false,
   lockedLast: 0,
-  giftedClickable: false,
+  giftedMode: false,
   giftedPoints: 0,
   giftedRemaining: 0,
 })

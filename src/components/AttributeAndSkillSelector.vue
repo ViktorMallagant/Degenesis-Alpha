@@ -36,7 +36,7 @@
       @mouseenter="skill.antagonist && store.setHighlighted(skill, skill.antagonist)"
       @mouseleave="skill.antagonist && store.unsetHighlighted(skill, skill.antagonist)"
       @touchstart="skill.antagonist && store.flashHighlighted(skill, skill.antagonist)"
-      :giftedClickable="store.hasGifted && isGiftedSkill(skill)"
+      :giftedMode="store.hasGifted && isGiftedSkill(skill)"
       :giftedPoints="store.hasGifted && isGiftedSkill(skill) ? (store.giftedBonuses[skill.name] || 0) : 0"
       :giftedRemaining="store.hasGifted && isGiftedSkill(skill) ? store.giftedRemaining : 0"
       type="skills"
@@ -87,13 +87,7 @@ const GIFTED_ATTRIBUTES = ['charisma', 'intellect']
 const isGiftedSkill = (skill: Skill): boolean =>
   GIFTED_ATTRIBUTES.includes(skill.attribute.name)
 
-const skillCount = (skill: Skill): number => {
-  if (!store.hasGifted || !isGiftedSkill(skill)) return 6
-  const giftedPoints = store.giftedBonuses[skill.name] || 0
-  // Always show 1 available slot (dashed) if remaining points exist
-  const showSlot = store.giftedRemaining > 0 && giftedPoints < 6 ? 1 : 0
-  return 6 + giftedPoints + showSlot
-}
+const skillCount = (_skill: Skill): number => 6
 
 const skillDisplayBonus = (skill: Skill): number => {
   const total = store.legacySkillBonus(skill.name)

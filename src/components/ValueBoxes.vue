@@ -45,7 +45,7 @@ export interface Props {
   ineligible?: boolean
   bonus?: number
   lockedLast?: number
-  giftedClickable?: boolean
+  giftedMode?: boolean
   giftedPoints?: number
   giftedRemaining?: number
 }
@@ -62,7 +62,7 @@ const props = withDefaults(defineProps<Props>(), {
   ineligible: false,
   bonus: 0,
   lockedLast: 0,
-  giftedClickable: false,
+  giftedMode: false,
   giftedPoints: 0,
   giftedRemaining: 0,
 })
@@ -80,9 +80,11 @@ const handleClick = (event: any) => {
   if (props.interactive) {
     const field = parseInt(event.target.attributes['data-value'].value)
     if (props.lockedLast && field > props.count - props.lockedLast) return
-    if (props.giftedClickable && field > props.max) {
-      const newPoints = field - props.max
-      emit('giftedChange', newPoints === props.giftedPoints ? 0 : newPoints)
+    if (props.giftedMode && field > props.value) {
+      const requested = field - props.value
+      const maxAllowable = (props.giftedPoints || 0) + (props.giftedRemaining || 0)
+      const newPoints = requested === props.giftedPoints ? 0 : Math.min(requested, maxAllowable)
+      emit('giftedChange', newPoints)
       hovered.value = -1
       return
     }
@@ -111,6 +113,10 @@ const handleClick = (event: any) => {
 
 const handleMouseEnter = (field: number) => {
   if (props.interactive) {
+    if (props.giftedMode) {
+      hovered.value = field > props.value ? field : -1
+      return
+    }
     const bonus = props.bonus ?? 0
     if (bonus > 0) {
       // Switch to hover layout; bonus zone has no fill preview
@@ -129,6 +135,16 @@ const handleMouseLeave = () => {
 
 function boxClasses(field: number): Record<string, boolean> {
   const bonus = props.bonus ?? 0
+
+  // ── Gifted mode takes priority ────────────────────────────────────────────
+  if (props.giftedMode) {
+    if (field <= props.value) return { 'bg-grey-darken-4': true }
+    const giftedEnd = props.value + (props.giftedPoints || 0)
+    if (field <= giftedEnd) return { 'gifted-bonus': true }
+    const previewEnd = props.value + (props.giftedPoints || 0) + (props.giftedRemaining || 0)
+    if (hovered.value >= field && field <= previewEnd) return { 'gifted-preview': true }
+    return {}
+  }
 
   if (bonus > 0) {
     // isHovering: entering any box switches to hover layout (rest = -1)
@@ -158,16 +174,6 @@ function boxClasses(field: number): Record<string, boolean> {
       if (field <= props.value) return { 'bg-grey-darken-4': true }
     }
     return {}
-  }
-
-  // ── Gifted bonus boxes ────────────────────────────────────────────────────
-  if (props.giftedClickable && field > props.max) {
-    const giftedSlot = field - props.max
-    if (giftedSlot <= props.giftedPoints) return { 'gifted-filled': true }
-    if (giftedSlot === props.giftedPoints + 1 && props.giftedRemaining > 0) {
-      return { 'gifted-available': true, 'gifted-hovering': field <= hovered.value }
-    }
-    return { 'bg-grey-lighten-2': true }
   }
 
   // ── Original behavior (no bonus) ──────────────────────────────────────────
@@ -259,20 +265,16 @@ function boxClasses(field: number): Record<string, boolean> {
   transition: opacity .2s;
 }
 
-.gifted-filled {
+.gifted-bonus {
   background-color: #7b1fa2 !important;
   border-color: #4a0072 !important;
-}
-
-.gifted-available {
-  border: 1px dashed rgba(123, 31, 162, 0.6) !important;
-  background: transparent !important;
   cursor: pointer;
 }
 
-.gifted-hovering {
-  background-color: rgba(206, 147, 216, 0.35) !important;
+.gifted-preview {
+  background-color: rgba(206, 147, 216, 0.45) !important;
   border-color: #7b1fa2 !important;
+  cursor: pointer;
 }
 
 .locked-x {
