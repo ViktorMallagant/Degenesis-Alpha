@@ -821,6 +821,9 @@ export const useCharacterStore = defineStore('character', {
       if (newValue() <= 0) {
         this.legacies.delete(legacy)
         this.setLegacyChoices(legacy.name, null)
+        if (legacy.name === 'entrepreneur') {
+          this.inventory = this.inventory.filter(p => !p.entrepreneurResources)
+        }
       } else {
         this.legacies.set(legacy, newValue())
       }
@@ -909,7 +912,7 @@ export const useCharacterStore = defineStore('character', {
         }
 
         if (!canBuy) return
-        this.inventory.push({ itemId, purchasedWithResources: true, decrementedResources: decrements })
+        this.inventory.push({ itemId, purchasedWithResources: true, decrementedResources: decrements, entrepreneurResources: !isExpertMode })
         return
       }
 

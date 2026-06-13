@@ -168,8 +168,8 @@
                 <td>{{ getItem(purchase.itemId)!.techLevel ?? '—' }}</td>
                 <td>{{ getItem(purchase.itemId)!.slots ?? '—' }}</td>
                 <td>
-                  <v-chip size="x-small" :color="purchase.purchasedWithResources ? 'blue-darken-1' : 'green-darken-1'" text-color="white">
-                    {{ purchase.purchasedWithResources ? 'Ressources' : (store.computedDinars?.currency ?? 'LC') }}
+                  <v-chip size="x-small" :color="purchase.entrepreneurResources ? 'orange-darken-2' : purchase.purchasedWithResources ? 'blue-darken-1' : 'green-darken-1'" text-color="white">
+                    {{ purchase.entrepreneurResources ? 'Ress. Entrepreneur' : purchase.purchasedWithResources ? 'Ressources' : (store.computedDinars?.currency ?? 'LC') }}
                   </v-chip>
                 </td>
                 <td>

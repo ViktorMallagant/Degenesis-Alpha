@@ -162,6 +162,7 @@ export interface InventoryPurchase {
   purchasedWithResources: boolean
   decrementedResources: boolean
   level?: number
+  entrepreneurResources?: boolean
 }
 
 export enum ResourceMode {
