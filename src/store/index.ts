@@ -464,7 +464,7 @@ export const useCharacterStore = defineStore('character', {
         this.mentalResistanceSkill,
         this.concept,
       )
-      if (this.editorMode !== EditorMode.Free && this.spentPoints.origins > 0) {
+      if (this.editorMode !== EditorMode.Free && this.spentPoints.origins > 1) {
         set.forEach(l => { if (l.name === 'optimized') set.delete(l) })
       }
       return set
@@ -748,7 +748,7 @@ export const useCharacterStore = defineStore('character', {
         return
       }
       // Block Optimized if origins already spent (non-free mode)
-      if (legacy.name === 'optimized' && newValue() > 0 && this.editorMode !== EditorMode.Free && this.spentPoints.origins > 0) {
+      if (legacy.name === 'optimized' && newValue() > 0 && this.editorMode !== EditorMode.Free && this.spentPoints.origins > 1) {
         return
       }
       

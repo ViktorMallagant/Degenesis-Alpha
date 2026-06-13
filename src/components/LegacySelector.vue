@@ -170,6 +170,10 @@ function missingConditionsHtml(legacy: Legacy): string {
     missing.push(legacy.mentalResistanceSkill.format(tr))
   }
 
+  if (legacy.name === 'optimized' && store.spentPoints.origins > 1) {
+    missing.push(`${tr('messages.origins')} ≤ 1 (actuellement : ${store.spentPoints.origins})`)
+  }
+
   if (missing.length === 0) return ''
   return `<hr style="border-color:#555;margin:10px 0"><span style="color:#ef9a9a;font-weight:bold">${tr('messages.missingConditions')}</span><br>` +
     missing.map(m => `• ${m}`).join('<br>')
