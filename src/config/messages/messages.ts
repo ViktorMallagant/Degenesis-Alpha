@@ -236,7 +236,7 @@ export const messages = {
       displayOriginalLabels: 'Original',
     },
     characters: 'Personnages',
-    exportCharacter: 'Partager votre fiche',
+    exportCharacter: 'Exporter la fiche',
     importCharacter: 'Importer un personnage',
     editorModes: {
       label: 'Modes d\'édition',

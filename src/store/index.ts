@@ -994,8 +994,8 @@ export const useCharacterStore = defineStore('character', {
         }
       } else {
         this.legacies.set(legacy, newValue())
-        if (legacy.name === 'offspring') {
-          // Auto-reduce INT and CHA by 1 (locked last box)
+        if (legacy.name === 'offspring' && !this.isLoading) {
+          // Auto-reduce INT and CHA by 1 (locked last box) — skip on loadCharacter
           const int = this.attributes.get(Attributes.intellect) ?? 0
           if (int > 0) this.attributes.set(Attributes.intellect, Math.max(0, int - 1))
           const cha = this.attributes.get(Attributes.charisma) ?? 0
