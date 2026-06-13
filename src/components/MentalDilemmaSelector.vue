@@ -1,10 +1,9 @@
 <template>
   <div class="dilemma-root">
     <div class="dilemma-header">
-      <span class="dilemma-title text-uppercase font-weight-bold">Compétences Spéciales</span>
       <v-tooltip max-width="360" location="bottom">
         <template #activator="{ props }">
-          <v-icon v-bind="props" size="16" class="ml-2" style="color:#888;cursor:help">mdi-information-outline</v-icon>
+          <span v-bind="props" class="dilemma-title text-uppercase font-weight-bold" style="cursor:help;border-bottom:1px dotted #666">Compétences Spéciales</span>
         </template>
         <span>Lors de la création, vous devez trancher deux dilemmes qui définissent l'âme de votre personnage.<br><br>Il existe deux couples de compétences spéciales dans Degenesis et vous devez en choisir une seule à chaque fois.</span>
       </v-tooltip>
