@@ -36,7 +36,7 @@
       @mouseenter="skill.antagonist && store.setHighlighted(skill, skill.antagonist)"
       @mouseleave="skill.antagonist && store.unsetHighlighted(skill, skill.antagonist)"
       @touchstart="skill.antagonist && store.flashHighlighted(skill, skill.antagonist)"
-      :giftedMode="store.hasGifted && isGiftedSkill(skill)"
+      :giftedMode="store.hasGifted && isGiftedSkill(skill) && store.giftedRemaining > 0"
       :giftedPoints="store.hasGifted && isGiftedSkill(skill) ? (store.giftedBonuses[skill.name] || 0) : 0"
       :giftedRemaining="store.hasGifted && isGiftedSkill(skill) ? store.giftedRemaining : 0"
       type="skills"

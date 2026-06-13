@@ -136,11 +136,14 @@ const handleMouseLeave = () => {
 function boxClasses(field: number): Record<string, boolean> {
   const bonus = props.bonus ?? 0
 
-  // ── Gifted mode takes priority ────────────────────────────────────────────
+  // ── Gifted: display allocated points regardless of interaction mode ───────
+  if (props.giftedPoints && props.giftedPoints > 0 && field > props.value && field <= props.value + props.giftedPoints) {
+    return { 'gifted-bonus': true }
+  }
+
+  // ── Gifted mode: intercept clicks to allocate remaining points ────────────
   if (props.giftedMode) {
     if (field <= props.value) return { 'bg-grey-darken-4': true }
-    const giftedEnd = props.value + (props.giftedPoints || 0)
-    if (field <= giftedEnd) return { 'gifted-bonus': true }
     const previewEnd = props.value + (props.giftedPoints || 0) + (props.giftedRemaining || 0)
     if (hovered.value >= field && field <= previewEnd) return { 'gifted-preview': true }
     return {}
