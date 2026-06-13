@@ -33,6 +33,7 @@ export class Character {
     readonly mentalResistanceChoice?: 'faith' | 'willpower' | null,
     readonly giftedBonuses?: Record<string, number>,
     readonly imposteurCultName?: string | null,
+    readonly renegadeCultNames?: string[],
   ) {
     this.storageVersion = 'v1'
     const legacyEditorMode = wasCreatedWithFreeMode ? (wasCreatedWithFreeMode ? EditorMode.Free : editorMode) : editorMode

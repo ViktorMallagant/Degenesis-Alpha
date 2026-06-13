@@ -236,7 +236,7 @@
                         :active="store.editorMode != EditorMode.Free"
                         :title="$t('messages.attributePoints')"
                         :value="store.spentPoints.attributes + store.legacyChoiceAttributeTotalBonus"
-                        :max="availablePoints.attributes + store.legacyXPAttributeBonus + store.legacyChoiceAttributeTotalBonus"
+                        :max="availablePoints.attributes + store.legacyXPAttributeBonus + store.legacyChoiceAttributeTotalBonus + store.legacyOffspringAttributePenalty"
                       ></PointMeter>
                     </v-col>
                     <v-col cols="12" sm="4" lg="3" xl="2">

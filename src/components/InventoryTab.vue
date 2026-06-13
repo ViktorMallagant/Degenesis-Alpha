@@ -332,7 +332,7 @@
                     {{ store.computedDinars?.currency ?? 'LC' }}
                   </v-btn>
                   <v-btn
-                    v-if="item.resources !== undefined && item.cult !== undefined && (item.cult === store.cult?.name || item.cult === store.imposteurCult?.name || store.hasEntrepreneur || store.editorMode === 'free')"
+                    v-if="item.resources !== undefined && item.cult !== undefined && (item.cult === store.cult?.name || item.cult === store.imposteurCult?.name || store.renegadeCults.some(c => c.name === item.cult) || store.hasEntrepreneur || store.editorMode === 'free')"
                     size="x-small"
                     variant="outlined"
                     color="blue-darken-2"
@@ -490,6 +490,7 @@ function isOtherCultBlocked(item: Item): boolean {
   if (item.cult === undefined) return false
   if (item.cult === store.cult?.name) return false
   if (item.cult === store.imposteurCult?.name) return false
+  if (store.renegadeCults.some(c => c.name === item.cult)) return false
   if (store.hasEntrepreneur) return false
   if (store.editorMode === 'free') return false
   return true
@@ -504,7 +505,8 @@ function canBuyWithResources(item: Item): boolean {
   if (item.resources === undefined) return false
 
   const isImposteurCult = item.cult !== undefined && item.cult === store.imposteurCult?.name
-  if (isImposteurCult) {
+  const isRenegadeCult = item.cult !== undefined && store.renegadeCults.some(c => c.name === item.cult)
+  if (isImposteurCult || isRenegadeCult) {
     const mode = store.resourceMode
     if (mode === ResourceMode.C) return item.resources <= store.effectiveResourcesLevelForModeC
     return item.resources <= store.effectiveResourcesLevel
@@ -545,7 +547,7 @@ const visibleItems = computed(() => {
   const q = search.value.trim().toLowerCase()
   return ITEMS.filter(item => {
     // Masquer les items d'un autre culte (sauf si "Montrez tous les équipements de Culte" est coché, ou Imposteur)
-    if (!showAllCults.value && item.cult !== undefined && item.cult !== store.cult?.name && item.cult !== store.imposteurCult?.name) return false
+    if (!showAllCults.value && item.cult !== undefined && item.cult !== store.cult?.name && item.cult !== store.imposteurCult?.name && !store.renegadeCults.some(c => c.name === item.cult)) return false
     // Filtre équipement de culte
     if (showOnlyCult.value && item.cult === undefined) return false
     // Recherche texte

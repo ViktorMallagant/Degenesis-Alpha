@@ -157,6 +157,36 @@
     </v-card>
   </v-dialog>
 
+  <!-- Dialog Renégat -->
+  <v-dialog v-model="renegadeDialogOpen" max-width="480" persistent>
+    <v-card>
+      <v-card-title class="text-h6 pa-4">Renégat</v-card-title>
+      <v-card-text class="pa-4 pt-0">
+        <p style="font-size:13px;color:#aaa;margin-bottom:12px">Quels sont les Cultes pour lesquels vous travaillez en tant que mercenaire ?</p>
+        <v-select
+          v-model="renegadeCult1"
+          label="Premier Culte"
+          :items="allCultItems.filter(c => c.value !== store.cult?.name && c.value !== renegadeCult2)"
+          density="compact"
+          variant="outlined"
+          class="mb-3"
+        ></v-select>
+        <v-select
+          v-model="renegadeCult2"
+          label="Deuxième Culte"
+          :items="allCultItems.filter(c => c.value !== store.cult?.name && c.value !== renegadeCult1)"
+          density="compact"
+          variant="outlined"
+        ></v-select>
+      </v-card-text>
+      <v-card-actions class="pa-4 pt-0">
+        <v-spacer></v-spacer>
+        <v-btn variant="text" @click="cancelRenegadeDialog">Annuler</v-btn>
+        <v-btn variant="flat" color="primary" :disabled="!renegadeCult1 || !renegadeCult2" @click="confirmRenegadeDialog">Confirmer</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
   <!-- Dialog Imposteur -->
   <v-dialog v-model="imposteurDialogOpen" max-width="480" persistent>
     <v-card>
@@ -402,6 +432,31 @@ function confirmSidewinderDialog() {
   sidewinderDialogOpen.value = false
 }
 
+const renegadeDialogOpen = ref(false)
+const renegadePendingValue = ref(0)
+const renegadeCult1 = ref<string>('')
+const renegadeCult2 = ref<string>('')
+
+function openRenegadeDialog(value: number) {
+  renegadePendingValue.value = value
+  const existing = store.renegadeCultNames
+  renegadeCult1.value = existing[0] ?? ''
+  renegadeCult2.value = existing[1] ?? ''
+  renegadeDialogOpen.value = true
+}
+
+function cancelRenegadeDialog() {
+  renegadeDialogOpen.value = false
+}
+
+function confirmRenegadeDialog() {
+  if (!renegadeCult1.value || !renegadeCult2.value) return
+  const renegade = AllLegacies.find(l => l.name === 'renegade')!
+  store.setLegacy(renegade, renegadePendingValue.value)
+  store.setRenegadeCults([renegadeCult1.value, renegadeCult2.value])
+  renegadeDialogOpen.value = false
+}
+
 const imposteurDialogOpen = ref(false)
 const imposteurPendingValue = ref(0)
 const imposteurSelectedCult = ref<string>('')
@@ -487,6 +542,10 @@ function handleLegacyChange(legacy: Legacy, value: number) {
   }
   if (legacy.name === 'impostor' && value > 0) {
     openImposteurDialog(value)
+    return
+  }
+  if (legacy.name === 'renegade' && value > 0) {
+    openRenegadeDialog(value)
     return
   }
   if (value > 0 && hasChoiceEffects(legacy)) {

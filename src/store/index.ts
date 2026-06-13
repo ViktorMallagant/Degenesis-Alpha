@@ -76,6 +76,7 @@ export type State = {
   errorMessage: string | null
   sidewinderOldCultName: string | null
   imposteurCultName: string | null
+  renegadeCultNames: string[]
   mentalPowerChoice: 'primal' | 'focus' | null
   mentalResistanceChoice: 'faith' | 'willpower' | null
   giftedBonuses: Record<string, number>
@@ -111,6 +112,7 @@ export const useCharacterStore = defineStore('character', {
     errorMessage: null,
     sidewinderOldCultName: null,
     imposteurCultName: null,
+    renegadeCultNames: [],
     mentalPowerChoice: null,
     mentalResistanceChoice: null,
     giftedBonuses: {},
@@ -298,6 +300,9 @@ export const useCharacterStore = defineStore('character', {
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'offspring') found = true })
       return found
     },
+    legacyOffspringAttributePenalty(): number {
+      return this.hasOffspring ? -2 : 0
+    },
     hasCreatureOfHabit(): boolean {
       let found = false
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'creatureofhabit') found = true })
@@ -443,6 +448,7 @@ export const useCharacterStore = defineStore('character', {
         state.mentalResistanceChoice,
         Object.keys(state.giftedBonuses).length > 0 ? state.giftedBonuses : undefined,
         state.imposteurCultName,
+        state.renegadeCultNames.length > 0 ? state.renegadeCultNames : undefined,
       )
     },
     maxEgo(): number {
@@ -562,6 +568,17 @@ export const useCharacterStore = defineStore('character', {
     imposteurCult(): Cult | null {
       if (!this.hasImposteur || !this.imposteurCultName) return null
       return Object.values(Cults).find(c => c.name === this.imposteurCultName) ?? null
+    },
+    hasRenegade(): boolean {
+      let found = false
+      this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'renegade') found = true })
+      return found
+    },
+    renegadeCults(): Cult[] {
+      if (!this.hasRenegade) return []
+      return this.renegadeCultNames
+        .map(name => Object.values(Cults).find(c => c.name === name))
+        .filter((c): c is Cult => c !== undefined)
     },
     effectiveResourcesLevelForOtherCult(): number {
       if (!this.hasEntrepreneur) return 0
@@ -715,6 +732,7 @@ export const useCharacterStore = defineStore('character', {
       this.mentalResistanceChoice = character.mentalResistanceChoice ?? null
       this.giftedBonuses = character.giftedBonuses ? { ...character.giftedBonuses } : {}
       this.imposteurCultName = character.imposteurCultName ?? null
+      this.renegadeCultNames = character.renegadeCultNames ?? []
       this.isLoading = false
     },
     adjustProperties() {
@@ -971,8 +989,18 @@ export const useCharacterStore = defineStore('character', {
         if (legacy.name === 'impostor') {
           this.imposteurCultName = null
         }
+        if (legacy.name === 'renegade') {
+          this.renegadeCultNames = []
+        }
       } else {
         this.legacies.set(legacy, newValue())
+        if (legacy.name === 'offspring') {
+          // Auto-reduce INT and CHA by 1 (locked last box)
+          const int = this.attributes.get(Attributes.intellect) ?? 0
+          if (int > 0) this.attributes.set(Attributes.intellect, Math.max(0, int - 1))
+          const cha = this.attributes.get(Attributes.charisma) ?? 0
+          if (cha > 0) this.attributes.set(Attributes.charisma, Math.max(0, cha - 1))
+        }
       }
     },
     setCharacterName(name: string) {
@@ -1104,6 +1132,9 @@ export const useCharacterStore = defineStore('character', {
     },
     setImposteurCult(cultName: string) {
       this.imposteurCultName = cultName
+    },
+    setRenegadeCults(cultNames: string[]) {
+      this.renegadeCultNames = cultNames
     },
     setMentalPowerChoice(choice: 'primal' | 'focus') {
       this.mentalPowerChoice = choice
