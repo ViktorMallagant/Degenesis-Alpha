@@ -327,7 +327,7 @@
                     {{ store.computedDinars?.currency ?? 'LC' }}
                   </v-btn>
                   <v-btn
-                    v-if="item.resources !== undefined && (item.cult === store.cult?.name || item.cult === store.imposteurCult?.name || (item.cult !== undefined && (store.hasEntrepreneur || store.editorMode === 'free')))"
+                    v-if="item.resources !== undefined && item.cult !== undefined && (item.cult === store.cult?.name || item.cult === store.imposteurCult?.name || store.hasEntrepreneur || store.editorMode === 'free')"
                     size="x-small"
                     variant="outlined"
                     color="blue-darken-2"
