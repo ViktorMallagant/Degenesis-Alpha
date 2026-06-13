@@ -16,6 +16,7 @@ import {
   Attribute,
   Attributes,
   Origin,
+  Origins,
   Skill,
   SkillWithAttribute,
   Skills,
@@ -186,10 +187,16 @@ export const useCharacterStore = defineStore('character', {
       }
     },
     legacyOriginBonus(): (name: string) => number {
-      return (name: string) =>
-        this.activeLegacyEffects
+      return (name: string) => {
+        const raw = this.activeLegacyEffects
           .filter(e => e.type === 'origin' && (e as any).name === name)
           .reduce((sum, e) => sum + (e as any).bonus, 0)
+        if (this.hasJourneyman && (name === 'allies' || name === 'authority')) {
+          const base = this.originValue(Origins[name as keyof typeof Origins] as Origin) ?? 0
+          return Math.max(0, Math.min(raw, 3 - base))
+        }
+        return raw
+      }
     },
     legacyEgoMaxBonus(): number {
       return this.activeLegacyEffects
@@ -420,6 +427,11 @@ export const useCharacterStore = defineStore('character', {
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'superstitious') found = true })
       return found
     },
+    hasJourneyman(): boolean {
+      let found = false
+      this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'journeyman') found = true })
+      return found
+    },
     effectiveResourcesLevelForOtherCult(): number {
       if (!this.hasEntrepreneur) return 0
       if (this.resourceMode === ResourceMode.C) {
@@ -486,6 +498,11 @@ export const useCharacterStore = defineStore('character', {
         const engineeringVal = this.skills.get(Skills.engineering) ?? 0
         if (scienceVal > 0 || engineeringVal > 0) {
           set.forEach(l => { if (l.name === 'superstitious') set.delete(l) })
+        }
+        const alliesVal = this.origins.get(Origins.allies) ?? 0
+        const authorityVal = this.origins.get(Origins.authority) ?? 0
+        if (alliesVal > 3 || authorityVal > 3) {
+          set.forEach(l => { if (l.name === 'journeyman') set.delete(l) })
         }
       }
       return set
@@ -708,7 +725,12 @@ export const useCharacterStore = defineStore('character', {
           case EditorMode.Free:
             return Math.min(value, 6)
           default: {
-            const boundedValue = Math.min(value, config.pointLimits.origins.max)
+            const isJourneymanBlocked = this.hasJourneyman && (origin.name === 'allies' || origin.name === 'authority')
+            if (isJourneymanBlocked && value > 3) {
+              this.errorMessage = "L'héritage Bourlingueur vous empêche de dépasser 3 en Alliés et Autorité."
+            }
+            const journeymanCap = isJourneymanBlocked ? 3 : Infinity
+            const boundedValue = Math.min(value, config.pointLimits.origins.max, journeymanCap)
             const currentValue = this.originValue(origin)
             const expectedPointSpend = boundedValue - currentValue
             const maximumPointSpend = this.originBudget - this.spentPoints.origins

@@ -96,7 +96,7 @@ import config from '@/config'
 import { EditorMode } from '@/config/modes'
 import { AllLegacies } from '@/config/legacies'
 import { useCharacterStore } from '@/store'
-import { Attributes, Skills } from '@/config/properties'
+import { Attributes, Origins, Skills } from '@/config/properties'
 import type { LegacyEffect } from '@/config/legacies/effects'
 import { SCOPE_SKILLS } from '@/config/legacies/effects'
 const store = useCharacterStore()
@@ -172,6 +172,12 @@ function missingConditionsHtml(legacy: Legacy): string {
 
   if (legacy.name === 'optimized' && store.spentPoints.origins > 1) {
     missing.push(`${tr('messages.origins')} ≤ 1 (actuellement : ${store.spentPoints.origins})`)
+  }
+  if (legacy.name === 'journeyman') {
+    const alliesVal = store.originValue(Origins.allies)
+    const authorityVal = store.originValue(Origins.authority)
+    if (alliesVal > 3) missing.push(`${tr('origins.allies')} ≤ 3 (actuellement : ${alliesVal})`)
+    if (authorityVal > 3) missing.push(`${tr('origins.authority')} ≤ 3 (actuellement : ${authorityVal})`)
   }
   if (legacy.name === 'superstitious') {
     const scienceVal = store.skillValue(Skills.science)
