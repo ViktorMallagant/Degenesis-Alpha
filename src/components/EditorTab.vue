@@ -437,25 +437,19 @@
     {{ store.errorMessage }}
   </v-snackbar>
 
-  <!-- Panneau flottant Doué -->
-  <div v-if="store.hasGifted" class="gifted-panel">
-    <div class="gifted-panel-title">HÉRITAGE DOUÉ</div>
-    <div class="gifted-panel-counter">
-      Points restants :
-      <span :class="store.giftedRemaining === 0 ? 'gifted-done' : 'gifted-remaining'">
-        {{ store.giftedRemaining }}/6
-      </span>
-    </div>
-    <div class="gifted-panel-hint">Cliquez sur les compétences<br>de CHA ou INT pour allouer</div>
-    <v-btn
-      size="small"
-      variant="flat"
-      color="red-darken-2"
-      class="mt-2"
-      style="width:100%"
-      @click="store.setLegacy(giftedLegacy!, 0)"
-    >Annuler l'allocation</v-btn>
-  </div>
+  <!-- Bouton fixe Doué -->
+  <v-btn
+    v-if="store.hasGifted"
+    class="gifted-cancel-btn"
+    color="red-darken-2"
+    variant="flat"
+    size="large"
+    :prepend-icon="mdiClose"
+    @click="store.setLegacy(giftedLegacy!, 0)"
+  >
+    Annuler l'Allocation
+    <span class="gifted-cancel-counter">({{ store.giftedRemaining }}/6 restants)</span>
+  </v-btn>
   </div>
 </template>
 
@@ -481,6 +475,7 @@ import {
 mdiChevronDown,
 mdiChevronUp,
 mdiCogOutline,
+mdiClose,
 mdiDelete,
 mdiExport,
 mdiPencil
@@ -679,43 +674,18 @@ const renameCharacter = () => {
   padding-top: 6px;
 }
 
-.gifted-panel {
+.gifted-cancel-btn {
   position: fixed;
   bottom: 24px;
   left: 24px;
   z-index: 100;
-  background: #1a0808;
-  border: 1px solid #c62828;
-  border-radius: 10px;
-  padding: 14px 18px;
-  min-width: 180px;
-  box-shadow: 0 4px 24px rgba(198,40,40,0.4);
+  box-shadow: 0 4px 24px rgba(198,40,40,0.5);
 }
-.gifted-panel-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #ef5350;
-  margin-bottom: 8px;
-}
-.gifted-panel-counter {
-  font-size: 14px;
-  color: #eee;
-  margin-bottom: 4px;
-}
-.gifted-remaining {
-  font-weight: 700;
-  color: #ef5350;
-}
-.gifted-done {
-  font-weight: 700;
-  color: #a5d6a7;
-}
-.gifted-panel-hint {
-  font-size: 11px;
-  color: #888;
-  line-height: 1.4;
-  margin-bottom: 4px;
+
+.gifted-cancel-counter {
+  margin-left: 6px;
+  font-size: 0.8em;
+  opacity: 0.85;
 }
 
 #appBarIcon {

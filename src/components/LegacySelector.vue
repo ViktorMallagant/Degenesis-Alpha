@@ -152,7 +152,7 @@
       </v-card-text>
       <v-card-actions class="pa-4 pt-0">
         <v-spacer></v-spacer>
-        <v-btn variant="flat" color="red-darken-2" @click="giftedDialogOpen = false; document.getElementById('skills-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })">COMMENCER L'ALLOCATION</v-btn>
+        <v-btn variant="flat" color="red-darken-2" @click="startGiftedAllocation">COMMENCER L'ALLOCATION</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -306,6 +306,13 @@ const legendaryArtefactItems = computed(() =>
 )
 
 const giftedDialogOpen = ref(false)
+
+const startGiftedAllocation = () => {
+  giftedDialogOpen.value = false
+  setTimeout(() => {
+    document.getElementById('skills-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, 200)
+}
 
 const artefactDialogOpen = ref(false)
 const artefactDialogPendingValue = ref(0)
