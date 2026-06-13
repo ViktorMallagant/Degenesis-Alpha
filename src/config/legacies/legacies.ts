@@ -168,8 +168,7 @@ export const Repugnant = new Legacy('repugnant', [], [], [], undefined, undefine
 ])
 export const Taken = new Legacy('taken', [], [], [], undefined, undefined, [], [
   skillEx('survival', 1),
-  skillEx('faith', 1),
-  skillEx('willpower', 1),
+  { type: 'choiceSkill' as const, bonus: 1, count: 1, scope: 'faithOrWillpower' as const, description: '+1 dans Foi ou Volonté au choix (peut dépasser le max normal)' },
   m('Peut dépasser le max normal pour les compétences ci-dessus. 2 points d\'Égo pour éviter de suivre une piste liée à votre passé, sinon -2D pour le reste de la journée.'),
 ])
 export const Lowlife = new Legacy('lowlife', [], [], [atLeastOrigin(Origins.renown, 2), atLeastOrigin(Origins.network, 1)], undefined, undefined, [], [

@@ -215,6 +215,29 @@ function hasChoiceEffects(legacy: Legacy): boolean {
   return legacy.effects.some(e => e.type === 'choiceAttribute' || e.type === 'choiceSkill')
 }
 
+function autoFillChoices(legacy: Legacy): { attributes: Record<string, string>; skills: Record<string, string> } {
+  const attrs: Record<string, string> = {}
+  const skills: Record<string, string> = {}
+  let skillIdx = 0
+  for (const [i, e] of legacy.effects.entries()) {
+    if (e.type === 'choiceSkill') {
+      const scope = (e as any).scope as string | undefined
+      const candidates = scope ? (SCOPE_SKILLS[scope] || []) : []
+      if (candidates.length === 2) {
+        const aVal = store.skillValue(Object.values(Skills).find(s => s.name === candidates[0])!)
+        const bVal = store.skillValue(Object.values(Skills).find(s => s.name === candidates[1])!)
+        if (aVal > 0 && bVal === 0) {
+          skills[i + '-0'] = candidates[0]
+        } else if (bVal > 0 && aVal === 0) {
+          skills[i + '-0'] = candidates[1]
+        }
+      }
+      skillIdx += (e as any).count
+    }
+  }
+  return { attributes: attrs, skills }
+}
+
 function handleLegacyChange(legacy: Legacy, value: number) {
   if (value > 0 && hasChoiceEffects(legacy)) {
     dialogLegacy.value = legacy
@@ -240,6 +263,37 @@ function handleLegacyChange(legacy: Legacy, value: number) {
           }
         }
       })
+    }
+    // Auto-select if scope is a 2-skill pair and exactly one has points
+    if (!existing) {
+      const auto = autoFillChoices(legacy)
+      Object.assign(pendingAttributes.value, auto.attributes)
+      Object.assign(pendingSkills.value, auto.skills)
+      // If all choices are now filled, skip the dialog
+      const allFilled = dialogChoiceEffects.value.every((e, i) => {
+        if (e.type === 'choiceAttribute') {
+          for (let k = 0; k < (e as any).count; k++) if (!pendingAttributes.value[i + '-' + k]) return false
+        }
+        if (e.type === 'choiceSkill') {
+          for (let k = 0; k < (e as any).count; k++) if (!pendingSkills.value[i + '-' + k]) return false
+        }
+        return true
+      })
+      if (allFilled) {
+        store.setLegacy(legacy, value)
+        const skills: string[] = []
+        dialogChoiceEffects.value.forEach((e, i) => {
+          if (e.type === 'choiceSkill') {
+            for (let k = 0; k < (e as any).count; k++) {
+              const v = pendingSkills.value[i + '-' + k]
+              if (v) skills.push(v)
+            }
+          }
+        })
+        store.setLegacyChoices(legacy.name, { attributes: [], skills })
+        dialogLegacy.value = null
+        return
+      }
     }
     dialogOpen.value = true
   } else {

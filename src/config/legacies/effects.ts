@@ -1,4 +1,4 @@
-export type SkillScope = 'ins' | 'cha' | 'int' | 'psy' | 'agi' | 'body' | 'combat'
+export type SkillScope = 'ins' | 'cha' | 'int' | 'psy' | 'agi' | 'body' | 'combat' | 'faithOrWillpower'
 
 export type LegacyEffect =
   | { type: 'attribute'; name: string; bonus: number }
@@ -18,6 +18,7 @@ export type LegacyEffect =
 
 export const INS_SKILLS = ['empathy', 'orienteering', 'perception', 'primal', 'survival', 'taming']
 export const COMBAT_SKILLS = ['brawl', 'melee', 'projectiles']
+export const FAITH_OR_WILLPOWER_SKILLS = ['faith', 'willpower']
 export const CHA_SKILLS = ['arts', 'conduct', 'expression', 'leadership', 'negotiation', 'seduction']
 export const INT_SKILLS = ['artifactLore', 'engineering', 'legends', 'medicine', 'science', 'focus']
 export const SCOPE_SKILLS: Record<string, string[]> = {
@@ -25,4 +26,5 @@ export const SCOPE_SKILLS: Record<string, string[]> = {
   combat: COMBAT_SKILLS,
   cha: CHA_SKILLS,
   int: INT_SKILLS,
+  faithOrWillpower: FAITH_OR_WILLPOWER_SKILLS,
 }
