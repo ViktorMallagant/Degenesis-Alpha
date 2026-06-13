@@ -22,6 +22,14 @@
           ></div>
         </div>
       </div>
+      <!-- Bonus boxes: always filled, special color, non-interactive -->
+      <div
+        v-for="i in bonus"
+        :key="'bonus-' + i"
+        class="boxContainer bonus-box"
+      >
+        <div class="box bonus-filled"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +47,7 @@ export interface Props {
   interactive?: boolean
   displayMax?: boolean
   ineligible?: boolean
+  bonus?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -50,7 +59,8 @@ const props = withDefaults(defineProps<Props>(), {
   inverted: false,
   interactive: true,
   displayMax: true,
-  ineligible: false
+  ineligible: false,
+  bonus: 0,
 })
 const emit = defineEmits<{
   (e: 'change', value: number): void
@@ -131,7 +141,6 @@ function boxColors(field: number) {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .wrapper {
   display: inline-block;
@@ -157,6 +166,16 @@ function boxColors(field: number) {
     border 0.2s,
     background-color 0.2s,
     box-shadow 0.2s;
+}
+
+.bonus-box {
+  cursor: default;
+}
+
+.bonus-filled {
+  background-color: #bf360c !important;
+  border-color: #6d1f06 !important;
+  opacity: 0.85;
 }
 
 .partial-fill {

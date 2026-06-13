@@ -27,6 +27,7 @@
           :displayMax="props.displayMax"
           :value="props.value"
           :ineligible="props.ineligible"
+          :bonus="props.bonus"
           v-on:change="selectionChanged"
         />
       </div>
@@ -53,6 +54,7 @@ export interface Props {
   type?: string,
   ineligible?: boolean,
   missingInfo?: string,
+  bonus?: number,
 }
 const props = withDefaults(defineProps<Props>(), {
   altLabel: '',
@@ -65,6 +67,7 @@ const props = withDefaults(defineProps<Props>(), {
   displayMax: true,
   ineligible: false,
   missingInfo: '',
+  bonus: 0,
 })
 const emit = defineEmits<{
   (e: 'change', value: number): void
