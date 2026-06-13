@@ -75,6 +75,8 @@ export type State = {
   legacyChoices: Record<string, { attributes?: string[]; skills?: string[] }>
   errorMessage: string | null
   sidewinderOldCultName: string | null
+  mentalPowerChoice: 'primal' | 'focus' | null
+  mentalResistanceChoice: 'faith' | 'willpower' | null
 }
 
 export const useCharacterStore = defineStore('character', {
@@ -106,6 +108,8 @@ export const useCharacterStore = defineStore('character', {
     legacyChoices: {},
     errorMessage: null,
     sidewinderOldCultName: null,
+    mentalPowerChoice: null,
+    mentalResistanceChoice: null,
   }),
   getters: {
     attributeValue:
@@ -306,18 +310,18 @@ export const useCharacterStore = defineStore('character', {
       )
     },
     mentalResistanceSkill(): Skill {
-      if ((this.skillValue(Skills.willpower) || 0) > 0) {
-        return Skills.willpower
-      } else {
-        return Skills.faith
-      }
+      if (this.mentalResistanceChoice === 'willpower') return Skills.willpower
+      if (this.mentalResistanceChoice === 'faith') return Skills.faith
+      // fallback legacy: infer from points
+      if ((this.skillValue(Skills.willpower) || 0) > 0) return Skills.willpower
+      return Skills.faith
     },
     mentalPowerSkill(): Skill {
-      if ((this.skillValue(Skills.primal) || 0) > 0) {
-        return Skills.primal
-      } else {
-        return Skills.focus
-      }
+      if (this.mentalPowerChoice === 'primal') return Skills.primal
+      if (this.mentalPowerChoice === 'focus') return Skills.focus
+      // fallback legacy: infer from points
+      if ((this.skillValue(Skills.primal) || 0) > 0) return Skills.primal
+      return Skills.focus
     },
     isActiveSkill(): (skill: Skill) => boolean {
       return (skill: Skill) => {
@@ -364,6 +368,8 @@ export const useCharacterStore = defineStore('character', {
         state.manualLC,
         Object.keys(state.legacyChoices).length > 0 ? state.legacyChoices : undefined,
         state.sidewinderOldCultName,
+        state.mentalPowerChoice,
+        state.mentalResistanceChoice,
       )
     },
     maxEgo(): number {
@@ -617,6 +623,8 @@ export const useCharacterStore = defineStore('character', {
       this.manualLC = character.manualLC ?? null
       this.legacyChoices = character.legacyChoices ? { ...character.legacyChoices } : {}
       this.sidewinderOldCultName = character.sidewinderOldCultName ?? null
+      this.mentalPowerChoice = character.mentalPowerChoice ?? null
+      this.mentalResistanceChoice = character.mentalResistanceChoice ?? null
       this.isLoading = false
     },
     adjustProperties() {
@@ -726,6 +734,17 @@ export const useCharacterStore = defineStore('character', {
       if (this.hasSuperstitious && (skill.name === 'science' || skill.name === 'engineering') && this.editorMode !== EditorMode.Free) {
         this.errorMessage = "L'héritage Superstitieux vous empêche de mettre des points en Sciences et Technologie."
         return
+      }
+      // Block antagonist (the unchosen skill of each dilemma)
+      if (this.editorMode !== EditorMode.Free) {
+        if ((skill.name === 'faith' || skill.name === 'willpower') && this.mentalResistanceChoice && skill.name !== this.mentalResistanceChoice) {
+          this.errorMessage = `Vous avez choisi ${this.mentalResistanceChoice === 'faith' ? 'Foi' : 'Volonté'} comme rempart mental — ${skill.name === 'faith' ? 'Foi' : 'Volonté'} ne peut pas être augmentée.`
+          return
+        }
+        if ((skill.name === 'primal' || skill.name === 'focus') && this.mentalPowerChoice && skill.name !== this.mentalPowerChoice) {
+          this.errorMessage = `Vous avez choisi ${this.mentalPowerChoice === 'primal' ? 'Pulsions' : 'Concentration'} comme compétence mentale — ${skill.name === 'primal' ? 'Pulsions' : 'Concentration'} ne peut pas être augmentée.`
+          return
+        }
       }
       switch (skill) {
         case Skills.willpower:
@@ -967,6 +986,17 @@ export const useCharacterStore = defineStore('character', {
     },
     setResourceMode(mode: ResourceMode) {
       this.resourceMode = mode
+    },
+    setMentalPowerChoice(choice: 'primal' | 'focus') {
+      this.mentalPowerChoice = choice
+      // Reset the antagonist skill to 0
+      if (choice === 'primal') this.skills.set(Skills.focus, 0)
+      else this.skills.set(Skills.primal, 0)
+    },
+    setMentalResistanceChoice(choice: 'faith' | 'willpower') {
+      this.mentalResistanceChoice = choice
+      if (choice === 'faith') this.skills.set(Skills.willpower, 0)
+      else this.skills.set(Skills.faith, 0)
     },
     setSidewinderCults(oldCultName: string, newCultName: string) {
       this.sidewinderOldCultName = oldCultName

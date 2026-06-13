@@ -302,6 +302,11 @@
       </v-container>
     </v-sheet>
     <v-container class="px-8" fluid>
+      <v-row v-if="store.editorMode !== 'free'">
+        <v-col cols="12" md="8" lg="6">
+          <MentalDilemmaSelector />
+        </v-col>
+      </v-row>
       <v-row>
         <v-col sm="6" md="4" cols="12" v-for="attr in attributes" v-bind:key="attr.name">
           <v-card class="pa-4">
@@ -378,6 +383,7 @@
 
 <script setup lang="ts">
 import AttributeAndSkillSelector from '@/components/AttributeAndSkillSelector.vue'
+import MentalDilemmaSelector from '@/components/MentalDilemmaSelector.vue'
 import BuildOptions from '@/components/BuildOptions.vue'
 import OriginSelector from '@/components/OriginSelector.vue'
 import PointMeter from '@/components/PointMeter.vue'

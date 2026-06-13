@@ -29,6 +29,8 @@ export class Character {
     readonly manualLC?: number | null,
     readonly legacyChoices?: Record<string, { attributes?: string[]; skills?: string[] }>,
     readonly sidewinderOldCultName?: string | null,
+    readonly mentalPowerChoice?: 'primal' | 'focus' | null,
+    readonly mentalResistanceChoice?: 'faith' | 'willpower' | null,
   ) {
     this.storageVersion = 'v1'
     const legacyEditorMode = wasCreatedWithFreeMode ? (wasCreatedWithFreeMode ? EditorMode.Free : editorMode) : editorMode
