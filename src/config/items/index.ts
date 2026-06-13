@@ -674,7 +674,7 @@ export const ITEMS: Item[] = [
   // ─── ARMES DE LUTTE (nouvelles) ───
   { id: 'gants-rasoirs', name: 'Gants Rasoirs', category: 'armesDeLutte', image: IMG + 'brawl/razor_gloves.png', handling: '+1D', damage: '2+F/3', properties: 'Étourdissement (F/4), Effroyable (1), Régularité (3DC)', slots: 1, techLevel: 'I', value: 50 },
   { id: 'garrot-lutte', name: 'Garrot', category: 'armesDeLutte', image: IMG + 'brawl/garotte.png', handling: '-4D', damage: 'F/3', properties: 'Étourdissement (F/3), Spécial', techLevel: 'I', value: 10 },
-  { id: 'scindo', name: 'Scindo', category: 'armesDeLutte', , image: IMG + 'brawl/scindo.png', handling: '+1D', damage: '3+F/2', properties: 'Régularité (3DC), Spécial', encumbrance: 1, techLevel: 'II', value: 250, resources: 3 },
+  { id: 'scindo', name: 'Scindo', category: 'armesDeLutte', image: IMG + 'brawl/scindo.png', handling: '+1D', damage: '3+F/2', properties: 'Régularité (3DC), Spécial', encumbrance: 1, techLevel: 'II', value: 250, resources: 3 },
 
   // ─── MUNITIONS (nouvelles) ───
   { id: 'mini-grenaille', name: '.410 – « Mini » Grenaille', category: 'munitions', image: IMG + 'ammo/410_tiny_shot.png', damage: '7', techLevel: 'III', value: 7 },
