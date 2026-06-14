@@ -15,6 +15,7 @@ export class Potential {
     readonly mentalPowerSkill?: Skill,
     readonly mentalResistanceSkill?: Skill,
     readonly clan?: Clan,
+    readonly modifiers: string[] = [],
   ) {}
 
   isAttainable(

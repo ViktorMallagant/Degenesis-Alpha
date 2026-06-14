@@ -340,6 +340,16 @@ export const useCharacterStore = defineStore('character', {
         .filter(e => e.type === 'modifier')
         .map(e => (e as any).description)
     },
+    potentialModifiers(): string[] {
+      const mods: string[] = []
+      this.potentials.forEach((v, potential) => {
+        if (v > 0) mods.push(...potential.modifiers)
+      })
+      return mods
+    },
+    allModifiers(): string[] {
+      return [...this.legacyModifiers, ...this.potentialModifiers]
+    },
     effectiveAttributeValue(): (attr: Attribute) => number {
       return (attr: Attribute) =>
         Math.max(1, (this.attributeValue(attr) || 1) + this.legacyAttributeBonus(attr.name))

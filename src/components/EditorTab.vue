@@ -434,14 +434,14 @@
             <LegacySelector></LegacySelector>
           </v-card>
         </v-col>
-        <v-col cols="12" v-if="store.legacyModifiers.length > 0 || store.entrepreneurSocialPenalties.length > 0">
+        <v-col cols="12" v-if="store.allModifiers.length > 0 || store.entrepreneurSocialPenalties.length > 0">
           <v-card class="pa-4">
             <v-card-title class="text-uppercase text-caption font-weight-bold">
               Modificateurs
             </v-card-title>
             <v-list density="compact">
               <v-list-item
-                v-for="(mod, i) in store.legacyModifiers"
+                v-for="(mod, i) in store.allModifiers"
                 :key="i"
                 :subtitle="mod"
                 class="modifier-item"
