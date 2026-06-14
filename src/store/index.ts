@@ -313,6 +313,22 @@ export const useCharacterStore = defineStore('character', {
       this.legacies.forEach((v, legacy) => { if (v > 0 && legacy.name === 'primordial') found = true })
       return found
     },
+    adaptabilityLevel(): number {
+      const p = PotentialsByName.get('adaptability')
+      return p ? (this.potentials.get(p) || 0) : 0
+    },
+    nonPrivSkillMultiplierReduction(): number {
+      const lvl = this.adaptabilityLevel
+      return lvl >= 3 ? 2 : lvl >= 1 ? 1 : 0
+    },
+    nonPrivAttrMultiplierReduction(): number {
+      const lvl = this.adaptabilityLevel
+      return lvl >= 3 ? 2 : lvl >= 2 ? 1 : 0
+    },
+    oldSchoolLevel(): number {
+      const p = PotentialsByName.get('oldSchool')
+      return p ? (this.potentials.get(p) || 0) : 0
+    },
     originBudget(): number {
       if (this.hasOptimized) return 1
       return config.availablePoints.origins + this.legacyXPOriginBonus
@@ -480,7 +496,10 @@ export const useCharacterStore = defineStore('character', {
       return 2 * (this.effectiveAttributeValue(Attributes.body) + this.effectiveSkillValue(Skills.toughness))
     },
     maxTrauma(): number {
-      return this.effectiveAttributeValue(Attributes.body) + this.effectiveAttributeValue(Attributes.psyche)
+      const PHY = this.effectiveAttributeValue(Attributes.body)
+      const PSY = this.effectiveAttributeValue(Attributes.psyche)
+      if (this.oldSchoolLevel === 0) return PHY + PSY
+      return Math.min(Math.max(PHY + PSY, PSY * 2) + this.oldSchoolLevel, 12)
     },
     // Starting wealth per cult: [amount, currency]. Total = (rankLevel + resources) * amount.
     computedDinars(): { value: number; factor: number; currency: string; rankLevel: number; resources: number } | null {

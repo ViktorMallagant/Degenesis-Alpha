@@ -359,9 +359,10 @@
               <table class="xp-table">
                 <tr>
                   <td>Attribut non-préféré</td>
-                  <td :class="(store.hasCreatureOfHabit || store.hasPrimordial) ? 'xp-modified' : ''">
-                    × {{ (store.hasCreatureOfHabit || store.hasPrimordial) ? '14' : '12' }} XP
+                  <td :class="(store.hasCreatureOfHabit || store.hasPrimordial || store.nonPrivAttrMultiplierReduction > 0) ? 'xp-modified' : ''">
+                    × {{ ((store.hasCreatureOfHabit || store.hasPrimordial) ? 14 : 12) - store.nonPrivAttrMultiplierReduction }} XP
                     <span v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-badge xp-badge-up">+2</span>
+                    <span v-if="store.nonPrivAttrMultiplierReduction > 0" class="xp-badge xp-badge-down">-{{ store.nonPrivAttrMultiplierReduction }}</span>
                   </td>
                 </tr>
                 <tr>
@@ -373,9 +374,10 @@
                 </tr>
                 <tr>
                   <td>Compétence non-préférée</td>
-                  <td :class="(store.hasCreatureOfHabit || store.hasPrimordial) ? 'xp-modified' : ''">
-                    × {{ (store.hasCreatureOfHabit || store.hasPrimordial) ? '6' : '5' }} XP
+                  <td :class="(store.hasCreatureOfHabit || store.hasPrimordial || store.nonPrivSkillMultiplierReduction > 0) ? 'xp-modified' : ''">
+                    × {{ ((store.hasCreatureOfHabit || store.hasPrimordial) ? 6 : 5) - store.nonPrivSkillMultiplierReduction }} XP
                     <span v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-badge xp-badge-up">+1</span>
+                    <span v-if="store.nonPrivSkillMultiplierReduction > 0" class="xp-badge xp-badge-down">-{{ store.nonPrivSkillMultiplierReduction }}</span>
                   </td>
                 </tr>
                 <tr>
@@ -390,6 +392,11 @@
                 ✦ Héritage <strong>{{ store.hasCreatureOfHabit ? 'Routinier' : 'Impulsif' }}</strong> :
                 coût réduit pour les {{ store.hasCreatureOfHabit ? 'attributs/compétences Concentration' : 'attributs/compétences Pulsions' }},
                 augmenté pour les autres.
+              </p>
+              <p v-if="store.adaptabilityLevel > 0" class="xp-legacy-note">
+                ✦ Potentiel <strong>Adaptabilité</strong> niv. {{ store.adaptabilityLevel }} :
+                compétences non-préférées −{{ store.nonPrivSkillMultiplierReduction }}
+                <span v-if="store.nonPrivAttrMultiplierReduction > 0">, attributs non-préférés −{{ store.nonPrivAttrMultiplierReduction }}</span>.
               </p>
               <p v-if="store.mentalPowerChoice" class="xp-preferred-note">
                 <span class="xp-star">*</span> Préférés pour
