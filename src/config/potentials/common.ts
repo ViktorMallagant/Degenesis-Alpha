@@ -317,7 +317,18 @@ export const Goliath = new Potential(
   undefined,
   ['+1D par niveau à PHY+Force. Annule 1D d\'encombrement par niveau. +niveau à Force pour les dégâts en corps à corps. Besoin du double de nourriture.']
 )
-export const Adaptability = new Potential('adaptability', undefined, [], [], [], [])
+export const Adaptability = new Potential(
+  'adaptability',
+  undefined,
+  [],
+  [],
+  [],
+  [],
+  undefined,
+  undefined,
+  undefined,
+  ['Achat de compétences/attributs non privilégiés : multiplicateur réduit de 1 (compétences niv. 1, attributs niv. 2), et des deux de 2 au niv. 3.']
+)
 export const Pariah = new Potential(
   'pariah',
   undefined,
