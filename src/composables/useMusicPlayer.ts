@@ -1,7 +1,7 @@
 import { ref, watch } from 'vue'
 
 const isPlaying = ref(false)
-const volume = ref(0.1)
+const volume = ref(0.03)
 let audio: HTMLAudioElement | null = null
 
 export function useMusicPlayer() {

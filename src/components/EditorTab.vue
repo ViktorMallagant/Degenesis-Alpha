@@ -8,7 +8,7 @@
             <v-btn
               @click="musicPlayer.toggle()"
               stacked
-              :color="musicPlayer.isPlaying.value ? 'amber-darken-2' : undefined"
+              :color="musicPlayer.isPlaying.value ? 'red-darken-1' : undefined"
               style="min-width: 110px;"
             >
               Musique : {{ musicPlayer.isPlaying.value ? 'ON' : 'OFF' }}
@@ -24,7 +24,7 @@
               style="width: 80px; min-width: 80px;"
               hide-details
               density="compact"
-              color="amber-darken-2"
+              color="red-darken-1"
             ></v-slider>
           </div>
         </template>
