@@ -374,9 +374,21 @@ export const useCharacterStore = defineStore('character', {
       return (skill: Skill) =>
         Math.max(0, (this.skillValue(skill) || 0) + this.legacySkillBonus(skill.name))
     },
+    potentialOriginBonus(): (name: string) => number {
+      return (name: string) => {
+        let bonus = 0
+        const chosen = PotentialsByName.get('chosen')
+        const chosenLevel = chosen ? (this.potentials.get(chosen) || 0) : 0
+        if (chosenLevel > 0 && (name === 'authority' || name === 'secrets')) bonus += chosenLevel
+        const noMansLand = PotentialsByName.get('noMansLand')
+        const noMansLandLevel = noMansLand ? (this.potentials.get(noMansLand) || 0) : 0
+        if (noMansLandLevel > 0 && name === 'network') bonus += noMansLandLevel
+        return bonus
+      }
+    },
     effectiveOriginValue(): (origin: Origin) => number {
       return (origin: Origin) =>
-        Math.max(0, (this.originValue(origin) || 0) + this.legacyOriginBonus(origin.name))
+        Math.max(0, (this.originValue(origin) || 0) + this.legacyOriginBonus(origin.name) + this.potentialOriginBonus(origin.name))
     },
     spentPoints: (state): SpentPoints => {
       let spentAttributePoints = 0
@@ -642,7 +654,9 @@ export const useCharacterStore = defineStore('character', {
       )
     },
     originValues(): Value<Origin>[] {
-      return Array.from(this.origins.entries()).map(([o, v]) => o.withValue(v))
+      return Array.from(this.origins.entries()).map(([o, v]) =>
+        o.withValue(v + this.legacyOriginBonus(o.name) + this.potentialOriginBonus(o.name))
+      )
     },
     eligibleRanks(): Set<Rank> {
       return eligibleRanks(this.cult, this.skillValues, this.originValues, this.clan)
