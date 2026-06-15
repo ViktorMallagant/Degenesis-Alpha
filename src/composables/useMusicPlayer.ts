@@ -7,7 +7,7 @@ let audio: HTMLAudioElement | null = null
 export function useMusicPlayer() {
   function init() {
     if (audio) return
-    audio = new Audio('/There Is No Other.mp3')
+    audio = new Audio('/there-is-no-other.mp3')
     audio.loop = true
     audio.volume = volume.value
   }
