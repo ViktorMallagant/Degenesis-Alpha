@@ -638,7 +638,7 @@ export const useCharacterStore = defineStore('character', {
     },
     skillValues(): Value<SkillWithAttribute>[] {
       return Array.from(this.skills.entries()).map(([s, v]) =>
-        s.withValue(v + this.attributeValue(s.attribute))
+        s.withValue(v + this.attributeValue(s.attribute) + this.legacySkillBonus(s.name))
       )
     },
     originValues(): Value<Origin>[] {
