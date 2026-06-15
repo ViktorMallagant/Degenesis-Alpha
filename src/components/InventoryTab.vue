@@ -544,7 +544,7 @@ function canAffordAny(item: Item): boolean {
 
 // Items visibles : filtrés par culte + recherche + catégorie + abordable
 const visibleItems = computed(() => {
-  const q = search.value.trim().toLowerCase()
+  const q = (search.value ?? '').trim().toLowerCase()
   return ITEMS.filter(item => {
     // Masquer les items d'un autre culte (sauf si "Montrez tous les équipements de Culte" est coché, ou Imposteur)
     if (!showAllCults.value && item.cult !== undefined && item.cult !== store.cult?.name && item.cult !== store.imposteurCult?.name && !store.renegadeCults.some(c => c.name === item.cult)) return false
