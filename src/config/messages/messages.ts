@@ -81,23 +81,27 @@ export const messages = {
     introduction: {
       whatIsIt: 'Was ist diese Seite?',
       whatIsItText1:
-        'Dies ist ein Charaktereditor für Katharsys, das Regelwerk für das Rollenspiel Degenesis. ' +
-        'Du kannst diese Applikation verwenden, um neue Charaktere zu erstellen, sowie um bereits erstellte ' +
-        'anzuschauen und zu editieren. Für jeden Charakter kannst du eine Vorschau des Charakterbogens ' +
-        'erzeugen, und den Bogen dann als ein druckbares PDF exportieren.',
+        'Parasite ist ein Charaktereditor für Katharsys und Artefakte, das Regelwerk für das Rollenspiel Degenesis. ' +
+        'Du kannst diese Seite nutzen, um neue Charaktere zu erstellen sowie zuvor erstellte anzusehen und zu bearbeiten. ' +
+        'Für jeden Charakter kannst du eine Vorschau des Charakterbogens sowie sein Inventar einsehen. Dieser Charakterbogen ' +
+        'kann auch als druckbare und bearbeitbare PDF-Datei exportiert oder per Link mit deinen Freunden/SL geteilt werden. ' +
+        'Die französische Übersetzung des Textes stammt von Edge. Die englischen und deutschen Versionen dieser Seite wurden ' +
+        'aus Praktikabilitätsgründen mit einem Online-Übersetzer erstellt. Es kann Unterschiede zwischen der Übersetzung von ' +
+        'Edge und den deutschen und englischen Versionen geben.',
       whatIsItText2:
-        'Jeder deiner Charaktere, sowie alle Änderungen an diesen, werden lokal in deinem Browser gespeichert. ' +
-        'Dies bedeutet, dass du jedes mal, wenn du diese Seite mit dem gleichen Browser besuchts, alle deine ' +
-        'erstellten Charaktere vorfinden wirst. Leider beduetet dies auch, dass du keine Links auf deine Charaktere ' +
-        'erzeugen kannst, die andere Leute einsehen können. Du kannst jedoch jeden Charakter als eine Datei exportieren, ' +
-        'um diese an Andere weiterzugeben. Mit dieser Datei können deine Mitspieler ebenfalls diese Seite besuchen, ' +
-        'und deinen Charakter in ihren Browser importieren. Ich habe diese (zugegebenermaßen etwas umständliche) Funktionsweise ' +
-        'gewählt, um den Aufwand des Betriebs dieser Seite minimal zu halten.',
+        'Alle deine Charaktere sowie alle an ihnen vorgenommenen Änderungen werden im lokalen Speicher deines Browsers ' +
+        'gesichert. Das bedeutet, dass du jedes Mal, wenn du diese Seite mit demselben Browser besuchst, deine Charaktere ' +
+        'in der Navigationsleiste auf der linken Seite findest. Klicke darauf, um sie anzusehen und zu bearbeiten.',
       whatIsItText3:
-        'Der Quellcode für diese Seite ist verfügbar bei {0}. Ich möchte diese Applikation für alle ' +
-        'verfügbar halten, damit sie in der Zukunft auch von anderen Leuten betrieben werden kann. Ziel ist, damit ' +
-        'eine Situation wie mit dem offiziellen Charaktereditor zu vermeiden, der in der Vergangenheit bereits für längere ' +
-        'Zeit nicht verfügbar war.'
+        'Diskordanz (ursprünglicher Entwickler der Seite): »Der Quellcode dieser Seite ist auf {0} verfügbar. Die Absicht ' +
+        'ist, diese Anwendung für jeden zugänglich zu machen, der sie selbst betreiben möchte. Ich möchte eine Situation wie ' +
+        'beim offiziellen Generator vermeiden, der in der Vergangenheit bereits für längere Zeit nicht verfügbar war.«',
+      credits: {
+        title: 'Credits',
+        diskordanz: 'Diskordanz: Entwickler, der die Basis des Codes erstellt hat, die wir verändert haben.',
+        miokido: 'Miokido: Mitentwickler',
+        katsu: 'Katsu: Entwickler',
+      },
     }
   },
   en: {
@@ -182,23 +186,26 @@ export const messages = {
     introduction: {
       whatIsIt: 'What is this?',
       whatIsItText1:
-        'This is a character editor for Katharsys, the rule' +
-        'system used by the roleplaying game Degenesis. You can use this application to  create new characters as well as ' +
-        'peruse and edit those you previously created. For any character, you can look at a preview ' +
-        'of the character sheet. This character sheet can also be exported as a printable PDF file.',
+        'Parasite is a character editor for Katharsys and Artifacts, the rule system used by the roleplaying game Degenesis. ' +
+        'You can use this site to create new characters as well as view and edit those you previously created. ' +
+        'For each character, you can view a preview of the character sheet as well as its inventory. This character sheet can also be ' +
+        'exported as a printable and editable PDF file, or shared via a link with your friends/GM. The French translation of the text belongs to Edge. ' +
+        'The English and German versions of this site were made using an online translator for convenience. There may be differences ' +
+        'between Edge\'s translation and the German and English versions.',
       whatIsItText2:
-        'Any of your characters, as well as all changes to them, are persisted to the local storage of your browser. ' +
-        'This means any time you visit this page with the same browser, you will be able to see your ' +
-        'characters in the navigation drawer on the left. Click on them to view and edit them. ' +
-        'Unfortunately, since the characters are stored within your browser only, you cannot create ' +
-        'links to your characters so that other people can see them. However, you can export any character. ' +
-        'You can give this export file to someone else. This person can then also visit this page and ' +
-        'import this file. I have chosen this (admittedly somewhat limiting) mode of operation to reduce the ' +
-        'technical and legal overhead of running this site.',
+        'All of your characters, as well as any changes made to them, are saved in your browser\'s local storage. ' +
+        'This means that every time you visit this page with the same browser, you will be able to see your ' +
+        'characters in the navigation drawer on the left. Click on them to view and edit them.',
       whatIsItText3:
-        'The source code for this page is available at {0}. The intention is to make this application ' +
-        'available to anyone wishing to run it for themselves. I want to prevent a similar situation as with the ' +
-        'official generator, which has previously been unavailable for longer periods of time.'
+        'Diskordanz (original developer of the site): "The source code for this page is available at {0}. The intention is to make ' +
+        'this application accessible to anyone who wishes to run it themselves. I want to avoid a situation similar to the ' +
+        'official generator, which has previously been unavailable for extended periods."',
+      credits: {
+        title: 'Credits',
+        diskordanz: 'Diskordanz: Developer who created the codebase we modified.',
+        miokido: 'Miokido: Co-developer',
+        katsu: 'Katsu: Developer',
+      },
     }
   },
   fr: {
@@ -281,9 +288,15 @@ export const messages = {
     welcome: 'Bienvenue à Parasite !',
     introduction: {
       whatIsIt: `<p>Qu'est-ce que c'est ? </p><a href="./midona.gif"  class="midona-egg" style="opacity:0;">MIDONA DID NOTHING WRONG</a>`,
-      whatIsItText1: `Ceci est un éditeur de personnage pour Katharsys et Artéfacts, le système de règles utilisé par le jeu de rôle Degenesis. Vous pouvez utiliser ce site pour créer de nouveaux personnages ainsi que consulter et modifier ceux que vous avez créés précédemment. Pour chaque personnage, vous pouvez consulter un aperçu de la feuille de personnage. Cette feuille de personnage peut également être exportée sous forme de fichier PDF imprimable.Le texte a été traduit des pdf et du site par Katsu. Il peut y avoir des différences entre la traduction d'Edge et celle de Katsu.`,
-      whatIsItText2: `Tous vos personnages, ainsi que toutes les modifications qui leur sont apportées, sont sauvegardés dans le stockage local de votre navigateur. Cela signifie qu'à chaque fois que vous visitez cette page avec le même navigateur, vous pourrez voir vos personnages dans le tiroir de navigation sur la gauche. Cliquez dessus pour les consulter et les modifier. Malheureusement, étant donné que les personnages sont stockés uniquement dans votre navigateur, vous ne pouvez pas créer de liens vers vos personnages pour que d'autres personnes puissent les voir. Cependant, vous pouvez exporter n'importe quel personnage. Vous pouvez donner ce fichier d'exportation à quelqu'un d'autre. Cette personne peut ensuite également visiter cette page et importer ce fichier. Ce mode de fonctionnement a été choisi (certes quelque peu limitant) pour réduire les contraintes techniques et légales liées à la gestion de ce site.`,
-      whatIsItText3: `Diskordanz (Développeur originel du site) : « Le code source de cette page est disponible sur {0}. L'intention est de rendre cette application accessible à toute personne souhaitant l'exécuter elle-même. Je veux éviter une situation similaire à celle du générateur officiel, qui a précédemment été indisponible pendant de longues périodes. » La communauté française remercie Diskordanz pour son travail.Merci également à Miokido pour le développement.`,
+      whatIsItText1: `Parasite est un éditeur de personnage pour Katharsys et Artéfacts, le système de règles utilisé par le jeu de rôle Degenesis. Vous pouvez utiliser ce site pour créer de nouveaux personnages ainsi que consulter et modifier ceux que vous avez créés précédemment. Pour chaque personnage, vous pouvez consulter un aperçu de la feuille de personnage ainsi que son inventaire. Cette feuille de personnage peut également être exportée sous forme de fichier PDF imprimable et modifiable ou être partagé par un lien à vos amis/MJ. La traduction française du texte appartient à Edge. Les versions anglaises et allemandes de ce site ont été fait avec un traducteur en ligne par soucis de facilité. Il peut y avoir des différences entre la traduction d'Edge et celles des versions allemandes et anglaises.`,
+      whatIsItText2: `Tous vos personnages, ainsi que toutes les modifications qui leur sont apportées, sont sauvegardés dans le stockage local de votre navigateur. Cela signifie qu'à chaque fois que vous visitez cette page avec le même navigateur, vous pourrez voir vos personnages dans le tiroir de navigation sur la gauche. Cliquez dessus pour les consulter et les modifier.`,
+      whatIsItText3: `Diskordanz (Développeur original du site) : « Le code source de cette page est disponible sur {0}. L'intention est de rendre cette application accessible à toute personne souhaitant l'exécuter elle-même. Je veux éviter une situation similaire à celle du générateur officiel, qui a précédemment été indisponible pendant de longues périodes. »`,
+      credits: {
+        title: 'Crédits',
+        diskordanz: 'Diskordanz : Développeur ayant créé la base du code que nous avons modifié.',
+        miokido: 'Miokido : Co-Développeur',
+        katsu: 'Katsu : Développeur',
+      },
     },
   }
 }

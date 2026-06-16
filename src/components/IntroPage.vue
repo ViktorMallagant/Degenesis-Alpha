@@ -13,6 +13,10 @@
                 <i18n-t keypath="messages.introduction.whatIsItText3" tag="p">
                     <a :href="config.sourceCodeGitlab" target="_blank">GitLab</a>
                 </i18n-t>
+                <p class="text-subtitle-1 mb-1">{{ $t('messages.introduction.credits.title') }}</p>
+                <p class="mt-0">{{ $t('messages.introduction.credits.diskordanz') }}</p>
+                <p class="mt-0">{{ $t('messages.introduction.credits.miokido') }}</p>
+                <p class="mt-0">{{ $t('messages.introduction.credits.katsu') }}</p>
               </div>
             </v-card-text>
           </v-card>
