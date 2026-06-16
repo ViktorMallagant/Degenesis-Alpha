@@ -61,7 +61,9 @@
           </v-card>
 
           <v-card class="pa-4 mb-4">
-            <div class="text-subtitle-2 text-uppercase mb-2">{{ $t('messages.npcGenerator.attributesSection') }}</div>
+            <HoverTooltip :description="$t('messages.npcGenerator.attributesTooltip')" class="prop-block">
+              <div class="text-subtitle-2 text-uppercase mb-2 npc-section-title" style="cursor:help">{{ $t('messages.npcGenerator.attributesSection') }}</div>
+            </HoverTooltip>
             <v-row>
               <v-col cols="12" sm="6" v-for="attr in attributes" :key="attr.name">
                 <v-select
@@ -76,7 +78,9 @@
           </v-card>
 
           <v-card class="pa-4 mb-4">
-            <div class="text-subtitle-2 text-uppercase mb-2">{{ $t('messages.npcGenerator.otherStatsSection') }}</div>
+            <HoverTooltip :description="$t('messages.npcGenerator.otherStatsTooltip')" class="prop-block">
+              <div class="text-subtitle-2 text-uppercase mb-2 npc-section-title" style="cursor:help">{{ $t('messages.npcGenerator.otherStatsSection') }}</div>
+            </HoverTooltip>
             <v-row>
               <v-col cols="12" sm="6">
                 <v-select
@@ -244,6 +248,7 @@ import slugify from 'slugify'
 import config from '@/config'
 import { Attributes, Skills, SkillsByAttribute } from '@/config/properties'
 import { QUALITY_LEVELS, DEFAULT_QUALITY_INDEX, npcValue } from '@/config/npcStats'
+import HoverTooltip from '@/components/HoverTooltip.vue'
 
 const i18n = useI18n()
 
@@ -347,6 +352,11 @@ const generateNpc = () => {
 </script>
 
 <style scoped>
+.npc-section-title {
+  display: inline-block;
+  border-bottom: 1px dotted #888;
+}
+
 .npc-sheet {
   background: white;
   color: black;
