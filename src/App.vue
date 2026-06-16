@@ -9,28 +9,18 @@
           </div>
         </v-sheet>
         <v-sheet color="grey-darken-4" class="pl-4"> </v-sheet>
-        <v-divider v-if="appStore.storedCharacters.size > 0"></v-divider>
+        <v-divider></v-divider>
         <v-list>
-          <v-list-subheader v-if="appStore.storedCharacters.size > 0" class="text-grey text-uppercase">
-            {{ $t('messages.characters') }}
-          </v-list-subheader>
           <v-list-item
-            v-for="(character, index) in appStore.getStoredCharacters"
-            :key="index"
-            :value="index"
             role="button"
-            @click="loadCharacter(character.name)"
-            :title="character.name"
-            :variant="character.name == store.characterName ? 'tonal' : 'plain'"
+            link
+            @click="openCharactersGallery"
+            :variant="charactersGalleryMode ? 'tonal' : 'plain'"
           >
+            {{ $t('messages.characters') }}
             <template v-slot:prepend>
-              <v-icon
-                :icon="store.characterName == character.name ? mdiAccount : mdiAccountOutline"
-              ></v-icon>
+              <v-icon :icon="mdiAccountGroup"></v-icon>
             </template>
-            <v-list-item-subtitle>
-              {{ `${cultureLabels().get(character.culture)}, ${conceptLabels().get(character.concept)}, ${cultLabels().get(character.clan || character.cult)}` }}
-            </v-list-item-subtitle>
           </v-list-item>
           <v-divider class="mt-2 mb-2"></v-divider>
           <v-list-item role="button" link class="createNewCharacterButton">
@@ -143,7 +133,17 @@
         </template>
       </v-app-bar>
     </div>
-    <v-main v-if="npcGeneratorMode" class="bg-grey-lighten-3">
+    <v-main v-if="charactersGalleryMode" class="bg-grey-darken-4">
+      <CharactersTab
+        :characters="appStore.getStoredCharacters"
+        :active-character-name="store.characterName"
+        @load="loadCharacterFromGallery"
+        @delete="deleteCharacter"
+        @create-new="openCreateNewDialog"
+        @import="triggerCharacterImport"
+      />
+    </v-main>
+    <v-main v-else-if="npcGeneratorMode" class="bg-grey-lighten-3">
       <v-tabs v-model="npcTab" bg-color="grey-darken-3">
         <v-tab value="detailed">{{ $t('messages.npcGenerator.detailedTitle') }}</v-tab>
         <v-tab value="simple">{{ $t('messages.npcGenerator.simpleTitle') }}</v-tab>
@@ -158,7 +158,7 @@
       </v-window>
     </v-main>
     <v-main
-      v-else-if="store.characterName.length > 0"
+      v-else-if="!charactersGalleryMode && store.characterName.length > 0"
       :class="[tab == 'sheet' ? 'bg-grey-lighten-3' : '', isSharedView ? 'shared-view-mode' : '']"
     >
       <v-tabs v-model="tab" bg-color="grey-darken-3">
@@ -176,7 +176,7 @@
         </v-window-item>
       </v-window>
     </v-main>
-    <div v-if="!npcGeneratorMode && store.characterName.length == 0" class="bg-grey-darken-4">
+    <div v-if="!charactersGalleryMode && !npcGeneratorMode && store.characterName.length == 0" class="bg-grey-darken-4">
       <IntroPage></IntroPage>
     </div>
     <v-snackbar v-model="ownCharSnackbar" timeout="6000" color="blue-darken-2">
@@ -218,6 +218,7 @@ import AppPreferences from '@/components/AppPreferences.vue'
 import Sheet from '@/components/InventoryTab.vue'
 import NpcGeneratorTab from '@/components/NpcGeneratorTab.vue'
 import NpcSimpleGeneratorTab from '@/components/NpcSimpleGeneratorTab.vue'
+import CharactersTab from '@/components/CharactersTab.vue'
 import config from '@/config'
 import { useCharacterStore } from '@/store'
 import type { Character } from '@/store/character'
@@ -229,6 +230,7 @@ import {
   mdiAccountOutline,
   mdiAccountPlusOutline,
   mdiAccountQuestionOutline,
+  mdiAccountGroup,
   mdiImport,
   mdiInformation,
   mdiCogOutline
@@ -362,6 +364,7 @@ const createNewCharacter = () => {
   const newName = newCharacterName.value.trim()
   if (!characterExists(newName)) {
     npcGeneratorMode.value = false
+    charactersGalleryMode.value = false
     store.$reset()
     store.setCharacterName(newName)
     browserStorage.storeCharacter(store.asCharacter)
@@ -376,6 +379,7 @@ const characterExists = browserStorage.characterIsStored
 
 const loadCharacter = (characterName: string) => {
   npcGeneratorMode.value = false
+  charactersGalleryMode.value = false
   const character = browserStorage.loadCharacter(characterName)
   if (character) {
     store.loadCharacter(character)
@@ -388,7 +392,36 @@ const npcGeneratorMode = ref(false)
 const npcTab = ref('detailed')
 const openNpcGenerator = () => {
   npcGeneratorMode.value = true
+  charactersGalleryMode.value = false
   showNavigationDrawer.value = !mobile.value
+}
+
+const charactersGalleryMode = ref(false)
+const openCharactersGallery = () => {
+  charactersGalleryMode.value = true
+  npcGeneratorMode.value = false
+  showNavigationDrawer.value = !mobile.value
+}
+
+const loadCharacterFromGallery = (characterName: string) => {
+  const character = browserStorage.loadCharacter(characterName)
+  if (character) {
+    store.loadCharacter(character)
+  }
+  charactersGalleryMode.value = false
+  showNavigationDrawer.value = !mobile.value
+}
+
+const deleteCharacter = (characterName: string) => {
+  browserStorage.deleteCharacter(characterName)
+  if (store.characterName === characterName) {
+    store.$reset()
+  }
+  appStore.refresh()
+}
+
+const openCreateNewDialog = () => {
+  createNewCharacterDialog.value = true
 }
 
 const importForm = ref<VForm>()
