@@ -506,7 +506,7 @@
 
   <!-- Bouton fixe Doué -->
   <v-btn
-    v-if="store.hasGifted"
+    v-if="store.hasGifted && store.giftedRemaining > 0"
     class="gifted-cancel-btn"
     color="red-darken-2"
     variant="flat"
