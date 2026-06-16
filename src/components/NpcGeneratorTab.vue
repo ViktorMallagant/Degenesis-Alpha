@@ -189,8 +189,8 @@
               <div class="npc-sheet-skill-group" v-for="attr in attributes" :key="attr.name">
                 <table class="npc-sheet-table">
                   <tr v-for="skill in skillsByAttribute.get(attr) || []" :key="skill.name">
-                    <td>{{ $t(`skills.${skill.name}`) }}</td>
-                    <td class="npc-sheet-value">{{ skillValue(skill.name) }}</td>
+                    <td>{{ $t(`attributes.${attr.name}`).toUpperCase().slice(0, 3) }}+{{ $t(`skills.${skill.name}`) }}</td>
+                    <td class="npc-sheet-value">{{ attributeValue(attr.name) + skillValue(skill.name) }}</td>
                   </tr>
                 </table>
               </div>
