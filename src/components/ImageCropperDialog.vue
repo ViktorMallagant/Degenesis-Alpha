@@ -31,9 +31,9 @@
 
       <v-card-actions class="justify-space-between">
         <div class="d-flex gap-2">
-          <v-btn icon size="small" @click="rotate(-90)" title="Tourner gauche"><v-icon>mdi-rotate-left</v-icon></v-btn>
-          <v-btn icon size="small" @click="rotate(90)" title="Tourner droite"><v-icon>mdi-rotate-right</v-icon></v-btn>
-          <v-btn icon size="small" @click="resetCrop" title="Réinitialiser"><v-icon>mdi-refresh</v-icon></v-btn>
+          <v-btn icon size="small" @click="rotate(-90)" title="Tourner gauche"><v-icon :icon="mdiRotateLeft"></v-icon></v-btn>
+          <v-btn icon size="small" @click="rotate(90)" title="Tourner droite"><v-icon :icon="mdiRotateRight"></v-icon></v-btn>
+          <v-btn icon size="small" @click="resetCrop" title="Réinitialiser"><v-icon :icon="mdiRefresh"></v-icon></v-btn>
         </div>
         <div class="d-flex gap-2">
           <v-btn variant="text" @click="cancel">Annuler</v-btn>
@@ -46,6 +46,7 @@
 
 <script setup lang="ts">
 import { ref, watch, nextTick, onUnmounted } from 'vue'
+import { mdiRotateLeft, mdiRotateRight, mdiRefresh } from '@mdi/js'
 
 const props = defineProps<{ modelValue: boolean; src: string }>()
 const emit = defineEmits<{

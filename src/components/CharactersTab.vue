@@ -4,10 +4,10 @@
     <div class="chars-header elevation-2">
       <div class="chars-header-title">{{ $t('messages.characters') }}</div>
       <div class="chars-header-actions">
-        <v-btn prepend-icon="mdi-account-plus-outline" variant="outlined" color="red-darken-2" @click="emit('createNew')">
+        <v-btn :prepend-icon="mdiAccountPlusOutline" variant="outlined" color="red-darken-2" @click="emit('createNew')">
           {{ $t('messages.createNewCharacter') }}
         </v-btn>
-        <v-btn prepend-icon="mdi-import" variant="outlined" @click="emit('import')">
+        <v-btn :prepend-icon="mdiImport" variant="outlined" @click="emit('import')">
           {{ $t('messages.importCharacter') }}
         </v-btn>
       </div>
@@ -15,7 +15,7 @@
 
     <!-- Empty state -->
     <div v-if="characters.length === 0" class="chars-empty">
-      <v-icon size="80" color="grey-darken-2" icon="mdi-account-group-outline"></v-icon>
+      <v-icon size="80" color="grey-darken-2" :icon="mdiAccountGroupOutline"></v-icon>
       <div class="text-h6 text-grey-darken-2 mt-4">Aucun personnage sauvegardé.</div>
       <div class="text-body-2 text-grey-darken-1 mt-1">Créez un nouveau personnage pour commencer.</div>
     </div>
@@ -39,7 +39,7 @@
           </div>
           <!-- Crop overlay button -->
           <button v-if="character.portrait" class="char-portrait-crop-btn" @click.stop="openCrop(character)">
-            <v-icon size="14" icon="mdi-crop"></v-icon>
+            <v-icon size="14" :icon="mdiCrop"></v-icon>
             <span>Recadrer</span>
           </button>
         </div>
@@ -90,19 +90,19 @@
             color="red-darken-3"
             class="char-card-action-btn"
             :loading="sharing === character.name"
-            prepend-icon="mdi-share-variant"
             @click="shareChar(character)"
           >
-            {{ $t('messages.shareCharacter') }}
+            <v-icon :icon="mdiShareVariant" size="16" class="mr-2"></v-icon>
+            Partager
           </v-btn>
           <v-btn
             block
             variant="outlined"
             color="red-darken-3"
             class="char-card-action-btn"
-            prepend-icon="mdi-delete-outline"
             @click="confirmDelete(character.name)"
           >
+            <v-icon :icon="mdiDeleteOutline" size="16" class="mr-2"></v-icon>
             Supprimer
           </v-btn>
         </div>
@@ -146,6 +146,14 @@ import { encodeCharacter } from '@/util/share'
 import browserStorage from '@/store/browserStorage'
 import { useApplicationStore } from '@/store/application'
 import ImageCropperDialog from './ImageCropperDialog.vue'
+import {
+  mdiAccountPlusOutline,
+  mdiAccountGroupOutline,
+  mdiImport,
+  mdiCrop,
+  mdiShareVariant,
+  mdiDeleteOutline,
+} from '@mdi/js'
 
 const props = defineProps<{
   characters: Character[]
@@ -418,5 +426,6 @@ function rankLabel(character: Character): string {
 .char-card-action-btn {
   font-size: 0.73rem !important;
   letter-spacing: 0.06em !important;
+  justify-content: center !important;
 }
 </style>
