@@ -4,7 +4,10 @@
       <v-row>
         <v-col class="float-left">
           <v-card class="introCard">
-            <v-card-title>{{ $t('messages.welcome') }}</v-card-title>
+            <v-card-title class="d-flex align-center">
+              {{ $t('messages.welcome') }}
+              <img :src="`${baseUrl}solar-cross.png`" alt="" class="welcome-logo ml-2" />
+            </v-card-title>
             <v-card-text>
               <div>
                 <div class="text-subtitle-1" v-html="$t('messages.introduction.whatIsIt')"> </div>
@@ -47,6 +50,11 @@ const baseUrl = import.meta.env.BASE_URL
 
 p {
     margin-top: 1em;
+}
+
+.welcome-logo {
+  height: 1.4em;
+  width: auto;
 }
 
 .intro-banner {
