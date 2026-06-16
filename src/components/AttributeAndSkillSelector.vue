@@ -11,7 +11,7 @@
     :display-max="store.editorMode != EditorMode.Free"
     :labelStar="isPreferredAttribute(attribute)"
     :lockedLast="store.experiencedLockedAttributes.has(attribute.name) || (store.hasOffspring && (attribute.name === 'charisma' || attribute.name === 'intellect')) ? 1 : 0"
-    :active="!store.hasGifted"
+    :active="!(store.hasGifted && store.giftedRemaining > 0)"
     type="attributes"
   />
   <v-divider class="mb-4"></v-divider>
@@ -27,7 +27,7 @@
       :max="store.skillMax(skill) - store.legacySkillStaticBonus(skill.name)"
       :min="skillMin()"
       :bonus="skillDisplayBonus(skill)"
-      :active="store.isActiveSkill(skill) && (!store.hasGifted || isGiftedSkill(skill))"
+      :active="store.isActiveSkill(skill) && (!(store.hasGifted && store.giftedRemaining > 0) || isGiftedSkill(skill))"
       :count="skillCount(skill)"
       @change="(v) => store.setSkill(skill, v)"
       @giftedChange="(v) => store.setGiftedBonus(skill.name, v)"

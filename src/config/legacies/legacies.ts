@@ -139,7 +139,6 @@ export const FamilyBond = new Legacy('familybond', [], [], [atLeastOrigin(Origin
   m('Bonus applicables dans votre Culture d\'origine. Si vous rejetez votre famille, tous vos Historiques baissent de 2.'),
 ])
 export const Gifted = new Legacy('gifted', [], [], [], undefined, undefined, ['creator', 'seeker', 'visionary'], [
-  xp(6),
   m('+6 points dans des compétences de CHA ou d\'INT (peut dépasser le max normal). -2D à tous les jets de Défense mentale.'),
 ])
 export const TechTuned = new Legacy('techtuned', [atLeastSkill(Skills.artifactLore, 6)], [], [atLeastOrigin(Origins.renown, 2)], undefined, undefined, [], [
