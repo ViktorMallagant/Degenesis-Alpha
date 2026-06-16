@@ -286,10 +286,10 @@
                           @change="onPortraitChange"
                         />
                       </div>
-                      <div style="display: flex; justify-content: center; gap: 8px;">
+                      <div style="display: flex; justify-content: center; gap: 8px; pointer-events: auto">
                         <v-btn v-if="!store.portrait" size="small" @click="triggerPortraitUpload">Choisir</v-btn>
-                        <v-btn v-if="store.portrait" size="small" style="pointer-events: auto" @click="downloadPortrait">{{ $t('messages.downloadPortrait') }}</v-btn>
-                        <v-btn v-if="store.portrait" size="small" @click="store.portrait = ''; store.portraitOriginal = ''">{{ $t('messages.deletePortrait') }}</v-btn>
+                        <v-btn v-if="store.portrait" size="small" @click="downloadPortrait">{{ $t('messages.downloadPortrait') }}</v-btn>
+                        <v-btn v-if="store.portrait && !isSharedView" size="small" @click="store.portrait = ''; store.portraitOriginal = ''">{{ $t('messages.deletePortrait') }}</v-btn>
                       </div>
                     </div>
                   </div>
