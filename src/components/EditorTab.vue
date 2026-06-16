@@ -289,7 +289,7 @@
                       <div style="display: flex; justify-content: center; gap: 8px; pointer-events: auto">
                         <v-btn v-if="!store.portrait" size="small" @click="triggerPortraitUpload">Choisir</v-btn>
                         <v-btn v-if="store.portrait && !isSharedView" size="small" @click="openCropExisting">
-                          <v-icon size="14" class="mr-1">mdi-crop</v-icon>{{ $t('messages.editPortrait') }}
+                          <v-icon size="14" class="mr-1" :icon="mdiCrop"></v-icon>{{ $t('messages.editPortrait') }}
                         </v-btn>
                         <v-btn v-if="store.portrait" size="small" @click="downloadPortrait">{{ $t('messages.downloadPortrait') }}</v-btn>
                         <v-btn v-if="store.portrait && !isSharedView" size="small" @click="store.portrait = ''; store.portraitOriginal = ''">{{ $t('messages.deletePortrait') }}</v-btn>
@@ -567,6 +567,7 @@ mdiClose,
 mdiDelete,
 mdiExport,
 mdiPencil,
+mdiCrop,
 mdiShareVariant,
 mdiVolumeHigh,
 mdiVolumeOff
