@@ -347,7 +347,7 @@
                 <div v-show="showBuildOptions">
                   <v-divider></v-divider>
 
-                  <v-card-text class="bg-grey-lighten-4">
+                  <v-card-text class="bg-surface-variant">
                     <v-row>
                       <v-col cols="12">
                         <BuildOptions />

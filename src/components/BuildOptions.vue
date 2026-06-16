@@ -1,12 +1,9 @@
 <template>
   <div class="pa-1">
-    <div class="pa-1 text-subtitle-2">
-      {{ $t('messages.editorModes.label') }}
-    </div>
     <v-btn-toggle
       v-model="store.editorMode"
       @update:model-value="store.setEditorMode"
-      color="grey-darken-4"
+      color="primary"
       variant="outlined"
       density="comfortable"
       mandatory
@@ -24,10 +21,10 @@
         $t('messages.editorModes.free')
       }}</v-btn>
     </v-btn-toggle>
-    <div class="pa-1 text-caption text-grey-darken-1">
+    <div class="pa-1 text-caption text-medium-emphasis">
       <p
         v-if="store.editorMode != EditorMode.HardLimits && store.anyPointLimitExceeded"
-        class="text-grey-darken-3"
+        class="text-high-emphasis"
       >
         <b>{{ $t(`messages.hint`) }}:</b>
         {{ $t(`messages.editorModes.hintHardLimitModeImpossible`) }}

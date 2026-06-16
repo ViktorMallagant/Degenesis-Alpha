@@ -57,9 +57,9 @@ export const messages = {
       softLimits: 'Normal',
       free: 'Frei',
       hints: {
-        hardLimits: 'Punktelimits können nicht überschritten werden.',
-        softLimits: 'Punktelimits können überschritten werden. Überschreitungen werden markiert.',
-        free: 'Punktelimits können überschritten werden'
+        hardLimits: 'Punktelimits können nicht überschritten werden. Nur Potenziale und Vermächtnisse, deren Bedingungen erfüllt sind, können gewählt werden.',
+        softLimits: 'Punktelimits können überschritten werden (Überschreitungen werden markiert). Potenziale und Vermächtnisse können auch gewählt werden, wenn ihre Bedingungen nicht erfüllt sind.',
+        free: 'Keine Punktelimits, keine Bedingungen für Potenziale oder Vermächtnisse erforderlich. Der Dinar-Gesamtbetrag kann manuell eingegeben werden.'
       },
       hintHardLimitModeImpossible: 'Der strikte Bearbeitungsmodus kann nicht gewählt werden, wenn bereits eines der Punktelimits überschritten wurde.'
     },
@@ -158,9 +158,9 @@ export const messages = {
       softLimits: 'Normal',
       free: 'Free',
       hints: {
-        hardLimits: 'Point limits cannot be exceeded.',
-        softLimits: 'Point limits can be exceeded. Any overages will be marked.',
-        free: 'Point limits can be exceeded.'
+        hardLimits: 'Point limits cannot be exceeded. Only Potentials and Legacies whose conditions are met can be selected.',
+        softLimits: 'Point limits can be exceeded (overages are marked). Potentials and Legacies can be selected even if their conditions are not met.',
+        free: 'No point limits, no conditions required for Potentials or Legacies. The Dinars total can be entered manually.'
       },
       hintHardLimitModeImpossible: 'The strict editor mode cannot be selected if any point limit has already been exceeded.'
     },
@@ -259,9 +259,9 @@ export const messages = {
       softLimits: 'Normal',
       free: 'Expert',
       hints: {
-        hardLimits: 'La limite de points ne peut pas être excédée.',
-        softLimits: 'La limite de points peut être excédée. Les points excédants seront marqués.',
-        free: 'Aucunes limites.',
+        hardLimits: 'Les limites de points ne peuvent pas être dépassées. Seuls les Potentiels et Héritages dont les conditions sont remplies peuvent être sélectionnés.',
+        softLimits: 'Les limites de points peuvent être dépassées (les dépassements sont signalés). Les Potentiels et Héritages peuvent être sélectionnés même si leurs conditions ne sont pas remplies.',
+        free: 'Aucune limite de points, aucune condition requise pour les Potentiels et Héritages. Le total de Dinars peut être saisi manuellement.',
       },
       hintHardLimitModeImpossible: 'Le mode d\'édition strict ne peut pas être sélectionné si une limite de points a déjà été dépassée.',
     },
