@@ -1,7 +1,6 @@
 <template>
   <div class="npc-generator">
     <v-toolbar class="pa-4 bg-grey-lighten-2 elevation-2" density="compact">
-      <v-toolbar-title class="text-uppercase font-weight-bold">{{ $t('messages.npcGenerator.title') }}</v-toolbar-title>
       <template v-slot:append>
         <v-btn @click="generateNpc" stacked color="red-darken-2">
           {{ $t('messages.npcGenerator.generateButton') }}
