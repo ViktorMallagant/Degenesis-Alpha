@@ -94,6 +94,12 @@
               ></v-file-input>
             </v-form>
           </v-list-item>
+          <v-list-item role="button" link @click="openNpcGenerator">
+            {{ $t('messages.npcGenerator.navButton') }}
+            <template v-slot:prepend>
+              <v-icon :icon="mdiAccountQuestionOutline"></v-icon>
+            </template>
+          </v-list-item>
         </v-list>
         <template v-slot:append>
           <v-list-item :title="$t('messages.preferences.label')" role="button" link class="py-4">
@@ -137,8 +143,14 @@
         </template>
       </v-app-bar>
     </div>
+    <v-main v-if="npcGeneratorMode" class="bg-grey-lighten-3">
+      <v-tabs model-value="npc" bg-color="grey-darken-3">
+        <v-tab value="npc">{{ $t('messages.npcGenerator.title') }}</v-tab>
+      </v-tabs>
+      <NpcGeneratorTab></NpcGeneratorTab>
+    </v-main>
     <v-main
-      v-if="store.characterName.length > 0"
+      v-else-if="store.characterName.length > 0"
       :class="[tab == 'sheet' ? 'bg-grey-lighten-3' : '', isSharedView ? 'shared-view-mode' : '']"
     >
       <v-tabs v-model="tab" bg-color="grey-darken-3">
@@ -156,7 +168,7 @@
         </v-window-item>
       </v-window>
     </v-main>
-    <div v-if="store.characterName.length == 0" class="bg-grey-darken-4">
+    <div v-if="!npcGeneratorMode && store.characterName.length == 0" class="bg-grey-darken-4">
       <IntroPage></IntroPage>
     </div>
     <v-snackbar v-model="ownCharSnackbar" timeout="6000" color="blue-darken-2">
@@ -196,6 +208,7 @@
 import IntroPage from '@/components/IntroPage.vue'
 import AppPreferences from '@/components/AppPreferences.vue'
 import Sheet from '@/components/InventoryTab.vue'
+import NpcGeneratorTab from '@/components/NpcGeneratorTab.vue'
 import config from '@/config'
 import { useCharacterStore } from '@/store'
 import type { Character } from '@/store/character'
@@ -206,6 +219,7 @@ import {
   mdiAccount,
   mdiAccountOutline,
   mdiAccountPlusOutline,
+  mdiAccountQuestionOutline,
   mdiImport,
   mdiInformation,
   mdiCogOutline
@@ -338,6 +352,7 @@ const createNewCharacterDialog = ref(false)
 const createNewCharacter = () => {
   const newName = newCharacterName.value.trim()
   if (!characterExists(newName)) {
+    npcGeneratorMode.value = false
     store.$reset()
     store.setCharacterName(newName)
     browserStorage.storeCharacter(store.asCharacter)
@@ -351,11 +366,18 @@ const createNewCharacter = () => {
 const characterExists = browserStorage.characterIsStored
 
 const loadCharacter = (characterName: string) => {
+  npcGeneratorMode.value = false
   const character = browserStorage.loadCharacter(characterName)
   if (character) {
     store.loadCharacter(character)
   }
   // close the navigation in case we're on a mobile breakpoint
+  showNavigationDrawer.value = !mobile.value
+}
+
+const npcGeneratorMode = ref(false)
+const openNpcGenerator = () => {
+  npcGeneratorMode.value = true
   showNavigationDrawer.value = !mobile.value
 }
 
