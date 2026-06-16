@@ -53,7 +53,7 @@ p {
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: 220px;
+  max-height: 380px;
   border-radius: 8px;
   margin-left: auto;
   margin-right: auto;
