@@ -42,7 +42,6 @@
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue'
 import Cropper from 'cropperjs'
-import 'cropperjs/dist/cropper.css'
 
 const props = defineProps<{ modelValue: boolean; src: string }>()
 const emit = defineEmits<{
@@ -93,6 +92,10 @@ function confirm() {
   open.value = false
 }
 </script>
+
+<style>
+@import 'cropperjs/dist/cropper.css';
+</style>
 
 <style scoped>
 .cropper-wrap {
