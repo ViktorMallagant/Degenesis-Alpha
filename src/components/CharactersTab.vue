@@ -29,14 +29,18 @@
         @click="emit('load', character.name)"
       >
         <!-- Portrait -->
-        <div class="char-card-portrait">
-          <img v-if="character.portrait" :src="character.portrait" class="char-card-portrait-img" />
-          <div v-else class="char-card-portrait-placeholder">
+        <div class="char-card-portrait" @click.stop>
+          <img v-if="character.portrait" :src="character.portrait" class="char-card-portrait-img" @click="emit('load', character.name)" />
+          <div v-else class="char-card-portrait-placeholder" @click="emit('load', character.name)">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="char-placeholder-svg">
               <circle cx="50" cy="35" r="22" fill="#555" />
               <ellipse cx="50" cy="85" rx="34" ry="28" fill="#555" />
             </svg>
           </div>
+          <!-- Crop overlay button -->
+          <button v-if="character.portrait" class="char-portrait-crop-btn" @click.stop="openCrop(character)" title="Recadrer">
+            <v-icon size="16" icon="mdi-crop"></v-icon>
+          </button>
         </div>
 
         <!-- Info -->
@@ -102,6 +106,13 @@
       </div>
     </div>
 
+    <!-- Crop dialog -->
+    <ImageCropperDialog
+      v-model="showCropDialog"
+      :src="cropSrc"
+      @crop="onCropConfirm"
+    />
+
     <!-- Share snackbar -->
     <v-snackbar v-model="shareCopied" timeout="3000" color="green-darken-2">
       {{ $t('messages.shareCopied') }}
@@ -129,6 +140,9 @@ import { useI18n } from 'vue-i18n'
 import { useTheme } from 'vuetify'
 import type { Character } from '@/store/character'
 import { encodeCharacter } from '@/util/share'
+import browserStorage from '@/store/browserStorage'
+import { useApplicationStore } from '@/store/application'
+import ImageCropperDialog from './ImageCropperDialog.vue'
 
 const props = defineProps<{
   characters: Character[]
@@ -146,6 +160,7 @@ const { t } = useI18n()
 const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark)
 const baseUrl = import.meta.env.BASE_URL
+const appStore = useApplicationStore()
 
 // Delete
 const deleteDialog = ref(false)
@@ -157,6 +172,28 @@ function confirmDelete(name: string) {
 function doDelete() {
   emit('delete', pendingDeleteName.value)
   deleteDialog.value = false
+}
+
+// Crop
+const showCropDialog = ref(false)
+const cropSrc = ref('')
+let cropTargetName = ''
+
+function openCrop(character: Character) {
+  cropTargetName = character.name
+  cropSrc.value = character.portraitOriginal || character.portrait || ''
+  showCropDialog.value = true
+}
+
+function onCropConfirm(croppedDataUrl: string, originalDataUrl: string) {
+  const char = browserStorage.loadCharacter(cropTargetName)
+  if (!char) return
+  // Patch portrait fields on the raw JSON object and re-store
+  const raw = char as any
+  raw.portrait = croppedDataUrl
+  raw.portraitOriginal = originalDataUrl
+  browserStorage.storeCharacter(raw)
+  appStore.refresh()
 }
 
 // Share
@@ -289,6 +326,26 @@ function rankLabel(character: Character): string {
   width: 60%;
   height: 60%;
   opacity: 0.5;
+}
+
+.char-portrait-crop-btn {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  border-radius: 4px;
+  padding: 4px 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+}
+
+.char-card-portrait:hover .char-portrait-crop-btn {
+  opacity: 1;
 }
 
 .char-card-body {
