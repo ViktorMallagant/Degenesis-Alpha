@@ -93,7 +93,7 @@ export const messages = {
     rename: 'Umbenennen',
     renameCharacter: 'Charakternamen ändern',
     createRenamedCopy: 'Kopie erstellen',
-    welcome: 'Willkommen in Noret',
+    welcome: 'Willkommen bei Parasite!',
     introduction: {
       whatIsIt: 'Was ist diese Seite?',
       whatIsItText1:
@@ -214,7 +214,7 @@ export const messages = {
     rename: 'rename',
     renameCharacter: 'Rename character',
     createRenamedCopy: 'Create copy',
-    welcome: 'Welcome to Noret',
+    welcome: 'Welcome to Parasite!',
     introduction: {
       whatIsIt: 'What is this?',
       whatIsItText1:
