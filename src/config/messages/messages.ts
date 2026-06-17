@@ -133,7 +133,7 @@ export const messages = {
     nameGenerator: {
       navButton: 'Namensgenerator',
       title: 'Namensgenerator',
-      introText: 'In den Ruinen des vorkatastrophalen Europas sind Namen keine bloßen Etiketten. Sie tragen eine Geschichte, eine Zugehörigkeit, eine Narbe. Jede Kultur hat Echos der alten Sprache bewahrt: die Gutturale der Borca, die lateinischen Kadenzen der Purgare, die biblischen Namen, die wie Amulette von den Jehammedanen getragen werden. Wähle deine Kultur, deinen Kult, und lass einen Namen entstehen, der den Sporensturm überlebt haben könnte.',
+      introText: 'In den Ruinen des post-eschatischen Europas sind Namen keine bloßen Etiketten. Sie tragen eine Geschichte, eine Zugehörigkeit, eine Narbe. Jede Kultur hat Echos der alten Sprache bewahrt: die Gutturale der Borca, die lateinischen Kadenzen der Purgare, die biblischen Namen, die wie Amulette von den Jehammedanen getragen werden. Wähle deine Kultur, deinen Kult, und lass einen Namen entstehen, der den Sporensturm überlebt haben könnte.',
       culture: 'Kultur',
       sex: 'Geschlecht',
       cult: 'Kult',
@@ -347,7 +347,7 @@ export const messages = {
     nameGenerator: {
       navButton: 'Name Generator',
       title: 'Name Generator',
-      introText: 'In the ruins of pre-Eschaton Europe, names are not mere labels. They carry a history, a belonging, a scar. Each Culture has preserved echoes of the old language: the gutturals of Borca, the Latin cadences of Purgare, the biblical names worn like amulets by the Jehammedans. Choose your Culture, your Cult, and let a name emerge that might have survived the Spore Call.',
+      introText: 'In the ruins of post-Eschaton Europe, names are not mere labels. They carry a history, a belonging, a scar. Each Culture has preserved echoes of the old language: the gutturals of Borca, the Latin cadences of Purgare, the biblical names worn like amulets by the Jehammedans. Choose your Culture, your Cult, and let a name emerge that might have survived the Spore Call.',
       culture: 'Culture',
       sex: 'Sex',
       cult: 'Cult',
