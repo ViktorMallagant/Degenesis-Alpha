@@ -2,6 +2,10 @@
   <div class="npc-generator">
     <v-toolbar class="pa-4 bg-grey-lighten-2 elevation-2" density="compact">
       <template v-slot:append>
+        <v-btn @click="randomizeStats" stacked color="grey-darken-2" class="mr-2">
+          Générer Aléatoirement
+          <v-icon :icon="mdiDice6Outline" />
+        </v-btn>
         <v-btn @click="generateNpc" stacked color="red-darken-2">
           {{ $t('messages.npcGenerator.generateButton') }}
           <v-icon :icon="mdiFileDocumentArrowRight" />
@@ -210,7 +214,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { mdiAlert, mdiFileDocumentArrowRight } from '@mdi/js'
+import { mdiAlert, mdiFileDocumentArrowRight, mdiDice6Outline } from '@mdi/js'
 import domtoimage from 'dom-to-image'
 import { jsPDF } from 'jspdf'
 import slugify from 'slugify'
@@ -271,6 +275,25 @@ watch(selectedSpecialSkills, (newVal) => {
     if (!newVal.includes(name)) delete specialSkillDice[name]
   })
 })
+
+function randQuality(): number {
+  return Math.floor(Math.random() * QUALITY_LEVELS.length)
+}
+
+function randomizeStats() {
+  initiativeQuality.value = randQuality()
+  egoQuality.value = randQuality()
+  attackQuality.value = randQuality()
+  dodgeQuality.value = randQuality()
+  movementQuality.value = randQuality()
+  healthQuality.value = randQuality()
+  // Défense Passive fixe à 2 (index 1)
+  passiveDefenseQuality.value = 1
+  // Armure 1-6
+  armorValue.value = Math.floor(Math.random() * 6) + 1
+  // Pas de compétences spéciales
+  selectedSpecialSkills.value = []
+}
 
 const isGenerating = ref(false)
 const generateNpc = () => {
