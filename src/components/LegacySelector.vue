@@ -251,6 +251,7 @@ import config from '@/config'
 import { EditorMode } from '@/config/modes'
 import { AllLegacies } from '@/config/legacies'
 import { TechTuned } from '@/config/legacies/legacies'
+import { triggerMesmerized } from '@/composables/useMesmerized'
 import { useCharacterStore } from '@/store'
 import { Attributes, Origins, Skills } from '@/config/properties'
 import type { LegacyEffect } from '@/config/legacies/effects'
@@ -540,6 +541,9 @@ function autoFillChoices(legacy: Legacy): { attributes: Record<string, string>; 
 }
 
 function handleLegacyChange(legacy: Legacy, value: number) {
+  if (legacy.name === 'mesmerized' && value > 0) {
+    triggerMesmerized(import.meta.env.BASE_URL)
+  }
   if (legacy.name === 'gifted' && value > 0) {
     store.setLegacy(legacy, value)
     giftedDialogOpen.value = true

@@ -211,11 +211,13 @@
     </v-overlay>
   </v-app>
   <TrigLawOverlay />
+  <MesmerizedOverlay />
 </template>
 
 <script setup lang="ts">
 import IntroPage from '@/components/IntroPage.vue'
 import TrigLawOverlay from '@/components/TrigLawOverlay.vue'
+import MesmerizedOverlay from '@/components/MesmerizedOverlay.vue'
 import AppPreferences from '@/components/AppPreferences.vue'
 import Sheet from '@/components/InventoryTab.vue'
 import NpcGeneratorTab from '@/components/NpcGeneratorTab.vue'
