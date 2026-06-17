@@ -31,7 +31,7 @@ const REPO = 'Katsu6624/degenesis-parasite.github.io'
 
 onMounted(async () => {
   try {
-    const res = await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=100`)
+    const res = await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=100&t=${Date.now()}`)
     if (!res.ok) throw new Error()
     const commits = await res.json()
     const result: Entry[] = []
@@ -45,6 +45,7 @@ onMounted(async () => {
         const raw = c.commit.author.date
         const date = new Date(raw).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })
         result.push({ sha: c.sha, type, message, date })
+        if (result.length >= 5) break
       }
     }
     entries.value = result

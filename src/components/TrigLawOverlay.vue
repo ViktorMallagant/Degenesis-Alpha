@@ -64,8 +64,6 @@ function checkText(text: string): boolean {
   return PATTERNS.some(p => lower.includes(p.toLowerCase()))
 }
 
-let observer: MutationObserver | null = null
-
 function onInput(e: Event) {
   if (triggered) return
   const target = e.target as HTMLInputElement | HTMLTextAreaElement | null
@@ -74,15 +72,10 @@ function onInput(e: Event) {
 
 onMounted(() => {
   document.addEventListener('input', onInput, true)
-  observer = new MutationObserver(() => {
-    if (!triggered && checkText(document.body.innerText)) trigger()
-  })
-  observer.observe(document.body, { childList: true, subtree: true, characterData: true })
 })
 
 onUnmounted(() => {
   document.removeEventListener('input', onInput, true)
-  observer?.disconnect()
   if (trigTimer !== null) clearTimeout(trigTimer)
   if (phaseTimer !== null) clearTimeout(phaseTimer)
   hackingAudio?.pause()

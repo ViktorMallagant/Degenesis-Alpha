@@ -2,36 +2,35 @@
   <v-main class="intro mb-0">
     <v-container>
       <v-row>
-        <v-col cols="12" lg="7">
+        <v-col cols="12">
           <v-card class="introCard">
             <v-card-title class="d-flex align-center">
               {{ $t('messages.welcome') }}
               <img :src="`${baseUrl}solar-cross.png`" alt="" class="welcome-logo ml-2" />
             </v-card-title>
             <v-card-text>
-              <div>
-                <div class="text-subtitle-1" v-html="$t('messages.introduction.whatIsIt')"> </div>
-                <p>{{ $t('messages.introduction.whatIsItText1') }}</p>
-                <p>{{ $t('messages.introduction.whatIsItText2') }}</p>
-                <i18n-t keypath="messages.introduction.whatIsItText3" tag="p">
-                    <a :href="config.sourceCodeGitlab" target="_blank">GitLab</a>
-                </i18n-t>
-                <p class="text-subtitle-1 mb-1">{{ $t('messages.introduction.credits.title') }}</p>
-                <p class="mt-0">{{ $t('messages.introduction.credits.diskordanz') }}</p>
-                <p class="mt-0">{{ $t('messages.introduction.credits.miokido') }}</p>
-                <p class="mt-0">{{ $t('messages.introduction.credits.katsu') }}</p>
+              <div class="text-subtitle-1" v-html="$t('messages.introduction.whatIsIt')"></div>
+              <p>{{ $t('messages.introduction.whatIsItText1') }}</p>
+              <p>{{ $t('messages.introduction.whatIsItText2') }}</p>
+              <i18n-t keypath="messages.introduction.whatIsItText3" tag="p">
+                <a :href="config.sourceCodeGitlab" target="_blank">GitLab</a>
+              </i18n-t>
+              <p class="text-subtitle-1 mb-1">{{ $t('messages.introduction.credits.title') }}</p>
+              <p class="mt-0">{{ $t('messages.introduction.credits.diskordanz') }}</p>
+              <p class="mt-0">{{ $t('messages.introduction.credits.miokido') }}</p>
+              <p class="mt-0">{{ $t('messages.introduction.credits.katsu') }}</p>
+
+              <div class="bottom-row mt-4">
                 <img
                   :src="`${baseUrl}intro-banner.png`"
                   alt="Degenesis"
-                  class="intro-banner mt-4"
+                  class="intro-banner"
                 />
+                <div class="changelog-panel">
+                  <Changelog />
+                </div>
               </div>
             </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col cols="12" lg="5">
-          <v-card class="pa-5 changelog-card">
-            <Changelog />
           </v-card>
         </v-col>
       </v-row>
@@ -55,7 +54,7 @@ const baseUrl = import.meta.env.BASE_URL
 }
 
 p {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
 .welcome-logo {
@@ -63,21 +62,24 @@ p {
   width: auto;
 }
 
-.changelog-card {
-  background: rgba(10, 10, 10, 0.85) !important;
-  border-left: 2px solid #cc0000 !important;
-  height: 100%;
-  overflow-y: auto;
-  max-height: 600px;
+.bottom-row {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
 }
 
 .intro-banner {
   display: block;
   width: auto;
-  max-width: 100%;
+  max-width: 45%;
   max-height: 380px;
   border-radius: 8px;
-  margin-left: 0;
-  margin-right: auto;
+  flex-shrink: 0;
+}
+
+.changelog-panel {
+  flex: 1;
+  border-left: 2px solid #cc0000;
+  padding-left: 24px;
 }
 </style>
