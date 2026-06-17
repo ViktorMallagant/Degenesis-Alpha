@@ -57,7 +57,7 @@ function trigger() {
   })
 }
 
-const PATTERNS = ['65536', '2^16', '2¹⁶', 'triglaw']
+const PATTERNS = ['65536', '2^16', '2¹⁶', 'triglaw', 'salim', 'mushar']
 
 function checkText(text: string): boolean {
   const lower = text.toLowerCase()
