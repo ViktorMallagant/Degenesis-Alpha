@@ -21,7 +21,7 @@ export class Rank implements Translatable {
       1
     )
     this.hierarchyLevel = hierarchyLevelOverride ?? this.hierarchyLevel
-    this.hierarchyLevelString = isOutsideHierarchy ? 'X' : `${this.hierarchyLevel}`
+    this.hierarchyLevelString = (isOutsideHierarchy && hierarchyLevelOverride === undefined) ? 'X' : `${this.hierarchyLevel}`
     this.ancestors = new Set(
       parentRanks.flatMap((parent) => Array.from(parent.ancestors).concat(parent))
     )

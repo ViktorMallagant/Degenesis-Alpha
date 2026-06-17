@@ -124,7 +124,7 @@ export const Arianoi: Rank = jehammedanRank(
   [atLeastOrigin(Origins.secrets, 3)],
   [],
   true,
-  undefined,
+  3,
   undefined,
   [Delilah, SwordOfJehammed, JehammedsBlessing, Maculate]
 )
@@ -138,7 +138,8 @@ export const BloodOfAries: Rank = jehammedanRank(
   ],
   [atLeastOrigin(Origins.secrets, 4)],
   [Arianoi],
-  true
+  true,
+  4
 )
 
 export const Fatum: Rank = jehammedanRank(
@@ -150,7 +151,8 @@ export const Fatum: Rank = jehammedanRank(
     atLeastOrigin(Origins.renown, 5)
   ],
   [BloodOfAries],
-  true
+  true,
+  5
 )
 
 export const JehammedansRanks = [
