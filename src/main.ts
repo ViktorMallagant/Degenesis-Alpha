@@ -67,7 +67,8 @@ const vuetify = createVuetify({
           error: '#CF6679',
           info: '#78909C',
           success: '#4CAF50',
-          warning: '#FB8C00'
+          warning: '#FB8C00',
+          scrim: '#000000',
         }
       }
     }
