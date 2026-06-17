@@ -39,12 +39,16 @@ function spawnBatch() {
 export function triggerMesmerized(baseUrl: string) {
   if (triggered) return
   triggered = true
-  const audio = new Audio(`${baseUrl}prank/mesmerized.mp3`)
-  audio.volume = 0.9
+  const audio1 = new Audio(`${baseUrl}prank/mesmerized.mp3`)
+  const audio2 = new Audio(`${baseUrl}prank/mesmerized-voices.mp3`)
+  audio1.volume = 0.9
+  audio2.volume = 1.0
   active.value = true
   spawnBatch()
-  audio.play()
-  audio.addEventListener('ended', () => {
+  audio1.play()
+  audio2.play()
+  audio2.addEventListener('ended', () => {
+    audio1.pause()
     active.value = false
     numbers.value = []
   })
