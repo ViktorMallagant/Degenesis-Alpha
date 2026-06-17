@@ -79,6 +79,7 @@ export type State = {
   experience: string
   portrait: string
   portraitOriginal: string
+  portraitFiche: string
   isLoading: boolean
   inventory: InventoryPurchase[]
   resourceMode: ResourceMode
@@ -118,6 +119,7 @@ export const useCharacterStore = defineStore('character', {
     experience: '',
     portrait: '',
     portraitOriginal: '',
+    portraitFiche: '',
     isLoading: false,
     inventory: [],
     resourceMode: ResourceMode.A,
@@ -502,6 +504,7 @@ export const useCharacterStore = defineStore('character', {
         state.experience,
         state.portrait,
         state.portraitOriginal || undefined,
+        state.portraitFiche || undefined,
         state.inventory,
         state.resourceMode,
         state.manualLC,
@@ -797,6 +800,7 @@ export const useCharacterStore = defineStore('character', {
       this.experience = character.experience || ''
       this.portrait = character.portrait || ''
       this.portraitOriginal = character.portraitOriginal || ''
+      this.portraitFiche = character.portraitFiche || ''
       this.inventory = character.inventory ? [...character.inventory] : []
       this.resourceMode = character.resourceMode ?? ResourceMode.A
       this.manualLC = character.manualLC ?? null

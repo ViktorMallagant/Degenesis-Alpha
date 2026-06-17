@@ -192,6 +192,7 @@ let cropTargetName = ''
 
 function openCrop(character: Character) {
   cropTargetName = character.name
+  // Toujours recadrer depuis l'original brut
   cropSrc.value = character.portraitOriginal || character.portrait || ''
   showCropDialog.value = true
 }

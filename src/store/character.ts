@@ -25,6 +25,7 @@ export class Character {
     readonly experience?: string,
     readonly portrait?: string,
     readonly portraitOriginal?: string,
+    readonly portraitFiche?: string,
     readonly inventory?: InventoryPurchase[],
     readonly resourceMode?: ResourceMode,
     readonly manualLC?: number | null,

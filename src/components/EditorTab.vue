@@ -267,7 +267,7 @@
                       <div style="position: relative; flex: 1; min-height: 200px; overflow: hidden;">
                         <img
                           v-if="store.portrait"
-                          :src="store.portraitOriginal || store.portrait"
+                          :src="store.portraitFiche || store.portraitOriginal || store.portrait"
                           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; cursor: pointer;"
                           @click="triggerPortraitUpload"
                         />
@@ -292,7 +292,7 @@
                           <v-icon size="14" class="mr-1" :icon="mdiCrop"></v-icon>{{ $t('messages.editPortrait') }}
                         </v-btn>
                         <v-btn v-if="store.portrait" size="small" @click="downloadPortrait">{{ $t('messages.downloadPortrait') }}</v-btn>
-                        <v-btn v-if="store.portrait && !isSharedView" size="small" @click="store.portrait = ''; store.portraitOriginal = ''">{{ $t('messages.deletePortrait') }}</v-btn>
+                        <v-btn v-if="store.portrait && !isSharedView" size="small" @click="store.portrait = ''; store.portraitOriginal = ''; store.portraitFiche = ''">{{ $t('messages.deletePortrait') }}</v-btn>
                       </div>
                       <ImageCropperDialog
                         v-model="showCropDialog"
@@ -689,22 +689,40 @@ const onPortraitChange = (ev: Event) => {
   if (!file) return
   const reader = new FileReader()
   reader.onload = (e) => {
-    cropSrc.value = (e.target?.result as string) ?? ''
-    showCropDialog.value = true
+    const original = (e.target?.result as string) ?? ''
+    store.portraitOriginal = original
+    store.portraitFiche = ''
+    // Génère une miniature 400px pour la galerie
+    const objectUrl = URL.createObjectURL(file)
+    const img = new Image()
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      const MAX = 400
+      let w = img.width, h = img.height
+      if (w > MAX || h > MAX) {
+        const s = Math.min(MAX / w, MAX / h)
+        w = Math.round(w * s); h = Math.round(h * s)
+      }
+      canvas.width = w; canvas.height = h
+      canvas.getContext('2d')?.drawImage(img, 0, 0, w, h)
+      store.portrait = canvas.toDataURL('image/png')
+      URL.revokeObjectURL(objectUrl)
+    }
+    img.src = objectUrl
   }
   reader.readAsDataURL(file)
   input.value = ''
 }
 
 const openCropExisting = () => {
+  // Toujours recadrer depuis l'original brut, jamais depuis un recadrage précédent
   cropSrc.value = store.portraitOriginal || store.portrait
   showCropDialog.value = true
 }
 
 const onCropConfirm = (croppedDataUrl: string) => {
-  // Le crop éditeur ne touche que portraitOriginal (affiché dans FICHE + téléchargement)
-  // portrait (miniature galerie) reste inchangé
-  store.portraitOriginal = croppedDataUrl
+  // portraitOriginal reste immuable — on écrit dans portraitFiche uniquement
+  store.portraitFiche = croppedDataUrl
 }
 
 const { attributes, availablePoints } = config
