@@ -27,6 +27,7 @@ function onInteract() {
   if (!started.value) {
     started.value = true
     prompt.value = 'APPUYER SUR UNE TOUCHE POUR CONTINUER'
+    videoEl.value!.volume = 0.3
     videoEl.value!.play()
   } else {
     dismiss()
@@ -37,6 +38,7 @@ function onKey() {
   if (!started.value) {
     started.value = true
     prompt.value = 'APPUYER SUR UNE TOUCHE POUR CONTINUER'
+    videoEl.value!.volume = 0.3
     videoEl.value!.play()
   } else {
     dismiss()
@@ -81,8 +83,8 @@ onUnmounted(() => window.removeEventListener('keydown', onKey))
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: #fff;
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  color: #cc0000;
+  text-shadow: 0 0 12px rgba(200, 0, 0, 0.7);
   animation: prompt-blink 1.2s ease-in-out infinite;
 }
 
