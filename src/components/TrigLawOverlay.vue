@@ -48,7 +48,7 @@ function trigger() {
 
   phaseTimer = setTimeout(() => {
     glitchPhase.value = true
-  }, 10000)
+  }, 7000)
 
   hackingAudio.addEventListener('ended', () => {
     trigAudio?.pause()
