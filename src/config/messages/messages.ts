@@ -560,7 +560,7 @@ export const messages = {
     nameGenerator: {
       navButton: 'Générateur de Noms',
       title: 'Générateur de Noms',
-      introText: 'Dans les ruines de l\'Europe d\'avant l\'Après, les noms ne sont pas que de simples étiquettes. Ils portent une histoire, une appartenance, une cicatrice. Chaque Culture a conservé des échos de l\'ancienne langue : les gutturales de la Borca, les cadences latines de Purgare, les noms bibliques portés comme des amulettes par les Jéhammedans. Choisissez votre Culture, votre Culte, et laissez émerger un nom qui pourrait avoir survécu à l\'Appel des Spores.',
+      introText: 'Dans les ruines de l\'Europe post-eschaton, les noms ne sont pas que de simples étiquettes. Ils portent une histoire, une appartenance, une cicatrice. Chaque Culture a conservé des échos de l\'ancienne langue : les gutturales de la Borca, les cadences latines de Purgare, les noms bibliques portés comme des amulettes par les Jéhammétans. Choisissez votre Culture, votre Culte, et laissez émerger un nom qui pourrait avoir survécu à l\'Appel des Spores.',
       culture: 'Culture',
       sex: 'Sexe',
       cult: 'Culte',
