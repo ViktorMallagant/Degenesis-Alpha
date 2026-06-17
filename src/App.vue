@@ -211,6 +211,7 @@
     </v-overlay>
   </v-app>
   <TrigLawOverlay />
+  <div class="crt-overlay" aria-hidden="true"></div>
 </template>
 
 <script setup lang="ts">
@@ -512,5 +513,29 @@ a {
 .v-theme--dark .v-overlay__scrim {
   background: #000000 !important;
   opacity: 0.72 !important;
+}
+
+/* ── Scanlines CRT ── */
+.crt-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.13) 2px,
+    rgba(0, 0, 0, 0.13) 4px
+  );
+  animation: crt-flicker 8s ease-in-out infinite;
+}
+
+@keyframes crt-flicker {
+  0%,  97%, 100% { opacity: 1; }
+  98%             { opacity: 0.85; }
+  98.5%           { opacity: 1; }
+  99%             { opacity: 0.9; }
+  99.5%           { opacity: 1; }
 }
 </style>
