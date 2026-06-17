@@ -45,7 +45,7 @@ onMounted(async () => {
         const raw = c.commit.author.date
         const date = new Date(raw).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })
         result.push({ sha: c.sha, type, message, date })
-        if (result.length >= 5) break
+        if (result.length >= 7) break
       }
     }
     entries.value = result
