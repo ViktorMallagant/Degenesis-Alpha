@@ -66,18 +66,21 @@ export function triggerMesmerized(baseUrl: string) {
     spawnInterval = setInterval(spawnOne, 180)
   }, 1500)
 
-  audio2.addEventListener('ended', () => {
+  function stopEffect() {
     audio1.pause()
+    audio2.pause()
     if (spawnInterval !== null) {
       clearInterval(spawnInterval)
       spawnInterval = null
     }
-    // Let existing numbers finish their animation
     setTimeout(() => {
       active.value = false
       numbers.value = []
     }, 2500)
-  })
+  }
+
+  setTimeout(stopEffect, 8500)
+  audio2.addEventListener('ended', stopEffect)
 }
 
 export function useMesmerized() {
