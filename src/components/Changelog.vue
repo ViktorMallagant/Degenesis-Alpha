@@ -1,8 +1,8 @@
 <template>
   <div class="changelog">
-    <div class="changelog-title">Nouveautés</div>
-    <div v-if="loading" class="changelog-loading">Chargement...</div>
-    <div v-else-if="error" class="changelog-error">Impossible de charger les nouveautés.</div>
+    <div class="changelog-title">{{ $t('messages.changelog.title') }}</div>
+    <div v-if="loading" class="changelog-loading">{{ $t('messages.changelog.loading') }}</div>
+    <div v-else-if="error" class="changelog-error">{{ $t('messages.changelog.error') }}</div>
     <ul v-else class="changelog-list">
       <li v-for="entry in entries" :key="entry.sha" class="changelog-entry">
         <span class="changelog-tag" :class="entry.type">{{ entry.type === 'feat' ? 'NEW' : 'FIX' }}</span>
