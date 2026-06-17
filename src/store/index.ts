@@ -422,6 +422,16 @@ export const useCharacterStore = defineStore('character', {
         return value
       }
     },
+    totalOriginBonus(): (origin: Origin) => number {
+      return (origin: Origin) => {
+        const raw = this.originValue(origin)
+        const bonus = this.legacyOriginBonus(origin.name) + this.potentialOriginBonus(origin.name)
+        if (this.ramsOffspringLevel > 0 && (origin.name === 'allies' || origin.name === 'authority')) {
+          return Math.max(bonus, this.ramsOffspringLevel - raw)
+        }
+        return bonus
+      }
+    },
     spentPoints: (state): SpentPoints => {
       let spentAttributePoints = 0
       state.attributes.forEach((v) => {

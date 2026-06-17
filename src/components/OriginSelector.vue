@@ -11,7 +11,7 @@
               :value="store.originValue(origin)"
               :max="store.originMax"
               :min="originMin()"
-              :bonus="store.legacyOriginBonus(origin.name)"
+              :bonus="store.totalOriginBonus(origin)"
               @change="(v) => store.setOrigin(origin, v)"
               :highlighted="store.isHighlighted(origin)"
               type="origins"
