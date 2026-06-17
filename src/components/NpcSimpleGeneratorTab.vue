@@ -2,6 +2,12 @@
   <div class="npc-generator">
     <v-toolbar class="pa-4 bg-grey-lighten-2 elevation-2" density="compact">
       <template v-slot:append>
+        <div class="rand-range mr-3">
+          <label class="rand-range-label">Stat min</label>
+          <input v-model.number="randMin" type="number" min="1" max="6" class="rand-range-input" />
+          <label class="rand-range-label">Stat max</label>
+          <input v-model.number="randMax" type="number" min="1" max="6" class="rand-range-input" />
+        </div>
         <v-btn @click="randomizeStats" stacked color="grey-darken-2" class="mr-2">
           Générer Aléatoirement
           <v-icon :icon="mdiDice6Outline" />
@@ -276,8 +282,13 @@ watch(selectedSpecialSkills, (newVal) => {
   })
 })
 
+const randMin = ref(1)
+const randMax = ref(6)
+
 function randQuality(): number {
-  return Math.floor(Math.random() * QUALITY_LEVELS.length)
+  const lo = Math.max(0, Math.min(5, randMin.value - 1))
+  const hi = Math.max(lo, Math.min(5, randMax.value - 1))
+  return lo + Math.floor(Math.random() * (hi - lo + 1))
 }
 
 function randomizeStats() {
@@ -342,6 +353,37 @@ const generateNpc = () => {
 </script>
 
 <style scoped>
+.rand-range {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+
+.rand-range-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.6);
+  white-space: nowrap;
+}
+
+.rand-range-input {
+  width: 38px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  -moz-appearance: textfield;
+}
+.rand-range-input::-webkit-inner-spin-button,
+.rand-range-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+
 .npc-section-title {
   display: inline-block;
   border-bottom: 1px dotted #888;
