@@ -94,6 +94,9 @@ export type State = {
   mentalPowerChoice: 'primal' | 'focus' | null
   mentalResistanceChoice: 'faith' | 'willpower' | null
   giftedBonuses: Record<string, number>
+  cultureSelected: boolean
+  conceptSelected: boolean
+  cultSelected: boolean
 }
 
 export const useCharacterStore = defineStore('character', {
@@ -134,6 +137,9 @@ export const useCharacterStore = defineStore('character', {
     mentalPowerChoice: null,
     mentalResistanceChoice: null,
     giftedBonuses: {},
+    cultureSelected: false,
+    conceptSelected: false,
+    cultSelected: false,
   }),
   getters: {
     attributeValue:
@@ -149,17 +155,17 @@ export const useCharacterStore = defineStore('character', {
       state.legacies.get(legacy) || 0,
     attributeMax: (state) => (attr: Attribute) => {
       const limit = config.pointLimits.attributes.max
-      const bonusFromCulture = state.culture.bonusAttributes.includes(attr) ? 1 : 0
-      const bonusFromConcept = state.concept.bonusAttribute.name == attr.name ? 1 : 0
+      const bonusFromCulture = state.cultureSelected && state.culture.bonusAttributes.includes(attr) ? 1 : 0
+      const bonusFromConcept = state.conceptSelected && state.concept.bonusAttribute.name == attr.name ? 1 : 0
       return limit + bonusFromCulture + bonusFromConcept
     },
     skillMax:
       (state) =>
       (skill: Skill): number => {
         const limit = config.pointLimits.skills.max
-        const bonusFromCulture = state.culture.bonusSkills.includes(skill) ? 1 : 0
-        const bonusFromConcept = state.concept.bonusSkills.includes(skill) ? 1 : 0
-        const bonusFromCult = state.cult.bonusSkills.includes(skill) ? 1 : 0
+        const bonusFromCulture = state.cultureSelected && state.culture.bonusSkills.includes(skill) ? 1 : 0
+        const bonusFromConcept = state.conceptSelected && state.concept.bonusSkills.includes(skill) ? 1 : 0
+        const bonusFromCult = state.cultSelected && state.cult.bonusSkills.includes(skill) ? 1 : 0
         const bonusFromClan = (state.clan?.bonusSkills || []).includes(skill) ? 1 : 0
         let hasSidewinder = false
         state.legacies.forEach((v, l) => { if (v > 0 && l.name === 'sidewinder') hasSidewinder = true })
@@ -484,9 +490,9 @@ export const useCharacterStore = defineStore('character', {
       state.legacies.forEach((v, legacy) => legacies.push([legacy.name, v]))
       return new Character(
         state.characterName,
-        state.culture.name,
-        state.concept.name,
-        state.cult.name,
+        state.cultureSelected ? state.culture.name : '',
+        state.conceptSelected ? state.concept.name : '',
+        state.cultSelected ? state.cult.name : '',
         state.rank.name,
         attributes,
         skills,
@@ -764,11 +770,11 @@ export const useCharacterStore = defineStore('character', {
         skill && this.skills.set(skill, v)
       })
       const culture = config.culturesByName.get(character.culture)
-      culture && this.setCulture(culture)
+      if (culture) { this.setCulture(culture) } else { this.cultureSelected = false }
       const concept = config.conceptsByName.get(character.concept)
-      concept && this.setConcept(concept)
+      if (concept) { this.setConcept(concept) } else { this.conceptSelected = false }
       const cult = config.cultsByName.get(character.cult)
-      cult && this.setCult(cult)
+      if (cult) { this.setCult(cult) } else { this.cultSelected = false }
       character.origins.forEach(([name, v]) => {
         const origin = config.originsByName.get(name)
         origin && this.setOrigin(origin, v)
@@ -859,10 +865,12 @@ export const useCharacterStore = defineStore('character', {
     },
     setCulture(culture: Culture) {
       this.culture = culture
+      this.cultureSelected = true
       this.adjustProperties()
     },
     setConcept(concept: Concept) {
       this.concept = concept
+      this.conceptSelected = true
       this.adjustProperties()
     },
     setCult(cult: Cult) {
@@ -875,6 +883,7 @@ export const useCharacterStore = defineStore('character', {
         this.rank = minimumRank(cult, this.clan)
       }
       this.cult = cult
+      this.cultSelected = true
       this.adjustProperties()
     },
     setClan(clan: Clan) {

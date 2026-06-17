@@ -206,43 +206,121 @@
                       </div>
                       <v-row class="mt-2">
                         <v-col cols="12" :sm="store.clan ? '3' : '4'">
-                          <EditorArchetypeSelector
-                            type="culture"
-                            :typeLabel="$t(`messages.culture`)"
-                            :label="$t(`culturesConceptsCults.${store.culture.name}`)"
-                            :description="$t(`culturesConceptsCults.${store.culture.name + 'Description'}`)"
-                            :value="store.culture"
-                            :items="cultures"
-                            :labels="cultureLabels()"
-                            :descriptions="cultureDescriptions()"
-                            @change="store.setCulture"
-                          ></EditorArchetypeSelector>
+                          <template v-if="store.cultureSelected">
+                            <EditorArchetypeSelector
+                              type="culture"
+                              :typeLabel="$t(`messages.culture`)"
+                              :label="$t(`culturesConceptsCults.${store.culture.name}`)"
+                              :description="$t(`culturesConceptsCults.${store.culture.name + 'Description'}`)"
+                              :value="store.culture"
+                              :items="cultures"
+                              :labels="cultureLabels()"
+                              :descriptions="cultureDescriptions()"
+                              @change="store.setCulture"
+                            ></EditorArchetypeSelector>
+                          </template>
+                          <template v-else>
+                            <v-card class="ma-0 px-4 pt-5 ccc-placeholder" @click="showCultureDialog = true">
+                              <div class="ccc-placeholder-inner">
+                                <span class="ccc-placeholder-type">{{ $t('messages.culture') }}</span>
+                                <v-icon size="32" color="grey-darken-1" :icon="mdiHelpCircleOutline"></v-icon>
+                                <span class="ccc-placeholder-btn">{{ $t('messages.chooseCulture') }}</span>
+                              </div>
+                            </v-card>
+                            <v-dialog v-model="showCultureDialog" width="auto">
+                              <v-card>
+                                <v-card-text>
+                                  <CCCSelector
+                                    type="culture"
+                                    :title="$t('messages.culture')"
+                                    :items="cultures"
+                                    :labels="cultureLabels()"
+                                    :descriptions="cultureDescriptions()"
+                                    :value="store.culture"
+                                    @change="(c) => { store.setCulture(c as any); showCultureDialog = false }"
+                                  />
+                                </v-card-text>
+                              </v-card>
+                            </v-dialog>
+                          </template>
                         </v-col>
                         <v-col cols="12" :sm="store.clan ? '3' : '4'">
-                          <EditorArchetypeSelector
-                            type="concept"
-                            :typeLabel="$t(`messages.concept`)"
-                            :label="$t(`culturesConceptsCults.${store.concept.name}`)"
-                            :description="$t(`culturesConceptsCults.${store.concept.name + 'Description'}`)"
-                            :value="store.concept"
-                            :items="concepts"
-                            :labels="conceptLabels()"
-                            :descriptions="conceptDescriptions()"
-                            @change="store.setConcept"
-                          ></EditorArchetypeSelector>
+                          <template v-if="store.conceptSelected">
+                            <EditorArchetypeSelector
+                              type="concept"
+                              :typeLabel="$t(`messages.concept`)"
+                              :label="$t(`culturesConceptsCults.${store.concept.name}`)"
+                              :description="$t(`culturesConceptsCults.${store.concept.name + 'Description'}`)"
+                              :value="store.concept"
+                              :items="concepts"
+                              :labels="conceptLabels()"
+                              :descriptions="conceptDescriptions()"
+                              @change="store.setConcept"
+                            ></EditorArchetypeSelector>
+                          </template>
+                          <template v-else>
+                            <v-card class="ma-0 px-4 pt-5 ccc-placeholder" @click="showConceptDialog = true">
+                              <div class="ccc-placeholder-inner">
+                                <span class="ccc-placeholder-type">{{ $t('messages.concept') }}</span>
+                                <v-icon size="32" color="grey-darken-1" :icon="mdiHelpCircleOutline"></v-icon>
+                                <span class="ccc-placeholder-btn">{{ $t('messages.chooseConcept') }}</span>
+                              </div>
+                            </v-card>
+                            <v-dialog v-model="showConceptDialog" width="auto">
+                              <v-card>
+                                <v-card-text>
+                                  <CCCSelector
+                                    type="concept"
+                                    :title="$t('messages.concept')"
+                                    :items="concepts"
+                                    :labels="conceptLabels()"
+                                    :descriptions="conceptDescriptions()"
+                                    :value="store.concept"
+                                    @change="(c) => { store.setConcept(c as any); showConceptDialog = false }"
+                                  />
+                                </v-card-text>
+                              </v-card>
+                            </v-dialog>
+                          </template>
                         </v-col>
                         <v-col cols="12" :sm="store.clan ? '3' : '4'">
-                          <EditorArchetypeSelector
-                            type="cult"
-                            :typeLabel="$t(`messages.cult`)"
-                            :label="$t(`culturesConceptsCults.${store.cult.name}`)"
-                            :description="$t(`culturesConceptsCults.${store.cult.name + 'Description'}`)"
-                            :value="store.cult"
-                            :items="cults"
-                            :labels="cultLabels()"
-                            :descriptions="cultDescriptions()"
-                            @change="store.setCult"
-                          ></EditorArchetypeSelector>
+                          <template v-if="store.cultSelected">
+                            <EditorArchetypeSelector
+                              type="cult"
+                              :typeLabel="$t(`messages.cult`)"
+                              :label="$t(`culturesConceptsCults.${store.cult.name}`)"
+                              :description="$t(`culturesConceptsCults.${store.cult.name + 'Description'}`)"
+                              :value="store.cult"
+                              :items="cults"
+                              :labels="cultLabels()"
+                              :descriptions="cultDescriptions()"
+                              @change="store.setCult"
+                            ></EditorArchetypeSelector>
+                          </template>
+                          <template v-else>
+                            <v-card class="ma-0 px-4 pt-5 ccc-placeholder" @click="showCultDialog = true">
+                              <div class="ccc-placeholder-inner">
+                                <span class="ccc-placeholder-type">{{ $t('messages.cult') }}</span>
+                                <v-icon size="32" color="grey-darken-1" :icon="mdiHelpCircleOutline"></v-icon>
+                                <span class="ccc-placeholder-btn">{{ $t('messages.chooseCult') }}</span>
+                              </div>
+                            </v-card>
+                            <v-dialog v-model="showCultDialog" width="auto">
+                              <v-card>
+                                <v-card-text>
+                                  <CCCSelector
+                                    type="cult"
+                                    :title="$t('messages.cult')"
+                                    :items="cults"
+                                    :labels="cultLabels()"
+                                    :descriptions="cultDescriptions()"
+                                    :value="store.cult"
+                                    @change="(c) => { store.setCult(c as any); showCultDialog = false }"
+                                  />
+                                </v-card-text>
+                              </v-card>
+                            </v-dialog>
+                          </template>
                           <div v-if="store.sidewinderOldCult" class="text-caption inv-muted mt-1" style="font-size:11px;color:#aaa">
                             Ancien Culte : {{ $t(`culturesConceptsCults.${store.sidewinderOldCult.name}`) }}
                           </div>
@@ -570,7 +648,8 @@ mdiPencil,
 mdiCrop,
 mdiShareVariant,
 mdiVolumeHigh,
-mdiVolumeOff
+mdiVolumeOff,
+mdiHelpCircleOutline
 } from '@mdi/js'
 import { useMusicPlayer } from '@/composables/useMusicPlayer'
 import { ref, computed, inject } from 'vue'
@@ -580,6 +659,7 @@ import { useI18n } from 'vue-i18n'
 import { encodeCharacter } from '@/util/share'
 import { useDisplay } from 'vuetify'
 import EditorArchetypeSelector from './EditorArchetypeSelector.vue'
+import CCCSelector from './CCCSelector.vue'
 import ImageCropperDialog from './ImageCropperDialog.vue'
 
 const store = useCharacterStore()
@@ -803,6 +883,9 @@ const { mobile } = useDisplay()
 const showNavigationDrawer = ref(!mobile.value)
 
 const showBuildOptions = ref(false)
+const showCultureDialog = ref(false)
+const showConceptDialog = ref(false)
+const showCultDialog = ref(false)
 
 const newName = ref('')
 const createRenamedCopy = ref(false)
@@ -925,6 +1008,37 @@ const renameCharacter = () => {
 
 a {
   color: #616161;
+}
+
+.ccc-placeholder {
+  cursor: pointer;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(var(--v-theme-on-surface), 0.2);
+  transition: border-color 0.2s;
+}
+.ccc-placeholder:hover {
+  border-color: rgba(var(--v-theme-primary), 0.5);
+}
+.ccc-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 8px;
+}
+.ccc-placeholder-type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(var(--v-theme-on-surface), 0.45);
+}
+.ccc-placeholder-btn {
+  font-size: 0.78rem;
+  color: rgba(var(--v-theme-on-surface), 0.6);
 }
 
 .show {

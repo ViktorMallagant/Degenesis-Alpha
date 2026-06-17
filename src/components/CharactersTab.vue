@@ -58,6 +58,7 @@
               :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
               :title="t(`culturesConceptsCults.${character.culture}`)"
             />
+            <span v-else class="char-logotype-unknown" title="Culture non sélectionnée">?</span>
             <img
               v-if="character.concept"
               :src="`${baseUrl}logotypes/concepts/${character.concept}.svg`"
@@ -65,20 +66,24 @@
               :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
               :title="t(`culturesConceptsCults.${character.concept}`)"
             />
-            <img
-              v-if="character.clan"
-              :src="`${baseUrl}logotypes/clans/${character.clan}.svg`"
-              class="char-logotype"
-              :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
-              :title="t(`clans.${character.clan}`)"
-            />
-            <img
-              v-else-if="character.cult"
-              :src="`${baseUrl}logotypes/cults/${character.cult}.svg`"
-              class="char-logotype"
-              :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
-              :title="t(`culturesConceptsCults.${character.cult}`)"
-            />
+            <span v-else class="char-logotype-unknown" title="Concept non sélectionné">?</span>
+            <template v-if="character.clan">
+              <img
+                :src="`${baseUrl}logotypes/clans/${character.clan}.svg`"
+                class="char-logotype"
+                :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
+                :title="t(`clans.${character.clan}`)"
+              />
+            </template>
+            <template v-else-if="character.cult">
+              <img
+                :src="`${baseUrl}logotypes/cults/${character.cult}.svg`"
+                class="char-logotype"
+                :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
+                :title="t(`culturesConceptsCults.${character.cult}`)"
+              />
+            </template>
+            <span v-else class="char-logotype-unknown" title="Culte non sélectionné">?</span>
           </div>
         </div>
 
@@ -239,11 +244,13 @@ async function shareChar(character: Character) {
 
 // Rank label
 function rankLabel(character: Character): string {
-  const cult = character.clan
+  const cultLabel = character.clan
     ? t(`clans.${character.clan}`)
-    : t(`culturesConceptsCults.${character.cult}`)
+    : character.cult
+      ? t(`culturesConceptsCults.${character.cult}`)
+      : '—'
   const rank = character.rank ? t(`ranks.${character.rank}`) : ''
-  return rank ? `${cult} (${rank})` : cult
+  return rank ? `${cultLabel} (${rank})` : cultLabel
 }
 </script>
 
@@ -415,6 +422,20 @@ function rankLabel(character: Character): string {
 
 .char-logotype--light {
   filter: brightness(0);
+}
+
+.char-logotype-unknown {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(var(--v-theme-on-surface), 0.3);
+  border: 1px dashed rgba(var(--v-theme-on-surface), 0.25);
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 
 .char-card-actions {
