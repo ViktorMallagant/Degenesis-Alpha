@@ -17,7 +17,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const baseUrl = import.meta.env.BASE_URL
-const visible = ref(true)
+const visible = ref(localStorage.getItem('parasite-skip-splash') !== 'true')
 const videoEl = ref<HTMLVideoElement | null>(null)
 const started = ref(false)
 

@@ -41,6 +41,17 @@
     </v-btn-toggle>
   </div>
   <v-divider class="my-4"></v-divider>
+  <div class="pa-1">
+    <div class="pa-1 text-subtitle-2">Vidéo d'introduction</div>
+    <v-checkbox
+      v-model="skipSplash"
+      label="Ne plus lancer la vidéo au lancement du site"
+      density="compact"
+      hide-details
+      @update:model-value="onSkipSplashChange"
+    ></v-checkbox>
+  </div>
+  <v-divider class="my-4"></v-divider>
   <v-form>
     <div class="pa-1 text-subtitle-2">
       {{ $t('messages.locale') }}
@@ -67,6 +78,11 @@ const i18n = useI18n()
 const theme = useTheme()
 
 const currentTheme = ref(theme.global.name.value)
+const skipSplash = ref(localStorage.getItem('parasite-skip-splash') === 'true')
+
+function onSkipSplashChange(value: boolean) {
+  localStorage.setItem('parasite-skip-splash', String(value))
+}
 
 function setTheme(value: string) {
   theme.global.name.value = value
