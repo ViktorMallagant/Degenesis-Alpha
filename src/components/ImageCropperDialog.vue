@@ -89,7 +89,7 @@ watch(() => props.src, async (src) => {
   img.src = src
 }, { immediate: true })
 
-watch(aspectMode, () => enforceAspect())
+watch(aspectMode, (m) => m === 'full' ? resetCrop() : enforceAspect())
 
 function rotatedSize(): { w: number, h: number } {
   const r = ((rotation % 360) + 360) % 360
