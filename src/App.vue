@@ -505,3 +505,10 @@ a {
   margin-left: -50px;
 }
 </style>
+
+<style>
+.v-theme--dark .v-overlay__scrim {
+  background: #000000 !important;
+  opacity: 0.72 !important;
+}
+</style>
