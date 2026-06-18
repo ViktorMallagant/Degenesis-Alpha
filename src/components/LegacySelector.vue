@@ -525,7 +525,9 @@ function autoFillChoices(legacy: Legacy): { attributes: Record<string, string>; 
     if (e.type === 'choiceSkill') {
       const scope = (e as any).scope as string | undefined
       const candidates = scope ? (SCOPE_SKILLS[scope] || []) : []
-      if (candidates.length === 2) {
+      if (scope === 'faithOrWillpower') {
+        skills[i + '-0'] = store.mentalResistanceSkill.name
+      } else if (candidates.length === 2) {
         const aVal = store.skillValue(Object.values(Skills).find(s => s.name === candidates[0])!)
         const bVal = store.skillValue(Object.values(Skills).find(s => s.name === candidates[1])!)
         if (aVal > 0 && bVal === 0) {
