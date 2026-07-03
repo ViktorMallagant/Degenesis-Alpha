@@ -6,7 +6,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   // Déploiement sur GitHub Pages avec sous-chemin
   // (github.com/Katsu6624/degenesis-parasite.github.io -> /degenesis-parasite.github.io/)
-  base: '/degenesis-parasite.github.io/',
+  base: '/Degenesis-Alpha/',
   
   plugins: [
     vue(),
