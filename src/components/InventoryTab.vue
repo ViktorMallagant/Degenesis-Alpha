@@ -49,7 +49,7 @@
 
       <!-- Info avancements (mode C uniquement) -->
       <div v-if="store.resourceMode === 'C'" class="text-caption inv-muted">
-        Base : {{ store.resourceAdvancements }} av. (Resources {{ store.baseResourcesLevel }})
+        Base : {{ store.resourceAdvancements }} av. (Ressources {{ store.baseResourcesLevel }})
       </div>
 
       <!-- Ressources Entrepreneur -->
