@@ -129,13 +129,13 @@
     <!-- Confirm delete dialog -->
     <v-dialog v-model="deleteDialog" max-width="400">
       <v-card>
-        <v-card-title class="text-h6">Supprimer le personnage ?</v-card-title>
+        <v-card-title class="text-h6">Delete the character?</v-card-title>
         <v-card-text>
-          <strong>{{ pendingDeleteName }}</strong> sera définitivement supprimé. Cette action est irréversible.
+          <strong>{{ pendingDeleteName }}</strong>The character will be permanently deleted. This action is irreversible.
         </v-card-text>
         <v-card-actions class="justify-end">
-          <v-btn variant="text" @click="deleteDialog = false">Annuler</v-btn>
-          <v-btn color="red-darken-2" variant="flat" @click="doDelete">Supprimer</v-btn>
+          <v-btn variant="text" @click="deleteDialog = false">Cancel</v-btn>
+          <v-btn color="red-darken-2" variant="flat" @click="doDelete">Delete</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
