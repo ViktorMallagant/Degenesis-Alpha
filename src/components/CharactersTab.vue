@@ -66,7 +66,7 @@
               :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
               :title="t(`culturesConceptsCults.${character.concept}`)"
             />
-            <span v-else class="char-logotype-unknown" title="Concept non sélectionné">?</span>
+            <span v-else class="char-logotype-unknown" title="Concept not selected">?</span>
             <template v-if="character.clan">
               <img
                 :src="`${baseUrl}logotypes/clans/${character.clan}.svg`"
@@ -83,7 +83,7 @@
                 :title="t(`culturesConceptsCults.${character.cult}`)"
               />
             </template>
-            <span v-else class="char-logotype-unknown" title="Culte non sélectionné">?</span>
+            <span v-else class="char-logotype-unknown" title="Cult not selected">?</span>
           </div>
         </div>
 
