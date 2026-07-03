@@ -40,7 +40,7 @@
           <!-- Crop overlay button -->
           <button v-if="character.portrait" class="char-portrait-crop-btn" @click.stop="openCrop(character)">
             <v-icon size="14" :icon="mdiCrop"></v-icon>
-            <span>Recadrer</span>
+            <span>Crop</span>
           </button>
         </div>
 
@@ -98,7 +98,7 @@
             @click="shareChar(character)"
           >
             <v-icon :icon="mdiShareVariant" size="16" class="mr-2"></v-icon>
-            Partager
+            Share
           </v-btn>
           <v-btn
             block
@@ -108,7 +108,7 @@
             @click="confirmDelete(character.name)"
           >
             <v-icon :icon="mdiDeleteOutline" size="16" class="mr-2"></v-icon>
-            Supprimer
+            Delete
           </v-btn>
         </div>
       </div>
