@@ -131,7 +131,7 @@
       <v-card>
         <v-card-title class="text-h6">Delete the character?</v-card-title>
         <v-card-text>
-          <strong>{{ pendingDeleteName }}</strong>The character will be permanently deleted. This action is irreversible.
+          <strong>{{ pendingDeleteName }}</strong> will be permanently deleted. This action is irreversible.
         </v-card-text>
         <v-card-actions class="justify-end">
           <v-btn variant="text" @click="deleteDialog = false">Cancel</v-btn>
