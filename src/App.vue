@@ -126,7 +126,7 @@
             </span>
             <br />
             <br />
-            <a :href="config.sourceCodeRepo" target="_blank">Source code</a>
+            <a href="config.sourceCodeRepo" target="_blank">Source code</a>
           </v-list-item>
         </template>
       </v-navigation-drawer>
@@ -189,7 +189,7 @@
       <IntroPage></IntroPage>
     </div>
     <v-snackbar v-model="ownCharSnackbar" timeout="6000" color="blue-darken-2">
-      C'est ta propre fiche — elle s'est ouverte depuis ta sauvegarde locale.
+      It's your own file—it opened from your local save.
     </v-snackbar>
     <v-overlay
       v-model="showOverlay"
