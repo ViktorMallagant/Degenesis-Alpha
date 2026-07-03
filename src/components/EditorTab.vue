@@ -237,7 +237,7 @@
                                     :labels="cultureLabels()"
                                     :descriptions="cultureDescriptions()"
                                     :value="store.culture"
-                                    @change="(c) => { store.setCulture(c as any); showCultureDialog = false }"
+                                    @change="onSelectCulture"
                                   />
                                 </v-card-text>
                               </v-card>
@@ -276,7 +276,7 @@
                                     :labels="conceptLabels()"
                                     :descriptions="conceptDescriptions()"
                                     :value="store.concept"
-                                    @change="(c) => { store.setConcept(c as any); showConceptDialog = false }"
+                                    @change="onSelectConcept"
                                   />
                                 </v-card-text>
                               </v-card>
@@ -315,7 +315,7 @@
                                     :labels="cultLabels()"
                                     :descriptions="cultDescriptions()"
                                     :value="store.cult"
-                                    @change="(c) => { store.setCult(c as any); showCultDialog = false }"
+                                    @change="onSelectCult"
                                   />
                                 </v-card-text>
                               </v-card>
@@ -677,6 +677,21 @@ const pluralSuffix = (count: number): string => {
 const updateManualLC = (val: any) => {
   const bonus = store.hasLandlord ? 1000 : 0
   store.setManualLC(val === '' || val === null ? null : Number(val) - bonus + store.spentLC)
+}
+
+const onSelectCulture = (c: any) => {
+  store.setCulture(c as any)
+  showCultureDialog.value = false
+}
+
+const onSelectConcept = (c: any) => {
+  store.setConcept(c as any)
+  showConceptDialog.value = false
+}
+
+const onSelectCult = (c: any) => {
+  store.setCult(c as any)
+  showCultDialog.value = false
 }
 
 const shareCopied = ref(false)
