@@ -2,10 +2,10 @@
   <v-dialog v-model="open" max-width="640" persistent>
     <v-card>
       <v-card-title class="d-flex align-center justify-space-between flex-wrap gap-2">
-        <span>Recadrer le portrait</span>
+        <span>Crop the portrait</span>
         <v-btn-toggle v-model="aspectMode" density="compact" variant="outlined" mandatory>
           <v-btn value="full" size="small">Full</v-btn>
-          <v-btn value="free" size="small">Libre</v-btn>
+          <v-btn value="free" size="small">Free</v-btn>
           <v-btn value="portrait" size="small">3:4</v-btn>
           <v-btn value="square" size="small">1:1</v-btn>
         </v-btn-toggle>
@@ -26,19 +26,19 @@
         ></canvas>
         <!-- Hint -->
         <div style="position:absolute;bottom:6px;left:0;right:0;text-align:center;color:rgba(255,255,255,0.4);font-size:0.7rem;pointer-events:none;">
-          Glisser pour déplacer la zone · Poignées pour redimensionner
+          Drag to move the area · Handles to resize
         </div>
       </v-card-text>
 
       <v-card-actions class="justify-space-between">
         <div class="d-flex gap-2">
-          <v-btn icon size="small" @click="rotate(-90)" title="Tourner gauche"><v-icon :icon="mdiRotateLeft"></v-icon></v-btn>
-          <v-btn icon size="small" @click="rotate(90)" title="Tourner droite"><v-icon :icon="mdiRotateRight"></v-icon></v-btn>
-          <v-btn icon size="small" @click="resetCrop" title="Réinitialiser"><v-icon :icon="mdiRefresh"></v-icon></v-btn>
+          <v-btn icon size="small" @click="rotate(-90)" title="Rotate Left"><v-icon :icon="mdiRotateLeft"></v-icon></v-btn>
+          <v-btn icon size="small" @click="rotate(90)" title="Rotate Right"><v-icon :icon="mdiRotateRight"></v-icon></v-btn>
+          <v-btn icon size="small" @click="resetCrop" title="Reset"><v-icon :icon="mdiRefresh"></v-icon></v-btn>
         </div>
         <div class="d-flex gap-2">
-          <v-btn variant="text" @click="cancel">Annuler</v-btn>
-          <v-btn color="red-darken-2" variant="flat" @click="confirm">Valider</v-btn>
+          <v-btn variant="text" @click="cancel">Cancel</v-btn>
+          <v-btn color="red-darken-2" variant="flat" @click="confirm">Confirm</v-btn>
         </div>
       </v-card-actions>
     </v-card>
