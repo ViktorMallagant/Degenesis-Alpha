@@ -27,7 +27,7 @@
   </div>
   <v-divider class="my-4"></v-divider>
   <div class="pa-1">
-    <div class="pa-1 text-subtitle-2">Thème</div>
+    <div class="pa-1 text-subtitle-2">Theme</div>
     <v-btn-toggle
       :model-value="currentTheme"
       @update:model-value="setTheme"
@@ -36,16 +36,16 @@
       density="comfortable"
       mandatory
     >
-      <v-btn value="dark" :prepend-icon="mdiWeatherNight">Sombre</v-btn>
-      <v-btn value="light" :prepend-icon="mdiWhiteBalanceSunny">Clair</v-btn>
+      <v-btn value="dark" :prepend-icon="mdiWeatherNight">Dark</v-btn>
+      <v-btn value="light" :prepend-icon="mdiWhiteBalanceSunny">Light</v-btn>
     </v-btn-toggle>
   </div>
   <v-divider class="my-4"></v-divider>
   <div class="pa-1">
-    <div class="pa-1 text-subtitle-2">Vidéo d'introduction</div>
+    <div class="pa-1 text-subtitle-2">Introduction Video</div>
     <v-checkbox
       v-model="replaySplash"
-      label="Relancer la vidéo d'introduction"
+      label="Restart the introductory video"
       density="compact"
       hide-details
       @update:model-value="onReplaySplashChange"
