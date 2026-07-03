@@ -187,7 +187,7 @@
                                     variant="underlined"
                                     type="number"
                                     :error="store.remainingLC < 0"
-@update:model-value="val => { const bonus = store.hasLandlord ? 1000 : 0; store.setManualLC(val === '' || val === null ? null : Number(val) - bonus + store.spentLC) }"
+                                    @update:model-value="updateManualLC"
                                   ></v-text-field>
                                   <v-text-field
                                     v-else
@@ -674,6 +674,11 @@ const pluralSuffix = (count: number): string => {
   return i18n.locale.value === 'de' ? 'en' : 's'
 }
 
+const updateManualLC = (val: any) => {
+  const bonus = store.hasLandlord ? 1000 : 0
+  store.setManualLC(val === '' || val === null ? null : Number(val) - bonus + store.spentLC)
+}
+
 const shareCopied = ref(false)
 const shareCharacter = async () => {
   const base = window.location.origin + window.location.pathname
@@ -998,64 +1003,62 @@ const renameCharacter = () => {
   outline: none;
   width: 100%;
   padding: 4px 0;
-  -moz-appearance: textfield;
-}
-.editor-lc-inline-input::-webkit-inner-spin-button,
-.editor-lc-inline-input::-webkit-outer-spin-button { -webkit-appearance: none; }
-.editor-lc-inline-input:focus {
-  border-bottom: 2px solid rgb(var(--v-theme-primary));
+  box-sizing: border-box;
+  width: 100%;
+  margin-left: 6px;
 }
 
-a {
-  color: #616161;
+#skills-section {
+  gap: 1rem;
 }
 
 .ccc-placeholder {
   cursor: pointer;
-  min-height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed rgba(var(--v-theme-on-surface), 0.2);
-  transition: border-color 0.2s;
+  border: 1px dashed rgba(255, 255, 255, 0.3) !important;
+  border-radius: 4px !important;
 }
-.ccc-placeholder:hover {
-  border-color: rgba(var(--v-theme-primary), 0.5);
-}
+
 .ccc-placeholder-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 16px 8px;
+  justify-content: center;
+  gap: 8px;
+  min-height: 250px;
+  color: #888;
 }
+
 .ccc-placeholder-type {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(var(--v-theme-on-surface), 0.45);
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #666;
 }
+
 .ccc-placeholder-btn {
-  font-size: 0.78rem;
-  color: rgba(var(--v-theme-on-surface), 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.show {
-  opacity: 1;
-  transition: opacity 0.5s;
+.ccc-placeholder-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.hide {
-  opacity: 0;
-  max-height: 0;
+.modifier-item {
+  border-left: 3px solid #ffa500;
+  padding-left: 12px;
 }
 
-.name-edit-button {
-  opacity: 0;
-}
-
-#name:hover .name-edit-button {
-  opacity: 1;
+@media (max-width: 600px) {
+  .gifted-cancel-btn {
+    bottom: 16px;
+    left: 16px;
+    font-size: 0.8em;
+  }
 }
 </style>
