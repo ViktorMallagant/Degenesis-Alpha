@@ -15,7 +15,7 @@
     <div class="inv-header elevation-2 pa-4 d-flex flex-wrap align-center gap-4">
       <!-- Budget LC/Dinars -->
       <div class="inv-stat-chip">
-        <span class="inv-stat-label">{{ store.computedDinars?.currency ?? 'Dinars/Drafts' }}</span>
+        <span class="inv-stat-label">{{ store.computedDinars?.currency ?? 'LC' }}</span>
         <input
           v-if="store.editorMode === 'free'"
           type="number"
@@ -94,14 +94,14 @@
         <v-btn-toggle v-model="store.resourceMode" density="compact" variant="outlined" divided mandatory>
           <v-btn value="A" size="small">
             <v-tooltip activator="parent" location="bottom" max-width="300">
-              <strong>Mode A — PDF FR</strong><br>
+              <strong>Mode A — PDF French</strong><br>
               Can be acquired if cost ≤ Resources. The Resources value is reduced by 1 with each purchase.
             </v-tooltip>
             A
           </v-btn>
           <v-btn value="B" size="small">
             <v-tooltip activator="parent" location="bottom" max-width="300">
-              <strong>Mode B — Officiel</strong><br>
+              <strong>Mode B — Official</strong><br>
               Can be acquired if value ≤ Resources. The value is reduced by 1 only if the object is <em>identical</em> to Resources.
             </v-tooltip>
             B
