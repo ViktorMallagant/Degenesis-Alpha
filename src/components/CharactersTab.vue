@@ -16,8 +16,8 @@
     <!-- Empty state -->
     <div v-if="characters.length === 0" class="chars-empty">
       <v-icon size="80" color="grey-darken-2" :icon="mdiAccountGroupOutline"></v-icon>
-      <div class="text-h6 text-grey-darken-2 mt-4">No saved characters.</div>
-      <div class="text-body-2 text-grey-darken-1 mt-1">Create a new character to start.</div>
+      <div class="text-h6 text-grey-darken-2 mt-4">Aucun personnage sauvegardé.</div>
+      <div class="text-body-2 text-grey-darken-1 mt-1">Créez un nouveau personnage pour commencer.</div>
     </div>
 
     <!-- Cards grid -->
@@ -40,7 +40,7 @@
           <!-- Crop overlay button -->
           <button v-if="character.portrait" class="char-portrait-crop-btn" @click.stop="openCrop(character)">
             <v-icon size="14" :icon="mdiCrop"></v-icon>
-            <span>Crop</span>
+            <span>Recadrer</span>
           </button>
         </div>
 
@@ -58,7 +58,7 @@
               :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
               :title="t(`culturesConceptsCults.${character.culture}`)"
             />
-            <span v-else class="char-logotype-unknown" title="Culture not selected>?</span>
+            <span v-else class="char-logotype-unknown" title="Culture non sélectionnée">?</span>
             <img
               v-if="character.concept"
               :src="`${baseUrl}logotypes/concepts/${character.concept}.svg`"
@@ -66,7 +66,7 @@
               :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
               :title="t(`culturesConceptsCults.${character.concept}`)"
             />
-            <span v-else class="char-logotype-unknown" title="Concept not selected">?</span>
+            <span v-else class="char-logotype-unknown" title="Concept non sélectionné">?</span>
             <template v-if="character.clan">
               <img
                 :src="`${baseUrl}logotypes/clans/${character.clan}.svg`"
@@ -83,7 +83,7 @@
                 :title="t(`culturesConceptsCults.${character.cult}`)"
               />
             </template>
-            <span v-else class="char-logotype-unknown" title="Cult not selected">?</span>
+            <span v-else class="char-logotype-unknown" title="Culte non sélectionné">?</span>
           </div>
         </div>
 
@@ -98,7 +98,7 @@
             @click="shareChar(character)"
           >
             <v-icon :icon="mdiShareVariant" size="16" class="mr-2"></v-icon>
-            Share
+            Partager
           </v-btn>
           <v-btn
             block
@@ -108,7 +108,7 @@
             @click="confirmDelete(character.name)"
           >
             <v-icon :icon="mdiDeleteOutline" size="16" class="mr-2"></v-icon>
-            Delete
+            Supprimer
           </v-btn>
         </div>
       </div>
@@ -129,13 +129,13 @@
     <!-- Confirm delete dialog -->
     <v-dialog v-model="deleteDialog" max-width="400">
       <v-card>
-        <v-card-title class="text-h6">Delete the character?</v-card-title>
+        <v-card-title class="text-h6">Supprimer le personnage ?</v-card-title>
         <v-card-text>
-          <strong>{{ pendingDeleteName }}</strong> The character will be permanently deleted. This action is irreversible.
+          <strong>{{ pendingDeleteName }}</strong> sera définitivement supprimé. Cette action est irréversible.
         </v-card-text>
         <v-card-actions class="justify-end">
-          <v-btn variant="text" @click="deleteDialog = false">Cancel</v-btn>
-          <v-btn color="red-darken-2" variant="flat" @click="doDelete">Delete</v-btn>
+          <v-btn variant="text" @click="deleteDialog = false">Annuler</v-btn>
+          <v-btn color="red-darken-2" variant="flat" @click="doDelete">Supprimer</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
