@@ -16,8 +16,8 @@
     <!-- Empty state -->
     <div v-if="characters.length === 0" class="chars-empty">
       <v-icon size="80" color="grey-darken-2" :icon="mdiAccountGroupOutline"></v-icon>
-      <div class="text-h6 text-grey-darken-2 mt-4">Aucun personnage sauvegardé.</div>
-      <div class="text-body-2 text-grey-darken-1 mt-1">Créez un nouveau personnage pour commencer.</div>
+      <div class="text-h6 text-grey-darken-2 mt-4">No saved characters.</div>
+      <div class="text-body-2 text-grey-darken-1 mt-1">Create a new character to start.</div>
     </div>
 
     <!-- Cards grid -->
@@ -58,7 +58,7 @@
               :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
               :title="t(`culturesConceptsCults.${character.culture}`)"
             />
-            <span v-else class="char-logotype-unknown" title="Culture non sélectionnée">?</span>
+            <span v-else class="char-logotype-unknown" title="Culture not selected">?</span>
             <img
               v-if="character.concept"
               :src="`${baseUrl}logotypes/concepts/${character.concept}.svg`"
