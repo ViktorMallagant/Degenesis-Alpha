@@ -15,7 +15,7 @@
     <div class="inv-header elevation-2 pa-4 d-flex flex-wrap align-center gap-4">
       <!-- Budget LC/Dinars -->
       <div class="inv-stat-chip">
-        <span class="inv-stat-label">{{ store.computedDinars?.currency ?? 'Dinars/Drafts' }}</span>
+        <span class="inv-stat-label">{{ store.computedDinars?.currency ?? 'LC' }}</span>
         <input
           v-if="store.editorMode === 'free'"
           type="number"
@@ -34,7 +34,7 @@
 
       <!-- Ressources -->
       <div class="inv-stat-chip">
-        <span class="inv-stat-label">Resources</span>
+        <span class="inv-stat-label">Ressources</span>
         <span class="inv-stat-value">
           <template v-if="store.resourceMode !== 'C'">
             {{ store.effectiveResourcesLevel }}
@@ -76,11 +76,11 @@
 
       <!-- Encombrement -->
       <div class="inv-stat-chip">
-        <span class="inv-stat-label">Encumbrance</span>
+        <span class="inv-stat-label">Encombrement</span>
         <span class="inv-stat-value" :class="encumbrancePenalty > 0 ? 'text-red' : 'text-green'">
           {{ totalEncumbrance }}
         </span>
-        <span class="inv-stat-sub inv-muted">/ {{ phyPlusForce }} (PHY+Force+3)</span>
+        <span class="inv-stat-sub inv-muted">/ {{ phyPlusForce }} (PHY+Force)</span>
         <span v-if="encumbrancePenalty > 0" class="inv-stat-sub text-red font-weight-bold">
           Malus −{{ encumbrancePenalty }}D
         </span>
@@ -448,7 +448,7 @@ const totalEncumbrance = computed(() =>
 )
 
 const phyPlusForce = computed(() =>
-  store.attributeValue(Attributes.body) + store.skillValue(Skills.force) + 3
+  store.attributeValue(Attributes.body) + store.skillValue(Skills.force)
 )
 
 const encumbrancePenalty = computed(() =>
