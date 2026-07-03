@@ -83,7 +83,7 @@
                 :title="t(`culturesConceptsCults.${character.cult}`)"
               />
             </template>
-            <span v-else class="char-logotype-unknown" title="Culte non sélectionné">?</span>
+            <span v-else class="char-logotype-unknown" title="Cult not selected">?</span>
           </div>
         </div>
 
