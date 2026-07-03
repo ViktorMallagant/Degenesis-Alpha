@@ -27,7 +27,7 @@ const loading = ref(true)
 const error = ref(false)
 const entries = ref<Entry[]>([])
 
-const REPO = 'viktormallagant.github.io/degenesis-alpha'
+const REPO = 'viktormallagant.github.io/Degenesis-Alpha'
 
 onMounted(async () => {
   try {
