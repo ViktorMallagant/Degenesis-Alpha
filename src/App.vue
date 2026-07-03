@@ -122,7 +122,7 @@
               This page is a community creation for the tabletop role playing game
               <a href="https://degenesis.com">Degenesis®</a>. Degenesis® is a trademark of
               <a href="https://sixmorevodka.com">SIXMOREVODKA® Studio GmbH</a>. All rights
-              reserved. This page is not affiliated with SIXMOREVODKA Studio GmbH.
+              reserved. This page is not affiliated with <a href="https://sixmorevodka.com">SIXMOREVODKA® Studio GmbH</a>.
             </span>
             <br />
             <br />
