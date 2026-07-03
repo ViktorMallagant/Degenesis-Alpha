@@ -126,7 +126,7 @@
             </span>
             <br />
             <br />
-            <a href="https://github.com/ViktorMallagant/Degenesis-Alpha" target="_blank">Source code
+            <a href="https://github.com/ViktorMallagant/Degenesis-Alpha" target="_blank">Source code</a>
           </v-list-item>
         </template>
       </v-navigation-drawer>
