@@ -4,7 +4,7 @@
     <span style="font-size:12px;color:#999">{{ store.spentPoints.legacies }}/{{ config.availablePoints.legacies }}</span>
     <input
       v-model="searchLegacy"
-      placeholder="Rechercher…"
+      placeholder="To research…"
       style="margin-left:8px;background:transparent;border:1px solid #444;border-radius:4px;padding:2px 8px;font-size:12px;color:#ccc;outline:none;width:200px"
     />
   </div>
