@@ -478,15 +478,15 @@
           <v-tooltip max-width="420" location="bottom">
             <template #activator="{ props }">
               <span v-bind="props" class="xp-cost-title">
-                COÛT EN XP DES AUGMENTATIONS
+                XP COST OF UPGRADES
                 <span v-if="store.mentalPowerChoice" class="xp-cost-star">*</span>
               </span>
             </template>
             <div class="xp-tooltip-content">
-              <p>Chaque augmentation coûte en XP la <strong>nouvelle valeur × un facteur</strong> selon le type :</p>
+              <p>Each increase costs XP equal to the <strong>new value × a factor</strong> based on the type:</p>
               <table class="xp-table">
                 <tr>
-                  <td>Attribut non-préféré</td>
+                  <td>Non-preferred Attribute</td>
                   <td :class="(store.hasCreatureOfHabit || store.hasPrimordial || store.nonPrivAttrMultiplierReduction > 0) ? 'xp-modified' : ''">
                     × {{ ((store.hasCreatureOfHabit || store.hasPrimordial) ? 14 : 12) - store.nonPrivAttrMultiplierReduction }} XP
                     <span v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-badge xp-badge-up">+2</span>
@@ -494,14 +494,14 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Attribut préféré <span class="xp-star">*</span></td>
+                  <td>Preferred Attribute <span class="xp-star">*</span></td>
                   <td :class="(store.hasCreatureOfHabit || store.hasPrimordial) ? 'xp-modified-down' : ''">
                     × {{ (store.hasCreatureOfHabit || store.hasPrimordial) ? '8' : '10' }} XP
                     <span v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-badge xp-badge-down">-2</span>
                   </td>
                 </tr>
                 <tr>
-                  <td>Compétence non-préférée</td>
+                  <td>Non-preferred Skill</td>
                   <td :class="(store.hasCreatureOfHabit || store.hasPrimordial || store.nonPrivSkillMultiplierReduction > 0) ? 'xp-modified' : ''">
                     × {{ ((store.hasCreatureOfHabit || store.hasPrimordial) ? 6 : 5) - store.nonPrivSkillMultiplierReduction }} XP
                     <span v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-badge xp-badge-up">+1</span>
@@ -509,7 +509,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Compétence préférée <span class="xp-star">*</span></td>
+                  <td>Preferred Skill <span class="xp-star">*</span></td>
                   <td :class="(store.hasCreatureOfHabit || store.hasPrimordial) ? 'xp-modified-down' : ''">
                     × {{ (store.hasCreatureOfHabit || store.hasPrimordial) ? '3' : '4' }} XP
                     <span v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-badge xp-badge-down">-1</span>
@@ -532,7 +532,7 @@
                 {{ store.mentalPowerChoice === 'primal' ? 'PHY, CHA, INS et leurs compétences' : 'INT, AGI, PSY et leurs compétences' }}
               </p>
               <p v-else class="xp-preferred-note">
-                <span class="xp-star">*</span> Choisissez Pulsions ou Concentration pour voir vos attributs et compétences préférés.
+                <span class="xp-star">*</span> Choose Primal or Focus to view your preferred attributes and skills.
               </p>
             </div>
           </v-tooltip>
