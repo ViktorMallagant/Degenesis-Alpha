@@ -58,7 +58,7 @@
               :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
               :title="t(`culturesConceptsCults.${character.culture}`)"
             />
-            <span v-else class="char-logotype-unknown" title="Culture non sélectionnée">?</span>
+            <span v-else class="char-logotype-unknown" title="Culture not selected>?</span>
             <img
               v-if="character.concept"
               :src="`${baseUrl}logotypes/concepts/${character.concept}.svg`"
@@ -66,7 +66,7 @@
               :class="isDark ? 'char-logotype--dark' : 'char-logotype--light'"
               :title="t(`culturesConceptsCults.${character.concept}`)"
             />
-            <span v-else class="char-logotype-unknown" title="Concept non sélectionné">?</span>
+            <span v-else class="char-logotype-unknown" title="Concept not selected">?</span>
             <template v-if="character.clan">
               <img
                 :src="`${baseUrl}logotypes/clans/${character.clan}.svg`"
@@ -83,7 +83,7 @@
                 :title="t(`culturesConceptsCults.${character.cult}`)"
               />
             </template>
-            <span v-else class="char-logotype-unknown" title="Culte non sélectionné">?</span>
+            <span v-else class="char-logotype-unknown" title="Cult not selected">?</span>
           </div>
         </div>
 
@@ -98,7 +98,7 @@
             @click="shareChar(character)"
           >
             <v-icon :icon="mdiShareVariant" size="16" class="mr-2"></v-icon>
-            Partager
+            Share
           </v-btn>
           <v-btn
             block
@@ -108,7 +108,7 @@
             @click="confirmDelete(character.name)"
           >
             <v-icon :icon="mdiDeleteOutline" size="16" class="mr-2"></v-icon>
-            Supprimer
+            Delete
           </v-btn>
         </div>
       </div>
@@ -134,8 +134,8 @@
           <strong>{{ pendingDeleteName }}</strong> The character will be permanently deleted. This action is irreversible.
         </v-card-text>
         <v-card-actions class="justify-end">
-          <v-btn variant="text" @click="deleteDialog = false">Annuler</v-btn>
-          <v-btn color="red-darken-2" variant="flat" @click="doDelete">Supprimer</v-btn>
+          <v-btn variant="text" @click="deleteDialog = false">Cancel</v-btn>
+          <v-btn color="red-darken-2" variant="flat" @click="doDelete">Delete</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
