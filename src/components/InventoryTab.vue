@@ -15,7 +15,7 @@
     <div class="inv-header elevation-2 pa-4 d-flex flex-wrap align-center gap-4">
       <!-- Budget LC/Dinars -->
       <div class="inv-stat-chip">
-        <span class="inv-stat-label">{{ store.computedDinars?.currency ?? 'LC' }}</span>
+        <span class="inv-stat-label">{{ store.computedDinars?.currency ?? 'Dinars/Drafts' }}</span>
         <input
           v-if="store.editorMode === 'free'"
           type="number"
@@ -34,7 +34,7 @@
 
       <!-- Ressources -->
       <div class="inv-stat-chip">
-        <span class="inv-stat-label">Ressources</span>
+        <span class="inv-stat-label">Resources</span>
         <span class="inv-stat-value">
           <template v-if="store.resourceMode !== 'C'">
             {{ store.effectiveResourcesLevel }}
@@ -49,7 +49,7 @@
 
       <!-- Info avancements (mode C uniquement) -->
       <div v-if="store.resourceMode === 'C'" class="text-caption inv-muted">
-        Base : {{ store.resourceAdvancements }} av. (Ressources {{ store.baseResourcesLevel }})
+        Base : {{ store.resourceAdvancements }} av. (Resources {{ store.baseResourcesLevel }})
       </div>
 
       <!-- Ressources Entrepreneur -->
@@ -76,11 +76,11 @@
 
       <!-- Encombrement -->
       <div class="inv-stat-chip">
-        <span class="inv-stat-label">Encombrement</span>
+        <span class="inv-stat-label">Encumbrance</span>
         <span class="inv-stat-value" :class="encumbrancePenalty > 0 ? 'text-red' : 'text-green'">
           {{ totalEncumbrance }}
         </span>
-        <span class="inv-stat-sub inv-muted">/ {{ phyPlusForce }} (PHY+Force)</span>
+        <span class="inv-stat-sub inv-muted">/ {{ phyPlusForce }} (PHY+Force+3)</span>
         <span v-if="encumbrancePenalty > 0" class="inv-stat-sub text-red font-weight-bold">
           Malus −{{ encumbrancePenalty }}D
         </span>
@@ -95,21 +95,21 @@
           <v-btn value="A" size="small">
             <v-tooltip activator="parent" location="bottom" max-width="300">
               <strong>Mode A — PDF FR</strong><br>
-              Peut acquérir si valeur ≤ Ressources. La valeur de Ressources est réduite de 1 à chaque achat.
+              Can be acquired if cost ≤ Resources. The Resources value is reduced by 1 with each purchase.
             </v-tooltip>
             A
           </v-btn>
           <v-btn value="B" size="small">
             <v-tooltip activator="parent" location="bottom" max-width="300">
               <strong>Mode B — Officiel</strong><br>
-              Peut acquérir si valeur ≤ Ressources. La valeur n'est réduite de 1 que si l'objet est <em>égal</em> aux Ressources.
+              Can be acquired if value ≤ Resources. The value is reduced by 1 only if the object is <em>identical</em> to Resources.
             </v-tooltip>
             B
           </v-btn>
           <v-btn value="C" size="small">
             <v-tooltip activator="parent" location="bottom" max-width="300">
               <strong>Mode C — Katsu</strong><br>
-              Chaque objet coûte sa valeur en avancements. Perdre trop d'avancements réduit le niveau de Ressources.
+              Each item costs its value in advancements. Losing too many advancements reduces the Resource level.
             </v-tooltip>
             C
           </v-btn>
@@ -120,12 +120,12 @@
     <div class="inv-body">
       <!-- ── Inventaire actuel ── -->
       <div class="inv-section">
-        <div class="inv-section-title">Inventaire
+        <div class="inv-section-title">Inventory
           <span class="text-caption inv-muted ml-1">({{ store.inventory.length }} objet{{ store.inventory.length !== 1 ? 's' : '' }})</span>
         </div>
 
         <div v-if="store.inventory.length === 0" class="inv-muted text-body-2 pa-2">
-          Aucun objet acquis.
+          No item acquired.
         </div>
 
         <v-table v-else density="compact" class="inv-table">
@@ -448,7 +448,7 @@ const totalEncumbrance = computed(() =>
 )
 
 const phyPlusForce = computed(() =>
-  store.attributeValue(Attributes.body) + store.skillValue(Skills.force)
+  store.attributeValue(Attributes.body) + store.skillValue(Skills.force) + 3
 )
 
 const encumbrancePenalty = computed(() =>
