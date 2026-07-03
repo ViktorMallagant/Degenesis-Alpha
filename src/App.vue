@@ -122,11 +122,11 @@
               This page is a community creation for the tabletop role playing game
               <a href="https://degenesis.com">Degenesis®</a>. Degenesis® is a trademark of
               <a href="https://sixmorevodka.com">SIXMOREVODKA® Studio GmbH</a>. All rights
-              reserved. This page is not affiliated with <a href="https://sixmorevodka.com">SIXMOREVODKA® Studio GmbH</a>.
+              reserved. This page is not affiliated with SIXMOREVODKA Studio GmbH.
             </span>
             <br />
             <br />
-            <a href="https://github.com/ViktorMallagant/Degenesis-Alpha" target="_blank">Source code</a>
+            <a :href="config.sourceCodeRepo" target="_blank">Source code</a>
           </v-list-item>
         </template>
       </v-navigation-drawer>
@@ -176,7 +176,7 @@
       </v-tabs>
       <v-window v-model="tab">
         <v-window-item value="edit">
-          <Editor></Editor>
+          <Editor> </Editor>
         </v-window-item>
         <v-window-item value="sheet">
           <div class="bg-grey-lighten-3">
@@ -189,7 +189,7 @@
       <IntroPage></IntroPage>
     </div>
     <v-snackbar v-model="ownCharSnackbar" timeout="6000" color="blue-darken-2">
-      It's your own file—it opened from your local save.
+      C'est ta propre fiche — elle s'est ouverte depuis ta sauvegarde locale.
     </v-snackbar>
     <v-overlay
       v-model="showOverlay"
@@ -204,11 +204,7 @@
               <div class="appName label text-uppercase mt-3" style="font-size: 2em;">{{ appTagLine }}</div>
             </div>
           </div>
-          <v-form
-            @submit.prevent="checkPassword"
-            class="passwordForm"
-            style="width: 100%;"
-          >
+          <v-form @submit="checkPassword" class="passwordForm" style="width: 100%;">
             <v-text-field
               :error="showPasswordWarning"
               :label="$t('messages.password')"
