@@ -65,8 +65,8 @@
     type="info"
     variant="tonal"
     class="mx-4 mt-4"
-    title="Fiche en lecture seule"
-    text="Cette fiche est partagée en mode lecture seule. Les modifications sont désactivées."
+    title="Read-only file."
+    text="This file is shared in read-only mode. Editing is disabled."
     closable
   ></v-alert>
   <v-alert
@@ -365,7 +365,7 @@
                         />
                       </div>
                       <div style="display: flex; justify-content: center; gap: 8px; pointer-events: auto">
-                        <v-btn v-if="!store.portrait" size="small" @click="triggerPortraitUpload">Choisir</v-btn>
+                        <v-btn v-if="!store.portrait" size="small" @click="triggerPortraitUpload">Choose</v-btn>
                         <v-btn v-if="store.portrait && !isSharedView" size="small" @click="openCropExisting">
                           <v-icon size="14" class="mr-1" :icon="mdiCrop"></v-icon>{{ $t('messages.editPortrait') }}
                         </v-btn>
