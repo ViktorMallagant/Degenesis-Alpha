@@ -27,7 +27,7 @@ const loading = ref(true)
 const error = ref(false)
 const entries = ref<Entry[]>([])
 
-const REPO = 'Katsu6624/degenesis-parasite.github.io'
+const REPO = 'viktormallagant/degenesis-alpha.github.io'
 
 onMounted(async () => {
   try {
@@ -43,7 +43,7 @@ onMounted(async () => {
         const type = featMatch ? 'feat' : 'fix'
         const message = (featMatch?.[1] ?? fixMatch?.[1] ?? '').trim()
         const raw = c.commit.author.date
-        const date = new Date(raw).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+        const date = new Date(raw).toLocaleDateString('en-EN', { month: '2-digit', day: '2-digit', year: 'numeric' })
         result.push({ sha: c.sha, type, message, date })
         if (result.length >= 7) break
       }
