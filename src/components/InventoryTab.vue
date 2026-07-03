@@ -90,7 +90,7 @@
 
       <!-- Sélecteur de mode -->
       <div class="d-flex align-center gap-2">
-        <span class="text-caption text-uppercase inv-muted mr-1">Mode Ressources</span>
+        <span class="text-caption text-uppercase inv-muted mr-1">Resources Mode</span>
         <v-btn-toggle v-model="store.resourceMode" density="compact" variant="outlined" divided mandatory>
           <v-btn value="A" size="small">
             <v-tooltip activator="parent" location="bottom" max-width="300">
@@ -121,7 +121,7 @@
       <!-- ── Inventaire actuel ── -->
       <div class="inv-section">
         <div class="inv-section-title">Inventory
-          <span class="text-caption inv-muted ml-1">({{ store.inventory.length }} objet{{ store.inventory.length !== 1 ? 's' : '' }})</span>
+          <span class="text-caption inv-muted ml-1">({{ store.inventory.length }} object{{ store.inventory.length !== 1 ? 's' : '' }})</span>
         </div>
 
         <div v-if="store.inventory.length === 0" class="inv-muted text-body-2 pa-2">
