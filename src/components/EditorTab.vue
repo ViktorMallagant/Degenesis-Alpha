@@ -65,8 +65,8 @@
     type="info"
     variant="tonal"
     class="mx-4 mt-4"
-    title="Read-only file."
-    text="This file is shared in read-only mode. Editing is disabled."
+    title="Fiche en lecture seule"
+    text="Cette fiche est partagée en mode lecture seule. Les modifications sont désactivées."
     closable
   ></v-alert>
   <v-alert
@@ -187,7 +187,7 @@
                                     variant="underlined"
                                     type="number"
                                     :error="store.remainingLC < 0"
-                                    @update:model-value="updateManualLC"
+@update:model-value="val => { const bonus = store.hasLandlord ? 1000 : 0; store.setManualLC(val === '' || val === null ? null : Number(val) - bonus + store.spentLC) }"
                                   ></v-text-field>
                                   <v-text-field
                                     v-else
@@ -237,7 +237,7 @@
                                     :labels="cultureLabels()"
                                     :descriptions="cultureDescriptions()"
                                     :value="store.culture"
-                                    @change="onSelectCulture"
+                                    @change="(c) => { store.setCulture(c as any); showCultureDialog = false }"
                                   />
                                 </v-card-text>
                               </v-card>
@@ -276,7 +276,7 @@
                                     :labels="conceptLabels()"
                                     :descriptions="conceptDescriptions()"
                                     :value="store.concept"
-                                    @change="onSelectConcept"
+                                    @change="(c) => { store.setConcept(c as any); showConceptDialog = false }"
                                   />
                                 </v-card-text>
                               </v-card>
@@ -315,7 +315,7 @@
                                     :labels="cultLabels()"
                                     :descriptions="cultDescriptions()"
                                     :value="store.cult"
-                                    @change="onSelectCult"
+                                    @change="(c) => { store.setCult(c as any); showCultDialog = false }"
                                   />
                                 </v-card-text>
                               </v-card>
@@ -365,7 +365,7 @@
                         />
                       </div>
                       <div style="display: flex; justify-content: center; gap: 8px; pointer-events: auto">
-                        <v-btn v-if="!store.portrait" size="small" @click="triggerPortraitUpload">Choose</v-btn>
+                        <v-btn v-if="!store.portrait" size="small" @click="triggerPortraitUpload">Choisir</v-btn>
                         <v-btn v-if="store.portrait && !isSharedView" size="small" @click="openCropExisting">
                           <v-icon size="14" class="mr-1" :icon="mdiCrop"></v-icon>{{ $t('messages.editPortrait') }}
                         </v-btn>
@@ -478,15 +478,15 @@
           <v-tooltip max-width="420" location="bottom">
             <template #activator="{ props }">
               <span v-bind="props" class="xp-cost-title">
-                XP COST OF UPGRADES
+                COÛT EN XP DES AUGMENTATIONS
                 <span v-if="store.mentalPowerChoice" class="xp-cost-star">*</span>
               </span>
             </template>
             <div class="xp-tooltip-content">
-              <p>Each increase costs XP equal to the <strong>new value × a factor</strong> based on the type:</p>
+              <p>Chaque augmentation coûte en XP la <strong>nouvelle valeur × un facteur</strong> selon le type :</p>
               <table class="xp-table">
                 <tr>
-                  <td>Non-preferred Attribute</td>
+                  <td>Attribut non-préféré</td>
                   <td :class="(store.hasCreatureOfHabit || store.hasPrimordial || store.nonPrivAttrMultiplierReduction > 0) ? 'xp-modified' : ''">
                     × {{ ((store.hasCreatureOfHabit || store.hasPrimordial) ? 14 : 12) - store.nonPrivAttrMultiplierReduction }} XP
                     <span v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-badge xp-badge-up">+2</span>
@@ -494,14 +494,14 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Preferred Attribute <span class="xp-star">*</span></td>
+                  <td>Attribut préféré <span class="xp-star">*</span></td>
                   <td :class="(store.hasCreatureOfHabit || store.hasPrimordial) ? 'xp-modified-down' : ''">
                     × {{ (store.hasCreatureOfHabit || store.hasPrimordial) ? '8' : '10' }} XP
                     <span v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-badge xp-badge-down">-2</span>
                   </td>
                 </tr>
                 <tr>
-                  <td>Non-preferred Skill</td>
+                  <td>Compétence non-préférée</td>
                   <td :class="(store.hasCreatureOfHabit || store.hasPrimordial || store.nonPrivSkillMultiplierReduction > 0) ? 'xp-modified' : ''">
                     × {{ ((store.hasCreatureOfHabit || store.hasPrimordial) ? 6 : 5) - store.nonPrivSkillMultiplierReduction }} XP
                     <span v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-badge xp-badge-up">+1</span>
@@ -509,7 +509,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Preferred Skill <span class="xp-star">*</span></td>
+                  <td>Compétence préférée <span class="xp-star">*</span></td>
                   <td :class="(store.hasCreatureOfHabit || store.hasPrimordial) ? 'xp-modified-down' : ''">
                     × {{ (store.hasCreatureOfHabit || store.hasPrimordial) ? '3' : '4' }} XP
                     <span v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-badge xp-badge-down">-1</span>
@@ -532,7 +532,7 @@
                 {{ store.mentalPowerChoice === 'primal' ? 'PHY, CHA, INS et leurs compétences' : 'INT, AGI, PSY et leurs compétences' }}
               </p>
               <p v-else class="xp-preferred-note">
-                <span class="xp-star">*</span> Choose Primal or Focus to view your preferred attributes and skills.
+                <span class="xp-star">*</span> Choisissez Pulsions ou Concentration pour voir vos attributs et compétences préférés.
               </p>
             </div>
           </v-tooltip>
@@ -672,26 +672,6 @@ const musicPlayer = useMusicPlayer()
 const pluralSuffix = (count: number): string => {
   if (count <= 1) return ''
   return i18n.locale.value === 'de' ? 'en' : 's'
-}
-
-const updateManualLC = (val: any) => {
-  const bonus = store.hasLandlord ? 1000 : 0
-  store.setManualLC(val === '' || val === null ? null : Number(val) - bonus + store.spentLC)
-}
-
-const onSelectCulture = (c: any) => {
-  store.setCulture(c as any)
-  showCultureDialog.value = false
-}
-
-const onSelectConcept = (c: any) => {
-  store.setConcept(c as any)
-  showConceptDialog.value = false
-}
-
-const onSelectCult = (c: any) => {
-  store.setCult(c as any)
-  showCultDialog.value = false
 }
 
 const shareCopied = ref(false)
@@ -1018,62 +998,64 @@ const renameCharacter = () => {
   outline: none;
   width: 100%;
   padding: 4px 0;
-  box-sizing: border-box;
-  width: 100%;
-  margin-left: 6px;
+  -moz-appearance: textfield;
+}
+.editor-lc-inline-input::-webkit-inner-spin-button,
+.editor-lc-inline-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.editor-lc-inline-input:focus {
+  border-bottom: 2px solid rgb(var(--v-theme-primary));
 }
 
-#skills-section {
-  gap: 1rem;
+a {
+  color: #616161;
 }
 
 .ccc-placeholder {
   cursor: pointer;
-  border: 1px dashed rgba(255, 255, 255, 0.3) !important;
-  border-radius: 4px !important;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(var(--v-theme-on-surface), 0.2);
+  transition: border-color 0.2s;
 }
-
+.ccc-placeholder:hover {
+  border-color: rgba(var(--v-theme-primary), 0.5);
+}
 .ccc-placeholder-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 250px;
-  color: #888;
+  gap: 6px;
+  padding: 16px 8px;
 }
-
 .ccc-placeholder-type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: bold;
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: #666;
+  color: rgba(var(--v-theme-on-surface), 0.45);
 }
-
 .ccc-placeholder-btn {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: background 0.2s;
+  font-size: 0.78rem;
+  color: rgba(var(--v-theme-on-surface), 0.6);
 }
 
-.ccc-placeholder-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+.show {
+  opacity: 1;
+  transition: opacity 0.5s;
 }
 
-.modifier-item {
-  border-left: 3px solid #ffa500;
-  padding-left: 12px;
+.hide {
+  opacity: 0;
+  max-height: 0;
 }
 
-@media (max-width: 600px) {
-  .gifted-cancel-btn {
-    bottom: 16px;
-    left: 16px;
-    font-size: 0.8em;
-  }
+.name-edit-button {
+  opacity: 0;
+}
+
+#name:hover .name-edit-button {
+  opacity: 1;
 }
 </style>
