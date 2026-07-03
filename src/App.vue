@@ -122,11 +122,11 @@
               This page is a community creation for the tabletop role playing game
               <a href="https://degenesis.com">Degenesis®</a>. Degenesis® is a trademark of
               <a href="https://sixmorevodka.com">SIXMOREVODKA® Studio GmbH</a>. All rights
-              reserved. This page is not affiliated with <a href="https://sixmorevodka.com">SIXMOREVODKA® Studio GmbH</a>.
+              reserved. This page is not affiliated with SIXMOREVODKA® Studio GmbH.
             </span>
             <br />
             <br />
-            <a href="https://github.com/ViktorMallagant/Degenesis-Alpha" target="_blank">Source code</a>
+            Source code
           </v-list-item>
         </template>
       </v-navigation-drawer>
@@ -218,10 +218,10 @@
         </v-card-text>
       </v-card>
     </v-overlay>
-  </v-app>
   <SplashScreen />
   <TrigLawOverlay />
   <MesmerizedOverlay />
+  </v-app>
 </template>
 
 <script setup lang="ts">
