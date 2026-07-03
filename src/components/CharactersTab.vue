@@ -40,7 +40,7 @@
           <!-- Crop overlay button -->
           <button v-if="character.portrait" class="char-portrait-crop-btn" @click.stop="openCrop(character)">
             <v-icon size="14" :icon="mdiCrop"></v-icon>
-            <span>Recadrer</span>
+            <span>Crop</span>
           </button>
         </div>
 
