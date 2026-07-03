@@ -560,19 +560,19 @@ export const useCharacterStore = defineStore('character', {
     // Starting wealth per cult: [amount, currency]. Total = (rankLevel + resources) * amount.
     computedDinars(): { value: number; factor: number; currency: string; rankLevel: number; resources: number } | null {
       const cultFactors: Record<string, [number, string]> = {
-        anabaptists: [50, 'LC'],
-        anubians: [100, 'dinars'],
-        apocalyptics: [200, 'LC'],
-        palers: [50, 'LC'],
-        chroniclers: [128, 'LC'],
-        clanners: [50, 'LC'],
-        scrappers: [50, 'LC'],
-        scourgers: [100, 'dinars'],
-        hellvetics: [50, 'LC'],
-        jehammedans: [100, 'LC'],
-        judges: [50, 'LC'],
-        neolibyans: [1000, 'dinars'],
-        spitalians: [100, 'LC']
+        anabaptists: [50, 'Drafts'],
+        anubians: [100, 'Dinars'],
+        apocalyptics: [200, 'Drafts'],
+        palers: [50, 'Drafts'],
+        chroniclers: [128, 'Drafts'],
+        clanners: [50, 'Drafts'],
+        scrappers: [50, 'Drafts'],
+        scourgers: [100, 'Dinars'],
+        hellvetics: [50, 'Drafts'],
+        jehammedans: [100, 'Drafts'],
+        judges: [50, 'Drafts'],
+        neolibyans: [1000, 'Dinars'],
+        spitalians: [100, 'Drafts']
       }
       if (!this.cult) return null
       const factor = cultFactors[this.cult.name]
