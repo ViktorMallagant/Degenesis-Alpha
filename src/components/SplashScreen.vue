@@ -21,12 +21,12 @@ const visible = ref(localStorage.getItem('parasite-splash-seen') !== 'true')
 const videoEl = ref<HTMLVideoElement | null>(null)
 const started = ref(false)
 
-const prompt = ref('CLIQUER POUR LANCER')
+const prompt = ref('CLICK TO START')
 
 function onInteract() {
   if (!started.value) {
     started.value = true
-    prompt.value = 'APPUYER SUR UNE TOUCHE POUR CONTINUER'
+    prompt.value = 'PRESS A KEY TO CONTINUE'
     videoEl.value!.volume = 0.1
     videoEl.value!.play()
   } else {
@@ -37,7 +37,7 @@ function onInteract() {
 function onKey() {
   if (!started.value) {
     started.value = true
-    prompt.value = 'APPUYER SUR UNE TOUCHE POUR CONTINUER'
+    prompt.value = 'PRESS A KEY TO CONTINUE'
     videoEl.value!.volume = 0.1
     videoEl.value!.play()
   } else {
