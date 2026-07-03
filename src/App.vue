@@ -204,7 +204,7 @@
               <div class="appName label text-uppercase mt-3" style="font-size: 2em;">{{ appTagLine }}</div>
             </div>
           </div>
-          <v-form @submit="checkPassword" class="passwordForm" style="width: 100%;">
+          <v-form @submit.prevent="checkPassword" class="passwordForm" style="width: 100%;">
             <v-text-field
               :error="showPasswordWarning"
               :label="$t('messages.password')"
