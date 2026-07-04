@@ -74,7 +74,7 @@ export const CreatureOfHabit = new Legacy('creatureofhabit', [], [], [], Skills.
 ])
 export const Marked = new Legacy('marked', [], [], [atLeastOrigin(Origins.secrets, 2)], undefined, undefined, ['adventurer', 'seeker', 'heretic', 'abomination'], [
   { type: 'sporeMax' as const, bonus: 5 },
-  { type: 'choiceSkill' as const, bonus: 1, count: 1, scope: 'ins' as const, description: '+1 dans une compétence d\'INS au choix' },
+  { type: 'choiceSkill' as const, bonus: 1, count: 1, scope: 'ins' as const, description: '+2 to an INS skill of your choice' },
   m('+5 valeur maximale de sporulation temporaire. -3D pour éviter de retomber dans la dépendance.'),
 ])
 export const Experienced = new Legacy('experienced', [], [], [], undefined, undefined, [], [
