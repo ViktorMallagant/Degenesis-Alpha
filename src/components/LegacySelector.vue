@@ -74,7 +74,7 @@
             <v-select
               v-for="k in choiceEffect.count"
               :key="'skill-' + i + '-' + k"
-              :label="'Compétence ' + k"
+              :label="'Skill ' + k"
               :items="skillChoiceItems(choiceEffect.scope)"
               :model-value="pendingSkills[i + '-' + (k-1)]"
               @update:model-value="v => setPendingSkill(i, k - 1, v)"
