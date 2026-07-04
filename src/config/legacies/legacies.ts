@@ -21,7 +21,7 @@ export const Outcast = new Legacy('outcast', [], [], [atMostOrigin(Origins.allie
   xp(6),
   m('-2D à tous les jets d\'interaction sociale dans toute zone où votre Culte est dominant.'),
 ])
-export const Optimized = new Legacy('optimized', [], [], [], undefined, undefined, ['seeker', 'healer', 'chosen', 'disciple'], [
+export const Optimized = new Legacy('optimized', [], [], [atleastOrigin(Origins.allies, 0)], undefined, undefined, ['seeker', 'healer', 'chosen', 'disciple'], [
   xp(6),
   m('Max 1 point dans les historiques à la création. -1D INS+Empathie en permanence.'),
 ])
