@@ -81,7 +81,7 @@ export const Experienced = new Legacy('experienced', [], [], [], undefined, unde
   xp(6),
   { type: 'xpOriginBonus' as const, points: 1 },
   { type: 'xpPotentialBonus' as const, points: 2 },
-  { type: 'choiceAttribute' as const, bonus: -1, count: 2, description: '-1 dans deux attributs au choix' },
+  { type: 'choiceAttribute' as const, bonus: -1, count: 2, description: '-1 to two attributes of your choice' },
 ])
 export const Sidewinder = new Legacy('sidewinder', [], [], [atLeastOrigin(Origins.network, 1), atLeastOrigin(Origins.secrets, 3)], undefined, undefined, ['heretic', 'defiler', 'abomination'], [
   xp(6),
@@ -122,7 +122,7 @@ export const Abducted = new Legacy('abducted', [], [], [atLeastOrigin(Origins.se
 export const Veteran = new Legacy('veteran', [], [], [atLeastOrigin(Origins.renown, 2), atLeastOrigin(Origins.authority, 2)], undefined, undefined, [], [
   origin('renown', 2),
   origin('allies', 2),
-  { type: 'choiceSkill' as const, bonus: 2, count: 1, scope: 'combat' as const, description: '+2 dans une compétence de combat au choix' },
+  { type: 'choiceSkill' as const, bonus: 2, count: 1, scope: 'combat' as const, description: '+2 to a combat skill of your choice' },
   m('Si vous perdez un combat ou une mission, tous vos Historiques baissent de 2.'),
 ])
 export const Journeyman = new Legacy('journeyman', [], [], [atLeastOrigin(Origins.network, 2), atLeastOrigin(Origins.resources, 1)], undefined, undefined, ['adventurer', 'traveler'], [
@@ -130,7 +130,7 @@ export const Journeyman = new Legacy('journeyman', [], [], [atLeastOrigin(Origin
   m('+1D INS+Orientation. Alliés et Autorité ne peuvent pas dépasser 3.'),
 ])
 export const Superstitious = new Legacy('superstitious', [], [], [], undefined, undefined, ['healer', 'traditionalist', 'zealot', 'disciple'], [
-  { type: 'choiceSkill' as const, bonus: 2, count: 1, scope: 'ins' as const, description: '+2 dans une compétence d\'INS au choix' },
+  { type: 'choiceSkill' as const, bonus: 2, count: 1, scope: 'ins' as const, description: '+2 to an INT skill of your choice' },
   m('Peut dépasser le max normal. Science et Technologie ne peuvent pas dépasser 0.'),
 ])
 export const FamilyBond = new Legacy('familybond', [], [], [atLeastOrigin(Origins.allies, 1), atLeastOrigin(Origins.network, 1)], undefined, undefined, [], [
@@ -147,7 +147,7 @@ export const TechTuned = new Legacy('techtuned', [atLeastSkill(Skills.artifactLo
 ])
 export const Vigilante = new Legacy('vigilante', [], [], [], undefined, undefined, ['conqueror', 'chosen', 'protector', 'righteous'], [
   { type: 'xpPotentialBonus' as const, points: 1 },
-  { type: 'choiceSkill' as const, bonus: 2, count: 1, scope: 'faithOrWillpower' as const, description: '+2 dans Foi ou Volonté au choix' },
+  { type: 'choiceSkill' as const, bonus: 2, count: 1, scope: 'faithOrWillpower' as const, description: '+2 to Faith or Willpower (your choice)' },
   m('-2D interactions sociales avec forces de l\'ordre et entités criminelles.'),
 ])
 export const CannonFodder = new Legacy('cannonfodder', [], [], [atLeastOrigin(Origins.renown, 2)], undefined, undefined, ['martyr', 'conqueror', 'destroyer'], [
@@ -166,7 +166,7 @@ export const Repugnant = new Legacy('repugnant', [], [], [], undefined, undefine
 ])
 export const Taken = new Legacy('taken', [], [], [], undefined, undefined, [], [
   skillEx('survival', 1),
-  { type: 'choiceSkill' as const, bonus: 1, count: 1, scope: 'faithOrWillpower' as const, description: '+1 dans Foi ou Volonté au choix (peut dépasser le max normal)' },
+  { type: 'choiceSkill' as const, bonus: 1, count: 1, scope: 'faithOrWillpower' as const, description: '+1 to Faith or Willpower (your choice; can exceed the normal maximum)' },
   m('Peut dépasser le max normal pour les compétences ci-dessus. 2 points d\'Égo pour éviter de suivre une piste liée à votre passé, sinon -2D pour le reste de la journée.'),
 ])
 export const Lowlife = new Legacy('lowlife', [], [], [atLeastOrigin(Origins.renown, 2), atLeastOrigin(Origins.network, 1)], undefined, undefined, [], [
