@@ -53,7 +53,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "+1W mentale Verteidigung. Jeder fehlgeschlagene Wurf auf mentale Verteidigung = Ego-Verlust in Höhe der Schwierigkeit des Wurfs."
   },
   "+1D interactions sociales avec criminels. Prime sur votre tête : 250 LC × somme de vos 2 plus hauts Historiques.": {
-    en: "+1D social interactions with criminals. Bounty on your head: 250 LC × the sum of your 2 highest Origins.",
+    en: "+1D social interactions with criminals. Bounty on your head: 250 Drafts X the sum of your 2 highest Origins.",
     de: "+1W soziale Interaktionen mit Kriminellen. Kopfgeld auf dich: 250 LC × die Summe deiner 2 höchsten Hintergründe."
   },
   "Coût XP -2 pour attributs privilégiés, -1 pour compétences privilégiées. Coût XP +2 pour attributs non-privilégiés, +1 pour compétences non-privilégiées.": {
@@ -201,7 +201,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Trauma-Mali werden um (1) pro Potenzial-Stufe verringert."
   },
   "+1D par niveau à PHY+Vigueur pour les jets liés à la course.": {
-    en: "+1D per level to PHY+Stamina for running-related rolls.",
+    en: "+1D per level to BOD+Stamina for running-related rolls.",
     de: "+1W pro Stufe auf KÖR+Ausdauer für laufbezogene Würfe."
   },
   "Une fois par confrontation : +1D par niveau à la Défense mentale pour contrer une Attaque mentale.": {
@@ -269,7 +269,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Unbewaffnet: +Stufe auf Kraft für Betäubung; oder Betäubung entfernen, um stattdessen Bruchschaden zuzufügen."
   },
   "+1D par niveau à PHY+Force. Annule 1D d'encombrement par niveau. +niveau à Force pour les dégâts en corps à corps. Besoin du double de nourriture.": {
-    en: "+1D per level to PHY+Force. Cancels 1D of encumbrance per level. +level to Force for melee damage. Needs double the food.",
+    en: "+1D per level to BOD+Force. Cancels 1D of encumbrance per level. +level to Force for melee damage. Needs double the food.",
     de: "+1W pro Stufe auf KÖR+Kraft. Hebt 1W Behinderung pro Stufe auf. +Stufe auf Kraft für Nahkampfschaden. Benötigt die doppelte Menge Nahrung."
   },
   "Achat de compétences/attributs non privilégiés : multiplicateur réduit de 1 (compétences niv. 1, attributs niv. 2), et des deux de 2 au niv. 3.": {
@@ -313,7 +313,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Wenn Verletzungen > 50% (Fleischwunden + Traumata): Rage bis zum Ende des Kampfes — keine Ego-Höchstgrenze, aber aktive Verteidigung unmöglich. Einzelne Stufe."
   },
   "(3) Égo → double les déclencheurs d'une attaque PHY+Corps à corps. Utilisable (niveau) fois par jour.": {
-    en: "(3) Ego → doubles the triggers of a PHY+Melee attack. Usable (level) times per day.",
+    en: "(3) Ego → doubles the triggers of a BOD+Melee attack. Usable (level) times per day.",
     de: "(3) Ego → verdoppelt die Auslöser eines KÖR+Nahkampf-Angriffs. (Stufe) Mal pro Tag einsetzbar."
   },
   "Attaque mentale INS+Empathie +1D/niveau : si réussit → ennemi −(déclencheurs+1) dés aux actions de combat physique contre lui jusqu'à fin de scène (annulé si le personnage attaque).": {
@@ -325,7 +325,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "PSY+Dominieren +1W/Stufe vs. mentale Verteidigung: bei Misserfolg → Ziel −1W pro Auslöser auf alle seine Würfe in der nächsten Runde."
   },
   "Feinte PSY+Tromperie vs INS+Perception → si succès : PHY+Corps à corps +1D/niveau (diff. +4, Terrifiant (2), Choc (4DC), tous dégâts Mortels).": {
-    en: "Feint PSY+Deception vs INS+Perception → on success: PHY+Melee +1D/level (diff. +4, Terrifying (2), Shock (4DC), all damage Lethal).",
+    en: "Feint PSY+Deception vs INS+Perception → on success: BOD+Melee +1D/level (diff. +4, Terrifying (2), Shock (4DC), all damage Lethal).",
     de: "Finte PSY+Täuschung vs. INS+Wahrnehmung → bei Erfolg: KÖR+Nahkampf +1W/Stufe (Schw. +4, Furchteinflößend (2), Schock (4SK), aller Schaden Tödlich)."
   },
   "Jet combiné PSY+Foi + INT+Médecine +1D/niveau pour soigner. Peut choisir de soigner Égo au lieu de Blessures superficielles.": {
@@ -397,7 +397,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Fokus: (1) Fleischwunde → (1) Ego. Primal: (1) Ego → (1) Fleischwunde geheilt. Maximum (2×Stufe) Tausche pro Tag."
   },
   "Coup ciblé PHY+Lutte (+4−niveau difficulté) → cible −1D par niveau à attaques et défenses pendant (niveau) rounds ; mouvement réduit.": {
-    en: "Targeted PHY+Brawl strike (+4−level difficulty) → target −1D per level to attacks and defenses for (level) rounds; reduced movement.",
+    en: "Targeted BOD+Brawl strike (+4−level difficulty) → target −1D per level to attacks and defenses for (level) rounds; reduced movement.",
     de: "Gezielter KÖR+Faustkampf-Schlag (+4−Stufe Schwierigkeit) → Ziel −1W pro Stufe auf Angriffe und Verteidigungen für (Stufe) Runden; reduzierte Bewegung."
   },
   "Chaque round sans dépenser d'Égo en Initiative : +1 au maximum d'Égo dépensable au prochain round. Délai maximum = niveau de Potentiel.": {
@@ -665,7 +665,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "INS+Empathie vs. PSY+Wille/Glaube des Gegners bestehen → +1W pro Stufe auf alle Angriffe und Verteidigungen gegen diesen Gegner für den Rest des Kampfes."
   },
   "Charge en 1 round entier : PHY+Force + (niveau) dés → ennemi à terre pendant (1) round.": {
-    en: "Charge over 1 full round: PHY+Force + (level) dice → enemy knocked down for (1) round.",
+    en: "Charge over 1 full round: BOD+Force + (level) dice → enemy knocked down for (1) round.",
     de: "Angriff über 1 ganze Runde: KÖR+Kraft + (Stufe) Würfel → Gegner für (1) Runde am Boden."
   },
   "Marteau+mousquet simultanés : −4D maniement atténué de 1D par niveau. Si attaque réussit : déclencheurs comptent doubles pour les dégâts. Défense passive −1 au round suivant.": {
@@ -685,7 +685,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Jedes Mal, wenn ein Verbündeter fällt: +1 Ego und +1 passive Verteidigung pro Stufe bis zum Ende des Kampfes."
   },
   "Accepter jusqu'à (niveau) dégâts supplémentaires → prochain jet PHY+Corps à corps réussi ajoute ces dégâts en Mortel ignorant l'armure.": {
-    en: "Accept up to (level) extra damage → the next successful PHY+Melee roll adds that damage as Lethal, ignoring armor.",
+    en: "Accept up to (level) extra damage → the next successful BOD+Melee roll adds that damage as Lethal, ignoring armor.",
     de: "Bis zu (Stufe) zusätzlichen Schaden hinnehmen → der nächste erfolgreiche KÖR+Nahkampf-Wurf fügt diesen Schaden als Tödlich hinzu, Rüstung ignorierend."
   },
   "Peut utiliser le résultat d'Initiative d'un autre Juge avec Répression au round 1 (niveau 1), 2 (niveau 2), ou 3 (niveau 3).": {
@@ -997,7 +997,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Verkürzte Operationsdauer: 6h/3h/1,5h je nach Stufe. Kann (1) dauerhaftes maximales Trauma opfern für +1 Auslöser/Stufe auf den Wurf."
   },
   "Maximum de Traumatismes = PHY+PSY ou PSY×2 (meilleur des deux) +1 par niveau (peut dépasser 12).": {
-    en: "Maximum Trauma = PHY+PSY or PSY×2 (whichever is better) +1 per level (can exceed 12).",
+    en: "Maximum Trauma = BOD+PSY or PSY×2 (whichever is better) +1 per level (can exceed 12).",
     de: "Maximales Trauma = KÖR+PSY oder PSY×2 (der bessere Wert) +1 pro Stufe (kann 12 überschreiten)."
   },
   "Peut ranimer un mort en 3 rounds par niveau (max 9 rounds au niveau 3) via une action complexe INT+Médecine (10).": {
