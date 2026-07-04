@@ -294,7 +294,7 @@ export const messages = {
       titleTooltip: 'During creation, you must settle two dilemmas that define your character\'s soul.<br><br>There are two pairs of special skills in Degenesis, and you must choose only one from each pair.',
       primalFocus: {
         label: 'PRIMAL VS FOCUS',
-        tooltip: 'The choice between Primal and Focus largely determines how your character solves problems: with their heart or their head. This is mainly a matter of character interpretation, not dice rolls. The purely technical aspect of this decision is that it will be cheaper in XP to access the attributes and skills linked to Primal (PHY, CHA, INS) or Focus (INT, PSY, AGI). It also unlocks Potentials that can only be taken if they are linked to Primal or Focus.'
+        tooltip: 'The choice between Primal and Focus largely determines how your character solves problems: with their heart or their head. This is mainly a matter of character interpretation, not dice rolls. The purely technical aspect of this decision is that it will be cheaper in XP to access the attributes and skills linked to Primal (BOD, CHA, INS) or Focus (INT, PSY, AGI). It also unlocks Potentials that can only be taken if they are linked to Primal or Focus.'
       },
       faithWillpower: {
         label: 'FAITH VS WILLPOWER',
