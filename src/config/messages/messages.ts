@@ -186,11 +186,11 @@ export const messages = {
     rename: 'Umbenennen',
     renameCharacter: 'Charakternamen ändern',
     createRenamedCopy: 'Kopie erstellen',
-    welcome: 'Willkommen bei Parasite!',
+    welcome: 'Willkommen bei Degenesis: Alpha!',
     introduction: {
       whatIsIt: 'Was ist diese Seite?',
       whatIsItText1:
-        'Parasite ist ein Charaktereditor für Katharsys und Artefakte, das Regelwerk für das Rollenspiel Degenesis. ' +
+        'Degenesis: Alpha ist ein Charaktereditor für Katharsys und Artefakte, das Regelwerk für das Rollenspiel Degenesis. ' +
         'Du kannst diese Seite nutzen, um neue Charaktere zu erstellen sowie zuvor erstellte anzusehen und zu bearbeiten. ' +
         'Für jeden Charakter kannst du eine Vorschau des Charakterbogens sowie sein Inventar einsehen. Dieser Charakterbogen ' +
         'kann auch als druckbare und bearbeitbare PDF-Datei exportiert oder per Link mit deinen Freunden/SL geteilt werden. ' +
@@ -400,11 +400,11 @@ export const messages = {
     rename: 'rename',
     renameCharacter: 'Rename character',
     createRenamedCopy: 'Create copy',
-    welcome: 'Welcome to Parasite!',
+    welcome: 'Welcome to Degenesis: Alpha!',
     introduction: {
       whatIsIt: 'What is this?',
       whatIsItText1:
-        'Parasite is a character editor for Katharsys and Artifacts, the rule system used by the roleplaying game Degenesis. ' +
+        'Degenesis: Alpha is a character editor for Katharsys and Artifacts, the rule system used by the roleplaying game Degenesis. ' +
         'You can use this site to create new characters as well as view and edit those you previously created. ' +
         'For each character, you can view a preview of the character sheet as well as its inventory. This character sheet can also be ' +
         'exported as a printable and editable PDF file, or shared via a link with your friends/GM. The French translation of the text belongs to Edge. ' +
@@ -612,10 +612,10 @@ export const messages = {
     rename: 'renommer',
     renameCharacter: 'Renommer le personnage',
     createRenamedCopy: 'Faire une copie',
-    welcome: 'Bienvenue à Parasite !',
+    welcome: 'Bienvenue à Degenesis: Alpha !',
     introduction: {
       whatIsIt: `<p>Qu'est-ce que c'est ? </p><a href="./midona.gif"  class="midona-egg" style="opacity:0;">MIDONA DID NOTHING WRONG</a>`,
-      whatIsItText1: `Parasite est un éditeur de personnage pour Katharsys et Artéfacts, le système de règles utilisé par le jeu de rôle Degenesis. Vous pouvez utiliser ce site pour créer de nouveaux personnages ainsi que consulter et modifier ceux que vous avez créés précédemment. Pour chaque personnage, vous pouvez consulter un aperçu de la feuille de personnage ainsi que son inventaire. Cette feuille de personnage peut également être exportée sous forme de fichier PDF imprimable et modifiable ou être partagé par un lien à vos amis/MJ. La traduction française du texte appartient à Edge. Les versions anglaises et allemandes de ce site ont été fait avec un traducteur en ligne par soucis de facilité. Il peut y avoir des différences entre la traduction d'Edge et celles des versions allemandes et anglaises.`,
+      whatIsItText1: `Degenesis: Alpha est un éditeur de personnage pour Katharsys et Artéfacts, le système de règles utilisé par le jeu de rôle Degenesis. Vous pouvez utiliser ce site pour créer de nouveaux personnages ainsi que consulter et modifier ceux que vous avez créés précédemment. Pour chaque personnage, vous pouvez consulter un aperçu de la feuille de personnage ainsi que son inventaire. Cette feuille de personnage peut également être exportée sous forme de fichier PDF imprimable et modifiable ou être partagé par un lien à vos amis/MJ. La traduction française du texte appartient à Edge. Les versions anglaises et allemandes de ce site ont été fait avec un traducteur en ligne par soucis de facilité. Il peut y avoir des différences entre la traduction d'Edge et celles des versions allemandes et anglaises.`,
       whatIsItText2: `Tous vos personnages, ainsi que toutes les modifications qui leur sont apportées, sont sauvegardés dans le stockage local de votre navigateur. Cela signifie qu'à chaque fois que vous visitez cette page avec le même navigateur, vous pourrez voir vos personnages dans le tiroir de navigation sur la gauche. Cliquez dessus pour les consulter et les modifier.`,
       whatIsItText3: `Diskordanz (Développeur original du site) : « Le code source de cette page est disponible sur {0}. L'intention est de rendre cette application accessible à toute personne souhaitant l'exécuter elle-même. Je veux éviter une situation similaire à celle du générateur officiel, qui a précédemment été indisponible pendant de longues périodes. »`,
       credits: {
