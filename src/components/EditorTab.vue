@@ -613,8 +613,8 @@
     :prepend-icon="mdiClose"
     @click="store.setLegacy(giftedLegacy!, 0)"
   >
-    Annuler l'Allocation
-    <span class="gifted-cancel-counter">({{ store.giftedRemaining }}/6 restants)</span>
+    Cancel Allocation
+    <span class="gifted-cancel-counter">({{ store.giftedRemaining }}/6 remaining)</span>
   </v-btn>
   </div>
 </template>
