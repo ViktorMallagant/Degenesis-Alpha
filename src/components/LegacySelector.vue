@@ -96,12 +96,12 @@
   <!-- Dialog Techno-Influenceur : choix artéfact -->
   <v-dialog v-model="artefactDialogOpen" max-width="520" persistent>
     <v-card>
-      <v-card-title class="text-h6 pa-4">Techno-Influenceur — Artéfact Légendaire</v-card-title>
+      <v-card-title class="text-h6 pa-4">Techno-Influencer — Legendary Artifact</v-card-title>
       <v-card-text class="pa-4 pt-0">
         <p style="font-size:14px;line-height:1.6;color:#ccc" class="mb-4">
-          Vous avez trouvé par pure chance un artéfact légendaire. Attention, le MJ peut décider que vous n'en avez pas du tout (on vous l'a volé, vous l'avez déjà vendu). Mais dans le cas où il vous le laisse, il y a deux possibilités. Soit il vous en donne un aléatoire (cliquez sur "Aléatoire") soit vous choisissez votre artéfact.
+         You have found a legendary artifact by sheer luck. Be aware that the GM may decide you don't have it at all (e.g., it was stolen or you already sold it). However, if they let you keep it, there are two possibilities: either you are assigned a random one (click "Random"), or you choose your artifact.
         </p>
-        <p style="font-size:13px;font-weight:700;color:#aaa;letter-spacing:0.05em" class="mb-3">QU'EST-CE QUE VOTRE MJ AUTORISE ?</p>
+        <p style="font-size:13px;font-weight:700;color:#aaa;letter-spacing:0.05em" class="mb-3">WHAT DOES YOUR GM ALLOW?</p>
 
         <!-- Sélection artéfact -->
         <v-select
@@ -116,23 +116,23 @@
 
         <!-- Message artéfact aléatoire -->
         <div v-if="artefactPickMode === 'random' && artefactRandom" class="mt-2 pa-3" style="background:rgba(255,255,255,0.06);border-radius:6px;font-size:14px">
-          🎲 Vous avez reçu <strong>{{ artefactRandom.name }}</strong> — allez voir dans l'inventaire !
+          🎲 You have received <strong>{{ artefactRandom.name }}</strong> — Go check the inventory!
         </div>
       </v-card-text>
       <v-card-actions class="pa-4 pt-0" style="flex-wrap:wrap;gap:8px">
         <template v-if="artefactPickMode === 'random'">
           <v-spacer></v-spacer>
-          <v-btn variant="flat" color="primary" @click="artefactDialogOpen = false">Fermer</v-btn>
+          <v-btn variant="flat" color="primary" @click="artefactDialogOpen = false">Close</v-btn>
         </template>
         <template v-else-if="artefactPickMode === 'choose'">
-          <v-btn variant="text" color="grey" @click="artefactPickMode = null">Retour</v-btn>
+          <v-btn variant="text" color="grey" @click="artefactPickMode = null">Back</v-btn>
           <v-spacer></v-spacer>
-          <v-btn variant="flat" color="primary" :disabled="!artefactChosen" @click="confirmArtefactChosenDialog">Confirmer</v-btn>
+          <v-btn variant="flat" color="primary" :disabled="!artefactChosen" @click="confirmArtefactChosenDialog">Confirm</v-btn>
         </template>
         <template v-else>
-          <v-btn variant="outlined" color="grey" @click="confirmArtefactDialog('none')">Pas d'Artéfact</v-btn>
-          <v-btn variant="outlined" color="primary" @click="confirmArtefactDialog('random')">Artéfact aléatoire</v-btn>
-          <v-btn variant="outlined" color="secondary" @click="artefactPickMode = 'choose'">Choisir un Artéfact</v-btn>
+          <v-btn variant="outlined" color="grey" @click="confirmArtefactDialog('none')">No Artifact</v-btn>
+          <v-btn variant="outlined" color="primary" @click="confirmArtefactDialog('random')">Random artifact</v-btn>
+          <v-btn variant="outlined" color="secondary" @click="artefactPickMode = 'choose'">Choose an Artifact</v-btn>
         </template>
       </v-card-actions>
     </v-card>
@@ -141,23 +141,23 @@
   <!-- Dialog Doué -->
   <v-dialog v-model="giftedDialogOpen" max-width="460" persistent>
     <v-card>
-      <v-card-title class="text-h6 pa-4" style="color:#ef5350">Héritage Doué</v-card-title>
+      <v-card-title class="text-h6 pa-4" style="color:#ef5350">Gifted Heritage</v-card-title>
       <v-card-text class="pa-4 pt-0">
         <p style="font-size:14px;line-height:1.7;color:#ccc">
-          Vous disposez de <strong style="color:#ef5350">6 points bonus</strong> à répartir librement entre les compétences de
-          <strong>CHARISME</strong> (CHA) et d'<strong>INTELLECT</strong> (INT).
+          You have at your disposal <strong style="color:#ef5350">6 points bonus</strong> to be freely distributed among the skills of
+          <strong>CHARISMA</strong> (CHA) and of <strong>INTELLECT</strong> (INT).
         </p>
         <p style="font-size:14px;line-height:1.7;color:#ccc;margin-top:8px">
-          Ces points peuvent <strong>dépasser le maximum normal</strong> à la création.
+          These points may exceed the <strong>normal maximum</strong> at the time of creation.
         </p>
         <p style="font-size:13px;color:#888;margin-top:10px">
-          Les compétences éligibles <span style="color:#ef5350;font-weight:700">clignotent en rouge</span>.
-          Cliquez sur les cases au-delà du maximum pour allouer vos points.
+          Eligible skills are <span style="color:#ef5350;font-weight:700">flashing red</span>.
+          Click the boxes beyond the maximum to allocate your points.
         </p>
       </v-card-text>
       <v-card-actions class="pa-4 pt-0">
         <v-spacer></v-spacer>
-        <v-btn variant="flat" color="red-darken-2" @click="startGiftedAllocation">COMMENCER L'ALLOCATION</v-btn>
+        <v-btn variant="flat" color="red-darken-2" @click="startGiftedAllocation">START ALLOCATION</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -165,12 +165,12 @@
   <!-- Dialog Renégat -->
   <v-dialog v-model="renegadeDialogOpen" max-width="480" persistent>
     <v-card>
-      <v-card-title class="text-h6 pa-4">Renégat</v-card-title>
+      <v-card-title class="text-h6 pa-4">Renegade</v-card-title>
       <v-card-text class="pa-4 pt-0">
-        <p style="font-size:13px;color:#aaa;margin-bottom:12px">Quels sont les Cultes pour lesquels vous travaillez en tant que mercenaire ?</p>
+        <p style="font-size:13px;color:#aaa;margin-bottom:12px">Which cults do you work for as a mercenary?</p>
         <v-select
           v-model="renegadeCult1"
-          label="Premier Culte"
+          label="Prime Cult"
           :items="allCultItems.filter(c => c.value !== store.cult?.name && c.value !== renegadeCult2)"
           density="compact"
           variant="outlined"
@@ -178,7 +178,7 @@
         ></v-select>
         <v-select
           v-model="renegadeCult2"
-          label="Deuxième Culte"
+          label="Secondary Cult"
           :items="allCultItems.filter(c => c.value !== store.cult?.name && c.value !== renegadeCult1)"
           density="compact"
           variant="outlined"
@@ -186,8 +186,8 @@
       </v-card-text>
       <v-card-actions class="pa-4 pt-0">
         <v-spacer></v-spacer>
-        <v-btn variant="text" @click="cancelRenegadeDialog">Annuler</v-btn>
-        <v-btn variant="flat" color="primary" :disabled="!renegadeCult1 || !renegadeCult2" @click="confirmRenegadeDialog">Confirmer</v-btn>
+        <v-btn variant="text" @click="cancelRenegadeDialog">Cancel</v-btn>
+        <v-btn variant="flat" color="primary" :disabled="!renegadeCult1 || !renegadeCult2" @click="confirmRenegadeDialog">Confirm</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -195,11 +195,11 @@
   <!-- Dialog Imposteur -->
   <v-dialog v-model="imposteurDialogOpen" max-width="480" persistent>
     <v-card>
-      <v-card-title class="text-h6 pa-4">Imposteur</v-card-title>
+      <v-card-title class="text-h6 pa-4">Impostor</v-card-title>
       <v-card-text class="pa-4 pt-0">
         <v-select
           v-model="imposteurSelectedCult"
-          label="Quel est le culte que vous avez infiltré ?"
+          label="Which cult did you infiltrate?"
           :items="allCultItems.filter(c => c.value !== store.cult?.name)"
           density="compact"
           variant="outlined"
@@ -207,8 +207,8 @@
       </v-card-text>
       <v-card-actions class="pa-4 pt-0">
         <v-spacer></v-spacer>
-        <v-btn variant="text" @click="cancelImposteurDialog">Annuler</v-btn>
-        <v-btn variant="flat" color="primary" :disabled="!imposteurSelectedCult" @click="confirmImposteurDialog">Confirmer</v-btn>
+        <v-btn variant="text" @click="cancelImposteurDialog">Cancel</v-btn>
+        <v-btn variant="flat" color="primary" :disabled="!imposteurSelectedCult" @click="confirmImposteurDialog">Confirm</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -216,11 +216,11 @@
   <!-- Dialog Transfuge -->
   <v-dialog v-model="sidewinderDialogOpen" max-width="480" persistent>
     <v-card>
-      <v-card-title class="text-h6 pa-4">Transfuge</v-card-title>
+      <v-card-title class="text-h6 pa-4">Defector</v-card-title>
       <v-card-text class="pa-4 pt-0">
         <v-select
           v-model="sidewinderOldCult"
-          :label="'Quel était le premier culte de votre personnage ?'"
+          label="What was your character's first cult?"
           :items="allCultItems"
           density="compact"
           variant="outlined"
@@ -228,7 +228,7 @@
         ></v-select>
         <v-select
           v-model="sidewinderNewCult"
-          :label="'Quel est le nouveau culte de votre personnage ?'"
+          label="What is your character's new cult?"
           :items="allCultItems.filter(c => c.value !== sidewinderOldCult)"
           density="compact"
           variant="outlined"
@@ -236,8 +236,8 @@
       </v-card-text>
       <v-card-actions class="pa-4 pt-0">
         <v-spacer></v-spacer>
-        <v-btn variant="text" @click="cancelSidewinderDialog">Annuler</v-btn>
-        <v-btn variant="flat" color="primary" :disabled="!sidewinderOldCult || !sidewinderNewCult" @click="confirmSidewinderDialog">Confirmer</v-btn>
+        <v-btn variant="text" @click="cancelSidewinderDialog">Cancel</v-btn>
+        <v-btn variant="flat" color="primary" :disabled="!sidewinderOldCult || !sidewinderNewCult" @click="confirmSidewinderDialog">Confirm</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
