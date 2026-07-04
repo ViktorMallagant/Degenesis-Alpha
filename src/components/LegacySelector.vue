@@ -144,8 +144,8 @@
       <v-card-title class="text-h6 pa-4" style="color:#ef5350">Gifted Heritage</v-card-title>
       <v-card-text class="pa-4 pt-0">
         <p style="font-size:14px;line-height:1.7;color:#ccc">
-          You have at your disposal <strong style="color:#ef5350">6 points bonus</strong> to be freely distributed among the skills of
-          <strong>CHARISMA</strong> (CHA) and of <strong>INTELLECT</strong> (INT).
+          You have at your disposal <strong style="color:#ef5350">6 points bonus</strong> to be freely distributed among any 
+          <strong>CHARISMA</strong> (CHA) and <strong>INTELLECT</strong> (INT) skills.
         </p>
         <p style="font-size:14px;line-height:1.7;color:#ccc;margin-top:8px">
           These points may exceed the <strong>normal maximum</strong> at the time of creation.
