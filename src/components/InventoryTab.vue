@@ -80,7 +80,7 @@
         <span class="inv-stat-value" :class="encumbrancePenalty > 0 ? 'text-red' : 'text-green'">
           {{ totalEncumbrance }}
         </span>
-        <span class="inv-stat-sub inv-muted">/ {{ phyPlusForce }} (PHY+Force+3)</span>
+        <span class="inv-stat-sub inv-muted">/ {{ phyPlusForce }} (BOD+Force+3)</span>
         <span v-if="encumbrancePenalty > 0" class="inv-stat-sub text-red font-weight-bold">
           Malus −{{ encumbrancePenalty }}D
         </span>
