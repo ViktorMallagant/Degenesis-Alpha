@@ -87,8 +87,8 @@
       </v-card-text>
       <v-card-actions class="pa-4 pt-0">
         <v-spacer></v-spacer>
-        <v-btn variant="text" @click="cancelDialog">Annuler</v-btn>
-        <v-btn variant="flat" color="primary" :disabled="!allChoicesMade" @click="confirmDialog">Confirmer</v-btn>
+        <v-btn variant="text" @click="cancelDialog">Cancel</v-btn>
+        <v-btn variant="flat" color="primary" :disabled="!allChoicesMade" @click="confirmDialog">Confirm</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -108,7 +108,7 @@
           v-if="artefactPickMode === 'choose'"
           v-model="artefactChosen"
           :items="legendaryArtefactItems"
-          label="Choisir un artéfact"
+          label="Choose an artefact"
           density="compact"
           variant="outlined"
           class="mt-2"
