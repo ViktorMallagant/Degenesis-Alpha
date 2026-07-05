@@ -683,12 +683,12 @@ export const ITEMS: Item[] = [
   { id: 'scindo', name: 'Scindo', category: 'brawlingweapons', image: IMG + 'brawl/scindo.png', handling: '+1D', damage: '3+F/2', properties: 'Smooth Running (3DC), Special', encumbrance: 1, techLevel: 'II', value: 250, resources: 3 },
 
   // ─── ammunition (nouvelles) ───
-  { id: 'mini-grenaille', name: '.410 – « Mini » Grenaille', category: 'ammunition', image: IMG + 'ammo/410_tiny_shot.png', damage: '7', techLevel: 'III', value: 7 },
-  { id: 'mini-chevrotine', name: '.410 – « Mini » Chevrotine', category: 'ammunition', image: IMG + 'ammo/410_tiny_slug.png', damage: '7', techLevel: 'III', value: 7 },
-  { id: '762-poing', name: '7.62 – « Poing »', category: 'ammunition', image: IMG + 'ammo/7_62_fist.png', damage: '13', techLevel: 'IV', value: 70 },
-  { id: '14mm-danger', name: '14 mm – « Danger »', category: 'ammunition', image: IMG + 'ammo/14mm_danger.png', damage: '15', techLevel: 'IV', value: 200 },
-  { id: 'balle-fragmentation', name: 'Balle à Fragmentation', category: 'ammunition', image: IMG + 'ammo/fragger_round.png', damage: '14', techLevel: 'V', value: 500 },
-  { id: 'cartouche-freon', name: 'Cartouche au Fréon', category: 'ammunition', image: IMG + 'ammo/freon_cartridge.png', damage: '5', techLevel: 'V', value: 75, resources: 2 },
+  { id: 'mini-grenaille', name: '.410 shot – "Tiny"', category: 'ammunition', image: IMG + 'ammo/410_tiny_shot.png', damage: '7', techLevel: 'III', value: 7 },
+  { id: 'mini-chevrotine', name: '.410 slug – "Tiny"', category: 'ammunition', image: IMG + 'ammo/410_tiny_slug.png', damage: '7', techLevel: 'III', value: 7 },
+  { id: '762-poing', name: '7.62mm – "Fist"', category: 'ammunition', image: IMG + 'ammo/7_62_fist.png', damage: '13', techLevel: 'IV', value: 70 },
+  { id: '14mm-danger', name: '14mm – "Danger"', category: 'ammunition', image: IMG + 'ammo/14mm_danger.png', damage: '15', techLevel: 'IV', value: 200 },
+  { id: 'balle-fragmentation', name: 'Fragmentation Round', category: 'ammunition', image: IMG + 'ammo/fragger_round.png', damage: '14', techLevel: 'V', value: 500 },
+  { id: 'cartouche-freon', name: 'Freon Cartridge', category: 'ammunition', image: IMG + 'ammo/freon_cartridge.png', damage: '5', techLevel: 'V', value: 75, resources: 2 },
 
   // ─── VÉHICULES (nouveaux) ───
   { id: 'camion-citerne', name: 'Camion-Citerne', category: 'vehiclesmounts', cult: 'neolibyans', image: IMG + 'equipment/tank.svg', properties: 'Vit. Max 3, Acc. 2, Frein. 1, Carrosserie 40, Structure 20, Empl. 3, Réservoir 20 000L', techLevel: 'III', value: 45000, resources: 5 },
