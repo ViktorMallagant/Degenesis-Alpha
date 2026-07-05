@@ -58,7 +58,7 @@ export const WEAPON_PROPERTY_DESCRIPTIONS: Record<string, string> = {
   'terrifying': '<b>TERRIFYING (DIFFICULTY)</b><br>The mere sight of this weapon strikes fear into an enemy\'s heart: all opponents must succeed on a PSY+Faith/Willpower check against the property\'s difficulty or suffer a -2D penalty to their next action. At the start of each combat round, they can regain their composure with a successful action check. Once the check succeeds, the opponent becomes immune for the remainder of the combat.',
 
   // Weapon properties
-  'Splaying': '<b>Splaying</b><br>If an attack succeeds with 2 triggers, the fighter can snap the blades shut to deal 1 additional die of damage. The 2 triggers used do not count toward the damage calculation. This means that if the player rolls only a 1 for the additional damage, they will deal 1 point less damage than if they had chosen not to use "Splaying." At best, they can deal +4 damage.',
+  'Cutting': '<b>Cutting</b><br>If an attack succeeds with 2 triggers, the fighter can snap the blades shut to deal 1 additional die of damage. The 2 triggers used do not count toward the damage calculation. This means that if the player rolls only a 1 for the additional damage, they will deal 1 point less damage than if they had chosen not to use "Cutting." At best, they can deal +4 damage.',
 
   'gruesome': '<b>GRUESOME (RATING)</b><br>Bristling with serrated blades or menacing spikes, this weapon is designed to ensure that searing pain lingers long after striking its target. A weapon with this property grants (1) bonus trigger per level when it causes a Complication (at least one trigger must be spent initially to inflict the Complication).',
 
