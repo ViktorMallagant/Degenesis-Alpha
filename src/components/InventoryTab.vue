@@ -132,17 +132,17 @@
           <thead>
             <tr>
               <th></th>
-              <th>Nom</th>
-              <th>Cat.</th>
-              <th>Maniab.</th>
-              <th>Portée</th>
-              <th>Dégâts</th>
-              <th>Charg.</th>
-              <th>Propriétés</th>
-              <th>Encomb.</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Handling</th>
+              <th>Range</th>
+              <th>Damage</th>
+              <th>Magazine</th>
+              <th>Qualities</th>
+              <th>Enc.</th>
               <th>Tech.</th>
-              <th>Empl.</th>
-              <th>Acquis via</th>
+              <th>Slots</th>
+              <th>Acquired via</th>
               <th></th>
             </tr>
           </thead>
