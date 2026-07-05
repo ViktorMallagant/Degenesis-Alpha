@@ -267,7 +267,7 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Nom</th>
+                <th>Name</th>
                 <th v-if="hasCaliber(group.items)">Caliber</th>
                 <th v-if="hasArmorValue(group.items)">Armor</th>
                 <th>Hand.</th>
