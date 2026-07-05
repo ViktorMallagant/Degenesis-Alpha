@@ -36,7 +36,7 @@ export const WEAPON_PROPERTY_DESCRIPTIONS: Record<string, string> = {
 
   'fragile': '<b>FRAGILE</b><br>If at least one die rolls a 1, the weapon shatters. If the Action was successful, it at least causes Damage.',
 
-  'incendiaire': '<b>FIRE HAZARDOUS</b><br>The ammo the weapon uses ignites its target. Apply the fire rules.,
+  'incendiaire': '<b>FIRE HAZARDOUS</b><br>The ammo the weapon uses ignites its target. Apply the fire rules.',
 
   'incontrôlable': '<b>OUT OF CONTROL (DIFFICULTY)</b><br>Some weapons are just as dangerous for their wielder as for those he attacks. If the attacker misses his target, he has to get his weapon under control again: he rolls BOD+Melee (Difficulty). If this roll fails, too, the weapon hurts him as if it had attacked him.',
 
