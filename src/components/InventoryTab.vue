@@ -134,10 +134,10 @@
               <th></th>
               <th>Name</th>
               <th>Category</th>
-              <th>Handling</th>
+              <th>Hand.</th>
               <th>Range</th>
               <th>Damage</th>
-              <th>Magazine</th>
+              <th>Mag.</th>
               <th>Qualities</th>
               <th>Enc.</th>
               <th>Tech.</th>
@@ -193,13 +193,13 @@
 
       <!-- ── Catalogue ── -->
       <div class="inv-section">
-        <div class="inv-section-title">Catalogue</div>
+        <div class="inv-section-title">Catalog</div>
 
         <!-- Filtres -->
         <div class="d-flex flex-wrap gap-3 mb-3">
           <v-text-field
             v-model="search"
-            placeholder="Rechercher..."
+            placeholder="To research..."
             variant="outlined"
             density="compact"
             hide-details
@@ -212,7 +212,7 @@
             :items="availableCategoryOptions"
             item-title="label"
             item-value="value"
-            placeholder="Toutes les catégories"
+            placeholder="All categories"
             variant="outlined"
             density="compact"
             hide-details
@@ -226,7 +226,7 @@
             class="mt-1"
           >
             <template #label>
-              <span class="inv-checkbox-label">Accessibles seulement</span>
+              <span class="inv-checkbox-label">Accessible only</span>
             </template>
           </v-checkbox>
           <v-checkbox
@@ -236,8 +236,8 @@
             class="mt-1"
           >
             <template #label>
-              <HoverTooltip description="Seuls les équipements du culte auquel vous appartenez sont montrés. Cochez cette case pour filtrer uniquement les équipements de culte.">
-                <span class="inv-checkbox-label inv-has-tooltip">Équipement de Culte</span>
+              <HoverTooltip description="Only the equipment belonging to your cult is displayed. Check this box to filter for cult equipment only.">
+                <span class="inv-checkbox-label inv-has-tooltip">Cult Equipment</span>
               </HoverTooltip>
             </template>
           </v-checkbox>
@@ -248,14 +248,14 @@
             class="mt-1"
           >
             <template #label>
-              <span class="inv-checkbox-label">Montrez tous les équipements de Culte</span>
+              <span class="inv-checkbox-label">Show all cult equipment</span>
             </template>
           </v-checkbox>
         </div>
 
         <!-- Groupes par catégorie -->
         <div v-if="filteredCatalogGroups.length === 0" class="inv-muted text-body-2 pa-2">
-          Aucun objet disponible pour les filtres sélectionnés.
+          No items available for the selected filters.
         </div>
 
         <div v-for="group in filteredCatalogGroups" :key="group.category" class="mb-4">
@@ -268,20 +268,20 @@
               <tr>
                 <th></th>
                 <th>Nom</th>
-                <th v-if="hasCaliber(group.items)">Calibre</th>
-                <th v-if="hasArmorValue(group.items)">Armure</th>
-                <th>Maniab.</th>
-                <th>Portée</th>
-                <th>Dégâts</th>
-                <th>Charg.</th>
-                <th>Propriétés</th>
-                <th>Encomb.</th>
+                <th v-if="hasCaliber(group.items)">Caliber</th>
+                <th v-if="hasArmorValue(group.items)">Armor</th>
+                <th>Hand.</th>
+                <th>Range</th>
+                <th>Damage</th>
+                <th>Mag.</th>
+                <th>Qualities</th>
+                <th>Enc.</th>
                 <th>Tech.</th>
-                <th>Empl.</th>
-                <th>Prix</th>
+                <th>Slots.</th>
+                <th>Price</th>
                 <th v-if="hasResources(group.items)">Res.</th>
-                <th>Culte</th>
-                <th>Acheter</th>
+                <th>Cult</th>
+                <th>Buy</th>
               </tr>
             </thead>
             <tbody>
@@ -372,12 +372,12 @@
   <!-- ── Dialog sélection de niveau ── -->
   <v-dialog v-model="levelDialog" max-width="400" persistent>
     <v-card v-if="levelDialogItem">
-      <v-card-title class="text-h6">Choisir le niveau</v-card-title>
+      <v-card-title class="text-h6">Choose the level</v-card-title>
       <v-card-text>
         <p class="mb-3">
           <strong>{{ levelDialogItem.name }}</strong><br>
-          <span v-if="!levelDialogFree" class="text-caption inv-muted">Prix unitaire : {{ levelDialogItem.value }} {{ store.computedDinars?.currency ?? 'LC' }}</span>
-          <span v-else class="text-caption" style="color: rgb(var(--v-theme-purple-darken-2))">Ajout gratuit</span>
+          <span v-if="!levelDialogFree" class="text-caption inv-muted">Unit price: {{ levelDialogItem.value }} {{ store.computedDinars?.currency ?? 'LC' }}</span>
+          <span v-else class="text-caption" style="color: rgb(var(--v-theme-purple-darken-2))">Free addition</span>
         </p>
         <v-btn-toggle v-model="selectedLevel" mandatory density="compact" variant="outlined" divided class="mb-3">
           <v-btn
@@ -392,19 +392,19 @@
           </v-btn>
         </v-btn-toggle>
         <div v-if="!levelDialogFree" class="text-caption inv-muted">
-          Restant après achat : {{ store.remainingLC - levelCost(levelDialogItem, selectedLevel) }} {{ store.computedDinars?.currency ?? 'LC' }}
+          Remaining after purchase: {{ store.remainingLC - levelCost(levelDialogItem, selectedLevel) }} {{ store.computedDinars?.currency ?? 'LC' }}
         </div>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn variant="text" @click="levelDialog = false">Annuler</v-btn>
+        <v-btn variant="text" @click="levelDialog = false">Cancel</v-btn>
         <v-btn
           :color="levelDialogFree ? 'purple-darken-2' : 'green-darken-2'"
           variant="flat"
           :disabled="!levelDialogFree && !canAffordLevel(levelDialogItem, selectedLevel)"
           @click="confirmLevelPurchase"
         >
-          {{ levelDialogFree ? 'Ajouter' : 'Acheter' }}
+          {{ levelDialogFree ? 'Add' : 'Buy' }}
         </v-btn>
       </v-card-actions>
     </v-card>
