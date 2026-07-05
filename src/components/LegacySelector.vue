@@ -363,7 +363,7 @@ function missingConditionsHtml(legacy: Legacy): string {
 
 // ── Techno-Influenceur : artéfact légendaire dialog ──────────────────────────
 
-const LEGENDARY_ARTEFACTS = ITEMS.filter(i => i.category === 'artefactsLegendaires')
+const LEGENDARY_ARTEFACTS = ITEMS.filter(i => i.category === 'legendaryartifacts')
 
 const legendaryArtefactItems = computed(() =>
   LEGENDARY_ARTEFACTS.map(i => ({ title: i.name, value: i.id }))
