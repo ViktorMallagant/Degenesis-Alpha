@@ -194,63 +194,63 @@ export const ITEMS: Item[] = [
   {
     id: 'mun-50gl', name: '.50 GL', category: 'ammunition', damage: '12', techLevel: 'IV', value: 70,
     image: IMG + 'ammo/50gl.png',
-    description: '<b>.50 GL — « TONNERRE »</b><br>Un très gros calibre à impact extrême. Le gaz pressurisé dans la balle est capable de détruire les armes les moins résistantes. On a plutôt tendance à échanger ces ammunition qu\'à les utiliser.',
+    description: '<b>.50 GL — "THUNDER"</b><br>A very heavy caliber with extreme punch. The gas pressure of the fired bullet can tear lesser weapons apart, and therefore the ammo is often traded rather than fired.',
   },
   {
     id: 'mun-357', name: '.357', category: 'ammunition', damage: '6', techLevel: 'IV', value: 20, image: IMG + 'ammo/357.png',
-    description: '<b>.357 — « CUIVRE »</b><br>À l\'Ère de la Bête, les humains chassaient tout ce qui avait de la chair et des os. Ils utilisaient principalement des carabines et des petits pistolets de calibre .357.<br><br>Aujourd\'hui, des enfants trouvent encore des cartouches dans la poussière. Ils les récupèrent, puis les troquent dans les manufactures contre du pain et de la soupe. Ces cartouches sont alors nettoyées, polies, puis remplies de poudre et de balles. Les vieux stocks de ammunition se font extrêmement rares.',
+    description: '<b>.357 — "BRASS"</b><br>In the era of the beast, humans hunted everything with meat on its bones. They mainly used hunting rifles and small pistols of caliber .357.<br><br>Children still find the cartridges in the dirt, collect them, and trade them for some bread and soup in a workshop. The cartridges are cleaned, polished, and filled with gunpowder and bullets. Old stock is extremely rare.',
   },
   {
     id: 'mun-44', name: '.44', category: 'ammunition', damage: '10', techLevel: 'IV', value: 50, image: IMG + 'ammo/44.png',
-    description: '<b>.44 — « ALPINE »</b><br>Munition très puissante pour revolvers à double action. Au sud de la Borca, la découverte d\'un entrepôt fit sensation il y a dix hivers de cela. Le site fut exploité, et les ammunition envahirent les marchés du canton. La plupart des balles de calibre .44 vendues à Justitienne ou à Wroclaw proviennent de cet endroit.',
+    description: '<b>.44 — "ALPINE"</b><br>A very strong ammo for double-action revolvers. There is a known storage house for the ammo in the south of Borca; when it was found and exploited 10 winters ago, the ammo flooded the markets of the region. Most of the .44 bullets sold in Justitian or Wroclaw to this day hailed from this find.',
   },
   {
-    id: 'mun-556', name: '5.56x45 mm', category: 'ammunition', damage: '11', techLevel: 'IV', value: 60, image: IMG + 'ammo/5_56x45mm.png',
-    description: '<b>5.56×45 mm OEU — « DIGITAL »</b><br>Calibre standard des nations de l\'OTAN au XXIe siècle. Bien que l\'OEU ait pris définitivement la place de l\'OTAN, les performances de ces ammunition leur permirent de continuer à être utilisées, et ce, jusqu\'à aujourd\'hui.<br><br>Une balle 5.56 × 45 mm OEU est vraiment efficace contre une cible humaine non protégée, mais percera difficilement une armure lourde si la cible est éloignée.',
+    id: 'mun-556', name: '5.56x45mm', category: 'ammunition', damage: '11', techLevel: 'IV', value: 60, image: IMG + 'ammo/5_56x45mm.png',
+    description: '<b>5.56×45MM UEO — "FINGER"</b><br>The standard caliber of the NATO nations in the 21st century. Although NATO was ultimately supplanted by the UEO, the latter still accepted this ammo because of the capacities already manufactured. This same ammo is used today.<br><br>The 5.56x45 mm UEO round is very effective against unprotected human targets, but has its difficulties with heavy body armor if the target is further away.',
   },
   {
-    id: 'mun-balle-blindee-hf', name: 'Balle Blindée HF', category: 'ammunition', damage: '11', techLevel: 'IV', value: 80, image: IMG + 'ammo/hf_full_jacket.png',
-    description: '<b>BALLE BLINDÉE HAUTE FRÉQUENCE</b><br>Équivalent du calibre 5.56 × 45 mm OEU, ce type de ammunition fut modifié par les Hellvétiques pour être utilisé à haute fréquence de tir avec leurs défricheurs. C\'est la couche de Téflon qui entoure chaque cartouche qui rend cette utilisation possible.',
+    id: 'mun-balle-blindee-hf', name: 'HF Full Jacket', category: 'ammunition', damage: '11', techLevel: 'IV', value: 80, image: IMG + 'ammo/hf_full_jacket.png',
+    description: '<b>HIGH FREQUENCY FULL JACKET</b><br>This type of ammo is equal to the 5.56x45 mm UEO caliber but was modified by the Hellvetics to be fired from their Trailblazers at a high fire rate. To make it possible to cycle the bullets so fast, they are coated with Teflon.',
   },
   {
-    id: 'mun-pointe-creuse-hf', name: 'Balle Pointe Creuse HF', category: 'ammunition', damage: '14', techLevel: 'IV', value: 80, image: IMG + 'ammo/hf_hollow_point.png',
-    description: '<b>BALLE POINTE CREUSE À HAUTE FRÉQUENCE</b><br>Munition pour défricheur qui ressemble elle aussi au 5.56 × 45 mm OEU, et qui est conçue pour infliger le plus de dégâts possibles aux tissus humains. En contrepartie, sa puissance de pénétration reste limitée.',
+    id: 'mun-pointe-creuse-hf', name: 'HF Hollow Point', category: 'ammunition', damage: '14', techLevel: 'IV', value: 80, image: IMG + 'ammo/hf_hollow_point.png',
+    description: '<b>HIGH FREQUENCY HOLLOW POINT</b><br>This Trailblazer ammo, which again looks exactly like the 5.56x45 mm UEO, is designed to ensure the heaviest possible damage in human tissue. The price for this is low armor penetration.',
   },
   {
-    id: 'mun-flechette-chasse', name: '5.56 mm Fléchette CHASSE', category: 'ammunition', damage: '13', techLevel: 'V', value: 220, image: IMG + 'ammo/5_56_hunter_flechette.png',
-    description: '<b>FLÉCHETTE DE CHASSE — « FRAGMENTEUR »</b><br>Ces fléchettes à très haute vitesse initiale possèdent une excellente puissance de pénétration. Bien que prohibées sur les champs de bataille, elles furent utilisées dans certains conflits.<br><br>Alors que des cartouches normales peuvent être en partie recyclées, c\'est impossible dans le cas des fléchettes. Une fois tirées, elles se déforment dans leur cible et deviennent inutilisables. La précision requise pour leur fabrication s\'est perdue lors du cataclysme. Les fléchettes sont considérées comme extrêmement rares et vendues à des prix exorbitants sur les marchés.',
+    id: 'mun-flechette-chasse', name: '5.56mm Hunter Flechette', category: 'ammunition', damage: '13', techLevel: 'V', value: 220, image: IMG + 'ammo/5_56_hunter_flechette.png',
+    description: '<b>HUNTER FLECHETTE — "SPLINTER"</b><br>Flechettes are needle ammo with an extremely high muzzle velocity and excellent penetration.<br><br>While regular ammo cartridges can partly be recycled, there is no chance to do so with flechettes. Once fired, they change shape in the target and become unusable. Furthermore, they perfectly fit in their plastic casings. The precision required for something like that is lost since the Eshaton. Flechettes are considered very rare and are sold at high prices on the market.',
   },
   {
-    id: 'mun-46x30', name: '4.6x30 mm', category: 'ammunition', damage: '7', techLevel: 'IV', value: 30, image: IMG + 'ammo/4_6x30mm.png',
-    description: '<b>4.6×30 MM</b><br>Munition standard de l\'OTAN et ensuite de l\'OEU pour pistolets et pistolets mitrailleurs. Disponible de manière éparse, elle se trouve généralement près des barricades et des casernes de l\'OEU.',
+    id: 'mun-46x30', name: '4.6x30mm', category: 'ammunition', damage: '7', techLevel: 'IV', value: 30, image: IMG + 'ammo/4_6x30mm.png',
+    description: '<b>4.6×30MM</b><br>The standard bullet of NATO and later of the UEO for pistols and submachine guns. Sporadically found, usually very close to UEO barricades or barracks.',
   },
   {
-    id: 'mun-9mm', name: '9 mm', category: 'ammunition', damage: '9', techLevel: 'IV', value: 40, image: IMG + 'ammo/9mm.png',
-    description: '<b>9 MM OEU</b><br>Les armes de calibre 9 mm ont presque toutes disparu, et les quelques ammunition encore trouvables résident dans leurs chargeurs. Il est fort probable que la production de ammunition de calibre 9 mm OEU ait été stoppée plusieurs années avant l\'Eshaton.',
+    id: 'mun-9mm', name: '9mm', category: 'ammunition', damage: '9', techLevel: 'IV', value: 40, image: IMG + 'ammo/9mm.png',
+    description: '<b>9MM UEO</b><br>Only a few weapons with 9 mm caliber still exist, and there is not much more ammo to be found than what these weapons have in their clips. It’s likely that the 9 mm UEO had been discontinued years before the Eshaton.',
   },
   {
-    id: 'mun-5x30-sans-douille', name: '5x30 mm Sans Douille', category: 'ammunition', damage: '8', techLevel: 'V', value: 180, image: IMG + 'ammo/5x30mm_caseless.png',
-    description: '<b>5×30 MM SANS DOUILLE</b><br>Balle sans douille à bonnes propriétés balistiques. Le projectile est fiché dans un bloc de poudre comprimée et durcie qui s\'enflamme entièrement lors du tir. Aucun fabricant connu ne sait produire ces ammunition.',
+    id: 'mun-5x30-sans-douille', name: '5x30mm Caseless', category: 'ammunition', damage: '8', techLevel: 'V', value: 180, image: IMG + 'ammo/5x30mm_caseless.png',
+    description: '<b>5×30MM CASELESS</b><br>A caseless bullet with good ballistic properties. The projectile is encased in a block of compressed and hardened powder that completely burns away at ignition. There is no known manufacturer that could produce this ammo.',
   },
   {
-    id: 'mun-cal12-chevrotine', name: 'Calibre 12 (Chevrotine)', category: 'ammunition', damage: '10', properties: 'Scatter', techLevel: 'III', value: 10, image: IMG + 'ammo/caliber_12_buckshot.png',
-    description: '<b>CALIBRE 12</b><br>Les Ferrailleurs adorent les ammunition de calibre 12. Ils remplissent les ammunition, épaisses comme un pouce, de vis, de clous, de cailloux, de sel ou de chevrotine. Ils expérimentent aussi différents mélanges de poudre. Ce calibre ne fonctionne qu\'avec les rifles de chasse.',
+    id: 'mun-cal12-chevrotine', name: 'Caliber 12 (Buckshot)', category: 'ammunition', damage: '10', properties: 'Scatter', techLevel: 'III', value: 10, image: IMG + 'ammo/caliber_12_buckshot.png',
+    description: '<b>CALIBRE 12</b><br>Scrappers love caliber 12. They fill the ammo, which is about as thick as a man’s thumb, with screws, nails, stones, salt or buckshot, and they experiment with the propellant. The caliber is only suitable for shotguns.',
   },
   {
-    id: 'mun-cal12-fusil', name: 'Calibre 12 (Munition à fusil)', category: 'ammunition', damage: '10', techLevel: 'III', value: 20, image: IMG + 'ammo/caliber_12_rifle_barrel_ammo.png',
-    description: '<b>CALIBRE 12</b><br>Les Ferrailleurs adorent les ammunition de calibre 12. Ils remplissent les ammunition, épaisses comme un pouce, de vis, de clous, de cailloux, de sel ou de chevrotine. Ils expérimentent aussi différents mélanges de poudre. Ce calibre ne fonctionne qu\'avec les rifles de chasse.',
+    id: 'mun-cal12-fusil', name: 'Caliber 12 (Rifle Barrel Ammo)', category: 'ammunition', damage: '10', techLevel: 'III', value: 20, image: IMG + 'ammo/caliber_12_rifle_barrel_ammo.png',
+    description: '<b>CALIBRE 12</b><br>Standard shotgun slug ammo.',
   },
   {
-    id: 'mun-balle-plomb', name: 'Balle en plomb et Black Powder', category: 'ammunition', damage: '8', techLevel: 'III', value: 10, image: IMG + 'ammo/lead_bullet.png',
-    description: '<b>BALLES EN PLOMB ET Black Powder</b><br>Pour produire une balle en plomb, il faut du plomb fondu et une tour. Le plomb est versé dans une passoire au sommet de la tour. Lors de sa chute, il prend une forme arrondie, durcit, puis atterrit dans un morceau de tissu en contrebas.<br><br>Pour la poudre à propulsion, du charbon de bois, du salpêtre et du soufre sont broyés, mélangés, puis enroulés dans de fines bandelettes de cellulose. La poudre et la balle sont ensuite chargées dans l\'arme par la bouche du canon. Le mécanisme de platine à silex crée une étincelle dans le canon, ce qui enflamme la charge de poudre.',
+    id: 'mun-balle-plomb', name: 'Lead Bullets and Black Powder', category: 'ammunition', damage: '8', techLevel: 'III', value: 10, image: IMG + 'ammo/lead_bullet.png',
+    description: '<b>LEAD BULLETS AND BLACK POWDER</b><br>To produce a lead bullet, you need liquid lead and a tower. The lead is poured through a sieve at the top of the tower, takes on its round form while falling, hardens, and falls into water buckets. The lead bullets only have to be filtered out. For the propellant, charcoal, niter, and sulfur are ground, mixed, and rolled into very thin strips of cellulose. Propellant and bullet are filled into the muzzle loader via the barrel. The flintlock mechanism sends a spark into the barrel that ignites the charge.',
   },
   {
     id: 'mun-ecube', name: 'E-Cube', category: 'ammunition', techLevel: 'V', value: 1000, image: IMG + 'ammo/e_cube_full.png',
-    description: '<b>E-CUBE</b><br>L\'E-Cube est un réservoir d\'énergie rechargeable utilisé sur des armes énergétiques telles que le ravageur, l\'électrocuteur ou le fustigateur. Son aspect cubique et compact lui permet d\'alimenter d\'innombrables artifacts. Les Chroniqueurs sont à l\'affût de toute trouvaille, et rachètent tout ce qu\'ils peuvent. Les E-Cubes se trouvent donc rarement sur les marchés, et leur prix est astronomique.',
+    description: '<b>E-CUBE</b><br>An E-Cube is a rechargeable energy reservoir that is used in energy weapons like the Soul Burner, the Shocker, or the Scourge because of its compact cubic form. It is also used in countless artifacts. The Chroniclers follow up on every find and buy what they can, so E-Cubes are rare and extremely expensive at market.',
   },
-  { id: 'mun-fleche', name: 'Flèche', category: 'ammunition', techLevel: 'I', value: 1, image: IMG + 'ammo/arrow.png' },
-  { id: 'mun-carreau', name: 'Carreau', category: 'ammunition', techLevel: 'II', value: 5, image: IMG + 'ammo/bolt.png' },
-  { id: 'mun-petro', name: 'Bidon de pétro', category: 'ammunition', properties: '5 LC en Afrika', techLevel: 'III', value: 300, image: IMG + 'ammo/can_of_petro.png' },
+  { id: 'mun-fleche', name: 'Arrow', category: 'ammunition', techLevel: 'I', value: 1, image: IMG + 'ammo/arrow.png' },
+  { id: 'mun-carreau', name: 'Bolt', category: 'ammunition', techLevel: 'II', value: 5, image: IMG + 'ammo/bolt.png' },
+  { id: 'mun-petro', name: 'Can of Petro', category: 'ammunition', properties: '5 dinars in Africa', techLevel: 'III', value: 300, image: IMG + 'ammo/can_of_petro.png' },
 
   // ─── Brawling Weapons ───
   {
