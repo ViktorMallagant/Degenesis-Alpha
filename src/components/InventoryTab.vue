@@ -1,16 +1,5 @@
 <template>
   <div class="inventory-root">
-    <v-dialog v-model="showNotTranslatedDialog" max-width="420">
-      <v-card>
-        <v-card-text class="pt-4">
-          {{ $t('messages.inventoryNotTranslated') }}
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn @click="showNotTranslatedDialog = false">OK</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
     <!-- ── Header : budget + ressources + mode ── -->
     <div class="inv-header elevation-2 pa-4 d-flex flex-wrap align-center gap-4">
       <!-- Budget LC/Dinars -->
