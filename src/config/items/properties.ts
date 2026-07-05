@@ -98,7 +98,7 @@ export const WEAPON_PROPERTY_DESCRIPTIONS: Record<string, string> = {
   // Chemical agents
   'Attractant': '<b>ATTRACTANT (TARGET)</b><br>A lure always attracts a specific individual or a group of people sharing identical characteristics. It influences behavior, usually through pheromones that draw in the target.',
 
-  'poisoned': '<b>POISONED (POTENCY, EFFECT, DURATION)</b><br>The chemical agent attacks the target\'s metabolism. The target must succeed on a PHY+Resistance check against the agent\'s Potency to resist its effects. Gas masks and armor with the "Sealed" quality provide protection in the form of automatic successes, provided the agent was neither ingested nor injected.,
+  'poisoned': '<b>POISONED (POTENCY, EFFECT, DURATION)</b><br>The chemical agent attacks the target\'s metabolism. The target must succeed on a PHY+Resistance check against the agent\'s Potency to resist its effects. Gas masks and armor with the "Sealed" quality provide protection in the form of automatic successes, provided the agent was neither ingested nor injected.',
 
   'pseudo desporing': '<b>PSEUDO DESPOREING (DESPORING, DURATION)</b><br>The catalytic effect of the spores is blocked for a certain duration, and the level of sporulation in a Leperos or Psychonaut temporarily decreases by an amount equal to the Exsporiator points. Once the time has elapsed, the target regains its total number of Spore Infestations.',
 
