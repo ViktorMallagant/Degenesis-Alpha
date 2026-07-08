@@ -390,16 +390,16 @@ export const ITEMS: Item[] = [
   { id: 'revolver', name: 'Revolver', category: 'handguns', image: IMG + 'handguns/revolver.png', caliber: '.44', range: '10/40', damage: '10', magazine: '6', encumbrance: 1, techLevel: 'III', slots: 2, value: 1200 },
 
   // ─── Basic Survival Equipment (Nourriture) ───
-  { id: 'filtre-eau', name: 'Filtre à Eau', category: 'basicsurvivalequipment', image: IMG + 'equipment/water_filter.svg', properties: 'Rend de l\'eau sale potable', techLevel: 'III', value: 120 },
-  { id: 'gourde', name: 'Gourde', category: 'basicsurvivalequipment', image: IMG + 'equipment/flask.svg', properties: 'Eau pour 2 jours', techLevel: 'I', value: 10 },
-  { id: 'materiel-peche', name: 'Matériel de Pêche', category: 'basicsurvivalequipment', image: IMG + 'equipment/fishing_gear.svg', properties: 'INS+Survie : +1D', techLevel: 'I', value: 5 },
-  { id: 'ustensiles-cuisine', name: 'Ustensiles de Cuisine', category: 'basicsurvivalequipment', image: IMG + 'equipment/cooking_equipment.svg', properties: 'Cuisiner racines et légumes', techLevel: 'II', value: 30 },
+  { id: 'ustensiles-cuisine', name: 'Cooking Equipment', category: 'basicsurvivalequipment', image: IMG + 'equipment/cooking_equipment.svg', properties: 'Cooking roots and vegetables', techLevel: 'II', value: 30 },
+  { id: 'materiel-peche', name: 'Fishing Gear', category: 'basicsurvivalequipment', image: IMG + 'equipment/fishing_gear.svg', properties: 'INS+Survial+1D', techLevel: 'I', value: 5 },
+  { id: 'gourde', name: 'Flash', category: 'basicsurvivalequipment', image: IMG + 'equipment/flask.svg', properties: 'Stores water for 2 days', techLevel: 'I', value: 10 },
+  { id: 'filtre-eau', name: 'Water Filter', category: 'basicsurvivalequipment', image: IMG + 'equipment/water_filter.svg', properties: 'Makes soiled water drinkable', techLevel: 'III', value: 120 },
 
   // ─── Traps ───
-  { id: 'chausse-trappe', name: 'Chausse-Trappe', category: 'traps', image: IMG + 'equipment/pitfall.svg', properties: 'Hidden 2, Special', techLevel: 'I', value: 0 },
-  { id: 'fil-de-detente', name: 'Fil de Détente', category: 'traps', image: IMG + 'equipment/tripwire.svg', properties: 'Hidden 5, Perd son action, explosion potentielle', techLevel: 'II', value: 5 },
-  { id: 'mine', name: 'Mine', category: 'traps', image: IMG + 'equipment/mine.svg', properties: 'Hidden 4, Special', encumbrance: 1, techLevel: 'III', value: 0 },
-  { id: 'piege-a-ours', name: 'Piège à Ours', category: 'traps', image: IMG + 'equipment/bear_trap.svg', properties: 'Hidden 4, 8 Dégâts', encumbrance: 1, techLevel: 'II', value: 30 },
+  { id: 'piege-a-ours', name: 'Bear Trap', category: 'traps', image: IMG + 'equipment/bear_trap.svg', properties: 'Hidden 4C, 8 Damage', encumbrance: 1, techLevel: 'II', value: 30, description: '<b>Bear Trap</b><br>Two serrated yokes crash together with a bang, cutting through sinews and breaking bones. Bear traps are small, and the victim must step right into them, but they are easily hidden. Once they have snapped closed, the victim is lost.<br><br><b>SPECIALTY</b>: Only full body armor reduces the Damage: a Scourger\'s flak jacket, however, offers no protection. To pry the bear trap open, a successful Action roll on BOD+Force (4) is necessary.' },
+  { id: 'mine', name: 'Mine', category: 'Mine', image: IMG + 'equipment/mine.svg', properties: 'Hidden 4C, Special', encumbrance: 1, techLevel: 'III', value: 0, description: '<b>Mine</b><br>Mines can be filled with the same explosives and agents as grenades or cartridges.<br><br><b>SPECIALTY</b>: The Damage is identical to that of grenades, except with mines, the victim is at the center of the detonation and takes maximum Damage.' },
+  { id: 'chausse-trappe', name: 'Pitfall', category: 'traps', image: IMG + 'equipment/pitfall.svg', properties: 'Hidden 2C, Special', techLevel: 'I', value: 0, description: '<b>Pitfall</b><br>A pit dug in the ground, covered with sticks and fern or a tarp. Pitfalls are mainly used to capture prey alive.<br><br><b>SPECIALTY</b>: The Damage depends on the depth and potentially sharpened stakes jutting up from the ground.' },
+  { id: 'fil-de-detente', name: 'Tripwire', category: 'traps', image: IMG + 'equipment/tripwire.svg', properties: 'Hidden 5C, Lose Action, Potential detonation', techLevel: 'II', value: 5, description: '<b>Tripwire</b><br>A taut piece of wire can make the enemy stumble, detonate explosives, or pull the trigger of a shotgun.<br><br><b>SPECIALTY</b>: The Damage depends on the explosives or the weapon. As taut tripwire without detonator, it makes the victim stumble and lose 1 Action.' },
 
   // ─── Sources of Light/Fire ───
   { id: 'allumettes', name: 'Allumettes', category: 'sourcesoflight', image: IMG + 'equipment/matches.svg', properties: '10 utilisations', techLevel: 'II', value: 25 },
