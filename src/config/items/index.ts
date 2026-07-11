@@ -28,7 +28,9 @@ export type ItemCategory =
   | 'communication'
   | 'gasmasks'
   | 'artillery'
-  | 'vehiclesmounts'
+  | 'vehicles'
+  | 'boats'
+  | 'mounts'
   | 'medicalequipment'
   | 'elysianoils'
   | 'pharmaceutics'
@@ -64,7 +66,7 @@ export const CATEGORY_LABELS: Record<ItemCategory, string> = {
   climbing: 'Climbing',
   overnight: 'Overnight',
   transportation: 'transportation',
-  intheshadows: 'In The Shadows',
+  intheshadows: 'In the Shadows',
   technology: 'Technology',
   sundisks: 'Sun Disks',
   chroniclersuitmodules: 'Chronicler Suit Modules',
@@ -73,7 +75,9 @@ export const CATEGORY_LABELS: Record<ItemCategory, string> = {
   communication: 'Communication',
   gasmasks: 'Gas Masks',
   artillery: 'Artillery',
-  vehiclesmounts: 'Vehicles/Mounts',
+  vehicles: 'Vehicles',
+  boats: 'Boats and Ships',
+  mounts: 'Mounts',
   medicalequipment: 'Medical Equipment',
   elysianoils: 'Elysian Oils',
   pharmaceutics: 'Pharmaceutics',
@@ -90,6 +94,7 @@ export const CATEGORY_LABELS: Record<ItemCategory, string> = {
 }
 
 export const CATEGORY_ORDER: ItemCategory[] = [
+  'ammunition',
   'brawlingweapons',
   'meleeweapons',
   'thrownweapons',
@@ -97,7 +102,6 @@ export const CATEGORY_ORDER: ItemCategory[] = [
   'handguns',
   'rifles',
   'heavyweapons',
-  'ammunition',
   'explosives',
   'sonicweapons',
   'agents',
@@ -119,7 +123,9 @@ export const CATEGORY_ORDER: ItemCategory[] = [
   'communication',
   'gasmasks',
   'artillery',
-  'vehiclesmounts',
+  'vehicles',
+  'boats',
+  'mounts',
   'medicalequipment',
   'elysianoils',
   'pharmaceutics',
@@ -551,27 +557,32 @@ export const ITEMS: Item[] = [
   { id: 'lance-harpons', name: 'Harpoon Thrower', category: 'artillery', image: IMG + 'heavy_weapons/rocket_launcher.png', caliber: 'Harpoon', range: '20/60', damage: '10', magazine: '1', properties: 'Utilizes 2 Slots, 1 Upgrade Slot', techLevel: 'III', value: 2200 },
   { id: 'mitrailleuse', name: 'Machine Gun', category: 'artillery', image: IMG + 'heavy_weapons/heavy_mg.png', caliber: '5.56X45mm', handling: '-2D', range: '50/200', damage: '11', magazine: 'Belt', properties: 'Salvoes (10), Jamming, Utilizes 1 Slot, 2 Upgrade Slots', techLevel: 'IV', value: 8000 },
 
-  // ─── Vehicles/Mounts ───
-  { id: 'autobastion', name: 'Autobastion', category: 'vehiclesmounts', cult: 'neolibyans', image: IMG + 'equipment/tank.svg', properties: 'Vit. 2, Acc. 1, Frein. 1, Armure 6, Carrosserie 200, Structure 100, Empl. 6', techLevel: 'IV', value: 1500000, resources: 6, description: '<b>Autobastion</b><br>L\'Autobastion est un véhicule blindé lourd néo-libyen, un monument d\'acier récupéré soudé en forteresse roulante. Lent mais quasiment imprenable, il sert de base mobile lors des grandes opérations militaires dans le désert.<br><br>Son armure épaisse et sa Carrosserie de 200 en font l\'une des plateformes de combat les plus résistantes d\'Europe, bien que sa vitesse de croisière soit désespérément lente.' },
-  { id: 'buggy-ferrailleur', name: 'Buggy de Ferrailleur', category: 'vehiclesmounts', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 3, Acc. 2, Frein. 1, Armure 4, Carrosserie 20, Structure 10, Empl. 2', techLevel: 'III', value: 1500 },
-  { id: 'charrette-autoportee', name: 'Charrette Autoportée', category: 'vehiclesmounts', cult: 'scrappers', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 1, Acc. 1, Frein. 1, Armure –, Carrosserie 10, Structure 5, Empl. –', techLevel: 'III', value: 800, resources: 4, description: '<b>Charrette Autoportée</b><br>Équipée d\'un moteur à pétro, d\'une boite de vitesse avec axe rotatif à entraînement direct, et de deux roues à pneus larges, les charrettes autoportées des Récupérateurs ne sont certainement pas des modèles d\'esthétisme. Toutefois, ces monstrueuses bêtes de trait en acier sont capables de déloger tout type d\'obstacle, ou bien de remonter à la surface de lourds artifacts piégés dans les profondeurs. En règle générale, une charrette autoportée est achetée par un groupe de Récupérateurs qui l\'utilisent tous ensemble. Elle constitue ainsi le noyau central de toutes leurs opérations. Seuls des Ferrailleurs ayant déjà fait leurs preuves avec des moteurs sont autorisés à assurer la maintenance d\'une charrette autoportée, et ce, sous surveillance.<br><br><b>SPECIALTY</b>: la charrette autoportée possède une Force moyenne de 30.' },
-  { id: 'kom', name: 'Kom', category: 'vehiclesmounts', cult: 'scourgers', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 5, Acc. 3, Frein. 2, Armure 4, Carrosserie 20, Structure 10, Empl. 2', techLevel: 'IV', value: 4500, description: '<b>Kom</b><br>Le Kom est la monture mécanique des Flagellants — un tricycle blindé à moteur récupéré, idéal pour les raids rapides. Agile et relativement léger, il peut traverser des terrains accidentés que les véhicules lourds ne peuvent pas franchir.<br><br>Les Fouetteurs le personnalisent avec des pointes, du fil barbelé et des peintures tribales pour intimider leurs ennemis.' },
-  { id: 'moto', name: 'Moto', category: 'vehiclesmounts', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 6, Acc. 3, Frein. 1, Armure –, Carrosserie 10, Structure 5, Empl. 1', techLevel: 'III', value: 2000 },
-  { id: 'moto-apocalyptique', name: 'Moto d\'Apocalyptique', category: 'vehiclesmounts', cult: 'apocalyptics', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 6, Acc. 3, Frein. 2, Armure 2, Carrosserie 15, Structure 7, Empl. 2', techLevel: 'IV', value: 4200, resources: 5, description: '<b>Moto</b><br>Les motos demeurent entièrement inadaptées aux désolations. Chaque pierre représente un danger potentiel, et c\'est exactement ce que les Apocalyptiques adorent ! Peu d\'entre eux savent réparer leur moto. Cette tâche est généralement confiée à un Ferrailleur, rémunéré ou en esclavage. Une moto symbolise le statut de son propriétaire, savoir en conduire une suscite l\'envie de tous les autres migrateurs.<br><br><b>SPECIALTY</b>: les motos d\'une nuée disposent toutes d\'un Emplacement supplémentaire prévu pour des modifications.' },
-  { id: 'traineau-automobile', name: 'Traîneau Automobile', category: 'vehiclesmounts', image: IMG + 'equipment/sleigh.svg', properties: 'Vit. 2, Acc. 1, Frein. 1, Armure 4, Carrosserie 15, Structure 7, Empl. 1', techLevel: 'III', value: 1200 },
-  { id: 'bateau', name: 'Bateau', category: 'vehiclesmounts', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 1, Acc. 1, Frein. 1 round, Armure –, Carrosserie 10, Structure 5, Empl. 1', techLevel: 'II', value: 500 },
-  { id: 'bateau-hors-bord', name: 'Bateau Hors-Bord', category: 'vehiclesmounts', cult: 'scourgers', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 5, Acc. 3, Frein. 2 rounds, Armure 4, Carrosserie 50, Structure 25, Empl. 3', techLevel: 'IV', value: 55000, resources: 5 },
-  { id: 'catamaran', name: 'Catamaran', category: 'vehiclesmounts', cult: 'apocalyptics', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 4, Acc. 2, Frein. 5 rounds, Armure 3, Carrosserie 40, Structure 20, Empl. 4', techLevel: 'IV', value: 40000, resources: 4 },
-  { id: 'catamaran-arme', name: 'Catamaran Armé', category: 'vehiclesmounts', cult: 'apocalyptics', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 3, Acc. 2 rounds, Frein. 8 rounds, Armure 5, Carrosserie 100, Structure 50, Empl. 14', techLevel: 'IV', value: 120000, resources: 6 },
-  { id: 'dhow', name: 'Dhow', category: 'vehiclesmounts', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 2, Acc. 1, Frein. 3 rounds, Armure 2, Carrosserie 20, Structure 10, Empl. 2', techLevel: 'II', value: 6000 },
-  { id: 'navire-marchand', name: 'Navire Marchand', category: 'vehiclesmounts', cult: 'neolibyans', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 2, Acc. 2 rounds, Frein. 10 rounds, Armure 2, Carrosserie 50, Structure 25, Empl. 4', techLevel: 'III', value: 35000, resources: 3, description: '<b>Navire Marchand</b><br>Des navires capturés ou libérés de plusieurs siècles d\'enlisement sont réparés puis vendus aux Néolybiens. Ces derniers montent une armée de charpentiers et d\'orfèvres qui effaceront des cabines des Marchands toute trace de pauvreté ou de vulgarité. Un navire marchand offre aussi assez d\'espaces à leurs scribes et à leur famille. À son bord, un Néolybien ne manquera jamais de rien.<br><br><b>SPECIALTY</b>: à l\'instar de ceux des autobastions, les Emplacements des navires peuvent être utilisés pour ajouter des canons supplémentaires.' },
-  { id: 'petrolier', name: 'Pétrolier', category: 'vehiclesmounts', cult: 'neolibyans', image: IMG + 'equipment/tank.svg', properties: 'Vit. 2, Acc. 5 rounds, Frein. 20 rounds, Armure 5, Carrosserie 200, Structure 100, Empl. 8', techLevel: 'IV', value: 800000, resources: 6 },
-  { id: 'cheval-allure', name: 'Cheval d\'Allure', category: 'vehiclesmounts', image: IMG + 'equipment/allure.svg', properties: 'Vit. 1, Acc. 1, Frein. 1, Armure –, Blessures 12, Trauma 6, Empl. –', techLevel: 'I', value: 400 },
-  { id: 'cheval-charge', name: 'Cheval de Charge', category: 'vehiclesmounts', image: IMG + 'equipment/allure.svg', properties: 'Vit. 2, Acc. 1, Frein. 1, Armure 1, Blessures 18, Trauma 9, Empl. 1', techLevel: 'I', value: 2500 },
-  { id: 'cheval-jugement', name: 'Cheval de Jugement', category: 'vehiclesmounts', cult: 'judges', image: IMG + 'equipment/allure.svg', properties: 'Vit. 3, Acc. 2, Frein. 1, Armure –, Blessures 16, Trauma 8, Empl. 2', techLevel: 'I', value: 5500, resources: 3, description: '<b>Cheval de Jugement</b><br>Les Juges élèvent et entraînent leurs chevaux depuis le poulain, forgeant un lien indéfectible entre cavalier et monture. Ces chevaux sont sélectionnés pour leur endurance et leur courage au combat.<br><br>Un Cheval de Jugement est plus qu\'un moyen de transportation — c\'est un compagnon et un symbole du pouvoir des Juges sur les routes d\'Europe.' },
-  { id: 'cheval-newcrest', name: 'Cheval de Newcrest', category: 'vehiclesmounts', cult: 'spitalians', image: IMG + 'equipment/allure.svg', properties: 'Vit. 3, Acc. 2, Frein. 2, Armure –, Blessures 18, Trauma 9, Empl. 3', techLevel: 'I', value: 8000, resources: 5, description: '<b>Cheval de Newcrest</b><br>Les chevaux sont une véritable passion pour le Recteur Kranzler. Le programme pour la reproduction d\'étalons à Newcrest, sa ferme équestre, produit régulièrement ces légendaires montures noires. Kranzler les offre ensuite à ses alliés hauts placés et à ses meilleurs Préservistes. Chevaucher un cheval de Newcrest est une véritable responsabilité. Un mauvais cavalier qui ruinerait la santé d\'un de ces chevaux devrait faire face au courroux de Kranzler.<br><br><b>SPECIALTY</b>: meilleur cheval de selle connu de l\'homme, il ne peut être acquis avec des Ressources, mais avec de la Renommée. Une valeur en Renommée de 5 ou plus sera nécessaire avant que Kranzler ne songe à laisser un Préserviste chevaucher au combat avec l\'un de ses chevaux.' },
-  { id: 'mammouth', name: 'Mammouth', category: 'vehiclesmounts', cult: 'scrappers', image: IMG + 'equipment/carrying_rig.svg', properties: 'Vit. 2, Acc. 1, Frein. 1, Armure 3, Blessures 36, Trauma 18, Empl. 2', techLevel: 'I', value: 15000, resources: 6 },
+  // ─── Vehicles ───
+  { id: 'moto', name: 'Motorbike', category: 'vehicles', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 6, Acc. 3, Brake 1, Armor –, Body 10, Structure 5, Slots 1', techLevel: 'III', value: 2000 },
+  { id: 'traineau-automobile', name: 'Motor Sleigh', category: 'vehicles', image: IMG + 'equipment/sleigh.svg', properties: 'Max. Speed 2, Acc. 1, Brake 1, Armor 4, Body 15, Structure 7, Slots 1', techLevel: 'III', value: 1200 },
+  { id: 'buggy-ferrailleur', name: 'Scrapper Buggy', category: 'vehicles', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 3, Acc. 2, Brake 1, Armor 4, Body 20, Structure 10, Slots 2', techLevel: 'III', value: 1500 },
+  { id: 'moto-apocalyptique', name: 'Apocalyptic Motorbike'', category: 'vehicles', cult: 'apocalyptics', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 6, Acc. 3, Brake 2, Armor 2, Body 15, Structure 7, Slots 2', techLevel: 'IV', value: 4200, resources: 5, description: '<b>Apocalyptic Motorbike</b><br>Motorbikes are not well-suited to the wasteland. Every rock is a lethal danger—and that\'s just the way the Apocalyptics like it! Few can repair their bikes themselves. Usually the Scrappers do that, either enslaved ones or paid ones. The motorbike is a status symbol, and those who know how to drive it are the envy of other birds.<br><br><b>SPECIALTY</b>: The Flock’s motorbikes have an additional slot for modifications.' },
+  { id: 'autobastion', name: 'Surge Tank', category: 'vehicles', cult: 'neolibyans', image: IMG + 'equipment/tank.svg', properties: 'Max. Speed 2, Acc. 1, Brake 1, Armor 6, Body 200, Structure 100, Slots 6', techLevel: 'IV', value: 1500000, resources: 6, description: '<b>Surge Tank</b><br>The Surge Tank is the giant amongst the post-Eshaton vehicles. On massive tracks it rumbles through the ruins, invincible against the efforts of the barbaric Clanners of Europe. For the Neolibyan, it is a mobile base providing him with the luxury he\'s used to, but also with safety on extended looting trips or business visits. In the cargo holds, tons of artifacts can be stored, and the garage offers room for 12 Koms.<br><br><b>SPECIALTY</b>: Surge Tanks can be augmented. The slots can be used for cannons.' },
+  { id: 'camion-citerne', name: 'Cistern Truck', category: 'vehicles', cult: 'neolibyans', image: IMG + 'equipment/tank.svg', properties: 'Max. Speed Max 3, Acc. 2, Brake 1, Body 40, Structure 20, Slots 3, Réservoir 20 000L', techLevel: 'III', value: 45000, resources: 5, description: '<b>Cistern Truck</b><br>There is only so much that can be done with large vessels hauling Petro. When there is no more water to sail on, a ramp is lowered and Cistern Trucks emerge onto the land. Escorted by Scourgers mounted on Koms, these heavy vehicles transport the black gold to customers far inland.<br><br><b>SPECIALTY</b>: None' },
+  { id: 'kom', name: 'Kom', category: 'vehicles', cult: 'scourgers', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 5, Acc. 3, Brake 2, Armor 4, Body 20, Structure 10, Slots 2', techLevel: 'IV', value: 4500, description: '<b>Kom</b><br>Roaring buggies race across the plains. Scourgers cling to the roll bars and absorb every bump with their knees, dust and dirt thrown up against their masks. The warriors call these vehicles Koms, probably after an old African word for throne—a throne from which to rule the world.<br><br>The buggies are open and unarmored. Some have a dragnet crossbeam in front and a cage for human freight on the bed in back, although sometimes a machine gun replaces the cage. The equipment of the Kom depends on the mission and the workshop in the Surge Tank.<br><br><b>SPECIALTY</b>: None' },
+  { id: 'charrette-autoportee', name: 'Tractor Rig', category: 'vehicles', cult: 'scrappers', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 1, Acc. 1, Brake 1, Armor –, Body 10, Structure 5, Slots –', techLevel: 'III', value: 800, resources: 4, description: '<b>Tractor Rig</b><br>A Petro-fueled engine, a gearbox with a direct drive axle, and two deep-tread tires bracing themselves into the dirt: the Scavengers\' tractor rigs are not beauties, but heavily built steel beasts of burden with which to tear obstacles from their roots or lift heavy artifacts from the depths. Usually, a group of Scavengers buys and operates them together. They are the heart of the enterprise. Only Scrappers who were able to prove that they are good with engines may maintain the tractor rig under surveillance.<br><br><b>SPECIALTY</b>: A tractor rig has a BOD+Force of 30.' },
 
+  // ─── Boats and Ships ───
+  { id: 'bateau', name: 'Boat', category: 'boats', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 1, Acc. 1, Brake 1, Armor –, Body 10, Structure 5, Slots 1', techLevel: 'II', value: 500 },
+  { id: 'dhow', name: 'Dhau', category: 'boats', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 3, Acc. 1, Brake 3 rounds, Armor 2, Body 20, Structure 10, Slots 2', techLevel: 'II', value: 6000 },
+  { id: 'catamaran-arme', name: 'Armed Catamaran', category: 'boats', cult: 'apocalyptics', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 3, Acc. 2 rounds, Brake 8 rounds, Armor 5, Body 100, Structure 50, Slots 14', techLevel: 'IV', value: 120000, resources: 6 },  
+  { id: 'catamaran', name: 'Catamaran', category: 'boats', cult: 'apocalyptics', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 4, Acc. 2, Brake 5 rounds, Armor 3, Body 40, Structure 20, Slots 4', techLevel: 'IV', value: 40000, resources: 4 },
+  { id: 'navire-marchand', name: 'Merchant Vessel', category: 'boats', cult: 'neolibyans', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 2, Acc. 2 rounds, Brake 10 rounds, Armor 2, Body 50, Structure 25, Slots 4', techLevel: 'III', value: 35000, resources: 3, description: '<b>Merchant Vessel</b><br>Captured ships or those freed from the silt of centuries are repaired and sold to the Neolibyans. They set an army of carpenters and goldsmiths to work on the ship to free the rooms of the Merchant from profanity and obvious poverty. A trading ship offers room for family and scribes: a Neolibyan suffers no lack while on board.<br><br><b>SPECIALTY</b>: Like the Surge Tank slots, the ship slots can be used for cannons.' },
+  { id: 'petrolier', name: 'Tanker', category: 'boats', cult: 'neolibyans', image: IMG + 'equipment/tank.svg', properties: 'Max. Speed 2, Acc. 5 rounds, Brake 20 rounds, Armor 5, Body 200, Structure 100, Slots 8', techLevel: 'IV', value: 800000, resources: 6 },
+  { id: 'bateau-hors-bord', name: 'Speedboat', category: 'boats', cult: 'scourgers', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 5, Acc. 3, Brake 2 rounds, Armor 4, Body 50, Structure 25, Slots 3', techLevel: 'IV', value: 55000, resources: 5 },
+
+  // ─── Mounts ───
+  { id: 'cheval-allure', name: 'Gaited Horse', category: 'mounts', image: IMG + 'equipment/allure.svg', properties: 'Max. Speed 1, Acc. 1, Brake 1, Armor –, Flesh 12, Trauma 6, Slots –', techLevel: 'I', value: 400 },
+  { id: 'cheval-charge', name: 'Charger', category: 'mounts', image: IMG + 'equipment/allure.svg', properties: 'Max. Speed 2, Acc. 1, Brake 1, Armor 1, Flesh 18, Trauma 9, Slots 1', techLevel: 'I', value: 2500 },
+  { id: 'mammouth', name: 'Mammoth', category: 'mounts', cult: 'clanners', image: IMG + 'equipment/carrying_rig.svg', properties: 'Max. Speed 2, Acc. 1, Brake 1, Armor 3, Flesh 36, Trauma 18, Slots 2', techLevel: 'I', value: 15000, resources: 6 },  
+  { id: 'cheval-jugement', name: 'Judges\' Horse', category: 'mounts', cult: 'judges', image: IMG + 'equipment/allure.svg', properties: 'Max. Speed 3, Acc. 2, Brake 1, Armor –, Flesh 16, Trauma 8, Slots 2', techLevel: 'I', value: 5500, resources: 3, description: '<b>Judges\' Horse</b><br>Riding is the Judge\'s preferred means of travel. As a young Protector, the Judge will have to make do with old nags and slow-gaited horses. But later, the Judiciary provides him with a charger—and perhaps someday with one of the battle hardened Judges’ horses.<br><br><b>SPECIALTY</b>: If the Judge attacks from horseback with his Judgment hammer, he may roll the combo AGI+Navigation and BOD+Melee. The speed of the Judge\'s horse increases the impact of his blow (see Vehicle Combat rules).' },
+  { id: 'cheval-newcrest', name: 'Newcrest Horse', category: 'mounts', cult: 'spitalians', image: IMG + 'equipment/allure.svg', properties: 'Max. Speed 3, Acc. 2, Brake 2, Armor –, Flesh 18, Trauma 9, Slots 3', techLevel: 'I', value: 8000, resources: 5, description: '<b>Cheval de Newcrest</b><br>Horses are Provost Kranzler\'s passion. The breeding program in his Newcrest stud farm continues to produce legendary black mounts. Kranzler gives them to high-ranking allies and his best Preservists. Riding a Newcrest horse means responsibility. Those who ruin their horse by bad riding will experience Kranzler\'s dark side.<br><br><b>SPECIALTY</b>: The best riding horse known to man, they cannot be bought by Resources but is acquired by Renown: Renown 5+ is necessary before Kranzler chooses someone who is allowed to ride one of his horses into battle.' },
+  
   // ─── Medical Equipment ───
   { id: 'apothecarium', name: 'Apothécarium', category: 'medicalequipment', cult: 'spitalians', image: IMG + 'equipment/bandage.svg', properties: 'Analyse de substances et production de médicaments : INT+Science : +1S × niveau, 10 doses', encumbrance: 1, techLevel: 'IV', value: 2500, resources: 4, levelable: true, description: '<b>Apothécarium</b><br>Brûleurs à gaz, pilons, éprouvettes et un large panel de produits chimiques contenus dans des verres et des petits sachets, le tout rangé dans une valise. Un apothécarium fournit au Pharmacien un laboratoire portable avec lequel il peut créer poisons ou médicaments, mais aussi analyser diverses maladies.<br><br>Il existe 3 niveaux d\'apothécariums. Un apothécarium peut produire 10 médicaments avant de devoir être réapprovisionné dans une base spitalière.' },
   { id: 'bandages', name: 'Bandages', category: 'medicalequipment', image: IMG + 'equipment/bandage.svg', properties: 'Juste après avoir subi la blessure : récupération de 1 Blessure Superficielle', techLevel: 'I', value: 10 },
@@ -609,9 +620,6 @@ export const ITEMS: Item[] = [
   { id: 'artefact-tech-iv', name: 'Tech IV', category: 'purchaseartifacts', image: IMG + 'equipment/electronics_tools.svg', properties: 'Halls des Ferrailleurs / manufactures, Vente : 80', techLevel: 'IV', value: 200 },
   { id: 'artefact-tech-v', name: 'Tech V', category: 'purchaseartifacts', image: IMG + 'equipment/electronics_tools.svg', properties: 'Non vendu par les Chroniqueurs, Vente : 200', techLevel: 'V', value: 600 },
   { id: 'artefact-tech-vi', name: 'Tech VI', category: 'purchaseartifacts', image: IMG + 'equipment/electronics_tools.svg', properties: 'Non vendu par les Chroniqueurs, Vente : 600', techLevel: 'VI', value: 2000 },
-
-  // ─── VÉHICULES (nouveaux) ───
-  { id: 'camion-citerne', name: 'Camion-Citerne', category: 'vehiclesmounts', cult: 'neolibyans', image: IMG + 'equipment/tank.svg', properties: 'Vit. Max 3, Acc. 2, Frein. 1, Carrosserie 40, Structure 20, Empl. 3, Réservoir 20 000L', techLevel: 'III', value: 45000, resources: 5 },
 
   // ─── Medical Equipment (nouveaux) ───
   { id: 'centrifugeuse-plasma', name: 'Centrifugeuse à Plasma', category: 'medicalequipment', image: IMG + 'equipment/plasma_centrifuge.svg', properties: 'Crée du plasma pour transfusion. 12 utilisations par E-Cube', encumbrance: 5, techLevel: 'IV', value: 3500 },
