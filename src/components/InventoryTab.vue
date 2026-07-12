@@ -308,7 +308,7 @@
                 <td>{{ item.slots ?? '—' }}</td>
                 <td class="text-no-wrap">
                   {{ item.value }} {{ store.computedDinars?.currency ?? 'LC' }}
-                  <span v-if="item.levelable" class="inv-muted text-caption"> × Niv.</span>
+                  <span v-if="item.levelable" class="inv-muted text-caption"> X Level</span>
                 </td>
                 <td v-if="hasResources(group.items)">
                   <span v-if="item.resources !== undefined">{{ item.resources }}</span>
