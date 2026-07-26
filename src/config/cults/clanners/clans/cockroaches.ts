@@ -4,7 +4,7 @@ import { atLeastOrigin, atLeastSkill, either } from '@/config/requirements'
 import { Rank } from '../../../ranks/ranks'
 import { clanRank } from './util'
 
-export const hunterGatherers = new Clan('Cockroaches', [
+export const HunterGatherers = new Clan('Cockroaches', [
   Skills.stamina,
   Skills.melee,
   Skills.survival,
