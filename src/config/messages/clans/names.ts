@@ -10,6 +10,7 @@ export const clanNames = {
   },
   en: {
     hunterGatherers: 'Hunter Gatherers',
+    cockroaches: 'Cockroaches',
     touloni: 'Touloni',
     sanglier: 'Sanglier',
     bordenoir: 'Bordenoir',
@@ -18,6 +19,7 @@ export const clanNames = {
     exalters: 'Exalters',
     
     hunterGatherersDescription: 'Hunter Gatherers description',
+    cockroachesDescription: 'Cockroaches description',
     touloniDescription: 'Touloni description',
     sanglierDescription: 'Sanglier description',
     bordenoirDescription: 'Bordenoir description',
