@@ -7,7 +7,6 @@ import { Sanglier, SanglierRanks } from "./sanglier";
 import { Touloni, TouloniRanks } from "./touloni";
 
 export const Clans = {
-  cockroaches: Cockroaches,
   HunterGatherers: HunterGatherers,
   Touloni: Touloni,
   Sanglier: Sanglier,
