@@ -1,6 +1,5 @@
 import { Bordenoir, BordenoirRanks } from "./bordenoir";
 import { Exalters, ExaltersRanks } from "./exalters";
-import { HunterGathererRanks, HunterGatherers } from "./cockroaches";
 import { HunterGathererRanks, HunterGatherers } from "./hunterGatherers";
 import { Pneumancers, PneumancersRanks } from "./pneumancers";
 import { Resistance, ResistanceRanks } from "./resistance";
