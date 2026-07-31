@@ -232,7 +232,7 @@ export const messages = {
     originPoints: 'Origin points',
     potentialPoints: 'Potential points',
     legaciesPoints: 'Legacies',
-    origins: 'Origins',
+    origins: 'Backgrounds',
     potentials: 'Potentials',
     legacies: 'Legacies',
     commonPotentials: 'Common Potentials',
