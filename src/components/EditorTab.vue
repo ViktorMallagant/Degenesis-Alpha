@@ -516,23 +516,23 @@
                   </td>
                 </tr>
               </table>
-              <p v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-legacy-note">
-                ✦ Héritage <strong>{{ store.hasCreatureOfHabit ? 'Routinier' : 'Impulsif' }}</strong> :
-                coût réduit pour les {{ store.hasCreatureOfHabit ? 'attributs/compétences Concentration' : 'attributs/compétences Pulsions' }},
-                augmenté pour les autres.
-              </p>
-              <p v-if="store.adaptabilityLevel > 0" class="xp-legacy-note">
-                ✦ Potentiel <strong>Adaptabilité</strong> niv. {{ store.adaptabilityLevel }} :
-                compétences non-préférées −{{ store.nonPrivSkillMultiplierReduction }}
-                <span v-if="store.nonPrivAttrMultiplierReduction > 0">, attributs non-préférés −{{ store.nonPrivAttrMultiplierReduction }}</span>.
-              </p>
-              <p v-if="store.mentalPowerChoice" class="xp-preferred-note">
-                <span class="xp-star">*</span> Préférés pour
-                <strong>{{ store.mentalPowerChoice === 'primal' ? 'Pulsions' : 'Concentration' }}</strong> :
-                {{ store.mentalPowerChoice === 'primal' ? 'PHY, CHA, INS et leurs compétences' : 'INT, AGI, PSY et leurs compétences' }}
-              </p>
-              <p v-else class="xp-preferred-note">
-                <span class="xp-star">*</span> Choose Primal or Focus to view your preferred attributes and skills..
+                <p v-if="store.hasCreatureOfHabit || store.hasPrimordial" class="xp-legacy-note">
+                  ✦ Legacy <strong>{{ store.hasCreatureOfHabit ? 'Creature of Habit' : 'Primordial' }}</strong>:
+                  reduced cost for {{ store.hasCreatureOfHabit ? 'Focus attributes/skills' : 'Primal attributes/skills' }},
+                  increased for all others.
+                </p>
+                <p v-if="store.adaptabilityLevel > 0" class="xp-legacy-note">
+                  ✦ Potential <strong>Adaptability</strong> Lv. {{ store.adaptabilityLevel }}:
+                  non-preferred skills −{{ store.nonPrivSkillMultiplierReduction }}
+                  <span v-if="store.nonPrivAttrMultiplierReduction > 0">, non-preferred attributes −{{ store.nonPrivAttrMultiplierReduction }}</span>.
+                </p>
+                <p v-if="store.mentalPowerChoice" class="xp-preferred-note">
+                  <span class="xp-star">*</span> Preferred for
+                  <strong>{{ store.mentalPowerChoice === 'primal' ? 'Primal' : 'Focus' }}</strong>:
+                  {{ store.mentalPowerChoice === 'primal' ? 'BOD, CHA, INS and their skills' : 'INT, AGI, PSY and their skills' }}
+                </p>
+                <p v-else class="xp-preferred-note">
+                  <span class="xp-star">*</span> Choose Primal or Focus to view your preferred attributes and skills.
               </p>
             </div>
           </v-tooltip>
