@@ -338,7 +338,7 @@ function missingConditionsHtml(legacy: Legacy): string {
 
   if (legacy.name === 'experienced') {
     const age = parseInt(store.age)
-    if (isNaN(age) || age < 40) missing.push('Âge requis : 40 ans ou plus')
+    if (isNaN(age) || age < 40) missing.push('Minimum age: 40 years or older')
   }
   if (legacy.name === 'optimized' && store.spentPoints.origins > 1) {
     missing.push(`${tr('messages.origins')} ≤ 1 (actuellement : ${store.spentPoints.origins})`)
