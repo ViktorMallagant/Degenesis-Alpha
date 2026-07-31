@@ -341,19 +341,19 @@ function missingConditionsHtml(legacy: Legacy): string {
     if (isNaN(age) || age < 40) missing.push('Minimum age: 40 years or older')
   }
   if (legacy.name === 'optimized' && store.spentPoints.origins > 1) {
-    missing.push(`${tr('messages.origins')} ≤ 1 (actuellement : ${store.spentPoints.origins})`)
+    missing.push(`${tr('messages.origins')} ≤ 1 (Currently:  ${store.spentPoints.origins})`)
   }
   if (legacy.name === 'journeyman') {
     const alliesVal = store.originValue(Origins.allies)
     const authorityVal = store.originValue(Origins.authority)
-    if (alliesVal > 3) missing.push(`${tr('origins.allies')} ≤ 3 (actuellement : ${alliesVal})`)
-    if (authorityVal > 3) missing.push(`${tr('origins.authority')} ≤ 3 (actuellement : ${authorityVal})`)
+    if (alliesVal > 3) missing.push(`${tr('origins.allies')} ≤ 3 (Currently:  ${alliesVal})`)
+    if (authorityVal > 3) missing.push(`${tr('origins.authority')} ≤ 3 (Currently:  ${authorityVal})`)
   }
   if (legacy.name === 'superstitious') {
     const scienceVal = store.skillValue(Skills.science)
     const engineeringVal = store.skillValue(Skills.engineering)
-    if (scienceVal > 0) missing.push(`${tr('skills.science')} = 0 (actuellement : ${scienceVal})`)
-    if (engineeringVal > 0) missing.push(`${tr('skills.engineering')} = 0 (actuellement : ${engineeringVal})`)
+    if (scienceVal > 0) missing.push(`${tr('skills.science')} = 0 (Currently:  ${scienceVal})`)
+    if (engineeringVal > 0) missing.push(`${tr('skills.engineering')} = 0 (Currently:  ${engineeringVal})`)
   }
 
   if (missing.length === 0) return ''
