@@ -64,7 +64,7 @@ export const CATEGORY_LABELS: Record<ItemCategory, string> = {
   orienteeringtracking: 'Orienteering/Tracking',
   climbing: 'Climbing',
   overnight: 'Overnight',
-  transportation: 'transportation',
+  transportation: 'Transportation',
   intheshadows: 'In the Shadows',
   technology: 'Technology',
   sundisks: 'Sun Disks',
