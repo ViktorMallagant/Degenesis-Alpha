@@ -205,7 +205,10 @@
 
     store.skills.forEach(function (value, skill) {
       var pdfPrefix = SKILL_TO_PDF[skill.name];
-      if (pdfPrefix) checkBoxes(form, pdfPrefix, value, 1, 6);
+      var exportedValue = typeof store.effectiveSkillValue === "function"
+        ? store.effectiveSkillValue(skill)
+        : value;
+      if (pdfPrefix) checkBoxes(form, pdfPrefix, exportedValue, 1, 6);
     });
 
     store.origins.forEach(function (value, origin) {
@@ -466,7 +469,10 @@
 
     store.skills.forEach(function (value, skill) {
       var pdfPrefix = SKILL_TO_PDF_EN[skill.name];
-      if (pdfPrefix) checkBoxes(form, pdfPrefix, value, 1, 6);
+      var exportedValue = typeof store.effectiveSkillValue === "function"
+        ? store.effectiveSkillValue(skill)
+        : value;
+      if (pdfPrefix) checkBoxes(form, pdfPrefix, exportedValue, 1, 6);
     });
 
     store.origins.forEach(function (value, origin) {
