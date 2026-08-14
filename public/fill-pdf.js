@@ -221,7 +221,7 @@
 
     var potIndex = 1;
     store.potentials.forEach(function (value, potential) {
-      if (potIndex <= 6) {
+      if (value > 0 && potIndex <= 6) {
         safeSetText(form, "POTENTIEL " + potIndex, tr(i18n, potential.name, "potentials"));
         for (var lvl = 1; lvl <= 3; lvl++) {
           try {
@@ -335,15 +335,12 @@
       'ENCRow1_3', 'ENCRow2_3', 'ENCRow3_3', 'ENCRow4_2', 'ENCRow5_2', 'ENCRow6',  'ENCRow7',
       'ENCRow1_4', 'ENCRow2_4', 'ENCRow3_4', 'ENCRow4_3', 'ENCRow5_3', 'ENCRow6_2','ENCRow7_2'
     ];
-
-    // Other equipment (up to 14)
     others.slice(0, 14).forEach(function(item, idx) {
-      safeSetText(form, 'ÉQUIPEMENT' + (idx + 1), item.name || '');
+      var n = idx + 1;
+      safeSetText(form, 'ÉQUIPEMENT' + n, item.name || '');
       safeSetText(form, equipEncFields[idx], item.encumbrance != null ? String(item.encumbrance) : '');
     });
   }
-
-  window.downloadFilledPDF = downloadFilledPDF;
 
   var SKILL_TO_PDF_EN = {
     athletics: "Ath",
@@ -488,7 +485,7 @@
 
     var potIndex = 1;
     store.potentials.forEach(function (value, potential) {
-      if (potIndex <= 6) {
+      if (value > 0 && potIndex <= 6) {
         safeSetText(form, "Potential" + potIndex, tr(i18n, potential.name, "potentials"));
         ["a", "b", "c"].forEach(function (lvl, idx) {
           try {
