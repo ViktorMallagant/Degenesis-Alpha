@@ -213,7 +213,10 @@
 
     store.origins.forEach(function (value, origin) {
       var pdfPrefix = ORIGIN_TO_PDF[origin.name];
-      if (pdfPrefix) checkBoxes(form, pdfPrefix, value, 1, 6);
+      var exportedValue = typeof store.effectiveOriginValue === "function"
+        ? store.effectiveOriginValue(origin)
+        : value;
+      if (pdfPrefix) checkBoxes(form, pdfPrefix, exportedValue, 1, 6);
     });
 
     var potIndex = 1;
@@ -477,7 +480,10 @@
 
     store.origins.forEach(function (value, origin) {
       var pdfPrefix = ORIGIN_TO_PDF_EN[origin.name];
-      if (pdfPrefix) checkBoxes(form, pdfPrefix, value, 1, 6);
+      var exportedValue = typeof store.effectiveOriginValue === "function"
+        ? store.effectiveOriginValue(origin)
+        : value;
+      if (pdfPrefix) checkBoxes(form, pdfPrefix, exportedValue, 1, 6);
     });
 
     var potIndex = 1;
