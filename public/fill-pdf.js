@@ -200,7 +200,10 @@
 
     store.attributes.forEach(function (value, attr) {
       var pdfPrefix = ATTR_TO_PDF[attr.name];
-      if (pdfPrefix) checkBoxes(form, pdfPrefix, value, 2, 6);
+      var exportedValue = typeof store.effectiveAttributeValue === "function"
+        ? store.effectiveAttributeValue(attr)
+        : value;
+      if (pdfPrefix) checkBoxes(form, pdfPrefix, exportedValue, 2, 6);
     });
 
     store.skills.forEach(function (value, skill) {
@@ -467,7 +470,10 @@
 
     store.attributes.forEach(function (value, attr) {
       var pdfPrefix = ATTR_TO_PDF_EN[attr.name];
-      if (pdfPrefix) checkBoxes(form, pdfPrefix, value, 2, 6);
+      var exportedValue = typeof store.effectiveAttributeValue === "function"
+        ? store.effectiveAttributeValue(attr)
+        : value;
+      if (pdfPrefix) checkBoxes(form, pdfPrefix, exportedValue, 2, 6);
     });
 
     store.skills.forEach(function (value, skill) {
