@@ -1,6 +1,14 @@
+import { createHash } from 'node:crypto'
+import { readFileSync } from 'node:fs'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+
+const fillPdfPath = fileURLToPath(new URL('./public/fill-pdf.js', import.meta.url))
+const fillPdfVersion = createHash('sha256')
+  .update(readFileSync(fillPdfPath))
+  .digest('hex')
+  .slice(0, 12)
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,6 +18,12 @@ export default defineConfig({
   
   plugins: [
     vue(),
+    {
+      name: 'version-fill-pdf-exporter',
+      transformIndexHtml(html) {
+        return html.replace('__FILL_PDF_VERSION__', fillPdfVersion)
+      }
+    }
   ],
   resolve: {
     alias: {
