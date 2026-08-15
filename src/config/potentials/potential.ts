@@ -28,16 +28,31 @@ export class Potential {
     mentalResistanceSkill: Skill | null,
     clan: Clan|undefined,
   ): boolean {
+    const effectiveOrigins = this.applyRankOriginMinimums(origins, rank)
+
     return (
       this.cultEligible(cult) &&
       this.attributesEligible(attributes) &&
       this.skillsEligible(skills) &&
-      this.originsEligible(origins) &&
+      this.originsEligible(effectiveOrigins) &&
       this.rankEligible(rank) &&
       this.mentalPowerSkillEligible(mentalPowerSkill) &&
       this.mentalResistanceSkillEligible(mentalResistanceSkill) &&
       this.clanEligible(clan)
     )
+  }
+
+  private applyRankOriginMinimums(
+    origins: Array<Value<Origin>>,
+    rank: Rank
+  ): Array<Value<Origin>> {
+    const minimums = (rank as Rank & { originMinimums?: Record<string, number> }).originMinimums
+    if (!minimums) return origins
+
+    return origins.map((value) => {
+      const minimum = minimums[value.property.name] ?? 0
+      return minimum > value.value ? value.property.withValue(minimum) : value
+    })
   }
 
   private cultEligible(cult: Cult): boolean {
