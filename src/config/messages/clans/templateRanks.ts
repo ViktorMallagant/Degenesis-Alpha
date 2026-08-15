@@ -1,6 +1,22 @@
 import { clanRanks } from './ranks'
 
-const HUNTER_GATHERER_TEMPLATE_CLANS = ['cockroaches']
+const HUNTER_GATHERER_TEMPLATE_CLANS = [
+  'cockroaches',
+  'mechans',
+  'phosphorites',
+  'enemoi',
+  'stukovNomads',
+  'storskis',
+  'corpseEaters',
+  'garganti',
+  'voivodules',
+  'matadors',
+  'flayers',
+  'adriani',
+  'romanos',
+  'masai',
+  'shabath'
+]
 
 function cloneRankTranslations(
   sourceClan: string,
