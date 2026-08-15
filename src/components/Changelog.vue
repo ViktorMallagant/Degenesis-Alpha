@@ -27,7 +27,7 @@ const loading = ref(true)
 const error = ref(false)
 const entries = ref<Entry[]>([])
 
-const REPO = 'ViktorMallagant/degenesis-alpha.github.io'
+const REPO = 'ViktorMallagant/Degenesis-Alpha'
 
 onMounted(async () => {
   try {
@@ -37,8 +37,12 @@ onMounted(async () => {
     const result: Entry[] = []
     for (const c of commits) {
       const msg: string = c.commit.message.split('\n')[0].trim()
-      const featMatch = msg.match(/^feat:\s*(.+)$/i)
-      const fixMatch = msg.match(/^fix:\s*(.+)$/i)
+      const featMatch =
+        msg.match(/^feat(?:ure)?\s*:?\s+(.+)$/i) ||
+        msg.match(/^(?:add(?:ed)?|implement(?:ed)?|introduce(?:d)?|new)\s*:?\s+(.+)$/i)
+      const fixMatch =
+        msg.match(/^fix(?:ed|es|ing)?\s*:?\s+(.+)$/i) ||
+        msg.match(/^prevent(?:ed|s|ing)?\s*:?\s+(.+)$/i)
       if (featMatch || fixMatch) {
         const type = featMatch ? 'feat' : 'fix'
         const message = (featMatch?.[1] ?? fixMatch?.[1] ?? '').trim()
