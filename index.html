@@ -110,14 +110,7 @@
       })();
     </script>
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <script>
-      (function(){
-        var script=document.createElement("script");
-        script.defer=true;
-        script.src="./fill-pdf.js?v="+Date.now();
-        document.head.appendChild(script);
-      })();
-    </script>
+    <script defer src="./fill-pdf.js?v=__FILL_PDF_VERSION__"></script>
     <script defer src="./rank-tree.js"></script>
   </head>
   <body>
