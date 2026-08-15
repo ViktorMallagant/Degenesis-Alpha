@@ -4,6 +4,7 @@ import App from '@/App.vue'
 import { createPinia, setMapStoreSuffix } from 'pinia'
 import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
 import { i18n } from './i18n'
+import browserStorage from '@/store/browserStorage'
 
 // Expose the i18n instance (has .global.t) for the standalone rank-tree.js script
 ;(window as any).__i18n = i18n
@@ -83,4 +84,16 @@ const vuetify = createVuetify({
 })
 app.use(vuetify)
 
-app.mount('#app')
+const mountApp = async () => {
+  try {
+    // Portraits are cached from IndexedDB before Pinia stores/components are
+    // created, keeping the existing synchronous character-loading API intact.
+    // This also migrates legacy portrait data out of localStorage losslessly.
+    await browserStorage.initializeStorage()
+  } catch (error) {
+    console.warn('Character storage initialization failed; continuing with browser fallback.', error)
+  }
+  app.mount('#app')
+}
+
+void mountApp()
