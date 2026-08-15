@@ -312,15 +312,9 @@ function rotate(deg: number) {
 function cancel() { open.value = false }
 
 function confirm() {
-  // Draw full-res cropped image
-  const out = document.createElement('canvas')
-  const { w: iw, h: ih } = rotatedSize()
-  // Full-res scale factor
-  out.width = crop.w
-  out.height = crop.h
-  const ctx = out.getContext('2d')!
-
-  // Rotate image at native resolution
+  // Rotate the source at native resolution first, then crop into a bounded JPEG.
+  // A full-resolution PNG can consume several MB in localStorage and prevent all
+  // subsequent character changes from being persisted.
   const tmp = document.createElement('canvas')
   const r = ((rotation % 360) + 360) % 360
   if (r === 0 || r === 180) { tmp.width = img.naturalWidth; tmp.height = img.naturalHeight }
@@ -330,8 +324,15 @@ function confirm() {
   tc.rotate((rotation * Math.PI) / 180)
   tc.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2)
 
-  ctx.drawImage(tmp, crop.x, crop.y, crop.w, crop.h, 0, 0, crop.w, crop.h)
-  const dataUrl = out.toDataURL('image/png')
+  const maxOutputPx = 900
+  const outputScale = Math.min(1, maxOutputPx / Math.max(crop.w, crop.h))
+  const out = document.createElement('canvas')
+  out.width = Math.max(1, Math.round(crop.w * outputScale))
+  out.height = Math.max(1, Math.round(crop.h * outputScale))
+  const ctx = out.getContext('2d')!
+  ctx.drawImage(tmp, crop.x, crop.y, crop.w, crop.h, 0, 0, out.width, out.height)
+
+  const dataUrl = out.toDataURL('image/jpeg', 0.82)
   emit('crop', dataUrl, props.src)
   open.value = false
 }
