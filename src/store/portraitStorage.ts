@@ -63,6 +63,12 @@ const normalizePortraits = (data: PortraitData): PortraitData => {
 const hasPortraitData = (data: PortraitData): boolean =>
   Boolean(data.portrait || data.portraitOriginal || data.portraitFiche)
 
+const samePortraits = (a: PortraitData | undefined, b: PortraitData): boolean =>
+  Boolean(a) &&
+  a?.portrait === b.portrait &&
+  a?.portraitOriginal === b.portraitOriginal &&
+  a?.portraitFiche === b.portraitFiche
+
 const initialize = async (): Promise<boolean> => {
   try {
     const db = await openDatabase()
@@ -88,11 +94,17 @@ const getPortraits = (name: string): PortraitData | undefined => portraitCache.g
 
 const storePortraits = async (name: string, data: PortraitData): Promise<void> => {
   const normalized = normalizePortraits(data)
+  const current = portraitCache.get(name)
 
   if (!hasPortraitData(normalized)) {
+    if (!current) return
     await deletePortraits(name)
     return
   }
+
+  // Most autosaves only change character mechanics. Avoid rewriting large image
+  // strings unless the portrait data itself actually changed.
+  if (samePortraits(current, normalized)) return
 
   // Update synchronously so the rest of the app can continue using synchronous
   // character loading even though IndexedDB itself is asynchronous.
@@ -107,8 +119,8 @@ const storePortraits = async (name: string, data: PortraitData): Promise<void> =
 }
 
 const deletePortraits = async (name: string): Promise<void> => {
-  portraitCache.delete(name)
-  if (!available) return
+  const existed = portraitCache.delete(name)
+  if (!available || !existed) return
 
   const db = await openDatabase()
   const transaction = db.transaction(STORE_NAME, 'readwrite')
