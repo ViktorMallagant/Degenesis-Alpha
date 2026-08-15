@@ -21,6 +21,7 @@ import {
   Voivodules
 } from "./hunterGathererTemplateClans";
 import { Pneumancers, PneumancersRanks } from "./pneumancers";
+import { Providers, ProvidersRanks } from "./providers";
 import { Resistance, ResistanceRanks } from "./resistance";
 import { Sanglier, SanglierRanks } from "./sanglier";
 import { Stukov, StukovRanks } from "./stukov";
@@ -45,6 +46,7 @@ export const Clans = {
   Shabath: Shabath,
   Stukov: Stukov,
   Brenni: Brenni,
+  Providers: Providers,
   Touloni: Touloni,
   Sanglier: Sanglier,
   Bordenoir: Bordenoir,
@@ -59,6 +61,7 @@ export const ClannerRanks = [
   ...HunterGathererTemplateClanRanks,
   ...StukovRanks,
   ...BrenniRanks,
+  ...ProvidersRanks,
   ...TouloniRanks,
   ...SanglierRanks,
   ...BordenoirRanks,
