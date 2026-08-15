@@ -4,7 +4,8 @@
         <v-img
           class="archetypeLogo"
           :class="{ invert: inverted }"
-          :src="`logotypes/${type}s/${archetype}.svg`"
+          :src="logoSrc"
+          @error="useFallbackLogo"
         />
         <div
           class="archetype text-uppercase nowrap d-flex align-center justify-center mb-3 mt-4"
@@ -19,6 +20,8 @@
 
 <script setup lang="ts">
 import HoverTooltip from '@/components/HoverTooltip.vue'
+import { ref, watch } from 'vue'
+
 export interface Props {
   type: string
   typeLabel: string
@@ -29,10 +32,28 @@ export interface Props {
   item?: any,
   description?: string
 }
-withDefaults(defineProps<Props>(), {
+
+const props = withDefaults(defineProps<Props>(), {
   showType: true,
   inverted: false
 })
+
+const logoPath = () => `logotypes/${props.type}s/${props.archetype}.svg`
+const clanFallbackLogo = 'logotypes/clans/hunterGatherers.svg'
+const logoSrc = ref(logoPath())
+
+watch(
+  () => [props.type, props.archetype],
+  () => {
+    logoSrc.value = logoPath()
+  }
+)
+
+function useFallbackLogo() {
+  if (props.type === 'clan' && logoSrc.value !== clanFallbackLogo) {
+    logoSrc.value = clanFallbackLogo
+  }
+}
 </script>
 
 <style scoped>
