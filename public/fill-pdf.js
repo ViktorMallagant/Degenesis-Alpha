@@ -292,25 +292,76 @@
     URL.revokeObjectURL(url);
   }
 
-  var WEAPON_CATEGORIES = ['armesDeCorpsACorps', 'armesDeJet', 'armesAProjectiles', 'fusils', 'armesLourdes', 'armesDePoing', 'armesSoniques', 'artefactsEthylens'];
-  var ARMOR_CATEGORIES = ['armures', 'boucliers'];
+  var WEAPON_CATEGORIES = [
+    'brawlingweapons', 'meleeweapons', 'thrownweapons', 'projectiles',
+    'handguns', 'rifles', 'heavyweapons', 'sonicweapons', 'artillery'
+  ];
+  var ARMOR_CATEGORIES = ['armor', 'shields'];
+
+  function inventoryItemsForPdf(store) {
+    var allItems = window.__items || [];
+    var ammoGroups = {};
+    var items = [];
+
+    (store.inventory || []).forEach(function(p) {
+      var item = allItems.find(function(i) { return i.id === p.itemId; });
+      if (!item) return;
+
+      var resolved = Object.assign({}, item, {
+        _level: p.level || 1,
+        _count: 1
+      });
+
+      if (item.category === 'ammunition') {
+        var ammoKey = item.id + '|' + (p.level || 1);
+        if (ammoGroups[ammoKey]) {
+          ammoGroups[ammoKey]._count += 1;
+          return;
+        }
+        ammoGroups[ammoKey] = resolved;
+      }
+
+      items.push(resolved);
+    });
+
+    return items;
+  }
+
+  function inventoryDisplayName(item) {
+    var name = item.name || '';
+    return item._count > 1 ? name + ' x' + item._count : name;
+  }
+
+  function inventoryDisplayEncumbrance(item) {
+    if (item.encumbrance == null) return '';
+    return String(item.encumbrance * (item._count || 1));
+  }
+
+  function splitInventoryForPdf(store) {
+    var items = inventoryItemsForPdf(store);
+    var weapons = items.filter(function(i) { return WEAPON_CATEGORIES.indexOf(i.category) !== -1; });
+    var armors = items.filter(function(i) { return ARMOR_CATEGORIES.indexOf(i.category) !== -1; });
+    var others = items.filter(function(i) {
+      return WEAPON_CATEGORIES.indexOf(i.category) === -1 && ARMOR_CATEGORIES.indexOf(i.category) === -1;
+    });
+
+    // Preserve items beyond the dedicated PDF capacities instead of dropping them.
+    var possessions = others.concat(weapons.slice(5), armors.slice(3));
+    return { weapons: weapons, armors: armors, possessions: possessions };
+  }
 
   function fillInventory(form, store) {
-    var allItems = window.__items || [];
-    var purchases = (store.inventory || []).filter(function(p) { return !p.purchasedWithResources; });
-    var items = purchases.map(function(p) {
-      var item = allItems.find(function(i) { return i.id === p.itemId; });
-      return item ? Object.assign({}, item, { _level: p.level || 1 }) : null;
-    }).filter(Boolean);
-
-    var weapons = items.filter(function(i) { return WEAPON_CATEGORIES.indexOf(i.category) !== -1; });
-    var armors  = items.filter(function(i) { return ARMOR_CATEGORIES.indexOf(i.category) !== -1; });
-    var others  = items.filter(function(i) { return WEAPON_CATEGORIES.indexOf(i.category) === -1 && ARMOR_CATEGORIES.indexOf(i.category) === -1; });
+    var inventory = splitInventoryForPdf(store);
+    var weapons = inventory.weapons;
+    var armors = inventory.armors;
+    var possessions = inventory.possessions;
 
     // Weapons (up to 5). No dedicated caliber field in PDF — prepend to portée.
     weapons.slice(0, 5).forEach(function(item, idx) {
       var n = idx + 1;
-      var weaponName = item.caliber ? (item.name || '') + ' (' + item.caliber + ')' : (item.name || '');
+      var weaponName = item.caliber
+        ? inventoryDisplayName(item) + ' (' + item.caliber + ')'
+        : inventoryDisplayName(item);
       safeSetText(form, 'ARME' + n, weaponName);
       safeSetText(form, 'MANIEMENTRow' + n, item.handling || '');
       safeSetText(form, 'Row' + n, item.range || '');
@@ -318,17 +369,17 @@
       safeSetText(form, 'Row' + n + '_3', item.properties || '');
       safeSetText(form, 'CHARGRow' + n, item.magazine != null ? String(item.magazine) : '');
       safeSetText(form, 'EMPLRow' + n, item.slots != null ? String(item.slots) : '');
-      safeSetText(form, 'ENCRow' + n, item.encumbrance != null ? String(item.encumbrance) : '');
+      safeSetText(form, 'ENCRow' + n, inventoryDisplayEncumbrance(item));
       safeSetText(form, 'TECHRow' + n, item.techLevel || '');
     });
 
     // Armors (up to 3). Row{n}_4 = armor PROPRIÉTÉS column (shares row layout with weapons 1-3).
     armors.slice(0, 3).forEach(function(item, idx) {
       var n = idx + 1;
-      safeSetText(form, 'ARMURE' + n, item.name || '');
+      safeSetText(form, 'ARMURE' + n, inventoryDisplayName(item));
       safeSetText(form, 'VALEUR DARMURERow' + n, item.armorValue != null ? String(item.armorValue) : '');
       safeSetText(form, 'Row' + n + '_4', item.properties || '');
-      safeSetText(form, 'ENCRow' + n + '_2', item.encumbrance != null ? String(item.encumbrance) : '');
+      safeSetText(form, 'ENCRow' + n + '_2', inventoryDisplayEncumbrance(item));
       safeSetText(form, 'TECHRow' + n + '_2', item.techLevel || '');
       safeSetText(form, 'EMPLRow' + n + '_2', item.slots != null ? String(item.slots) : '');
     });
@@ -339,10 +390,10 @@
       'ENCRow1_4', 'ENCRow2_4', 'ENCRow3_4', 'ENCRow4_3', 'ENCRow5_3', 'ENCRow6_2','ENCRow7_2'
     ];
 
-    // Other equipment (up to 14)
-    others.slice(0, 14).forEach(function(item, idx) {
-      safeSetText(form, 'ÉQUIPEMENT' + (idx + 1), item.name || '');
-      safeSetText(form, equipEncFields[idx], item.encumbrance != null ? String(item.encumbrance) : '');
+    // Other equipment (up to 14), including grouped ammunition and dedicated-section overflow.
+    possessions.slice(0, 14).forEach(function(item, idx) {
+      safeSetText(form, 'ÉQUIPEMENT' + (idx + 1), inventoryDisplayName(item));
+      safeSetText(form, equipEncFields[idx], inventoryDisplayEncumbrance(item));
     });
   }
 
@@ -562,26 +613,20 @@
   }
 
   function fillInventory_en(form, store) {
-    var allItems = window.__items || [];
-    var purchases = (store.inventory || []).filter(function(p) { return !p.purchasedWithResources; });
-    var items = purchases.map(function(p) {
-      var item = allItems.find(function(i) { return i.id === p.itemId; });
-      return item ? Object.assign({}, item, { _level: p.level || 1 }) : null;
-    }).filter(Boolean);
-
-    var weapons = items.filter(function(i) { return WEAPON_CATEGORIES.indexOf(i.category) !== -1; });
-    var armors  = items.filter(function(i) { return ARMOR_CATEGORIES.indexOf(i.category) !== -1; });
-    var others  = items.filter(function(i) { return WEAPON_CATEGORIES.indexOf(i.category) === -1 && ARMOR_CATEGORIES.indexOf(i.category) === -1; });
+    var inventory = splitInventoryForPdf(store);
+    var weapons = inventory.weapons;
+    var armors = inventory.armors;
+    var possessions = inventory.possessions;
 
     // Weapons (up to 5)
     weapons.slice(0, 5).forEach(function(item, idx) {
       var n = idx + 1;
-      safeSetText(form, 'Weapon' + n, item.name || '');
+      safeSetText(form, 'Weapon' + n, inventoryDisplayName(item));
       safeSetText(form, 'Handling' + n, item.handling || '');
       safeSetText(form, 'Damage' + n, item.damage || '');
       safeSetText(form, 'Mag' + n, item.magazine != null ? String(item.magazine) : '');
       safeSetText(form, 'Slots' + n, item.slots != null ? String(item.slots) : '');
-      safeSetText(form, 'Enc' + n, item.encumbrance != null ? String(item.encumbrance) : '');
+      safeSetText(form, 'Enc' + n, inventoryDisplayEncumbrance(item));
       safeSetText(form, 'Tech' + n, item.techLevel || '');
       safeSetText(form, 'Properties' + n, (item.caliber ? item.caliber + ' | ' : '') + (item.range ? item.range + ' | ' : '') + (item.properties || ''));
     });
@@ -589,20 +634,20 @@
     // Armors (up to 3)
     armors.slice(0, 3).forEach(function(item, idx) {
       var n = idx + 1;
-      safeSetText(form, 'Armor' + n, item.name || '');
+      safeSetText(form, 'Armor' + n, inventoryDisplayName(item));
       safeSetText(form, 'ArmorValue' + n, item.armorValue || '');
-      safeSetText(form, 'ArmorEnc' + n, item.encumbrance != null ? String(item.encumbrance) : '');
+      safeSetText(form, 'ArmorEnc' + n, inventoryDisplayEncumbrance(item));
       safeSetText(form, 'ArmorTech' + n, item.techLevel || '');
       safeSetText(form, 'ArmorSlots' + n, item.slots != null ? String(item.slots) : '');
       safeSetText(form, 'ArmorProperties' + n, item.properties || '');
     });
 
     // Other equipment — PossessionsA1-7 then PossessionsB1-7 (14 total)
-    others.slice(0, 14).forEach(function(item, idx) {
+    possessions.slice(0, 14).forEach(function(item, idx) {
       var col = idx < 7 ? 'A' : 'B';
       var row = (idx % 7) + 1;
-      safeSetText(form, 'Possessions' + col + row, item.name || '');
-      safeSetText(form, 'PossessionsEnc' + col + row, item.encumbrance != null ? String(item.encumbrance) : '');
+      safeSetText(form, 'Possessions' + col + row, inventoryDisplayName(item));
+      safeSetText(form, 'PossessionsEnc' + col + row, inventoryDisplayEncumbrance(item));
     });
   }
 
