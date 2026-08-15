@@ -1,7 +1,7 @@
 import type { Clan } from '@/config/model'
 import type { Origin, SkillWithAttribute } from '@/config/properties'
 import type { Requirement } from '@/config/requirements'
-import { Rank } from '../../../ranks/ranks'
+import { Rank, type RankContextRequirement } from '../../../ranks/ranks'
 import { Clanners } from '../'
 
 export const clanRank =
@@ -12,7 +12,9 @@ export const clanRank =
     requiredOrigins: Requirement<Origin>[],
     parentRanks: Array<Rank> = [],
     isOutsideHierarchy: boolean = false,
-    hierarchyLevelOverride: number | undefined = undefined
+    hierarchyLevelOverride: number | undefined = undefined,
+    requiredRanks: Array<Rank> = [],
+    contextRequirements: Array<RankContextRequirement> = []
   ): Rank => {
     return new Rank(
       `${clan.name}-${name}`,
@@ -23,6 +25,8 @@ export const clanRank =
       isOutsideHierarchy,
       hierarchyLevelOverride,
       clan.name,
-      clan
+      clan,
+      requiredRanks,
+      contextRequirements
     )
   }
