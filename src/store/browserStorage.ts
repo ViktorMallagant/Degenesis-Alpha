@@ -1,10 +1,41 @@
 import { Character } from './character'
+import portraitStorage, { type PortraitData } from './portraitStorage'
+
+const characterKey = (name: string) => `character-${name}`
+
+const stripPortraits = (character: Character): Character => ({
+  ...character,
+  portrait: undefined,
+  portraitOriginal: undefined,
+  portraitFiche: undefined,
+}) as Character
+
+const extractPortraits = (character: Character): PortraitData => ({
+  portrait: character.portrait || undefined,
+  portraitOriginal: character.portraitOriginal || undefined,
+  portraitFiche: character.portraitFiche || undefined,
+})
+
+const hasPortraitData = (character: Character): boolean =>
+  Boolean(character.portrait || character.portraitOriginal || character.portraitFiche)
+
+const mergeCachedPortraits = (character: Character): Character => {
+  const cached = portraitStorage.getPortraits(character.name)
+  if (!cached) return character
+
+  return {
+    ...character,
+    portrait: cached.portrait ?? character.portrait,
+    portraitOriginal: cached.portraitOriginal ?? character.portraitOriginal,
+    portraitFiche: cached.portraitFiche ?? character.portraitFiche,
+  } as Character
+}
 
 const loadCharacter = (name: string) => {
-  const saved = localStorage.getItem(`character-${name}`)
+  const saved = localStorage.getItem(characterKey(name))
   if (saved) {
     const parsed: Character = JSON.parse(saved)
-    return parsed
+    return mergeCachedPortraits(parsed)
   }
   return undefined
 }
@@ -29,24 +60,17 @@ const tryStoreCharacter = (key: string, character: unknown): boolean => {
   }
 }
 
-const storeCharacter = (character: Character) => {
-  const key = `character-${character.name}`
+const storeCharacterInLocalStorageFallback = (character: Character) => {
+  const key = characterKey(character.name)
 
-  // Normal path: preserve every image variant.
   if (tryStoreCharacter(key, character)) return 'full'
 
-  // The high-resolution source is useful for re-cropping, but redundant for
-  // displaying the character. Drop it first if browser storage is exhausted.
   const withoutOriginal = {
     ...character,
     portraitOriginal: undefined,
   }
-  if (tryStoreCharacter(key, withoutOriginal)) {
-    console.warn(`Character ${character.name} saved without portraitOriginal because localStorage is full.`)
-    return 'withoutOriginal'
-  }
+  if (tryStoreCharacter(key, withoutOriginal)) return 'withoutOriginal'
 
-  // Preserve one usable portrait before sacrificing image data entirely.
   const preferredPortrait = character.portraitFiche || character.portrait || character.portraitOriginal
   const singlePortrait = {
     ...character,
@@ -54,30 +78,49 @@ const storeCharacter = (character: Character) => {
     portraitOriginal: undefined,
     portraitFiche: undefined,
   }
-  if (tryStoreCharacter(key, singlePortrait)) {
-    console.warn(`Character ${character.name} saved with a single portrait because localStorage is full.`)
-    return 'singlePortrait'
-  }
+  if (tryStoreCharacter(key, singlePortrait)) return 'singlePortrait'
 
-  // Last resort: never allow an image quota problem to prevent age, gender,
-  // potentials, inventory, etc. from being persisted.
-  const metadataOnly = {
-    ...character,
-    portrait: undefined,
-    portraitOriginal: undefined,
-    portraitFiche: undefined,
-  }
-  if (tryStoreCharacter(key, metadataOnly)) {
-    console.warn(`Character ${character.name} saved without portrait data because localStorage is full.`)
-    return 'metadataOnly'
-  }
+  const metadataOnly = stripPortraits(character)
+  if (tryStoreCharacter(key, metadataOnly)) return 'metadataOnly'
 
   console.error(`Unable to persist character ${character.name}: localStorage quota is exhausted.`)
   return 'failed'
 }
 
+const storeCharacter = (character: Character) => {
+  if (!portraitStorage.isAvailable()) {
+    return storeCharacterInLocalStorageFallback(character)
+  }
+
+  const key = characterKey(character.name)
+  const metadataOnly = stripPortraits(character)
+
+  // Character mechanics remain synchronous and tiny in localStorage.
+  if (!tryStoreCharacter(key, metadataOnly)) {
+    console.error(`Unable to persist character ${character.name}: localStorage quota is exhausted.`)
+    return 'failed'
+  }
+
+  const portraits = extractPortraits(character)
+  void portraitStorage.storePortraits(character.name, portraits).catch((error) => {
+    console.error(`Unable to persist portraits for ${character.name} in IndexedDB.`, error)
+
+    // Rare fallback for browsers that lose IndexedDB access mid-session: retain
+    // one useful image locally without allowing portraits to block metadata saves.
+    const preferredPortrait = portraits.portraitFiche || portraits.portrait || portraits.portraitOriginal
+    if (preferredPortrait) {
+      tryStoreCharacter(key, { ...metadataOnly, portrait: preferredPortrait })
+    }
+  })
+
+  return 'indexedDB'
+}
+
 const deleteCharacter = (name: string) => {
-  localStorage.removeItem(`character-${name}`)
+  localStorage.removeItem(characterKey(name))
+  void portraitStorage.deletePortraits(name).catch((error) => {
+    console.warn(`Unable to remove IndexedDB portrait data for ${name}.`, error)
+  })
 }
 
 const keyToCharacterName = (localStorageKey: string) =>
@@ -107,6 +150,35 @@ const characterIsStored = (name: string) => {
   return loadAllCharacterNames().includes(name)
 }
 
+/**
+ * Load the IndexedDB portrait cache before Vue mounts, then migrate any legacy
+ * portrait data embedded in character localStorage records. A character is only
+ * stripped from localStorage after its portrait data has been written to
+ * IndexedDB successfully, so migration is lossless and safely retryable.
+ */
+const initializeStorage = async (): Promise<void> => {
+  const indexedDbReady = await portraitStorage.initialize()
+  if (!indexedDbReady) return
+
+  for (const name of loadAllCharacterNames()) {
+    const key = characterKey(name)
+    const saved = localStorage.getItem(key)
+    if (!saved) continue
+
+    try {
+      const parsed = JSON.parse(saved) as Character
+      if (!hasPortraitData(parsed)) continue
+
+      await portraitStorage.storePortraits(name, extractPortraits(parsed))
+      localStorage.setItem(key, JSON.stringify(stripPortraits(parsed)))
+    } catch (error) {
+      // Leave this character untouched in localStorage. Migration will retry on
+      // the next page load rather than risking portrait loss.
+      console.warn(`Portrait migration deferred for ${name}.`, error)
+    }
+  }
+}
+
 const loadLocale = () => {
   return localStorage.getItem('locale')
 }
@@ -132,6 +204,7 @@ const storeDisplayTranslatedLabels = (value: boolean) => {
 }
 
 export default {
+  initializeStorage,
   loadCharacter,
   storeCharacter,
   deleteCharacter,
