@@ -58,6 +58,12 @@
     secrets: "SECRET"
   };
 
+  function applyRankOriginMinimum(store, origin, value) {
+    var minimums = store.rank && store.rank.originMinimums;
+    var minimum = minimums && minimums[origin.name] ? minimums[origin.name] : 0;
+    return Math.max(value, minimum);
+  }
+
   function checkBoxes(form, prefix, value, start, end) {
     for (var i = start; i <= end; i++) {
       try {
@@ -219,6 +225,7 @@
       var exportedValue = typeof store.effectiveOriginValue === "function"
         ? store.effectiveOriginValue(origin)
         : value;
+      exportedValue = applyRankOriginMinimum(store, origin, exportedValue);
       if (pdfPrefix) checkBoxes(form, pdfPrefix, exportedValue, 1, 6);
     });
 
@@ -540,6 +547,7 @@
       var exportedValue = typeof store.effectiveOriginValue === "function"
         ? store.effectiveOriginValue(origin)
         : value;
+      exportedValue = applyRankOriginMinimum(store, origin, exportedValue);
       if (pdfPrefix) checkBoxes(form, pdfPrefix, exportedValue, 1, 6);
     });
 
