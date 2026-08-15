@@ -11,7 +11,7 @@
               :value="store.originValue(origin)"
               :max="store.originMax"
               :min="originMin()"
-              :bonus="store.totalOriginBonus(origin)"
+              :bonus="effectiveOriginBonus(origin)"
               @change="(v) => store.setOrigin(origin, v)"
               :highlighted="store.isHighlighted(origin)"
               type="origins"
@@ -34,5 +34,16 @@ const localizeOriginName = (origin: Origin) => {
 }
 const originMin = () => {
   return config.pointLimits.origins.min
+}
+
+// Some custom ranks establish a floor for a Background without changing the
+// points the player actually spent on it. Keep that distinction visible by
+// rendering the difference as a bonus instead of mutating the base score.
+const effectiveOriginBonus = (origin: Origin) => {
+  const existingBonus = store.totalOriginBonus(origin)
+  const currentEffective = store.originValue(origin) + existingBonus
+  const rankMinimums = (store.rank as any)?.originMinimums as Record<string, number> | undefined
+  const rankMinimum = rankMinimums?.[origin.name] ?? 0
+  return existingBonus + Math.max(0, rankMinimum - currentEffective)
 }
 </script>
