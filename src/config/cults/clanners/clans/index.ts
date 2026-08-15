@@ -1,4 +1,5 @@
 import { Bordenoir, BordenoirRanks } from "./bordenoir";
+import { Cockroaches, CockroachRanks } from "./cockroaches";
 import { Exalters, ExaltersRanks } from "./exalters";
 import { HunterGathererRanks, HunterGatherers } from "./hunterGatherers";
 import { Pneumancers, PneumancersRanks } from "./pneumancers";
@@ -8,6 +9,7 @@ import { Touloni, TouloniRanks } from "./touloni";
 
 export const Clans = {
   HunterGatherers: HunterGatherers,
+  Cockroaches: Cockroaches,
   Touloni: Touloni,
   Sanglier: Sanglier,
   Bordenoir: Bordenoir,
@@ -18,6 +20,7 @@ export const Clans = {
 
 export const ClannerRanks = [
   ...HunterGathererRanks,
+  ...CockroachRanks,
   ...TouloniRanks,
   ...SanglierRanks,
   ...BordenoirRanks,
