@@ -22,6 +22,7 @@ import {
 import { Pneumancers, PneumancersRanks } from "./pneumancers";
 import { Resistance, ResistanceRanks } from "./resistance";
 import { Sanglier, SanglierRanks } from "./sanglier";
+import { Stukov, StukovRanks } from "./stukov";
 import { Touloni, TouloniRanks } from "./touloni";
 
 export const Clans = {
@@ -41,6 +42,7 @@ export const Clans = {
   Romanos: Romanos,
   Masai: Masai,
   Shabath: Shabath,
+  Stukov: Stukov,
   Touloni: Touloni,
   Sanglier: Sanglier,
   Bordenoir: Bordenoir,
@@ -53,6 +55,7 @@ export const ClannerRanks = [
   ...HunterGathererRanks,
   ...CockroachRanks,
   ...HunterGathererTemplateClanRanks,
+  ...StukovRanks,
   ...TouloniRanks,
   ...SanglierRanks,
   ...BordenoirRanks,
