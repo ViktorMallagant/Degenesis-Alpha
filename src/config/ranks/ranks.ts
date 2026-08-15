@@ -3,6 +3,31 @@ import type { Translatable, Cult, Translator } from '../model'
 import { SkillWithAttribute, Origin, type Value } from '../properties'
 import { type Requirement } from '../requirements'
 
+export interface RankEligibilityContext {
+  age?: number
+}
+
+export interface RankContextRequirement {
+  check(context: RankEligibilityContext): boolean
+  format(translator: Translator): string
+}
+
+class OlderThanAge implements RankContextRequirement {
+  constructor(readonly age: number) {}
+
+  check(context: RankEligibilityContext): boolean {
+    return context.age !== undefined && context.age > this.age
+  }
+
+  format(translator: Translator): string {
+    return `${translator('messages.age')} > ${this.age}`
+  }
+}
+
+export function olderThanAge(age: number): RankContextRequirement {
+  return new OlderThanAge(age)
+}
+
 export class Rank implements Translatable {
   constructor(
     readonly name: string,
@@ -14,7 +39,8 @@ export class Rank implements Translatable {
     hierarchyLevelOverride: number | undefined = undefined,
     readonly description?: string,
     readonly clan?: Clan,
-    readonly requiredRanks: Array<Rank> = []
+    readonly requiredRanks: Array<Rank> = [],
+    readonly contextRequirements: Array<RankContextRequirement> = []
   ) {
     this.hierarchyLevel = parentRanks.reduce(
       (level, parent) => Math.max(level, parent.hierarchyLevel + 1),
@@ -38,6 +64,7 @@ export class Rank implements Translatable {
     skills: Array<Value<SkillWithAttribute>>,
     origins: Array<Value<Origin>>,
     clan?: Clan,
+    context: RankEligibilityContext = {}
   ): boolean {
     if (this.cult.name != cult.name) {
       return false
@@ -53,16 +80,20 @@ export class Rank implements Translatable {
       (eligible, requirement) => eligible && requirement.check(origins),
       true
     )
+    const contextEligible = this.contextRequirements.reduce(
+      (eligible, requirement) => eligible && requirement.check(context),
+      true
+    )
     const anyParentEligible =
       this.parentRanks.length == 0 ||
       this.parentRanks.reduce((eligible, parent) => {
-        const parentEligible = parent.isEligible(cult, skills, origins, clan)
+        const parentEligible = parent.isEligible(cult, skills, origins, clan, context)
         return eligible || parentEligible
       }, false)
     const allRequiredRanksEligible =
       this.requiredRanks.length === 0 ||
-      this.requiredRanks.some((req) => req.isEligible(cult, skills, origins, clan))
-    return skillsEligible && originsEligible && anyParentEligible && allRequiredRanksEligible
+      this.requiredRanks.some((req) => req.isEligible(cult, skills, origins, clan, context))
+    return skillsEligible && originsEligible && contextEligible && anyParentEligible && allRequiredRanksEligible
   }
 
   compare(other: Rank): number {
@@ -75,8 +106,11 @@ export class Rank implements Translatable {
   }
 
   formatPrerequisites(translator: Translator): string[] {
-    return [...this.requiredSkills, ...this.requiredOrigins].map((requirement) =>
-      requirement.format(translator)
+    return [
+      ...this.requiredSkills,
+      ...this.requiredOrigins
+    ].map((requirement) => requirement.format(translator)).concat(
+      this.contextRequirements.map((requirement) => requirement.format(translator))
     )
   }
 }
@@ -91,7 +125,8 @@ export const cultRank =
     isOutsideHierarchy: boolean = false,
     hierarchyLevelOverride: number | undefined = undefined,
     description: string | undefined = undefined,
-    requiredRanks: Array<Rank> = []
+    requiredRanks: Array<Rank> = [],
+    contextRequirements: Array<RankContextRequirement> = []
   ): Rank => {
     return new Rank(
       name,
@@ -103,7 +138,8 @@ export const cultRank =
       hierarchyLevelOverride,
       description,
       undefined,
-      requiredRanks
+      requiredRanks,
+      contextRequirements
     )
   }
 
