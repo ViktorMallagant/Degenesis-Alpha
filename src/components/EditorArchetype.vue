@@ -29,6 +29,7 @@ export interface Props {
   label: string
   smallLabel?: boolean
   inverted?: boolean
+  showType?: boolean
   item?: any,
   description?: string
 }
