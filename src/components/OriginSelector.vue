@@ -36,14 +36,15 @@ const originMin = () => {
   return config.pointLimits.origins.min
 }
 
-// Some custom ranks establish a floor for a Background without changing the
-// points the player actually spent on it. Keep that distinction visible by
-// rendering the difference as a bonus instead of mutating the base score.
+// Custom ranks can grant a flat Background bonus and/or establish a minimum
+// effective score. Keep both distinct from points the player actually spent.
 const effectiveOriginBonus = (origin: Origin) => {
   const existingBonus = store.totalOriginBonus(origin)
-  const currentEffective = store.originValue(origin) + existingBonus
+  const rankBonuses = (store.rank as any)?.originBonuses as Record<string, number> | undefined
+  const rankBonus = rankBonuses?.[origin.name] ?? 0
+  const currentEffective = store.originValue(origin) + existingBonus + rankBonus
   const rankMinimums = (store.rank as any)?.originMinimums as Record<string, number> | undefined
   const rankMinimum = rankMinimums?.[origin.name] ?? 0
-  return existingBonus + Math.max(0, rankMinimum - currentEffective)
+  return existingBonus + rankBonus + Math.max(0, rankMinimum - currentEffective)
 }
 </script>
