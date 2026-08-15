@@ -10,6 +10,8 @@ export const FriendOfTheLion = clanPotential(Clans.Touloni, 'friendOfTheLion', [
 
 export const CulturalMemory = clanPotential(Clans.Stukov, 'culturalMemory', [], [], [], [])
 
+export const EsotericCure = clanPotential(Clans.Brenni, 'esotericCure', [], [], [], [])
+
 export const BloodCall = clanPotential(
   Clans.Sanglier,
   'bloodCall',
@@ -66,6 +68,7 @@ export const FormerGlory = clanPotential(
 export const ClannerPotentials = [
   FriendOfTheLion,
   CulturalMemory,
+  EsotericCure,
   BloodCall,
   LanceThrust,
   Brotherhood,
