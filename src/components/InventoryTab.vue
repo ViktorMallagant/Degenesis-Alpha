@@ -188,7 +188,7 @@
         <div class="d-flex flex-wrap gap-3 mb-3">
           <v-text-field
             v-model="search"
-            placeholder="To research..."
+            placeholder="Search..."
             variant="outlined"
             density="compact"
             hide-details
