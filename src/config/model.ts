@@ -44,13 +44,25 @@ export class Concept implements Named {
   readonly bonusSkillNames: Array<string>
   format = (translator: Translator) => translator('concepts.' + this.index)
 }
+
+export interface ClanRules {
+  // Automatic successes applied specifically to Mental Defense rolls.
+  // Kept distinct from dice bonuses so clan rules such as +1S are not
+  // accidentally represented as a change to PSY, Faith, or Willpower.
+  mentalDefenseSuccessBonus?: number
+}
+
 export class Clan {
   constructor(
     readonly name: string,
-    readonly bonusSkills: Skill[]
+    readonly bonusSkills: Skill[],
+    readonly rules: ClanRules = {}
   ) {
     this.bonusSkillNames = bonusSkills.map((s) => s.name)
   }
   readonly bonusSkillNames: Array<string>
-}
 
+  get mentalDefenseSuccessBonus(): number {
+    return this.rules.mentalDefenseSuccessBonus ?? 0
+  }
+}
