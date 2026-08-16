@@ -30,8 +30,6 @@ export const Trajector: Rank = pictonRank(
   [Orbiter]
 )
 
-// The supplied display name is "Booter" while the requested internal key is
-// "booster". Keep the data key exactly as supplied and localize its label.
 export const Booster: Rank = pictonRank(
   'booster',
   [
