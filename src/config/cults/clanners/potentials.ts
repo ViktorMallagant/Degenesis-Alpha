@@ -14,6 +14,8 @@ export const EsotericCure = clanPotential(Clans.Brenni, 'esotericCure', [], [], 
 
 export const Earthbound = clanPotential(Clans.Providers, 'earthbound', [], [], [], [])
 
+export const Spiritshaper = clanPotential(Clans.SteelMasters, 'spiritshaper', [], [], [], [])
+
 export const BloodCall = clanPotential(
   Clans.Sanglier,
   'bloodCall',
@@ -72,6 +74,7 @@ export const ClannerPotentials = [
   CulturalMemory,
   EsotericCure,
   Earthbound,
+  Spiritshaper,
   BloodCall,
   LanceThrust,
   Brotherhood,
