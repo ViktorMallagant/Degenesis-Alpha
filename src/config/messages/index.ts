@@ -11,6 +11,7 @@ import { stukovMessages } from "./clans/stukov";
 import { brenniMessages } from "./clans/brenni";
 import { providersMessages } from "./clans/providers";
 import { steelMastersMessages } from "./clans/steelmasters";
+import { britoniMessages } from "./clans/britoni";
 import { legacies } from "./legacies";
 
 export default {
@@ -18,30 +19,30 @@ export default {
     messages: messages.de,
     ...properties.de,
     culturesConceptsCults: culturesConceptsCults.de,
-    ranks: { ...ranks.de, ...clanRanks.de, ...clanTemplateRanks.de, ...stukovMessages.de.ranks, ...brenniMessages.de.ranks, ...providersMessages.de.ranks, ...steelMastersMessages.de.ranks },
+    ranks: { ...ranks.de, ...clanRanks.de, ...clanTemplateRanks.de, ...stukovMessages.de.ranks, ...brenniMessages.de.ranks, ...providersMessages.de.ranks, ...steelMastersMessages.de.ranks, ...britoniMessages.de.ranks },
     sheet: sheet.de,
-    potentials: { ...potentials.de, ...stukovMessages.de.potentials, ...brenniMessages.de.potentials, ...providersMessages.de.potentials, ...steelMastersMessages.de.potentials },
-    clans: { ...clanNames.de, ...stukovMessages.de.clans, ...brenniMessages.de.clans, ...providersMessages.de.clans, ...steelMastersMessages.de.clans },
+    potentials: { ...potentials.de, ...stukovMessages.de.potentials, ...brenniMessages.de.potentials, ...providersMessages.de.potentials, ...steelMastersMessages.de.potentials, ...britoniMessages.de.potentials },
+    clans: { ...clanNames.de, ...stukovMessages.de.clans, ...brenniMessages.de.clans, ...providersMessages.de.clans, ...steelMastersMessages.de.clans, ...britoniMessages.de.clans },
     legacies: legacies.de,
   },
   en: {
     messages: messages.en,
     ...properties.en,
     culturesConceptsCults: culturesConceptsCults.en,
-    ranks: { ...ranks.en, ...clanRanks.en, ...clanTemplateRanks.en, ...stukovMessages.en.ranks, ...brenniMessages.en.ranks, ...providersMessages.en.ranks, ...steelMastersMessages.en.ranks },
+    ranks: { ...ranks.en, ...clanRanks.en, ...clanTemplateRanks.en, ...stukovMessages.en.ranks, ...brenniMessages.en.ranks, ...providersMessages.en.ranks, ...steelMastersMessages.en.ranks, ...britoniMessages.en.ranks },
     sheet: sheet.en,
-    potentials: { ...potentials.en, ...stukovMessages.en.potentials, ...brenniMessages.en.potentials, ...providersMessages.en.potentials, ...steelMastersMessages.en.potentials },
-    clans: { ...clanNames.en, ...stukovMessages.en.clans, ...brenniMessages.en.clans, ...providersMessages.en.clans, ...steelMastersMessages.en.clans },
+    potentials: { ...potentials.en, ...stukovMessages.en.potentials, ...brenniMessages.en.potentials, ...providersMessages.en.potentials, ...steelMastersMessages.en.potentials, ...britoniMessages.en.potentials },
+    clans: { ...clanNames.en, ...stukovMessages.en.clans, ...brenniMessages.en.clans, ...providersMessages.en.clans, ...steelMastersMessages.en.clans, ...britoniMessages.en.clans },
     legacies: legacies.en,
   },
   fr: {
     messages: messages.fr,
     ...properties.fr,
     culturesConceptsCults: culturesConceptsCults.fr,
-    ranks: { ...ranks.fr, ...clanRanks.fr, ...clanTemplateRanks.fr, ...stukovMessages.fr.ranks, ...brenniMessages.fr.ranks, ...providersMessages.fr.ranks, ...steelMastersMessages.fr.ranks },
+    ranks: { ...ranks.fr, ...clanRanks.fr, ...clanTemplateRanks.fr, ...stukovMessages.fr.ranks, ...brenniMessages.fr.ranks, ...providersMessages.fr.ranks, ...steelMastersMessages.fr.ranks, ...britoniMessages.fr.ranks },
     sheet: sheet.fr,
-    potentials: { ...potentials.fr, ...stukovMessages.fr.potentials, ...brenniMessages.fr.potentials, ...providersMessages.fr.potentials, ...steelMastersMessages.fr.potentials },
-    clans: { ...clanNames.fr, ...stukovMessages.fr.clans, ...brenniMessages.fr.clans, ...providersMessages.fr.clans, ...steelMastersMessages.fr.clans },
+    potentials: { ...potentials.fr, ...stukovMessages.fr.potentials, ...brenniMessages.fr.potentials, ...providersMessages.fr.potentials, ...steelMastersMessages.fr.potentials, ...britoniMessages.fr.potentials },
+    clans: { ...clanNames.fr, ...stukovMessages.fr.clans, ...brenniMessages.fr.clans, ...providersMessages.fr.clans, ...steelMastersMessages.fr.clans, ...britoniMessages.fr.clans },
     legacies: legacies.fr
   }
 }
