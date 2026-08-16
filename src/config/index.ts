@@ -125,7 +125,7 @@ export default {
   culturesByName: new Map(Object.values(Cultures).map((c) => [c.name, c])),
   conceptsByName: new Map(Object.values(Concepts).map((c) => [c.name, c])),
   cultsByName: new Map(Object.values(Cults).map((c) => [c.name, c])),
-  clansByName: new Map(Object.values(Clans).map((c) => [c.name, c])),
+  clansByName: new Map(Object.values(Clans).sort((a, b) => a.name.localeCompare(b.name, 'en')).map((c) => [c.name, c])),
   attributesByName: new Map(Object.values(allAttributes).map((a) => [a.name, a])),
   skillsByName: new Map(Object.values(Skills).map((s) => [s.name, s])),
   originsByName: new Map(Object.values(Origins).map((o) => [o.name, o]))
