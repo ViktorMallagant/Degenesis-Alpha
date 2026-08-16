@@ -5,6 +5,7 @@ import { createPinia, setMapStoreSuffix } from 'pinia'
 import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
 import { i18n } from './i18n'
 import browserStorage from '@/store/browserStorage'
+import { ResourceMode } from '@/config/items'
 
 // Expose the i18n instance (has .global.t) for the standalone rank-tree.js script
 ;(window as any).__i18n = i18n
@@ -13,6 +14,25 @@ const app = createApp(App)
 
 setMapStoreSuffix('')
 const pinia = createPinia()
+
+// Mode B is the official Resources rule and is the default for new characters.
+// Preserve explicitly saved A/B/C choices: loadCharacter applies those after
+// a reset, while new-character resets return to B.
+pinia.use(({ store }) => {
+  if (store.$id !== 'character') return
+
+  const setDefaultResourceMode = () => {
+    store.$patch({ resourceMode: ResourceMode.B } as any)
+  }
+
+  setDefaultResourceMode()
+  const originalReset = store.$reset.bind(store)
+  store.$reset = () => {
+    originalReset()
+    setDefaultResourceMode()
+  }
+})
+
 app.use(pinia)
 declare module 'pinia' {
   export interface MapStoresCustomization {
