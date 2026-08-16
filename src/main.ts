@@ -17,7 +17,8 @@ const pinia = createPinia()
 
 // Mode B is the official Resources rule and is the default for new characters.
 // Preserve explicitly saved A/B/C choices: loadCharacter applies those after
-// a reset, while new-character resets return to B.
+// a reset, while new-character resets return to B. Legacy characters created
+// before resourceMode was saved also fall back to B after loading.
 pinia.use(({ store }) => {
   if (store.$id !== 'character') return
 
@@ -31,6 +32,16 @@ pinia.use(({ store }) => {
     originalReset()
     setDefaultResourceMode()
   }
+
+  store.$onAction(({ name, args, after }) => {
+    if (name !== 'loadCharacter') return
+    const character = args[0] as { resourceMode?: ResourceMode } | undefined
+    after(() => {
+      if (character?.resourceMode == null) {
+        setDefaultResourceMode()
+      }
+    })
+  })
 })
 
 app.use(pinia)
