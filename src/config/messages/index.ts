@@ -18,9 +18,10 @@ import { ganaridsMessages } from "./clans/ganarids";
 import { legacies } from "./legacies";
 
 // Normalize user-facing English description markup and terminology in one place.
-// Older source text uses CONDITION for prerequisites and often leaves a section
-// label's trailing colon outside its <b> tag (for example <b>EFFECT</b>:).
-// Keep the source data intact while presenting consistent labels throughout the UI.
+// Older source text uses CONDITION for prerequisites, sometimes leaves a section
+// label's trailing colon outside its <b> tag, and contains a few French words
+// left over from the original French-first data. Keep the source data intact
+// while presenting consistent English labels throughout the UI.
 const normalizeEnglishText = <T>(value: T): T => {
   if (typeof value === 'string') {
     return value
@@ -29,7 +30,11 @@ const normalizeEnglishText = <T>(value: T): T => {
       .replace(/\bCONDITION:/g, 'PREREQUISITE:')
       .replace(/<\/b>:/g, ':</b>')
       .replace(/\bPrimitive Mace\b/gi, 'Club')
-      .replace(/\bSimple Revolver\b/gi, 'Flintlock Pistol') as T;
+      .replace(/\bSimple Revolver\b/gi, 'Flintlock Pistol')
+      .replace(/\bCompétences\b/g, 'Skills')
+      .replace(/\bVigueur\b/g, 'Stamina')
+      .replace(/\bCommandement\b/g, 'Leadership')
+      .replace(/\bRéactivité\b/g, 'Reaction') as T;
   }
 
   if (Array.isArray(value)) {
