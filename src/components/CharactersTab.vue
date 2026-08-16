@@ -103,6 +103,15 @@
           <v-btn
             block
             variant="outlined"
+            class="char-card-action-btn"
+            @click="exportChar(character)"
+          >
+            <v-icon :icon="mdiExport" size="16" class="mr-2"></v-icon>
+            {{ $t('messages.exportCharacter') }}
+          </v-btn>
+          <v-btn
+            block
+            variant="outlined"
             color="red-darken-3"
             class="char-card-action-btn"
             @click="confirmDelete(character.name)"
@@ -157,6 +166,7 @@ import {
   mdiImport,
   mdiCrop,
   mdiShareVariant,
+  mdiExport,
   mdiDeleteOutline,
 } from '@mdi/js'
 
@@ -188,6 +198,24 @@ function confirmDelete(name: string) {
 function doDelete() {
   emit('delete', pendingDeleteName.value)
   deleteDialog.value = false
+}
+
+// Export
+function exportChar(character: Character) {
+  const filename = `${sanitizeFilename(character.name)}.json`
+  const blob = new Blob([JSON.stringify(character, null, 2)], { type: 'application/json;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = filename
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
+  URL.revokeObjectURL(url)
+}
+
+function sanitizeFilename(name: string): string {
+  return name.trim().replace(/[^a-zA-Z0-9._-]+/g, '-').replace(/^-+|-+$/g, '') || 'character'
 }
 
 // Crop
