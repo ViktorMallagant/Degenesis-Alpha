@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, watch } from 'vue'
 import App from '@/App.vue'
 //import router from '@/router'
 import { createPinia, setMapStoreSuffix } from 'pinia'
@@ -33,12 +33,43 @@ pinia.use(({ store }) => {
     store.$patch({ resourceMode: ResourceMode.B } as any)
   }
 
+  // English currency naming is determined solely by Culture:
+  // Africa uses Dinars; every other Culture uses Drafts. Starting wealth
+  // multipliers remain Cult-based in the store's existing calculation.
+  const syncCultureCurrency = () => {
+    const currency = (store as any).culture?.name === 'africa' ? 'Dinars' : 'Drafts'
+    const wealth = (store as any).computedDinars as { currency?: string } | null | undefined
+
+    // computedDinars is a cached plain object returned by a Pinia getter, so
+    // normalizing its currency field here keeps all existing consumers aligned
+    // without changing the Cult-based wealth-factor calculation.
+    if (wealth) wealth.currency = currency
+
+    if (i18n.global.locale.value === 'en') {
+      i18n.global.mergeLocaleMessage('en', { messages: { dinars: currency } })
+    }
+  }
+
   setDefaultResourceMode()
+  syncCultureCurrency()
+
   const originalReset = store.$reset.bind(store)
   store.$reset = () => {
     originalReset()
     setDefaultResourceMode()
+    syncCultureCurrency()
   }
+
+  // Re-apply after any character-state mutation because computedDinars can be
+  // recalculated when Cult, Rank, Resources, or other wealth inputs change.
+  store.$subscribe(() => {
+    syncCultureCurrency()
+  }, { detached: true })
+
+  watch(
+    () => i18n.global.locale.value,
+    () => syncCultureCurrency()
+  )
 
   store.$onAction(({ name, args, after }) => {
     if (name !== 'loadCharacter') return
@@ -47,6 +78,7 @@ pinia.use(({ store }) => {
       if (character?.resourceMode == null) {
         setDefaultResourceMode()
       }
+      syncCultureCurrency()
     })
   })
 })
