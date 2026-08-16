@@ -2,7 +2,7 @@ import { expect, test } from 'vitest'
 import config from '../../src/config'
 import { ranksByCult } from '../../src/config/cults/cults'
 import { cultSpecificPotentials } from '../../src/config/potentials'
-import { Origins, Skills } from '../../src/config/properties'
+import { Origins, Skills, SkillWithAttribute } from '../../src/config/properties'
 
 test('Steel Masters uses its dedicated preferred skills and rank tree', () => {
   const clan = config.clans.SteelMasters
@@ -55,10 +55,11 @@ test('Both Steel Master end ranks require Crafting 11', () => {
   const endRanks = ranks.filter((rank) =>
     rank.name === 'steelmasters-steelmasterogota' || rank.name === 'steelmasters-steelmastergotokai'
   )
+  const crafting = new SkillWithAttribute(Skills.crafting)
 
   expect(endRanks).toHaveLength(2)
   for (const rank of endRanks) {
-    expect(rank.requiredSkills[0].check([Skills.crafting.withValue(11 + 1)])).toBe(true)
-    expect(rank.requiredSkills[0].check([Skills.crafting.withValue(10 + 1)])).toBe(false)
+    expect(rank.requiredSkills[0].check([crafting.withValue(11)])).toBe(true)
+    expect(rank.requiredSkills[0].check([crafting.withValue(10)])).toBe(false)
   }
 })
