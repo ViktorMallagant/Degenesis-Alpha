@@ -2,6 +2,7 @@ import { Bordenoir, BordenoirRanks } from "./bordenoir";
 import { Brenni, BrenniRanks } from "./brenni";
 import { Britoni, BritoniRanks } from "./britoni";
 import { Cockroaches, CockroachRanks } from "./cockroaches";
+import { Druids, DruidRanks } from "./druids";
 import { Exalters, ExaltersRanks } from "./exalters";
 import { HunterGathererRanks, HunterGatherers } from "./hunterGatherers";
 import {
@@ -53,6 +54,7 @@ export const Clans = {
   SteelMasters: SteelMasters,
   Britoni: Britoni,
   Pictons: Pictons,
+  Druids: Druids,
   Touloni: Touloni,
   Sanglier: Sanglier,
   Bordenoir: Bordenoir,
@@ -71,6 +73,7 @@ export const ClannerRanks = [
   ...SteelMastersRanks,
   ...BritoniRanks,
   ...PictonRanks,
+  ...DruidRanks,
   ...TouloniRanks,
   ...SanglierRanks,
   ...BordenoirRanks,
