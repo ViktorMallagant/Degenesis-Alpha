@@ -20,6 +20,8 @@ export const Riptide = clanPotential(Clans.Britoni, 'riptide', [], [], [], [])
 
 export const ImplantedExpertise = clanPotential(Clans.Pictons, 'implantedExpertise', [], [], [], [])
 
+export const NaturesCanon = clanPotential(Clans.Druids, 'naturesCanon', [], [], [], [])
+
 export const BloodCall = clanPotential(
   Clans.Sanglier,
   'bloodCall',
@@ -81,6 +83,7 @@ export const ClannerPotentials = [
   Spiritshaper,
   Riptide,
   ImplantedExpertise,
+  NaturesCanon,
   BloodCall,
   LanceThrust,
   Brotherhood,
