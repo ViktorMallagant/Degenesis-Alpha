@@ -21,7 +21,8 @@
   }
 
   function pluralSuffix(count) {
-    return count === 1 ? "" : "s";
+    if (count <= 1) return "";
+    return locale() === "de" ? "en" : "s";
   }
 
   function collectModifierLines(store) {
@@ -35,6 +36,8 @@
       });
     }
 
+    // Entrepreneur penalties are displayed in the same Modifiers block in the UI,
+    // so export them alongside the static Legacy/Potential modifiers as well.
     if (store && store.entrepreneurSocialPenalties) {
       Array.from(store.entrepreneurSocialPenalties).forEach(function (penalty) {
         var cultName = i18nTranslate("culturesConceptsCults." + penalty.cultKey);
@@ -44,7 +47,7 @@
           plural: pluralSuffix(penalty.count)
         });
         if (translated && translated !== "messages.entrepreneurPenalty") {
-          lines.push(String(translated));
+          lines.push(String(translated).trim());
         }
       });
     }
@@ -53,15 +56,15 @@
   }
 
   function appendixTitle() {
-    if (locale() === "fr") return "MODIFICATEURS";
-    if (locale() === "de") return "MODIFIKATOREN";
-    return "MODIFIERS";
+    if (locale() === "fr") return "MODIFICATEURS - SUITE";
+    if (locale() === "de") return "MODIFIKATOREN - FORTSETZUNG";
+    return "MODIFIERS - CONTINUED";
   }
 
   function appendixSubtitle() {
-    if (locale() === "fr") return "Modificateurs actifs au moment de l'export";
-    if (locale() === "de") return "Aktive Modifikatoren zum Zeitpunkt des Exports";
-    return "Active modifiers at time of export";
+    if (locale() === "fr") return "Modificateurs supplémentaires ne tenant pas sur la fiche";
+    if (locale() === "de") return "Zusätzliche Modifikatoren, die nicht auf das Charakterblatt passen";
+    return "Additional active modifiers that do not fit on the character sheet";
   }
 
   function normalizePdfText(text) {
@@ -113,9 +116,121 @@
     return lines;
   }
 
-  async function appendModifierPages(pdf, store) {
-    var modifiers = collectModifierLines(store);
-    if (modifiers.length === 0) return;
+  function fieldNumber(name) {
+    var match = String(name || "").match(/(\d+)\s*$/);
+    return match ? parseInt(match[1], 10) : 0;
+  }
+
+  function isTextField(field) {
+    return field && typeof field.setText === "function";
+  }
+
+  function samePdfRef(a, b) {
+    if (!a || !b) return false;
+    try { return String(a) === String(b); }
+    catch (e) { return a === b; }
+  }
+
+  function findModifierFields(pdf, form) {
+    var allFields = form.getFields();
+    var named = allFields.filter(function (field) {
+      if (!isTextField(field)) return false;
+      var name = "";
+      try { name = field.getName(); } catch (e) {}
+      return /modif/i.test(name);
+    });
+
+    // The current French and English templates use descriptive field names, so
+    // this normally resolves the five Modifiers lines without relying on layout.
+    if (named.length > 0) {
+      named.sort(function (a, b) {
+        var aName = "";
+        var bName = "";
+        try { aName = a.getName(); } catch (e) {}
+        try { bName = b.getName(); } catch (e) {}
+        var numberDiff = fieldNumber(aName) - fieldNumber(bName);
+        return numberDiff || aName.localeCompare(bName);
+      });
+      return named.slice(0, 5);
+    }
+
+    // Layout fallback for alternate templates. Restrict widgets to page 1 and
+    // the lower-left Modifiers area so page-2 equipment fields cannot be chosen.
+    var pages = pdf.getPages();
+    if (!pages.length) return [];
+    var firstPage = pages[0];
+    var size = firstPage.getSize();
+    var candidates = [];
+
+    allFields.forEach(function (field) {
+      if (!isTextField(field)) return;
+      try {
+        var widgets = field.acroField.getWidgets();
+        widgets.forEach(function (widget) {
+          var pageRef = typeof widget.P === "function" ? widget.P() : null;
+          if (!pageRef || !firstPage.ref || !samePdfRef(pageRef, firstPage.ref)) return;
+
+          var rect = widget.getRectangle();
+          var inModifierArea =
+            rect.x < size.width * 0.38 &&
+            rect.y > size.height * 0.035 &&
+            rect.y < size.height * 0.19 &&
+            rect.width > size.width * 0.16 &&
+            rect.height < size.height * 0.04;
+
+          if (inModifierArea) {
+            candidates.push({ field: field, x: rect.x, y: rect.y });
+          }
+        });
+      } catch (e) {}
+    });
+
+    candidates.sort(function (a, b) {
+      if (Math.abs(b.y - a.y) > 0.5) return b.y - a.y;
+      return a.x - b.x;
+    });
+
+    var seen = {};
+    var result = [];
+    candidates.forEach(function (entry) {
+      var name = "";
+      try { name = entry.field.getName(); } catch (e) {}
+      if (!name || seen[name]) return;
+      seen[name] = true;
+      result.push(entry.field);
+    });
+
+    return result.slice(0, 5);
+  }
+
+  function modifierFontSize(text) {
+    var length = normalizePdfText(text).length;
+    if (length > 105) return 4;
+    if (length > 85) return 4.5;
+    if (length > 68) return 5;
+    if (length > 52) return 5.5;
+    return 6.5;
+  }
+
+  function fillModifierFields(pdf, form, modifiers) {
+    var fields = findModifierFields(pdf, form);
+    var count = Math.min(fields.length, modifiers.length);
+
+    for (var i = 0; i < fields.length; i++) {
+      var text = i < modifiers.length ? normalizePdfText(modifiers[i]) : "";
+      try {
+        if (typeof fields[i].setFontSize === "function") {
+          fields[i].setFontSize(modifierFontSize(text));
+        }
+      } catch (e) {}
+      try { fields[i].setText(text); } catch (e) {}
+    }
+
+    return count;
+  }
+
+  async function appendModifierPages(pdf, modifiers) {
+    if (!modifiers || modifiers.length === 0) return;
 
     var pages = pdf.getPages();
     var referencePage = pages.length > 0 ? pages[0] : null;
@@ -187,14 +302,31 @@
     });
   }
 
+  async function exportModifiers(pdf, store) {
+    var modifiers = collectModifierLines(store);
+    if (modifiers.length === 0) return;
+
+    var form;
+    try { form = pdf.getForm(); } catch (e) { form = null; }
+
+    var filledCount = form ? fillModifierFields(pdf, form, modifiers) : 0;
+    var overflow = modifiers.slice(filledCount);
+
+    // If the template exposes fewer Modifier fields than expected, no data is
+    // discarded: anything that does not fit is retained on continuation pages.
+    if (overflow.length > 0) {
+      await appendModifierPages(pdf, overflow);
+    }
+  }
+
   PDFLib.PDFDocument.prototype.save = async function () {
     if (!processedDocuments.has(this)) {
       processedDocuments.add(this);
       try {
         var store = window.__charStore;
-        if (store) await appendModifierPages(this, store);
+        if (store) await exportModifiers(this, store);
       } catch (error) {
-        console.warn("Could not append character modifiers to PDF export.", error);
+        console.warn("Could not export character modifiers to PDF.", error);
       }
     }
 
