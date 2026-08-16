@@ -17,6 +17,20 @@ import { druidsMessages } from "./clans/druids";
 import { ganaridsMessages } from "./clans/ganarids";
 import { legacies } from "./legacies";
 
+// Older built-in descriptions use both <b>CONDITION</b>: and
+// <b>CONDITION:</b>. Normalize those user-facing English labels in one place
+// so ranks, Potentials, and Legacies consistently display PREREQUISITE.
+const prerequisiteLabels = <T extends Record<string, string>>(entries: T): T =>
+  Object.fromEntries(
+    Object.entries(entries).map(([key, value]) => [
+      key,
+      value
+        .replace(/<b>CONDITION:<\/b>/g, '<b>PREREQUISITE:</b>')
+        .replace(/<b>CONDITION<\/b>:/g, '<b>PREREQUISITE</b>:')
+        .replace(/\bCONDITION:/g, 'PREREQUISITE:')
+    ])
+  ) as T;
+
 export default {
   de: {
     messages: { ...messages.de, missingConditions: 'Fehlende Voraussetzungen' },
@@ -32,11 +46,11 @@ export default {
     messages: { ...messages.en, missingConditions: 'Missing prerequisites' },
     ...properties.en,
     culturesConceptsCults: culturesConceptsCults.en,
-    ranks: { ...ranks.en, ...clanRanks.en, ...clanTemplateRanks.en, ...stukovMessages.en.ranks, ...brenniMessages.en.ranks, ...providersMessages.en.ranks, ...steelMastersMessages.en.ranks, ...britoniMessages.en.ranks, ...pictonsMessages.en.ranks, ...druidsMessages.en.ranks, ...ganaridsMessages.en.ranks },
+    ranks: prerequisiteLabels({ ...ranks.en, ...clanRanks.en, ...clanTemplateRanks.en, ...stukovMessages.en.ranks, ...brenniMessages.en.ranks, ...providersMessages.en.ranks, ...steelMastersMessages.en.ranks, ...britoniMessages.en.ranks, ...pictonsMessages.en.ranks, ...druidsMessages.en.ranks, ...ganaridsMessages.en.ranks }),
     sheet: sheet.en,
-    potentials: { ...potentials.en, ...stukovMessages.en.potentials, ...brenniMessages.en.potentials, ...providersMessages.en.potentials, ...steelMastersMessages.en.potentials, ...britoniMessages.en.potentials, ...pictonsMessages.en.potentials, ...druidsMessages.en.potentials, ...ganaridsMessages.en.potentials },
+    potentials: prerequisiteLabels({ ...potentials.en, ...stukovMessages.en.potentials, ...brenniMessages.en.potentials, ...providersMessages.en.potentials, ...steelMastersMessages.en.potentials, ...britoniMessages.en.potentials, ...pictonsMessages.en.potentials, ...druidsMessages.en.potentials, ...ganaridsMessages.en.potentials }),
     clans: { ...clanNames.en, ...stukovMessages.en.clans, ...brenniMessages.en.clans, ...providersMessages.en.clans, ...steelMastersMessages.en.clans, ...britoniMessages.en.clans, ...pictonsMessages.en.clans, ...druidsMessages.en.clans, ...ganaridsMessages.en.clans },
-    legacies: legacies.en,
+    legacies: prerequisiteLabels(legacies.en),
   },
   fr: {
     messages: { ...messages.fr, missingConditions: 'Prérequis manquants' },
