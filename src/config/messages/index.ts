@@ -17,19 +17,34 @@ import { druidsMessages } from "./clans/druids";
 import { ganaridsMessages } from "./clans/ganarids";
 import { legacies } from "./legacies";
 
-// Older built-in descriptions use both <b>CONDITION</b>: and
-// <b>CONDITION:</b>. Normalize those user-facing English labels in one place
-// so ranks, Potentials, and Legacies consistently display PREREQUISITE.
-const prerequisiteLabels = <T extends Record<string, string>>(entries: T): T =>
-  Object.fromEntries(
-    Object.entries(entries).map(([key, value]) => [
-      key,
-      value
-        .replace(/<b>CONDITION:<\/b>/g, '<b>PREREQUISITE:</b>')
-        .replace(/<b>CONDITION<\/b>:/g, '<b>PREREQUISITE</b>:')
-        .replace(/\bCONDITION:/g, 'PREREQUISITE:')
-    ])
-  ) as T;
+// Normalize user-facing English description markup in one place. Older source
+// text uses CONDITION for prerequisites and often leaves a section label's
+// trailing colon outside its <b> tag (for example <b>EFFECT</b>:). Keep the
+// source data intact while presenting consistent labels throughout the UI.
+const normalizeEnglishText = <T>(value: T): T => {
+  if (typeof value === 'string') {
+    return value
+      .replace(/<b>CONDITION:<\/b>/g, '<b>PREREQUISITE:</b>')
+      .replace(/<b>CONDITION<\/b>:/g, '<b>PREREQUISITE</b>:')
+      .replace(/\bCONDITION:/g, 'PREREQUISITE:')
+      .replace(/<\/b>:/g, ':</b>') as T;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((entry) => normalizeEnglishText(entry)) as T;
+  }
+
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, entry]) => [
+        key,
+        normalizeEnglishText(entry)
+      ])
+    ) as T;
+  }
+
+  return value;
+};
 
 export default {
   de: {
@@ -43,14 +58,14 @@ export default {
     legacies: legacies.de,
   },
   en: {
-    messages: { ...messages.en, missingConditions: 'Missing prerequisites' },
-    ...properties.en,
-    culturesConceptsCults: culturesConceptsCults.en,
-    ranks: prerequisiteLabels({ ...ranks.en, ...clanRanks.en, ...clanTemplateRanks.en, ...stukovMessages.en.ranks, ...brenniMessages.en.ranks, ...providersMessages.en.ranks, ...steelMastersMessages.en.ranks, ...britoniMessages.en.ranks, ...pictonsMessages.en.ranks, ...druidsMessages.en.ranks, ...ganaridsMessages.en.ranks }),
-    sheet: sheet.en,
-    potentials: prerequisiteLabels({ ...potentials.en, ...stukovMessages.en.potentials, ...brenniMessages.en.potentials, ...providersMessages.en.potentials, ...steelMastersMessages.en.potentials, ...britoniMessages.en.potentials, ...pictonsMessages.en.potentials, ...druidsMessages.en.potentials, ...ganaridsMessages.en.potentials }),
-    clans: { ...clanNames.en, ...stukovMessages.en.clans, ...brenniMessages.en.clans, ...providersMessages.en.clans, ...steelMastersMessages.en.clans, ...britoniMessages.en.clans, ...pictonsMessages.en.clans, ...druidsMessages.en.clans, ...ganaridsMessages.en.clans },
-    legacies: prerequisiteLabels(legacies.en),
+    messages: normalizeEnglishText({ ...messages.en, missingConditions: 'Missing prerequisites' }),
+    ...normalizeEnglishText(properties.en),
+    culturesConceptsCults: normalizeEnglishText(culturesConceptsCults.en),
+    ranks: normalizeEnglishText({ ...ranks.en, ...clanRanks.en, ...clanTemplateRanks.en, ...stukovMessages.en.ranks, ...brenniMessages.en.ranks, ...providersMessages.en.ranks, ...steelMastersMessages.en.ranks, ...britoniMessages.en.ranks, ...pictonsMessages.en.ranks, ...druidsMessages.en.ranks, ...ganaridsMessages.en.ranks }),
+    sheet: normalizeEnglishText(sheet.en),
+    potentials: normalizeEnglishText({ ...potentials.en, ...stukovMessages.en.potentials, ...brenniMessages.en.potentials, ...providersMessages.en.potentials, ...steelMastersMessages.en.potentials, ...britoniMessages.en.potentials, ...pictonsMessages.en.potentials, ...druidsMessages.en.potentials, ...ganaridsMessages.en.potentials }),
+    clans: normalizeEnglishText({ ...clanNames.en, ...stukovMessages.en.clans, ...brenniMessages.en.clans, ...providersMessages.en.clans, ...steelMastersMessages.en.clans, ...britoniMessages.en.clans, ...pictonsMessages.en.clans, ...druidsMessages.en.clans, ...ganaridsMessages.en.clans }),
+    legacies: normalizeEnglishText(legacies.en),
   },
   fr: {
     messages: { ...messages.fr, missingConditions: 'Prérequis manquants' },
