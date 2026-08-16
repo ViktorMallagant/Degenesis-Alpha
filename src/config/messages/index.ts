@@ -17,17 +17,19 @@ import { druidsMessages } from "./clans/druids";
 import { ganaridsMessages } from "./clans/ganarids";
 import { legacies } from "./legacies";
 
-// Normalize user-facing English description markup in one place. Older source
-// text uses CONDITION for prerequisites and often leaves a section label's
-// trailing colon outside its <b> tag (for example <b>EFFECT</b>:). Keep the
-// source data intact while presenting consistent labels throughout the UI.
+// Normalize user-facing English description markup and terminology in one place.
+// Older source text uses CONDITION for prerequisites and often leaves a section
+// label's trailing colon outside its <b> tag (for example <b>EFFECT</b>:).
+// Keep the source data intact while presenting consistent labels throughout the UI.
 const normalizeEnglishText = <T>(value: T): T => {
   if (typeof value === 'string') {
     return value
       .replace(/<b>CONDITION:<\/b>/g, '<b>PREREQUISITE:</b>')
       .replace(/<b>CONDITION<\/b>:/g, '<b>PREREQUISITE</b>:')
       .replace(/\bCONDITION:/g, 'PREREQUISITE:')
-      .replace(/<\/b>:/g, ':</b>') as T;
+      .replace(/<\/b>:/g, ':</b>')
+      .replace(/\bPrimitive Mace\b/gi, 'Club')
+      .replace(/\bSimple Revolver\b/gi, 'Flintlock Pistol') as T;
   }
 
   if (Array.isArray(value)) {
