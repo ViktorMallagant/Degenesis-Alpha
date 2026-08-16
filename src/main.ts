@@ -6,10 +6,16 @@ import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
 import { i18n } from './i18n'
 import browserStorage from '@/store/browserStorage'
 import { ResourceMode } from '@/config/items'
+import { installLegacyFrenchCleanup } from '@/util/legacyFrenchCleanup'
 import '@/styles/character-actions.css'
 
 // Expose the i18n instance (has .global.t) for the standalone rank-tree.js script
 ;(window as any).__i18n = i18n
+
+// Some older UI fragments still contain hard-coded French text outside the
+// locale tables. Keep those fragments English when the English locale is active,
+// including native alert/confirm/prompt messages that can otherwise be easy to miss.
+installLegacyFrenchCleanup(() => i18n.global.locale.value)
 
 const app = createApp(App)
 
