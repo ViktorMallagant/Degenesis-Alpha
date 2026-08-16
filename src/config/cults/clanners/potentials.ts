@@ -18,6 +18,8 @@ export const Spiritshaper = clanPotential(Clans.SteelMasters, 'spiritshaper', []
 
 export const Riptide = clanPotential(Clans.Britoni, 'riptide', [], [], [], [])
 
+export const ImplantedExpertise = clanPotential(Clans.Pictons, 'implantedExpertise', [], [], [], [])
+
 export const BloodCall = clanPotential(
   Clans.Sanglier,
   'bloodCall',
@@ -78,6 +80,7 @@ export const ClannerPotentials = [
   Earthbound,
   Spiritshaper,
   Riptide,
+  ImplantedExpertise,
   BloodCall,
   LanceThrust,
   Brotherhood,
