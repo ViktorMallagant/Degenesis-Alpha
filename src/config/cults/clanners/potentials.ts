@@ -22,6 +22,12 @@ export const ImplantedExpertise = clanPotential(Clans.Pictons, 'implantedExperti
 
 export const NaturesCanon = clanPotential(Clans.Druids, 'naturesCanon', [], [], [], [])
 
+// Harmonious requires Spore Infestation (5). The current character model tracks
+// maximum Spore Infestation but not a character's current infestation score, so
+// the prerequisite remains explicit in the Potential description rather than
+// being approximated with a different statistic.
+export const Harmonious = clanPotential(Clans.Ganarids, 'harmonious', [], [], [], [])
+
 export const BloodCall = clanPotential(
   Clans.Sanglier,
   'bloodCall',
@@ -84,6 +90,7 @@ export const ClannerPotentials = [
   Riptide,
   ImplantedExpertise,
   NaturesCanon,
+  Harmonious,
   BloodCall,
   LanceThrust,
   Brotherhood,
