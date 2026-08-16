@@ -1,0 +1,24 @@
+/*
+ * EditorTab already renders Export, Share, Delete in that DOM order when the
+ * Character Sheet tab is active. Keep the component logic untouched while
+ * presenting the actions in the clearer Share, Export, Delete order requested
+ * by the UI. The :has() guard limits this to the sheet state, where all three
+ * direct action buttons are present; other editor tabs only render Share/Delete.
+ */
+.v-toolbar.pa-4.bg-grey-lighten-2.elevation-2
+  .v-toolbar__append:has(> .v-btn:nth-of-type(3))
+  > .v-btn:nth-of-type(1) {
+  order: 2;
+}
+
+.v-toolbar.pa-4.bg-grey-lighten-2.elevation-2
+  .v-toolbar__append:has(> .v-btn:nth-of-type(3))
+  > .v-btn:nth-of-type(2) {
+  order: 1;
+}
+
+.v-toolbar.pa-4.bg-grey-lighten-2.elevation-2
+  .v-toolbar__append:has(> .v-btn:nth-of-type(3))
+  > .v-btn:nth-of-type(3) {
+  order: 3;
+}
