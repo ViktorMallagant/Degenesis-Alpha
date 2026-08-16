@@ -6,6 +6,7 @@ import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
 import { i18n } from './i18n'
 import browserStorage from '@/store/browserStorage'
 import { ResourceMode } from '@/config/items'
+import '@/styles/character-actions.css'
 
 // Expose the i18n instance (has .global.t) for the standalone rank-tree.js script
 ;(window as any).__i18n = i18n
