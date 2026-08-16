@@ -39,7 +39,16 @@ const props = withDefaults(defineProps<Props>(), {
   inverted: false
 })
 
-const logoPath = () => `logotypes/${props.type}s/${props.archetype}.svg`
+const clanLogoAliases: Record<string, string> = {
+  steelmasters: 'steelMasters'
+}
+
+const logoPath = () => {
+  const archetype = props.type === 'clan'
+    ? (clanLogoAliases[props.archetype] ?? props.archetype)
+    : props.archetype
+  return `logotypes/${props.type}s/${archetype}.svg`
+}
 const clanFallbackLogo = 'logotypes/clans/hunterGatherers.svg'
 const logoSrc = ref(logoPath())
 
