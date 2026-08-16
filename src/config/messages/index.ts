@@ -19,7 +19,7 @@ import { legacies } from "./legacies";
 
 export default {
   de: {
-    messages: messages.de,
+    messages: { ...messages.de, missingConditions: 'Fehlende Voraussetzungen' },
     ...properties.de,
     culturesConceptsCults: culturesConceptsCults.de,
     ranks: { ...ranks.de, ...clanRanks.de, ...clanTemplateRanks.de, ...stukovMessages.de.ranks, ...brenniMessages.de.ranks, ...providersMessages.de.ranks, ...steelMastersMessages.de.ranks, ...britoniMessages.de.ranks, ...pictonsMessages.de.ranks, ...druidsMessages.de.ranks, ...ganaridsMessages.de.ranks },
@@ -29,7 +29,7 @@ export default {
     legacies: legacies.de,
   },
   en: {
-    messages: messages.en,
+    messages: { ...messages.en, missingConditions: 'Missing prerequisites' },
     ...properties.en,
     culturesConceptsCults: culturesConceptsCults.en,
     ranks: { ...ranks.en, ...clanRanks.en, ...clanTemplateRanks.en, ...stukovMessages.en.ranks, ...brenniMessages.en.ranks, ...providersMessages.en.ranks, ...steelMastersMessages.en.ranks, ...britoniMessages.en.ranks, ...pictonsMessages.en.ranks, ...druidsMessages.en.ranks, ...ganaridsMessages.en.ranks },
@@ -39,7 +39,7 @@ export default {
     legacies: legacies.en,
   },
   fr: {
-    messages: messages.fr,
+    messages: { ...messages.fr, missingConditions: 'Prérequis manquants' },
     ...properties.fr,
     culturesConceptsCults: culturesConceptsCults.fr,
     ranks: { ...ranks.fr, ...clanRanks.fr, ...clanTemplateRanks.fr, ...stukovMessages.fr.ranks, ...brenniMessages.fr.ranks, ...providersMessages.fr.ranks, ...steelMastersMessages.fr.ranks, ...britoniMessages.fr.ranks, ...pictonsMessages.fr.ranks, ...druidsMessages.fr.ranks, ...ganaridsMessages.fr.ranks },
