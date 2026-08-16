@@ -2,9 +2,9 @@
   <div class="inventory-root">
     <!-- ── Header : budget + ressources + mode ── -->
     <div class="inv-header elevation-2 pa-4 d-flex flex-wrap align-center gap-4">
-      <!-- Budget LC/Dinars -->
+      <!-- Budget Drafts/Dinars -->
       <div class="inv-stat-chip">
-        <span class="inv-stat-label">{{ store.computedDinars?.currency ?? 'LC' }}</span>
+        <span class="inv-stat-label">{{ currencyLabel }}</span>
         <input
           v-if="store.editorMode === 'free'"
           type="number"
@@ -168,7 +168,7 @@
                 <td>{{ group.item.slots ?? '—' }}</td>
                 <td>
                   <v-chip size="x-small" :color="group.purchaseMethod === 'entrepreneur' ? 'orange-darken-2' : group.purchaseMethod === 'resources' ? 'blue-darken-1' : group.purchaseMethod === 'free' ? 'purple-darken-2' : 'green-darken-1'" text-color="white">
-                    {{ group.purchaseMethod === 'entrepreneur' ? 'Ress. Entrepreneur' : group.purchaseMethod === 'resources' ? 'Ressources' : group.purchaseMethod === 'free' ? 'Gratuit' : (store.computedDinars?.currency ?? 'LC') }}
+                    {{ group.purchaseMethod === 'entrepreneur' ? 'Ress. Entrepreneur' : group.purchaseMethod === 'resources' ? 'Ressources' : group.purchaseMethod === 'free' ? 'Gratuit' : currencyLabel }}
                   </v-chip>
                 </td>
                 <td>
@@ -307,7 +307,7 @@
                 <td>{{ item.techLevel ?? '—' }}</td>
                 <td>{{ item.slots ?? '—' }}</td>
                 <td class="text-no-wrap">
-                  {{ item.value }} {{ store.computedDinars?.currency ?? 'LC' }}
+                  {{ item.value }} {{ currencyLabel }}
                   <span v-if="item.levelable" class="inv-muted text-caption"> X Level</span>
                 </td>
                 <td v-if="hasResources(group.items)">
@@ -328,7 +328,7 @@
                     class="mr-1"
                     @click="item.levelable ? openLevelDialog(item, false) : store.buyItemWithLC(item.id)"
                   >
-                    {{ store.computedDinars?.currency ?? 'LC' }}
+                    {{ currencyLabel }}
                   </v-btn>
                   <v-btn
                     v-if="item.resources !== undefined && item.cult !== undefined && (item.cult === store.cult?.name || item.cult === store.imposteurCult?.name || store.renegadeCults.some(c => c.name === item.cult) || store.hasEntrepreneur || store.editorMode === 'free')"
@@ -365,7 +365,7 @@
       <v-card-text>
         <p class="mb-3">
           <strong>{{ levelDialogItem.name }}</strong><br>
-          <span v-if="!levelDialogFree" class="text-caption inv-muted">Unit price: {{ levelDialogItem.value }} {{ store.computedDinars?.currency ?? 'LC' }}</span>
+          <span v-if="!levelDialogFree" class="text-caption inv-muted">Unit price: {{ levelDialogItem.value }} {{ currencyLabel }}</span>
           <span v-else class="text-caption" style="color: rgb(var(--v-theme-purple-darken-2))">Free addition</span>
         </p>
         <v-btn-toggle v-model="selectedLevel" mandatory density="compact" variant="outlined" divided class="mb-3">
@@ -377,11 +377,11 @@
           >
             Niv. {{ lvl }}
             <br>
-            <span v-if="!levelDialogFree" class="text-caption">{{ levelCost(levelDialogItem, lvl) }} {{ store.computedDinars?.currency ?? 'LC' }}</span>
+            <span v-if="!levelDialogFree" class="text-caption">{{ levelCost(levelDialogItem, lvl) }} {{ currencyLabel }}</span>
           </v-btn>
         </v-btn-toggle>
         <div v-if="!levelDialogFree" class="text-caption inv-muted">
-          Remaining after purchase: {{ store.remainingLC - levelCost(levelDialogItem, selectedLevel) }} {{ store.computedDinars?.currency ?? 'LC' }}
+          Remaining after purchase: {{ store.remainingLC - levelCost(levelDialogItem, selectedLevel) }} {{ currencyLabel }}
         </div>
       </v-card-text>
       <v-card-actions>
@@ -419,6 +419,7 @@ import HoverTooltip from '@/components/HoverTooltip.vue'
 
 const store = useCharacterStore()
 const i18n = useI18n()
+const currencyLabel = computed(() => store.culture?.name === 'africa' ? 'Dinars' : 'Drafts')
 
 // ── Avertissement traduction (EN/DE) ──
 const showNotTranslatedDialog = ref(false)
