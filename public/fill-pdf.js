@@ -490,19 +490,8 @@
     safeSetText(form, "Weight", store.weight != null ? String(store.weight) : "");
     safeSetText(form, "XPC", store.experience || "");
 
-    var CULT_FACTORS = {
-      "anabaptists": [50, "LC"], "anubians": [100, "dinars"],
-      "apocalyptics": [200, "LC"], "palers": [50, "LC"],
-      "chroniclers": [128, "LC"], "clanners": [50, "LC"],
-      "scrappers": [50, "LC"], "scourgers": [100, "dinars"],
-      "hellvetics": [50, "LC"], "jehammedans": [100, "LC"],
-      "judges": [50, "LC"], "neolibyans": [1000, "dinars"],
-      "spitalians": [100, "LC"]
-    };
-    if (store.cult && store.cult.name && CULT_FACTORS[store.cult.name]) {
-      var cf = CULT_FACTORS[store.cult.name];
-      safeSetText(form, "Dinars/Drafts", store.remainingLC + " " + cf[1]);
-    }
+    var currency = store.culture && store.culture.name === "africa" ? "Dinars" : "Drafts";
+    safeSetText(form, "Dinars/Drafts", store.remainingLC + " " + currency);
 
     if (store.culture && store.culture.name) {
       safeSetText(form, "Culture", tr(i18n, store.culture.name, "culturesConceptsCults"));
