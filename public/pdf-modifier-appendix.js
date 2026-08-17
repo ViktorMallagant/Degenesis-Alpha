@@ -67,13 +67,24 @@
     return "Additional active modifiers that do not fit on the character sheet";
   }
 
+  // The character-sheet form fields use the PDF standard Helvetica font,
+  // which is limited to WinAnsi. Normalize common Unicode punctuation and
+  // game-rule symbols before placing text in those fields or drawing it on an
+  // overflow page. In particular, Unicode arrows such as U+2192 cause
+  // pdf-lib to throw "WinAnsi cannot encode" while saving the document.
   function normalizePdfText(text) {
     return String(text == null ? "" : text)
       .replace(/[\u2018\u2019]/g, "'")
       .replace(/[\u201C\u201D]/g, '"')
       .replace(/[\u2013\u2014]/g, "-")
       .replace(/\u2212/g, "-")
+      .replace(/[\u2192\u21D2\u2794\u279C\u279D\u279E\u279F\u27A0\u27A1]/g, "->")
+      .replace(/[\u2190\u21D0]/g, "<-")
+      .replace(/[\u2194\u21D4]/g, "<->")
       .replace(/\u00D7/g, "x")
+      .replace(/\u00B1/g, "+/-")
+      .replace(/\u2260/g, "!=")
+      .replace(/\u2248/g, "~")
       .replace(/\u2264/g, "<=")
       .replace(/\u2265/g, ">=")
       .replace(/\u2026/g, "...")
