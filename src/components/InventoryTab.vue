@@ -123,6 +123,7 @@
               <th></th>
               <th>Name</th>
               <th>Category</th>
+              <th>Armor</th>
               <th>Hand.</th>
               <th>Range</th>
               <th>Damage</th>
@@ -149,6 +150,7 @@
                   <v-chip v-if="group.count > 1" size="x-small" color="grey-darken-1" class="ml-1">×{{ group.count }}</v-chip>
                 </td>
                 <td class="text-caption inv-muted">{{ categoryLabel(group.item.category) }}</td>
+                <td>{{ group.item.armorValue ?? '—' }}</td>
                 <td>{{ group.item.handling ?? '—' }}</td>
                 <td>{{ group.item.range ?? '—' }}</td>
                 <td>{{ group.item.damage ?? '—' }}</td>
