@@ -1,5 +1,24 @@
 /*
- * Toolbar actions follow the DOM order defined in EditorTab.vue.
- * Do not override their flex order here; the intended order is:
+ * Force the main character toolbar actions into the requested visual order:
  * Share Character -> Export Character -> Delete.
+ *
+ * The music control is nested inside its own wrapper, so these are the first,
+ * second, and third direct button elements in .v-toolbar__append.
  */
+.v-toolbar.pa-4.bg-grey-lighten-2.elevation-2
+  .v-toolbar__append
+  > .v-btn:nth-of-type(1) {
+  order: 1 !important;
+}
+
+.v-toolbar.pa-4.bg-grey-lighten-2.elevation-2
+  .v-toolbar__append
+  > .v-btn:nth-of-type(2) {
+  order: 2 !important;
+}
+
+.v-toolbar.pa-4.bg-grey-lighten-2.elevation-2
+  .v-toolbar__append
+  > .v-btn:nth-of-type(3) {
+  order: 3 !important;
+}
