@@ -30,13 +30,13 @@
         </template>
       </v-tooltip>
       <v-divider vertical class="mr-2 ml-1"></v-divider>
-      <v-btn @click="downloadCharacter" stacked v-if="!isSharedView && currentTab === 'sheet'"
-        >{{ $t('messages.exportCharacter') }}
-        <v-icon :icon="mdiExport" />
-      </v-btn>
       <v-btn @click="shareCharacter" stacked color="blue-darken-1">
         {{ $t('messages.shareCharacter') }}
         <v-icon :icon="mdiShareVariant" />
+      </v-btn>
+      <v-btn @click="downloadCharacter" stacked v-if="!isSharedView">
+        {{ $t('messages.exportCharacter') }}
+        <v-icon :icon="mdiExport" />
       </v-btn>
       <v-btn v-if="characterExists(store.characterName)" stacked>
         {{ $t('messages.deleteCharacter') }}
@@ -666,7 +666,6 @@ const store = useCharacterStore()
 const appStore = useApplicationStore()
 const i18n = useI18n()
 const isSharedView = inject<Ref<boolean>>('isSharedView', ref(false))
-const currentTab = inject<Ref<string>>('currentTab', ref(''))
 const musicPlayer = useMusicPlayer()
 
 const pluralSuffix = (count: number): string => {
@@ -873,8 +872,14 @@ const createDownload = (filename: string, text: string) => {
   document.body.removeChild(element)
 }
 
+const sanitizeFilename = (name: string): string =>
+  name.trim().replace(/[^a-zA-Z0-9._-]+/g, '-').replace(/^-+|-+$/g, '') || 'character'
+
 const downloadCharacter = () => {
-  createDownload('character.json', JSON.stringify(store.asCharacter))
+  createDownload(
+    `${sanitizeFilename(store.characterName)}.json`,
+    JSON.stringify(store.asCharacter, null, 2)
+  )
 }
 
 const giftedLegacy = computed(() => AllLegacies.find(l => l.name === 'gifted'))
