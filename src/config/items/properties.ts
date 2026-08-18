@@ -113,14 +113,34 @@ export function getPropertyDescription(propertyText: string): string | undefined
   return WEAPON_PROPERTY_DESCRIPTIONS[base]
 }
 
+// Splits qualities on top-level commas. Use "\\," for a literal comma.
+// Commas inside parentheses are preserved.
 export function parseProperties(str: string | undefined): string[] {
   if (!str) return []
+
   const result: string[] = []
   let depth = 0
   let current = ''
+  let escaped = false
+
   for (const char of str) {
-    if (char === '(') depth++
-    else if (char === ')') depth--
+    if (escaped) {
+      current += char
+      escaped = false
+      continue
+    }
+
+    if (char === '\\') {
+      escaped = true
+      continue
+    }
+
+    if (char === '(') {
+      depth++
+    } else if (char === ')' && depth > 0) {
+      depth--
+    }
+
     if (char === ',' && depth === 0) {
       if (current.trim()) result.push(current.trim())
       current = ''
@@ -128,6 +148,9 @@ export function parseProperties(str: string | undefined): string[] {
       current += char
     }
   }
+
+  if (escaped) current += '\\'
   if (current.trim()) result.push(current.trim())
+
   return result
 }
