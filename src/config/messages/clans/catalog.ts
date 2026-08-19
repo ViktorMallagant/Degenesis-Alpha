@@ -322,7 +322,8 @@ const HUNTER_GATHERER_TEMPLATE_CLANS = [
   'adriani',
   'romanos',
   'masai',
-  'shabath'
+  'shabath',
+  'lombardi'
 ]
 
 function cloneRankTranslations(
@@ -803,7 +804,18 @@ const exaltersPotentials = {
   theApexDescription: `<b>PREREQUISITE:</b> INT+Focus or INS+Primal 10; Both of the chosen Concept’s defined Skill Bonuses to an Action Number greater than 8; Embossed<br/><br/>In the golden age, the Exalters had no need for the rigid, well-defined rank structures that characterized many of the Cults and Clans of the world. Instead, they achieved the ultimate goal of the Free Spirit program—a flat, shifting hierarchy where everyone naturally settled into the role that best suited them, a people united by their individuality, never submitting to another based on the intangible concept of “authority.” With the Grindworks out of reach, though, this potential was lost, and it became clear that the Exalters would need structure to survive. Even so, they didn’t lose track of their once-great nature. They remembered the Apex.<br/><br/><b>RESULT:</b> To become an Apex, the Exalter must shed the rigid mindset of hierarchy and understand the true nature of being a Free Spirited individual, a state which can only be achieved after many successful embossings in the Grindworks. His <b>Allies, Authority, and Resources Backgrounds rise to (4)</b> and cannot decrease below this point, and he has <b>+2D to all interactions with his own people</b>. Additionally, due to his new mindset brought on by dozens of Conceptual shifts or many experiences in a variety of Constellations, he can easily merge with any Alignment—even if he isn’t fully in Affinity. Whenever an Apex joins a group following any Alignment, he does not contribute or receive Aversion penalties, even if his Concept is in Aversion. However, he additionally does not contribute to Affinity bonuses.`
 }
 
+const lombardiClans = {
+  lombardi: 'Lombardi',
+  lombardiDescription: `The <b>Lombardi</b> are an old and fiercely proud Purgan Clan centered on <b>Bergamo</b>, where they are led by <b>Vespaccio Lombardi, the “White Wolf of Bergamo.”</b> They regard themselves as the rightful heirs to lands that long predate the rise of the Anabaptists, teaching their children that the Lombardi once ruled the region before the Cult spread across their ancestral territory. Rather than confronting the Anabaptists solely through open warfare, the Lombardi are also accomplished political schemers who use <b>marriage, family loyalty, inherited claims, and patient maneuvering</b> to recover influence.`
+}
+
+const lombardiPotentials = {
+  lombardiBlood: 'Lombardi Blood',
+  lombardiBloodDescription: `<b>PREREQUISITE:</b> -<br/><br/>Clan Lombardi has been around much longer than the upstart Anabaptist Cult. From an early age the children of the Clan learn just who the original rulers of the land were, even as the Anabaptists swarm their ancestral homes and spread their foul influence.<br/><br/><b>RESULT:</b> A Lombardi gets <b>+1D per Potential Level to his Mental Defense against Anabaptist influences</b>. This bonus increases to <b>+2D per Potential Level against missionary efforts</b>.`
+}
+
 const sharedClans = {
+  ...lombardiClans,
   ...exaltersClans,
   ...pneumancersClans,
   ...resistanceClans,
@@ -838,6 +850,7 @@ const sharedRanks = {
 }
 
 const sharedPotentials = {
+  ...lombardiPotentials,
   ...exaltersPotentials,
   ...pneumancersPotentials,
   ...resistancePotentials,
