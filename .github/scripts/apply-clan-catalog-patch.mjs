@@ -86,6 +86,25 @@ if (newBlocks.length > 0) {
   catalog = catalog.slice(0, index) + newBlocks.join('\n\n') + '\n\n' + catalog.slice(index)
 }
 
+const hunterGathererTemplateClans = [...patch.matchAll(/^\/\/\s*HUNTER_GATHERER_TEMPLATE_CLAN:\s*([A-Za-z0-9_]+)\s*$/gm)]
+  .map(match => match[1])
+
+if (hunterGathererTemplateClans.length > 0) {
+  const marker = 'const HUNTER_GATHERER_TEMPLATE_CLANS = ['
+  const start = catalog.indexOf(marker)
+  if (start < 0) throw new Error('HUNTER_GATHERER_TEMPLATE_CLANS marker not found')
+
+  const end = catalog.indexOf('\n]', start)
+  if (end < 0) throw new Error('HUNTER_GATHERER_TEMPLATE_CLANS closing bracket not found')
+
+  const block = catalog.slice(start, end)
+  const missing = hunterGathererTemplateClans.filter(name => !block.includes(`'${name}'`))
+  if (missing.length > 0) {
+    const insertion = missing.map(name => `,\n  '${name}'`).join('')
+    catalog = catalog.slice(0, end) + insertion + catalog.slice(end)
+  }
+}
+
 const sharedMap = {
   Clans: 'sharedClans',
   Ranks: 'sharedRanks',
