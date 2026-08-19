@@ -1,0 +1,34 @@
+name: Apply clan catalog patch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/clan-catalog-patch.ts'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply clan catalog patch
+        run: node .github/scripts/apply-clan-catalog-patch.mjs
+
+      - name: Commit catalog update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No catalog changes needed."
+          else
+            git commit -m "Apply clan catalog descriptions [skip ci]"
+            git push
+          fi
