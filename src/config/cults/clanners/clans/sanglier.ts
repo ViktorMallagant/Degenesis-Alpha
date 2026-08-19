@@ -58,7 +58,7 @@ export const Ventricule: Rank = sanglierRank(
   [
     atLeastSkill(Skills.leadership, 8),
     either(atLeastSkill(Skills.faith, 8), atLeastSkill(Skills.willpower, 8)),
-    atLeastSkill(Skills.empathy, 8)
+    atLeastSkill(Skills.empathy, 6)
   ],
   [atLeastOrigin(Origins.authority, 4), atLeastOrigin(Origins.resources, 3)],
   [Os, Vertebre]
