@@ -16,13 +16,59 @@ export const Earthbound = clanPotential(Clans.Providers, 'earthbound', [], [], [
 
 export const Spiritshaper = clanPotential(Clans.SteelMasters, 'spiritshaper', [], [], [], [])
 
-export const Riptide = clanPotential(Clans.Britoni, 'riptide', [], [], [], [])
+export const StonyCalm = clanPotential(
+  Clans.Britoni,
+  'stonyCalm',
+  [],
+  [],
+  [],
+  [],
+  Skills.focus
+)
 
-export const ImplantedExpertise = clanPotential(Clans.Pictons, 'implantedExpertise', [], [], [], [])
+// Bloodthirsty also requires the Picton to have eaten Star Food. The current
+// character model does not track that story-state prerequisite, so it remains
+// explicit in the Potential description while INS+Primal 8 is enforced here.
+export const Bloodthirsty = clanPotential(
+  Clans.Pictons,
+  'bloodthirsty',
+  [atLeastSkill(Skills.primal, 8)],
+  [],
+  [],
+  []
+)
 
 export const NaturesCanon = clanPotential(Clans.Druids, 'naturesCanon', [], [], [], [])
 
 export const LombardiBlood = clanPotential(Clans.Lombardi, 'lombardiBlood', [], [], [], [])
+
+export const MotherOfAllVirtues = clanPotential(
+  Clans.Vigilantes,
+  'motherOfAllVirtues',
+  [],
+  [],
+  [],
+  []
+)
+
+export const ForgottenByDeath = clanPotential(
+  Clans.Romanos,
+  'forgottenByDeath',
+  [],
+  [],
+  [],
+  []
+)
+
+export const Martyrdom = clanPotential(Clans.Flayers, 'martyrdom', [], [], [], [])
+
+export const Premonition = clanPotential(Clans.StukovNomads, 'premonition', [], [], [], [])
+
+export const TrialByFire = clanPotential(Clans.Storskis, 'trialByFire', [], [], [], [])
+
+export const Toxicity = clanPotential(Clans.Phosphorites, 'toxicity', [], [], [], [])
+
+export const RigorMortis = clanPotential(Clans.Cockroaches, 'rigorMortis', [], [], [], [])
 
 // Harmonious requires Spore Infestation (5). The current character model tracks
 // maximum Spore Infestation but not a character's current infestation score, so
@@ -89,10 +135,17 @@ export const ClannerPotentials = [
   EsotericCure,
   Earthbound,
   Spiritshaper,
-  Riptide,
-  ImplantedExpertise,
+  StonyCalm,
+  Bloodthirsty,
   NaturesCanon,
   LombardiBlood,
+  MotherOfAllVirtues,
+  ForgottenByDeath,
+  Martyrdom,
+  Premonition,
+  TrialByFire,
+  Toxicity,
+  RigorMortis,
   Harmonious,
   BloodCall,
   LanceThrust,
