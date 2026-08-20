@@ -22,6 +22,7 @@ import {
   Shabath,
   Storskis,
   StukovNomads,
+  Vigilantes,
   Voivodules
 } from "./hunterGathererTemplateClans";
 import { Pictons, PictonRanks } from "./pictons";
@@ -48,6 +49,7 @@ export const Clans = {
   Flayers: Flayers,
   Adriani: Adriani,
   Lombardi: Lombardi,
+  Vigilantes: Vigilantes,
   Romanos: Romanos,
   Masai: Masai,
   Shabath: Shabath,
