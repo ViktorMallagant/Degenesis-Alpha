@@ -26,6 +26,8 @@ export const StonyCalm = clanPotential(
   Skills.focus
 )
 
+export const Riptide = clanPotential(Clans.Britoni, 'riptide', [], [], [], [])
+
 // Bloodthirsty also requires the Picton to have eaten Star Food. The current
 // character model does not track that story-state prerequisite, so it remains
 // explicit in the Potential description while INS+Primal 8 is enforced here.
@@ -33,6 +35,15 @@ export const Bloodthirsty = clanPotential(
   Clans.Pictons,
   'bloodthirsty',
   [atLeastSkill(Skills.primal, 8)],
+  [],
+  [],
+  []
+)
+
+export const ImplantedExpertise = clanPotential(
+  Clans.Pictons,
+  'implantedExpertise',
+  [],
   [],
   [],
   []
@@ -136,7 +147,9 @@ export const ClannerPotentials = [
   Earthbound,
   Spiritshaper,
   StonyCalm,
+  Riptide,
   Bloodthirsty,
+  ImplantedExpertise,
   NaturesCanon,
   LombardiBlood,
   MotherOfAllVirtues,
