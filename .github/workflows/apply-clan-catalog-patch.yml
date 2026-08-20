@@ -29,6 +29,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No catalog changes needed."
           else
-            git commit -m "Apply clan catalog descriptions [skip ci]"
+            git commit -m "Apply clan catalog descriptions"
             git push
           fi
