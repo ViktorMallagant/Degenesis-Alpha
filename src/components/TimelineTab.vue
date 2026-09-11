@@ -6,9 +6,8 @@
           <div class="timeline-kicker">HISTORY ARCHIVE</div>
           <h1>Degenesis Timeline</h1>
           <p>
-            Compare the general canon chronology with the Spitalian Archives on one shared
-            historical axis. Enable either source by itself or display both to compare what each
-            record chooses to emphasize.
+            Compare the general canon chronology with the Spitalian Archives on one shared,
+            linear historical axis. Distance on the timeline now represents actual elapsed time.
           </p>
         </div>
         <div class="timeline-stat">
@@ -70,48 +69,78 @@
 
         <div ref="timelineScroller" class="timeline-scroller" tabindex="0">
           <div class="timeline-canvas" :style="canvasStyle">
-            <div class="year-grid timeline-grid">
-              <div v-for="year in years" :key="`year-${year}`" class="year-cell">
+            <div class="year-axis">
+              <div
+                v-for="year in axisYears"
+                :key="`axis-${year}`"
+                class="year-tick"
+                :class="{ major: year % 50 === 0 }"
+                :style="positionStyle(year)"
+              >
                 <span>{{ year }}</span>
               </div>
             </div>
 
-            <div v-if="generalEnabled" class="event-grid timeline-grid general-grid">
-              <div v-for="year in years" :key="`general-${year}`" class="event-cell">
-                <button
-                  v-if="eventAt('general', year)"
-                  :id="`timeline-${eventAt('general', year)?.id}`"
-                  type="button"
-                  class="event-marker general-marker"
-                  :class="{ selected: selectedEvent?.id === eventAt('general', year)?.id }"
-                  @click="selectEvent(eventAt('general', year)!)"
-                >
-                  <span class="event-year">{{ year }}</span>
-                  <span class="event-title">{{ eventAt('general', year)?.title }}</span>
-                </button>
-              </div>
+            <div v-if="generalEnabled" class="event-lane general-lane">
+              <div
+                v-for="year in axisYears"
+                :key="`general-grid-${year}`"
+                class="lane-gridline"
+                :class="{ major: year % 50 === 0 }"
+                :style="positionStyle(year)"
+              ></div>
+              <button
+                v-for="event in generalTimelineEvents"
+                :id="`timeline-${event.id}`"
+                :key="event.id"
+                type="button"
+                class="event-marker general-marker"
+                :class="{ selected: selectedEvent?.id === event.id }"
+                :style="positionStyle(event.year)"
+                :aria-label="`${event.year}: ${event.title}`"
+                @click="selectEvent(event)"
+              >
+                <span class="marker-dot"></span>
+                <span class="marker-label">
+                  <strong>{{ event.year }}</strong>
+                  <span>{{ event.title }}</span>
+                </span>
+              </button>
             </div>
 
-            <div v-if="spitalianEnabled" class="event-grid timeline-grid spitalian-grid">
-              <div v-for="year in years" :key="`spitalian-${year}`" class="event-cell">
-                <button
-                  v-if="eventAt('spitalian', year)"
-                  :id="`timeline-${eventAt('spitalian', year)?.id}`"
-                  type="button"
-                  class="event-marker spitalian-marker"
-                  :class="{ selected: selectedEvent?.id === eventAt('spitalian', year)?.id }"
-                  @click="selectEvent(eventAt('spitalian', year)!)"
-                >
-                  <span class="event-year">{{ year }}</span>
-                  <span class="event-title">{{ eventAt('spitalian', year)?.title }}</span>
-                </button>
-              </div>
+            <div v-if="spitalianEnabled" class="event-lane spitalian-lane">
+              <div
+                v-for="year in axisYears"
+                :key="`spitalian-grid-${year}`"
+                class="lane-gridline"
+                :class="{ major: year % 50 === 0 }"
+                :style="positionStyle(year)"
+              ></div>
+              <button
+                v-for="event in spitalianTimelineEvents"
+                :id="`timeline-${event.id}`"
+                :key="event.id"
+                type="button"
+                class="event-marker spitalian-marker"
+                :class="{ selected: selectedEvent?.id === event.id }"
+                :style="positionStyle(event.year)"
+                :aria-label="`${event.year}: ${event.title}`"
+                @click="selectEvent(event)"
+              >
+                <span class="marker-dot"></span>
+                <span class="marker-label">
+                  <strong>{{ event.year }}</strong>
+                  <span>{{ event.title }}</span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="scroll-hint">Scroll horizontally to move through history. Select an event for details.</div>
+      <div class="scroll-hint">
+        Distance represents elapsed time · Scroll horizontally to move through history · Select a marker for details
+      </div>
 
       <v-card v-if="selectedEvent" class="event-detail" variant="elevated">
         <v-card-text>
@@ -126,9 +155,9 @@
           </div>
           <div class="detail-heading">
             <span class="detail-year">{{ selectedEvent.year }}</span>
-            <div>
+            <div class="detail-copy">
               <h2>{{ selectedEvent.title }}</h2>
-              <p>{{ selectedEvent.summary }}</p>
+              <p>{{ eventText(selectedEvent) }}</p>
             </div>
           </div>
         </v-card-text>
@@ -156,14 +185,42 @@ import { computed, nextTick, ref, watch } from 'vue'
 import {
   generalTimelineEvents,
   spitalianTimelineEvents,
+  timelineEvents,
   timelineSourceInfo,
   type TimelineEvent,
   type TimelineSource
 } from '@/config/timeline'
+import { timelineBookText } from '@/config/timelineBookText'
 
 const generalEnabled = ref(true)
 const spitalianEnabled = ref(true)
 const timelineScroller = ref<HTMLElement | null>(null)
+
+const PIXELS_PER_YEAR = 14
+const TIMELINE_PADDING = 92
+const AXIS_STEP = 25
+
+const minimumEventYear = Math.min(...timelineEvents.map((event) => event.year))
+const maximumEventYear = Math.max(...timelineEvents.map((event) => event.year))
+const axisStart = Math.floor(minimumEventYear / AXIS_STEP) * AXIS_STEP
+const axisEnd = Math.ceil(maximumEventYear / AXIS_STEP) * AXIS_STEP
+const timelineWidth = (axisEnd - axisStart) * PIXELS_PER_YEAR + TIMELINE_PADDING * 2
+
+const axisYears = Array.from(
+  { length: Math.floor((axisEnd - axisStart) / AXIS_STEP) + 1 },
+  (_, index) => axisStart + index * AXIS_STEP
+)
+
+const yearPosition = (year: number) =>
+  TIMELINE_PADDING + (year - axisStart) * PIXELS_PER_YEAR
+
+const positionStyle = (year: number) => ({
+  left: `${yearPosition(year)}px`
+})
+
+const canvasStyle = computed(() => ({
+  width: `${timelineWidth}px`
+}))
 
 const activeSources = computed<TimelineSource[]>(() => {
   const sources: TimelineSource[] = []
@@ -172,31 +229,11 @@ const activeSources = computed<TimelineSource[]>(() => {
   return sources
 })
 
-const visibleEvents = computed(() => {
-  return [...generalTimelineEvents, ...spitalianTimelineEvents]
+const visibleEvents = computed(() =>
+  timelineEvents
     .filter((event) => activeSources.value.includes(event.source))
     .sort((a, b) => a.year - b.year || a.source.localeCompare(b.source))
-})
-
-const years = computed(() => {
-  return [...new Set(visibleEvents.value.map((event) => event.year))].sort((a, b) => a - b)
-})
-
-const eventIndex = computed(() => {
-  const index = new Map<string, TimelineEvent>()
-  for (const event of visibleEvents.value) {
-    index.set(`${event.source}-${event.year}`, event)
-  }
-  return index
-})
-
-const eventAt = (source: TimelineSource, year: number) => {
-  return eventIndex.value.get(`${source}-${year}`)
-}
-
-const canvasStyle = computed(() => ({
-  '--timeline-columns': String(Math.max(years.value.length, 1))
-}))
+)
 
 const selectedEvent = ref<TimelineEvent>(generalTimelineEvents[0])
 
@@ -205,6 +242,8 @@ const selectedIndex = computed(() => {
   return visibleEvents.value.findIndex((event) => event.id === selectedEvent.value.id)
 })
 
+const eventText = (event: TimelineEvent) => timelineBookText[event.id] ?? event.summary
+
 const selectEvent = (event: TimelineEvent) => {
   selectedEvent.value = event
 }
@@ -212,6 +251,7 @@ const selectEvent = (event: TimelineEvent) => {
 const scrollSelectedIntoView = async () => {
   await nextTick()
   if (!selectedEvent.value || !timelineScroller.value) return
+
   const marker = document.getElementById(`timeline-${selectedEvent.value.id}`)
   marker?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
 }
@@ -219,6 +259,7 @@ const scrollSelectedIntoView = async () => {
 const moveSelection = (direction: number) => {
   const nextIndex = selectedIndex.value + direction
   if (nextIndex < 0 || nextIndex >= visibleEvents.value.length) return
+
   selectedEvent.value = visibleEvents.value[nextIndex]
   void scrollSelectedIntoView()
 }
@@ -374,15 +415,15 @@ watch(activeSources, () => {
 
 .lane-labels {
   display: grid;
-  grid-template-rows: 54px 128px 128px;
+  grid-template-rows: 54px 142px 142px;
   position: relative;
-  z-index: 3;
+  z-index: 4;
   background: #151515;
   border-right: 1px solid rgba(255, 255, 255, 0.11);
 }
 
 .lane-labels.single-lane {
-  grid-template-rows: 54px 128px;
+  grid-template-rows: 54px 142px;
 }
 
 .axis-label,
@@ -439,120 +480,155 @@ watch(activeSources, () => {
 }
 
 .timeline-canvas {
-  width: calc(var(--timeline-columns) * 154px);
+  position: relative;
   min-width: 100%;
 }
 
-.timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(var(--timeline-columns), minmax(154px, 1fr));
-}
-
-.year-grid {
+.year-axis {
+  position: relative;
   height: 54px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.018);
 }
 
-.year-cell {
-  display: flex;
-  align-items: center;
-  padding-left: 12px;
-  color: #8d8d8d;
-  font-size: 0.7rem;
-  font-variant-numeric: tabular-nums;
-  border-left: 1px solid rgba(255, 255, 255, 0.045);
-}
-
-.event-grid {
-  height: 128px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  position: relative;
-}
-
-.event-grid::before {
-  content: '';
-  position: absolute;
-  top: 63px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.14);
-}
-
-.event-cell {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 9px 8px;
-  border-left: 1px solid rgba(255, 255, 255, 0.032);
-}
-
-.event-marker {
-  position: relative;
-  z-index: 1;
-  width: 138px;
-  min-height: 76px;
-  padding: 10px 11px 9px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
-  background: #1d1d1d;
-  color: #e0e0e0;
-  text-align: left;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
-  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
-}
-
-.event-marker::before {
-  content: '';
+.year-tick,
+.lane-gridline {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
-  width: 4px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.045);
 }
 
-.event-marker:hover,
-.event-marker:focus-visible {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.35);
-  background: #252525;
+.year-tick.major,
+.lane-gridline.major {
+  background: rgba(255, 255, 255, 0.085);
+}
+
+.year-tick span {
+  position: absolute;
+  top: 19px;
+  left: 7px;
+  color: #8d8d8d;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.year-tick.major span {
+  color: #b0b0b0;
+}
+
+.event-lane {
+  position: relative;
+  height: 142px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.event-lane::before {
+  content: '';
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.event-marker {
+  position: absolute;
+  top: 70px;
+  z-index: 2;
+  width: 22px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #e0e0e0;
+  cursor: pointer;
+  transform: translate(-11px, -17px);
   outline: none;
 }
 
-.event-marker.selected {
-  border-color: rgba(255, 255, 255, 0.58);
-  background: #292929;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 8px 22px rgba(0, 0, 0, 0.38);
+.marker-dot {
+  position: absolute;
+  top: 12px;
+  left: 6px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #151515;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
-.general-marker::before {
-  background: #b83236;
+.general-marker .marker-dot {
+  background: #c93838;
 }
 
-.spitalian-marker::before {
-  background: #78909c;
+.spitalian-marker .marker-dot {
+  background: #90a4ae;
 }
 
-.event-year {
+.event-marker:hover .marker-dot,
+.event-marker:focus-visible .marker-dot,
+.event-marker.selected .marker-dot {
+  transform: scale(1.45);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.42);
+}
+
+.marker-label {
+  position: absolute;
+  left: 11px;
+  bottom: calc(100% + 7px);
+  display: none;
+  width: 156px;
+  padding: 7px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 4px;
+  background: #202020;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.38);
+  text-align: left;
+  pointer-events: none;
+}
+
+.event-marker:nth-of-type(even) .marker-label {
+  bottom: auto;
+  top: calc(100% + 7px);
+}
+
+.event-marker:hover .marker-label,
+.event-marker:focus-visible .marker-label,
+.event-marker.selected .marker-label {
   display: block;
-  color: #999;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
 }
 
-.event-title {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  margin-top: 5px;
-  font-size: 0.78rem;
+.marker-label strong,
+.marker-label span {
+  display: block;
+}
+
+.marker-label strong {
+  color: #9f9f9f;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+.marker-label span {
+  margin-top: 2px;
+  font-size: 0.72rem;
   font-weight: 600;
   line-height: 1.25;
+}
+
+.event-marker.selected {
+  z-index: 3;
+}
+
+.event-marker.selected .marker-label {
+  border-color: rgba(255, 255, 255, 0.34);
+  background: #292929;
 }
 
 .scroll-hint {
@@ -611,16 +687,23 @@ watch(activeSources, () => {
 
 .detail-heading {
   display: grid;
-  grid-template-columns: minmax(92px, 130px) 1fr;
+  grid-template-columns: minmax(132px, 178px) minmax(0, 1fr);
   gap: clamp(18px, 3vw, 40px);
 }
 
 .detail-year {
+  display: block;
   color: #d7d7d7;
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-size: clamp(2.2rem, 4.2vw, 4rem);
   font-weight: 200;
   letter-spacing: -0.04em;
-  line-height: 0.9;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.detail-copy {
+  min-width: 0;
 }
 
 .detail-heading h2 {
@@ -631,11 +714,12 @@ watch(activeSources, () => {
 }
 
 .detail-heading p {
-  max-width: 980px;
+  max-width: 1100px;
   margin: 0;
   color: #bdbdbd;
   font-size: 0.95rem;
-  line-height: 1.7;
+  line-height: 1.72;
+  white-space: pre-line;
 }
 
 .detail-actions {
@@ -710,6 +794,10 @@ watch(activeSources, () => {
     grid-template-columns: 1fr;
   }
 
+  .detail-year {
+    font-size: 2.5rem;
+  }
+
   .detail-actions {
     grid-template-columns: 1fr 1fr;
   }
@@ -717,5 +805,25 @@ watch(activeSources, () => {
   .detail-actions span {
     display: none;
   }
+}
+</style>
+
+<style>
+/* Timeline is the final main-navigation entry. Draw a clock face without adding another App.vue icon dependency. */
+#mainNavigation .v-list > .v-list-item:last-child .v-icon > svg {
+  display: none;
+}
+
+#mainNavigation .v-list > .v-list-item:last-child .v-icon::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background:
+    linear-gradient(currentColor, currentColor) 7px 3px / 2px 6px no-repeat,
+    linear-gradient(currentColor, currentColor) 8px 8px / 5px 2px no-repeat;
+  box-sizing: border-box;
 }
 </style>
