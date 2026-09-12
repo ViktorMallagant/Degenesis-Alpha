@@ -96,17 +96,6 @@
               <v-icon :icon="mdiTagTextOutline"></v-icon>
             </template>
           </v-list-item>
-          <v-list-item
-            role="button"
-            link
-            @click="openTimeline"
-            :variant="timelineMode ? 'tonal' : 'plain'"
-          >
-            Timeline
-            <template v-slot:prepend>
-              <v-icon :icon="mdiInformation"></v-icon>
-            </template>
-          </v-list-item>
         </v-list>
         <template v-slot:append>
           <v-list-item :title="$t('messages.preferences.label')" role="button" link class="py-4">
@@ -163,9 +152,6 @@
     <v-main v-else-if="nameGeneratorMode" class="bg-grey-darken-4">
       <NameGeneratorTab />
     </v-main>
-    <v-main v-else-if="timelineMode" class="bg-grey-darken-4">
-      <TimelineTab />
-    </v-main>
     <v-main v-else-if="npcGeneratorMode" class="bg-grey-lighten-3">
       <v-tabs v-model="npcTab" bg-color="grey-darken-3">
         <v-tab value="detailed">{{ $t('messages.npcGenerator.detailedTitle') }}</v-tab>
@@ -199,7 +185,7 @@
         </v-window-item>
       </v-window>
     </v-main>
-    <div v-if="!charactersGalleryMode && !npcGeneratorMode && !nameGeneratorMode && !timelineMode && store.characterName.length == 0" class="bg-grey-darken-4">
+    <div v-if="!charactersGalleryMode && !npcGeneratorMode && !nameGeneratorMode && store.characterName.length == 0" class="bg-grey-darken-4">
       <IntroPage></IntroPage>
     </div>
     <v-snackbar v-model="ownCharSnackbar" timeout="6000" color="blue-darken-2">
@@ -249,7 +235,6 @@ import NpcGeneratorTab from '@/components/NpcGeneratorTab.vue'
 import NpcSimpleGeneratorTab from '@/components/NpcSimpleGeneratorTab.vue'
 import NameGeneratorTab from '@/components/NameGeneratorTab.vue'
 import CharactersTab from '@/components/CharactersTab.vue'
-import TimelineTab from '@/components/TimelineTab.vue'
 import config from '@/config'
 import { useCharacterStore } from '@/store'
 import type { Character } from '@/store/character'
@@ -408,7 +393,6 @@ const createNewCharacter = () => {
     npcGeneratorMode.value = false
     charactersGalleryMode.value = false
     nameGeneratorMode.value = false
-    timelineMode.value = false
     store.$reset()
     store.setCharacterName(newName)
     browserStorage.storeCharacter(store.asCharacter)
@@ -425,7 +409,6 @@ const loadCharacter = (characterName: string) => {
   npcGeneratorMode.value = false
   charactersGalleryMode.value = false
   nameGeneratorMode.value = false
-  timelineMode.value = false
   const character = browserStorage.loadCharacter(characterName)
   if (character) {
     store.loadCharacter(character)
@@ -440,7 +423,6 @@ const openNpcGenerator = () => {
   npcGeneratorMode.value = true
   charactersGalleryMode.value = false
   nameGeneratorMode.value = false
-  timelineMode.value = false
   showNavigationDrawer.value = !mobile.value
 }
 
@@ -449,18 +431,9 @@ const openNameGenerator = () => {
   nameGeneratorMode.value = true
   npcGeneratorMode.value = false
   charactersGalleryMode.value = false
-  timelineMode.value = false
   showNavigationDrawer.value = !mobile.value
 }
 
-const timelineMode = ref(false)
-const openTimeline = () => {
-  timelineMode.value = true
-  nameGeneratorMode.value = false
-  npcGeneratorMode.value = false
-  charactersGalleryMode.value = false
-  showNavigationDrawer.value = !mobile.value
-}
 
 const charactersGalleryMode = ref(false)
 ;(window as any).__charactersGalleryMode = charactersGalleryMode
@@ -470,7 +443,6 @@ const openCharactersGallery = () => {
   charactersGalleryMode.value = true
   npcGeneratorMode.value = false
   nameGeneratorMode.value = false
-  timelineMode.value = false
   showNavigationDrawer.value = !mobile.value
 }
 
@@ -480,7 +452,6 @@ const loadCharacterFromGallery = (characterName: string) => {
     store.loadCharacter(character)
   }
   charactersGalleryMode.value = false
-  timelineMode.value = false
   showNavigationDrawer.value = !mobile.value
 }
 
@@ -507,7 +478,6 @@ const importCharacter = async () => {
     try {
       const parsed: Character = JSON.parse(content)
       if (parsed && parsed.storageVersion == 'v1') {
-        timelineMode.value = false
         store.loadCharacter(parsed)
         importForm.value?.reset()
       } else {
