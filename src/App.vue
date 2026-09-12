@@ -96,6 +96,15 @@
               <v-icon :icon="mdiTagTextOutline"></v-icon>
             </template>
           </v-list-item>
+          <v-list-item
+            link
+            href="https://viktormallagant.github.io/Degenesis-Timeline/"
+          >
+            Timeline
+            <template v-slot:prepend>
+              <v-icon :icon="mdiClockOutline"></v-icon>
+            </template>
+          </v-list-item>
         </v-list>
         <template v-slot:append>
           <v-list-item :title="$t('messages.preferences.label')" role="button" link class="py-4">
@@ -167,7 +176,7 @@
       </v-window>
     </v-main>
     <v-main
-      v-else-if="!charactersGalleryMode && !nameGeneratorMode && store.characterName.length > 0"
+      v-else-if="store.characterName.length > 0"
       :class="[tab == 'sheet' ? 'bg-grey-lighten-3' : '', isSharedView ? 'shared-view-mode' : '']"
     >
       <v-tabs v-model="tab" bg-color="grey-darken-3">
@@ -185,7 +194,7 @@
         </v-window-item>
       </v-window>
     </v-main>
-    <div v-if="!charactersGalleryMode && !npcGeneratorMode && !nameGeneratorMode && store.characterName.length == 0" class="bg-grey-darken-4">
+    <div v-else class="bg-grey-darken-4">
       <IntroPage></IntroPage>
     </div>
     <v-snackbar v-model="ownCharSnackbar" timeout="6000" color="blue-darken-2">
@@ -240,16 +249,14 @@ import { useCharacterStore } from '@/store'
 import type { Character } from '@/store/character'
 import { ITEMS } from '@/config/items'
 import browserStorage from '@/store/browserStorage'
-import romanize from '@/util/romanize'
 import {
-  mdiAccount,
-  mdiAccountOutline,
+  mdiAccountGroup,
   mdiAccountPlusOutline,
   mdiAccountQuestionOutline,
-  mdiAccountGroup,
+  mdiClockOutline,
+  mdiCogOutline,
   mdiImport,
   mdiInformation,
-  mdiCogOutline,
   mdiTagTextOutline
 } from '@mdi/js'
 import { ref, computed, watch, provide, onMounted } from 'vue'
@@ -288,7 +295,10 @@ onMounted(async () => {
       if (browserStorage.characterIsStored(parsed.name)) {
         // C'est la fiche de l'utilisateur courant — ouvrir depuis le local
         const local = browserStorage.loadCharacter(parsed.name)
-        if (local) store.loadCharacter(local)
+        if (local) {
+          isSharedView.value = false
+          store.loadCharacter(local)
+        }
         ownCharSnackbar.value = true
       } else {
         // Marquer AVANT le chargement pour que le watch ne stocke pas ce personnage partagé
@@ -341,24 +351,6 @@ const appTagLine = computed(() => {
   return lines[tagLineIndex.value] ?? lines[0]
 })
 
-const cultures = ([] as string[]).concat(...config.culturesByName.keys())
-const concepts = ([] as string[]).concat(...config.conceptsByName.keys())
-const cults = ([] as string[]).concat(...config.cultsByName.keys())
-const clans = ([] as string[]).concat(...config.clansByName.keys())
-
-const cultureLabels = () =>
-  new Map<string, string>(cultures.map((k) => [k, i18n.t(`culturesConceptsCults.${k}`)]))
-const conceptLabels = () =>
-  new Map<string, string>(
-    concepts.map((k) => [k, i18n.t(`culturesConceptsCults.${k}`)])
-  )
-const cultLabels = () => {
-  const cultTranslations: [string, string][] = cults.map((k) => [k, i18n.t(`culturesConceptsCults.${k}`)])
-  const clanTranslations: [string, string][] = clans.map((k) => [k, i18n.t(`clans.${k}`)])
-  const allTranslations = [...cultTranslations, ...clanTranslations]
-  return new Map<string, string>(allTranslations)
-}
-
 const tab = ref('')
 
 const navGlitch = ref(false)
@@ -390,9 +382,8 @@ const createNewCharacterDialog = ref(false)
 const createNewCharacter = () => {
   const newName = newCharacterName.value.trim()
   if (!characterExists(newName)) {
-    npcGeneratorMode.value = false
-    charactersGalleryMode.value = false
-    nameGeneratorMode.value = false
+    setUtilityMode(null)
+    isSharedView.value = false
     store.$reset()
     store.setCharacterName(newName)
     browserStorage.storeCharacter(store.asCharacter)
@@ -405,53 +396,43 @@ const createNewCharacter = () => {
 
 const characterExists = browserStorage.characterIsStored
 
-const loadCharacter = (characterName: string) => {
-  npcGeneratorMode.value = false
-  charactersGalleryMode.value = false
-  nameGeneratorMode.value = false
-  const character = browserStorage.loadCharacter(characterName)
-  if (character) {
-    store.loadCharacter(character)
-  }
-  // close the navigation in case we're on a mobile breakpoint
-  showNavigationDrawer.value = !mobile.value
-}
-
-const npcGeneratorMode = ref(false)
+type UtilityMode = 'characters' | 'npc' | 'name' | null
+const utilityMode = ref<UtilityMode>(null)
+const charactersGalleryMode = computed(() => utilityMode.value === 'characters')
+const npcGeneratorMode = computed(() => utilityMode.value === 'npc')
+const nameGeneratorMode = computed(() => utilityMode.value === 'name')
 const npcTab = ref('detailed')
-const openNpcGenerator = () => {
-  npcGeneratorMode.value = true
-  charactersGalleryMode.value = false
-  nameGeneratorMode.value = false
-  showNavigationDrawer.value = !mobile.value
+
+const setUtilityMode = (mode: UtilityMode) => {
+  utilityMode.value = mode
 }
 
-const nameGeneratorMode = ref(false)
-const openNameGenerator = () => {
-  nameGeneratorMode.value = true
-  npcGeneratorMode.value = false
-  charactersGalleryMode.value = false
-  showNavigationDrawer.value = !mobile.value
-}
-
-
-const charactersGalleryMode = ref(false)
 ;(window as any).__charactersGalleryMode = charactersGalleryMode
 ;(window as any).__npcGeneratorMode = npcGeneratorMode
 ;(window as any).__nameGeneratorMode = nameGeneratorMode
+
+const openNpcGenerator = () => {
+  setUtilityMode('npc')
+  showNavigationDrawer.value = !mobile.value
+}
+
+const openNameGenerator = () => {
+  setUtilityMode('name')
+  showNavigationDrawer.value = !mobile.value
+}
+
 const openCharactersGallery = () => {
-  charactersGalleryMode.value = true
-  npcGeneratorMode.value = false
-  nameGeneratorMode.value = false
+  setUtilityMode('characters')
   showNavigationDrawer.value = !mobile.value
 }
 
 const loadCharacterFromGallery = (characterName: string) => {
   const character = browserStorage.loadCharacter(characterName)
   if (character) {
+    isSharedView.value = false
     store.loadCharacter(character)
+    setUtilityMode(null)
   }
-  charactersGalleryMode.value = false
   showNavigationDrawer.value = !mobile.value
 }
 
@@ -477,9 +458,12 @@ const importCharacter = async () => {
     const content = await importFile.value.files[0].text()
     try {
       const parsed: Character = JSON.parse(content)
-      if (parsed && parsed.storageVersion == 'v1') {
+      if (parsed && parsed.storageVersion === 'v1') {
+        setUtilityMode(null)
+        isSharedView.value = false
         store.loadCharacter(parsed)
         importForm.value?.reset()
+        showNavigationDrawer.value = !mobile.value
       } else {
         console.warn('Invalid storage version: ', parsed.storageVersion)
       }
