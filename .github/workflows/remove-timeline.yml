@@ -1,0 +1,92 @@
+name: Remove timeline from Degenesis Alpha
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/remove-timeline.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  remove-timeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Remove timeline integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('src/App.vue')
+          text = path.read_text(encoding='utf-8')
+
+          nav = '''          <v-list-item
+            role="button"
+            link
+            @click="openTimeline"
+            :variant="timelineMode ? 'tonal' : 'plain'"
+          >
+            Timeline
+            <template v-slot:prepend>
+              <v-icon :icon="mdiInformation"></v-icon>
+            </template>
+          </v-list-item>
+'''
+          if nav not in text:
+              raise SystemExit('Timeline navigation block not found')
+          text = text.replace(nav, '', 1)
+
+          main = '''    <v-main v-else-if="timelineMode" class="bg-grey-darken-4">
+      <TimelineTab />
+    </v-main>
+'''
+          if main not in text:
+              raise SystemExit('Timeline main block not found')
+          text = text.replace(main, '', 1)
+
+          import_line = "import TimelineTab from '@/components/TimelineTab.vue'\n"
+          if import_line not in text:
+              raise SystemExit('Timeline import not found')
+          text = text.replace(import_line, '', 1)
+
+          text = text.replace(' && !timelineMode', '')
+          text = re.sub(r'(?m)^\s*timelineMode\.value = false\n', '', text)
+
+          pattern = r"\nconst timelineMode = ref\(false\)\nconst openTimeline = \(\) => \{\n.*?\n\}\n"
+          text, count = re.subn(pattern, '\n', text, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit(f'Expected one timeline state block, removed {count}')
+
+          leftovers = [token for token in ('timelineMode', 'openTimeline', 'TimelineTab') if token in text]
+          if leftovers:
+              raise SystemExit(f'Timeline references remain in App.vue: {leftovers}')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          rm -f src/components/TimelineTab.vue src/config/timeline.ts src/config/timelineBookText.ts
+          rm -f .github/workflows/remove-timeline.yml
+
+      - name: Verify production build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Commit timeline removal
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Remove embedded timeline"
+          git push
