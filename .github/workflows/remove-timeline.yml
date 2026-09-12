@@ -90,3 +90,5 @@ jobs:
           git add -A
           git commit -m "Remove embedded timeline"
           git push
+
+# Triggered after registration so GitHub executes this temporary workflow.
