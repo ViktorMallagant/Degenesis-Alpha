@@ -42,7 +42,7 @@ jobs:
               <v-icon :icon="mdiInformation"></v-icon>
             </template>
           </v-list-item>
-'''
+          '''
           if nav not in text:
               raise SystemExit('Timeline navigation block not found')
           text = text.replace(nav, '', 1)
@@ -50,7 +50,7 @@ jobs:
           main = '''    <v-main v-else-if="timelineMode" class="bg-grey-darken-4">
       <TimelineTab />
     </v-main>
-'''
+          '''
           if main not in text:
               raise SystemExit('Timeline main block not found')
           text = text.replace(main, '', 1)
@@ -90,5 +90,3 @@ jobs:
           git add -A
           git commit -m "Remove embedded timeline"
           git push
-
-# Triggered after registration so GitHub executes this temporary workflow.
