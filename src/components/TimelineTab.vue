@@ -55,6 +55,10 @@
             </span>
           </div>
 
+          <div class="scroll-hint">
+            Distance represents elapsed time · Scroll down to move through history · Select a marker for details
+          </div>
+
           <div class="timeline-frame">
             <div class="timeline-column-head" :class="columnClass">
               <div class="axis-label">YEAR</div>
@@ -124,13 +128,23 @@
               </div>
             </div>
           </div>
-
-          <div class="scroll-hint">
-            Distance represents elapsed time · Scroll down to move through history · Select a marker for details
-          </div>
         </div>
 
         <v-card v-if="selectedEvent" class="event-detail" variant="elevated">
+          <v-card-actions class="detail-actions">
+            <v-btn variant="text" :disabled="selectedIndex <= 0" @click="moveSelection(-1)">
+              Previous event
+            </v-btn>
+            <span>{{ selectedIndex + 1 }} / {{ visibleEvents.length }}</span>
+            <v-btn
+              variant="text"
+              :disabled="selectedIndex < 0 || selectedIndex >= visibleEvents.length - 1"
+              @click="moveSelection(1)"
+            >
+              Next event
+            </v-btn>
+          </v-card-actions>
+          <v-divider />
           <v-card-text>
             <div class="detail-topline">
               <span
@@ -149,20 +163,6 @@
               </div>
             </div>
           </v-card-text>
-          <v-divider />
-          <v-card-actions class="detail-actions">
-            <v-btn variant="text" :disabled="selectedIndex <= 0" @click="moveSelection(-1)">
-              Previous event
-            </v-btn>
-            <span>{{ selectedIndex + 1 }} / {{ visibleEvents.length }}</span>
-            <v-btn
-              variant="text"
-              :disabled="selectedIndex < 0 || selectedIndex >= visibleEvents.length - 1"
-              @click="moveSelection(1)"
-            >
-              Next event
-            </v-btn>
-          </v-card-actions>
         </v-card>
       </div>
     </v-container>
@@ -409,6 +409,13 @@ watch(activeSources, () => {
   background: #90a4ae;
 }
 
+.scroll-hint {
+  padding: 0 2px 8px;
+  color: #747474;
+  font-size: 0.7rem;
+  text-align: left;
+}
+
 .timeline-frame {
   overflow: visible;
   border: 1px solid rgba(255, 255, 255, 0.11);
@@ -420,12 +427,12 @@ watch(activeSources, () => {
 .timeline-column-head,
 .timeline-vertical-canvas {
   display: grid;
-  grid-template-columns: 92px repeat(2, minmax(0, 1fr));
+  grid-template-columns: 80px repeat(2, minmax(0, 1fr));
 }
 
 .timeline-column-head.single-lane,
 .timeline-vertical-canvas.single-lane {
-  grid-template-columns: 92px minmax(0, 1fr);
+  grid-template-columns: 80px minmax(0, 1fr);
 }
 
 .timeline-column-head {
@@ -444,14 +451,14 @@ watch(activeSources, () => {
   flex-direction: column;
   justify-content: center;
   min-width: 0;
-  padding: 0 12px;
+  padding: 0 10px;
 }
 
 .axis-label {
   color: #8b8b8b;
   font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.15em;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -522,11 +529,11 @@ watch(activeSources, () => {
 
 .year-tick span {
   position: absolute;
-  left: 10px;
+  left: 9px;
   top: 0;
   transform: translateY(-50%);
   color: #9b9b9b;
-  font-size: 0.9rem;
+  font-size: 0.98rem;
   font-weight: 500;
   line-height: 1;
   font-variant-numeric: tabular-nums;
@@ -535,7 +542,6 @@ watch(activeSources, () => {
 
 .year-tick.major span {
   color: #c0c0c0;
-  font-size: 0.98rem;
 }
 
 .event-marker {
@@ -629,13 +635,6 @@ watch(activeSources, () => {
   font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.25;
-}
-
-.scroll-hint {
-  padding: 8px 2px 0;
-  color: #747474;
-  font-size: 0.7rem;
-  text-align: left;
 }
 
 .event-detail {
@@ -787,17 +786,17 @@ watch(activeSources, () => {
 
   .timeline-column-head,
   .timeline-vertical-canvas {
-    grid-template-columns: 76px repeat(2, minmax(0, 1fr));
+    grid-template-columns: 70px repeat(2, minmax(0, 1fr));
   }
 
   .timeline-column-head.single-lane,
   .timeline-vertical-canvas.single-lane {
-    grid-template-columns: 76px minmax(0, 1fr);
+    grid-template-columns: 70px minmax(0, 1fr);
   }
 
   .axis-label,
   .lane-label {
-    padding: 0 8px;
+    padding: 0 7px;
   }
 
   .lane-label strong {
@@ -809,12 +808,8 @@ watch(activeSources, () => {
   }
 
   .year-tick span {
-    left: 7px;
-    font-size: 0.82rem;
-  }
-
-  .year-tick.major span {
-    font-size: 0.88rem;
+    left: 6px;
+    font-size: 0.98rem;
   }
 
   .marker-label {
