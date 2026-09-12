@@ -6,8 +6,7 @@
           <div class="timeline-kicker">HISTORY ARCHIVE</div>
           <h1>Degenesis Timeline</h1>
           <p>
-            Compare the general canon chronology with the Spitalian Archives on one shared,
-            linear historical axis. Distance on the timeline now represents actual elapsed time.
+            <strong>Note:</strong> Very few people are aware of the history prior to, during, and even after the Eshaton, especially in regards to Recombination Group, Project Tannhäuser and Sleepers. It is best to assume ignorance and ask your Gamemaster if your character knows a particular piece of information.
           </p>
         </div>
         <div class="timeline-stat">
@@ -16,60 +15,104 @@
         </div>
       </div>
 
-      <v-card class="timeline-controls" variant="tonal">
-        <v-card-text>
-          <div class="control-copy">
-            <strong>Timeline sources</strong>
-            <span>Both canon tracks are enabled by default.</span>
-          </div>
-          <div class="source-toggles">
-            <v-switch
-              v-model="generalEnabled"
-              label="General Canon"
-              color="red-darken-2"
-              density="compact"
-              hide-details
-              inset
-              :disabled="generalEnabled && !spitalianEnabled"
-            />
-            <v-switch
-              v-model="spitalianEnabled"
-              label="Spitalian Archives"
-              color="blue-grey-lighten-1"
-              density="compact"
-              hide-details
-              inset
-              :disabled="spitalianEnabled && !generalEnabled"
-            />
-          </div>
-        </v-card-text>
-      </v-card>
+      <div class="timeline-workspace">
+        <div class="timeline-left">
+          <v-card class="timeline-controls" variant="tonal">
+            <v-card-text>
+              <div class="control-copy">
+                <strong>Timeline sources</strong>
+                <span>Both canon tracks are enabled by default.</span>
+              </div>
+              <div class="source-toggles">
+                <v-switch
+                  v-model="generalEnabled"
+                  label="General Canon"
+                  color="red-darken-2"
+                  density="compact"
+                  hide-details
+                  inset
+                  :disabled="generalEnabled && !spitalianEnabled"
+                />
+                <v-switch
+                  v-model="spitalianEnabled"
+                  label="Spitalian Archives"
+                  color="blue-grey-lighten-1"
+                  density="compact"
+                  hide-details
+                  inset
+                  :disabled="spitalianEnabled && !generalEnabled"
+                />
+              </div>
+            </v-card-text>
+          </v-card>
 
-      <div class="source-key">
-        <span v-if="generalEnabled" class="source-key-item general-key">
-          <i></i> General Canon · Primal Punk pp. 340–352
-        </span>
-        <span v-if="spitalianEnabled" class="source-key-item spitalian-key">
-          <i></i> Spitalian Archives · Primal Punk pp. 333–337
-        </span>
-      </div>
-
-      <div class="timeline-frame">
-        <div class="lane-labels" :class="{ 'single-lane': activeSources.length === 1 }">
-          <div class="axis-label">YEAR</div>
-          <div v-if="generalEnabled" class="lane-label general-label">
-            <strong>GENERAL</strong>
-            <small>CANON</small>
+          <div class="source-key">
+            <span v-if="generalEnabled" class="source-key-item general-key">
+              <i></i> General Canon · Primal Punk pp. 340–352
+            </span>
+            <span v-if="spitalianEnabled" class="source-key-item spitalian-key">
+              <i></i> Spitalian Archives · Primal Punk pp. 333–337
+            </span>
           </div>
-          <div v-if="spitalianEnabled" class="lane-label spitalian-label">
-            <strong>SPITALIAN</strong>
-            <small>ARCHIVES</small>
-          </div>
-        </div>
 
-        <div ref="timelineScroller" class="timeline-scroller" tabindex="0">
-          <div class="timeline-canvas" :style="canvasStyle">
-            <div class="year-axis">
+          <div class="timeline-frame">
+            <div class="timeline-column-head" :class="columnClass">
+              <div class="axis-label">YEAR</div>
+              <div v-if="generalEnabled" class="lane-label general-label">
+                <strong>GENERAL</strong>
+                <small>CANON</small>
+              </div>
+              <div v-if="spitalianEnabled" class="lane-label spitalian-label">
+                <strong>SPITALIAN</strong>
+                <small>ARCHIVES</small>
+              </div>
+            </div>
+
+            <div ref="timelineScroller" class="timeline-vertical-canvas" :class="columnClass" :style="canvasStyle">
+              <div class="year-column"></div>
+
+              <div v-if="generalEnabled" class="event-lane general-lane">
+                <div class="lane-centerline"></div>
+                <button
+                  v-for="event in generalTimelineEvents"
+                  :id="`timeline-${event.id}`"
+                  :key="event.id"
+                  type="button"
+                  class="event-marker general-marker"
+                  :class="{ selected: selectedEvent?.id === event.id }"
+                  :style="positionStyle(event.year)"
+                  :aria-label="`${event.year}: ${event.title}`"
+                  @click="selectEvent(event)"
+                >
+                  <span class="marker-dot"></span>
+                  <span class="marker-label">
+                    <strong>{{ event.year }}</strong>
+                    <span>{{ event.title }}</span>
+                  </span>
+                </button>
+              </div>
+
+              <div v-if="spitalianEnabled" class="event-lane spitalian-lane">
+                <div class="lane-centerline"></div>
+                <button
+                  v-for="event in spitalianTimelineEvents"
+                  :id="`timeline-${event.id}`"
+                  :key="event.id"
+                  type="button"
+                  class="event-marker spitalian-marker"
+                  :class="{ selected: selectedEvent?.id === event.id }"
+                  :style="positionStyle(event.year)"
+                  :aria-label="`${event.year}: ${event.title}`"
+                  @click="selectEvent(event)"
+                >
+                  <span class="marker-dot"></span>
+                  <span class="marker-label">
+                    <strong>{{ event.year }}</strong>
+                    <span>{{ event.title }}</span>
+                  </span>
+                </button>
+              </div>
+
               <div
                 v-for="year in axisYears"
                 :key="`axis-${year}`"
@@ -80,102 +123,48 @@
                 <span>{{ year }}</span>
               </div>
             </div>
+          </div>
 
-            <div v-if="generalEnabled" class="event-lane general-lane">
-              <div
-                v-for="year in axisYears"
-                :key="`general-grid-${year}`"
-                class="lane-gridline"
-                :class="{ major: year % 50 === 0 }"
-                :style="positionStyle(year)"
-              ></div>
-              <button
-                v-for="event in generalTimelineEvents"
-                :id="`timeline-${event.id}`"
-                :key="event.id"
-                type="button"
-                class="event-marker general-marker"
-                :class="{ selected: selectedEvent?.id === event.id }"
-                :style="positionStyle(event.year)"
-                :aria-label="`${event.year}: ${event.title}`"
-                @click="selectEvent(event)"
-              >
-                <span class="marker-dot"></span>
-                <span class="marker-label">
-                  <strong>{{ event.year }}</strong>
-                  <span>{{ event.title }}</span>
-                </span>
-              </button>
-            </div>
-
-            <div v-if="spitalianEnabled" class="event-lane spitalian-lane">
-              <div
-                v-for="year in axisYears"
-                :key="`spitalian-grid-${year}`"
-                class="lane-gridline"
-                :class="{ major: year % 50 === 0 }"
-                :style="positionStyle(year)"
-              ></div>
-              <button
-                v-for="event in spitalianTimelineEvents"
-                :id="`timeline-${event.id}`"
-                :key="event.id"
-                type="button"
-                class="event-marker spitalian-marker"
-                :class="{ selected: selectedEvent?.id === event.id }"
-                :style="positionStyle(event.year)"
-                :aria-label="`${event.year}: ${event.title}`"
-                @click="selectEvent(event)"
-              >
-                <span class="marker-dot"></span>
-                <span class="marker-label">
-                  <strong>{{ event.year }}</strong>
-                  <span>{{ event.title }}</span>
-                </span>
-              </button>
-            </div>
+          <div class="scroll-hint">
+            Distance represents elapsed time · Scroll down to move through history · Select a marker for details
           </div>
         </div>
-      </div>
 
-      <div class="scroll-hint">
-        Distance represents elapsed time · Scroll horizontally to move through history · Select a marker for details
-      </div>
-
-      <v-card v-if="selectedEvent" class="event-detail" variant="elevated">
-        <v-card-text>
-          <div class="detail-topline">
-            <span
-              class="detail-source"
-              :class="selectedEvent.source === 'general' ? 'general-source' : 'spitalian-source'"
-            >
-              {{ timelineSourceInfo[selectedEvent.source].label }}
-            </span>
-            <span class="detail-pages">{{ timelineSourceInfo[selectedEvent.source].pages }}</span>
-          </div>
-          <div class="detail-heading">
-            <span class="detail-year">{{ selectedEvent.year }}</span>
-            <div class="detail-copy">
-              <h2>{{ selectedEvent.title }}</h2>
-              <p>{{ eventText(selectedEvent) }}</p>
+        <v-card v-if="selectedEvent" class="event-detail" variant="elevated">
+          <v-card-text>
+            <div class="detail-topline">
+              <span
+                class="detail-source"
+                :class="selectedEvent.source === 'general' ? 'general-source' : 'spitalian-source'"
+              >
+                {{ timelineSourceInfo[selectedEvent.source].label }}
+              </span>
+              <span class="detail-pages">{{ timelineSourceInfo[selectedEvent.source].pages }}</span>
             </div>
-          </div>
-        </v-card-text>
-        <v-divider />
-        <v-card-actions class="detail-actions">
-          <v-btn variant="text" :disabled="selectedIndex <= 0" @click="moveSelection(-1)">
-            Previous event
-          </v-btn>
-          <span>{{ selectedIndex + 1 }} / {{ visibleEvents.length }}</span>
-          <v-btn
-            variant="text"
-            :disabled="selectedIndex < 0 || selectedIndex >= visibleEvents.length - 1"
-            @click="moveSelection(1)"
-          >
-            Next event
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+            <div class="detail-heading">
+              <span class="detail-year">{{ selectedEvent.year }}</span>
+              <div class="detail-copy">
+                <h2>{{ selectedEvent.title }}</h2>
+                <p>{{ eventText(selectedEvent) }}</p>
+              </div>
+            </div>
+          </v-card-text>
+          <v-divider />
+          <v-card-actions class="detail-actions">
+            <v-btn variant="text" :disabled="selectedIndex <= 0" @click="moveSelection(-1)">
+              Previous event
+            </v-btn>
+            <span>{{ selectedIndex + 1 }} / {{ visibleEvents.length }}</span>
+            <v-btn
+              variant="text"
+              :disabled="selectedIndex < 0 || selectedIndex >= visibleEvents.length - 1"
+              @click="moveSelection(1)"
+            >
+              Next event
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </div>
     </v-container>
   </div>
 </template>
@@ -196,15 +185,15 @@ const generalEnabled = ref(true)
 const spitalianEnabled = ref(true)
 const timelineScroller = ref<HTMLElement | null>(null)
 
-const PIXELS_PER_YEAR = 14
-const TIMELINE_PADDING = 92
+const PIXELS_PER_YEAR = 10
+const TIMELINE_PADDING = 64
 const AXIS_STEP = 25
 
 const minimumEventYear = Math.min(...timelineEvents.map((event) => event.year))
 const maximumEventYear = Math.max(...timelineEvents.map((event) => event.year))
 const axisStart = Math.floor(minimumEventYear / AXIS_STEP) * AXIS_STEP
 const axisEnd = Math.ceil(maximumEventYear / AXIS_STEP) * AXIS_STEP
-const timelineWidth = (axisEnd - axisStart) * PIXELS_PER_YEAR + TIMELINE_PADDING * 2
+const timelineHeight = (axisEnd - axisStart) * PIXELS_PER_YEAR + TIMELINE_PADDING * 2
 
 const axisYears = Array.from(
   { length: Math.floor((axisEnd - axisStart) / AXIS_STEP) + 1 },
@@ -215,11 +204,11 @@ const yearPosition = (year: number) =>
   TIMELINE_PADDING + (year - axisStart) * PIXELS_PER_YEAR
 
 const positionStyle = (year: number) => ({
-  left: `${yearPosition(year)}px`
+  top: `${yearPosition(year)}px`
 })
 
 const canvasStyle = computed(() => ({
-  width: `${timelineWidth}px`
+  height: `${timelineHeight}px`
 }))
 
 const activeSources = computed<TimelineSource[]>(() => {
@@ -228,6 +217,10 @@ const activeSources = computed<TimelineSource[]>(() => {
   if (spitalianEnabled.value) sources.push('spitalian')
   return sources
 })
+
+const columnClass = computed(() => ({
+  'single-lane': activeSources.value.length === 1
+}))
 
 const visibleEvents = computed(() =>
   timelineEvents
@@ -253,7 +246,7 @@ const scrollSelectedIntoView = async () => {
   if (!selectedEvent.value || !timelineScroller.value) return
 
   const marker = document.getElementById(`timeline-${selectedEvent.value.id}`)
-  marker?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+  marker?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
 }
 
 const moveSelection = (direction: number) => {
@@ -311,11 +304,15 @@ watch(activeSources, () => {
 }
 
 .timeline-header p {
-  max-width: 780px;
+  max-width: 1050px;
   margin: 18px 0 0;
   color: #bdbdbd;
   font-size: 1rem;
   line-height: 1.65;
+}
+
+.timeline-header p strong {
+  color: #e1e1e1;
 }
 
 .timeline-stat {
@@ -338,18 +335,25 @@ watch(activeSources, () => {
   letter-spacing: 0.16em;
 }
 
+.timeline-workspace {
+  display: grid;
+  grid-template-columns: minmax(390px, 520px) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(18px, 2.5vw, 34px);
+}
+
+.timeline-left {
+  min-width: 0;
+}
+
 .timeline-controls {
   background: rgba(255, 255, 255, 0.045) !important;
   border: 1px solid rgba(255, 255, 255, 0.09);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .timeline-controls :deep(.v-card-text) {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 16px 20px;
+  padding: 16px 18px 10px;
 }
 
 .control-copy strong,
@@ -365,22 +369,24 @@ watch(activeSources, () => {
 
 .source-toggles {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 22px;
+  gap: 0 18px;
+  margin-top: 8px;
 }
 
 .source-toggles :deep(.v-switch) {
-  min-width: 180px;
+  min-width: 190px;
 }
 
 .source-key {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 6px 16px;
   min-height: 28px;
-  margin: 0 0 10px;
+  margin: 0 2px 10px;
   color: #a8a8a8;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
 }
 
 .source-key-item {
@@ -404,26 +410,32 @@ watch(activeSources, () => {
 }
 
 .timeline-frame {
-  display: grid;
-  grid-template-columns: 132px minmax(0, 1fr);
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid rgba(255, 255, 255, 0.11);
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.28);
   box-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
 }
 
-.lane-labels {
+.timeline-column-head,
+.timeline-vertical-canvas {
   display: grid;
-  grid-template-rows: 54px 142px 142px;
-  position: relative;
-  z-index: 4;
-  background: #151515;
-  border-right: 1px solid rgba(255, 255, 255, 0.11);
+  grid-template-columns: 92px repeat(2, minmax(0, 1fr));
 }
 
-.lane-labels.single-lane {
-  grid-template-rows: 54px 142px;
+.timeline-column-head.single-lane,
+.timeline-vertical-canvas.single-lane {
+  grid-template-columns: 92px minmax(0, 1fr);
+}
+
+.timeline-column-head {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  min-height: 56px;
+  background: #151515;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px 8px 0 0;
 }
 
 .axis-label,
@@ -431,129 +443,120 @@ watch(activeSources, () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 18px;
+  min-width: 0;
+  padding: 0 12px;
 }
 
 .axis-label {
-  color: #757575;
-  font-size: 0.65rem;
+  color: #8b8b8b;
+  font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 0.22em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.18em;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .lane-label {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .lane-label strong {
   font-size: 0.74rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
 }
 
 .lane-label small {
   margin-top: 3px;
   color: #757575;
-  font-size: 0.61rem;
-  letter-spacing: 0.12em;
+  font-size: 0.59rem;
+  letter-spacing: 0.1em;
 }
 
 .general-label {
-  box-shadow: inset 3px 0 #a92d30;
+  box-shadow: inset 0 3px #a92d30;
 }
 
 .spitalian-label {
-  box-shadow: inset 3px 0 #78909c;
+  box-shadow: inset 0 3px #78909c;
 }
 
-.timeline-scroller {
+.timeline-vertical-canvas {
+  position: relative;
+  width: 100%;
+  min-height: 1000px;
+}
+
+.year-column {
+  grid-column: 1;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.event-lane {
+  position: relative;
   min-width: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-color: #555 #1b1b1b;
-  scrollbar-width: thin;
+  border-right: 1px solid rgba(255, 255, 255, 0.045);
 }
 
-.timeline-scroller:focus-visible {
-  outline: 2px solid #78909c;
-  outline-offset: -2px;
-}
-
-.timeline-canvas {
-  position: relative;
-  min-width: 100%;
-}
-
-.year-axis {
-  position: relative;
-  height: 54px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.018);
-}
-
-.year-tick,
-.lane-gridline {
+.lane-centerline {
   position: absolute;
   top: 0;
   bottom: 0;
+  left: 50%;
   width: 1px;
-  background: rgba(255, 255, 255, 0.045);
+  background: rgba(255, 255, 255, 0.17);
 }
 
-.year-tick.major,
-.lane-gridline.major {
-  background: rgba(255, 255, 255, 0.085);
+.year-tick {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.045);
+  pointer-events: none;
+}
+
+.year-tick.major {
+  background: rgba(255, 255, 255, 0.09);
 }
 
 .year-tick span {
   position: absolute;
-  top: 19px;
-  left: 7px;
-  color: #8d8d8d;
-  font-size: 0.7rem;
+  left: 10px;
+  top: 0;
+  transform: translateY(-50%);
+  color: #9b9b9b;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
 .year-tick.major span {
-  color: #b0b0b0;
-}
-
-.event-lane {
-  position: relative;
-  height: 142px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.event-lane::before {
-  content: '';
-  position: absolute;
-  top: 70px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.18);
+  color: #c0c0c0;
+  font-size: 0.98rem;
 }
 
 .event-marker {
   position: absolute;
-  top: 70px;
-  z-index: 2;
-  width: 22px;
-  height: 34px;
+  left: 50%;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: 0;
   background: transparent;
   color: #e0e0e0;
   cursor: pointer;
-  transform: translate(-11px, -17px);
+  transform: translate(-50%, -50%);
   outline: none;
 }
 
 .marker-dot {
   position: absolute;
-  top: 12px;
-  left: 6px;
+  top: 7px;
+  left: 7px;
   width: 10px;
   height: 10px;
   border: 2px solid #151515;
@@ -573,17 +576,18 @@ watch(activeSources, () => {
 .event-marker:hover .marker-dot,
 .event-marker:focus-visible .marker-dot,
 .event-marker.selected .marker-dot {
-  transform: scale(1.45);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.42);
+  transform: scale(1.5);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.46);
 }
 
 .marker-label {
   position: absolute;
-  left: 11px;
-  bottom: calc(100% + 7px);
+  left: calc(100% + 7px);
+  top: 50%;
   display: none;
-  width: 156px;
+  width: 168px;
   padding: 7px 9px;
+  transform: translateY(-50%);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 4px;
   background: #202020;
@@ -593,13 +597,18 @@ watch(activeSources, () => {
 }
 
 .event-marker:nth-of-type(even) .marker-label {
-  bottom: auto;
-  top: calc(100% + 7px);
+  left: auto;
+  right: calc(100% + 7px);
+}
+
+.event-marker:hover,
+.event-marker:focus-visible,
+.event-marker.selected {
+  z-index: 6;
 }
 
 .event-marker:hover .marker-label,
-.event-marker:focus-visible .marker-label,
-.event-marker.selected .marker-label {
+.event-marker:focus-visible .marker-label {
   display: block;
 }
 
@@ -609,50 +618,44 @@ watch(activeSources, () => {
 }
 
 .marker-label strong {
-  color: #9f9f9f;
-  font-size: 0.64rem;
+  color: #ababab;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
 }
 
 .marker-label span {
   margin-top: 2px;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.25;
-}
-
-.event-marker.selected {
-  z-index: 3;
-}
-
-.event-marker.selected .marker-label {
-  border-color: rgba(255, 255, 255, 0.34);
-  background: #292929;
 }
 
 .scroll-hint {
   padding: 8px 2px 0;
   color: #747474;
   font-size: 0.7rem;
-  text-align: right;
+  text-align: left;
 }
 
 .event-detail {
-  margin-top: 22px;
+  position: sticky;
+  top: 24px;
+  margin: 0;
   background: #1a1a1a !important;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .event-detail :deep(.v-card-text) {
-  padding: clamp(20px, 3vw, 34px);
+  padding: clamp(22px, 3vw, 38px);
 }
 
 .detail-topline {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 10px 16px;
   margin-bottom: 24px;
 }
 
@@ -744,7 +747,22 @@ watch(activeSources, () => {
   font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
+  .timeline-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .event-detail {
+    position: static;
+    grid-row: 2;
+  }
+
+  .timeline-left {
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 700px) {
   .timeline-container {
     padding-top: 24px;
   }
@@ -757,13 +775,7 @@ watch(activeSources, () => {
     display: none;
   }
 
-  .timeline-controls :deep(.v-card-text) {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
   .source-toggles {
-    width: 100%;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
@@ -773,13 +785,19 @@ watch(activeSources, () => {
     min-width: 0;
   }
 
-  .timeline-frame {
-    grid-template-columns: 92px minmax(0, 1fr);
+  .timeline-column-head,
+  .timeline-vertical-canvas {
+    grid-template-columns: 76px repeat(2, minmax(0, 1fr));
+  }
+
+  .timeline-column-head.single-lane,
+  .timeline-vertical-canvas.single-lane {
+    grid-template-columns: 76px minmax(0, 1fr);
   }
 
   .axis-label,
   .lane-label {
-    padding: 0 10px;
+    padding: 0 8px;
   }
 
   .lane-label strong {
@@ -787,7 +805,20 @@ watch(activeSources, () => {
   }
 
   .lane-label small {
-    font-size: 0.54rem;
+    font-size: 0.52rem;
+  }
+
+  .year-tick span {
+    left: 7px;
+    font-size: 0.82rem;
+  }
+
+  .year-tick.major span {
+    font-size: 0.88rem;
+  }
+
+  .marker-label {
+    width: 136px;
   }
 
   .detail-heading {
