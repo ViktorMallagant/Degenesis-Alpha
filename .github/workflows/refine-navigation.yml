@@ -1,0 +1,297 @@
+name: Refine navigation and app state
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refine-navigation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Refine navigation and utility state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('src/App.vue')
+          text = path.read_text(encoding='utf-8')
+
+          def replace_once(old: str, new: str, label: str) -> None:
+              global text
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected exactly one match, found {count}')
+              text = text.replace(old, new, 1)
+
+          name_item = '''          <v-list-item role="button" link @click="openNameGenerator">
+            {{ $t('messages.nameGenerator.navButton') }}
+            <template v-slot:prepend>
+              <v-icon :icon="mdiTagTextOutline"></v-icon>
+            </template>
+          </v-list-item>
+'''
+          timeline_item = '''          <v-list-item
+            link
+            href="https://viktormallagant.github.io/Degenesis-Timeline/"
+          >
+            Timeline
+            <template v-slot:prepend>
+              <v-icon :icon="mdiClockOutline"></v-icon>
+            </template>
+          </v-list-item>
+'''
+          replace_once(name_item, name_item + timeline_item, 'timeline menu insertion')
+
+          replace_once(
+              '''    <v-main
+      v-else-if="!charactersGalleryMode && !nameGeneratorMode && store.characterName.length > 0"
+''',
+              '''    <v-main
+      v-else-if="store.characterName.length > 0"
+''',
+              'character view condition',
+          )
+          replace_once(
+              '''    <div v-if="!charactersGalleryMode && !npcGeneratorMode && !nameGeneratorMode && store.characterName.length == 0" class="bg-grey-darken-4">
+''',
+              '''    <div v-else class="bg-grey-darken-4">
+''',
+              'intro view condition',
+          )
+
+          replace_once("import romanize from '@/util/romanize'\n", '', 'unused romanize import')
+          replace_once(
+              '''import {
+  mdiAccount,
+  mdiAccountOutline,
+  mdiAccountPlusOutline,
+  mdiAccountQuestionOutline,
+  mdiAccountGroup,
+  mdiImport,
+  mdiInformation,
+  mdiCogOutline,
+  mdiTagTextOutline
+} from '@mdi/js'
+''',
+              '''import {
+  mdiAccountGroup,
+  mdiAccountPlusOutline,
+  mdiAccountQuestionOutline,
+  mdiClockOutline,
+  mdiCogOutline,
+  mdiImport,
+  mdiInformation,
+  mdiTagTextOutline
+} from '@mdi/js'
+''',
+              'icon imports',
+          )
+
+          labels_block = '''const cultures = ([] as string[]).concat(...config.culturesByName.keys())
+const concepts = ([] as string[]).concat(...config.conceptsByName.keys())
+const cults = ([] as string[]).concat(...config.cultsByName.keys())
+const clans = ([] as string[]).concat(...config.clansByName.keys())
+
+const cultureLabels = () =>
+  new Map<string, string>(cultures.map((k) => [k, i18n.t(`culturesConceptsCults.${k}`)]))
+const conceptLabels = () =>
+  new Map<string, string>(
+    concepts.map((k) => [k, i18n.t(`culturesConceptsCults.${k}`)])
+  )
+const cultLabels = () => {
+  const cultTranslations: [string, string][] = cults.map((k) => [k, i18n.t(`culturesConceptsCults.${k}`)])
+  const clanTranslations: [string, string][] = clans.map((k) => [k, i18n.t(`clans.${k}`)])
+  const allTranslations = [...cultTranslations, ...clanTranslations]
+  return new Map<string, string>(allTranslations)
+}
+
+'''
+          replace_once(labels_block, '', 'unused label helpers')
+
+          replace_once(
+              '''  if (!characterExists(newName)) {
+    npcGeneratorMode.value = false
+    charactersGalleryMode.value = false
+    nameGeneratorMode.value = false
+    store.$reset()
+''',
+              '''  if (!characterExists(newName)) {
+    setUtilityMode(null)
+    isSharedView.value = false
+    store.$reset()
+''',
+              'new character state reset',
+          )
+
+          old_modes = '''const characterExists = browserStorage.characterIsStored
+
+const loadCharacter = (characterName: string) => {
+  npcGeneratorMode.value = false
+  charactersGalleryMode.value = false
+  nameGeneratorMode.value = false
+  const character = browserStorage.loadCharacter(characterName)
+  if (character) {
+    store.loadCharacter(character)
+  }
+  // close the navigation in case we're on a mobile breakpoint
+  showNavigationDrawer.value = !mobile.value
+}
+
+const npcGeneratorMode = ref(false)
+const npcTab = ref('detailed')
+const openNpcGenerator = () => {
+  npcGeneratorMode.value = true
+  charactersGalleryMode.value = false
+  nameGeneratorMode.value = false
+  showNavigationDrawer.value = !mobile.value
+}
+
+const nameGeneratorMode = ref(false)
+const openNameGenerator = () => {
+  nameGeneratorMode.value = true
+  npcGeneratorMode.value = false
+  charactersGalleryMode.value = false
+  showNavigationDrawer.value = !mobile.value
+}
+
+
+const charactersGalleryMode = ref(false)
+;(window as any).__charactersGalleryMode = charactersGalleryMode
+;(window as any).__npcGeneratorMode = npcGeneratorMode
+;(window as any).__nameGeneratorMode = nameGeneratorMode
+const openCharactersGallery = () => {
+  charactersGalleryMode.value = true
+  npcGeneratorMode.value = false
+  nameGeneratorMode.value = false
+  showNavigationDrawer.value = !mobile.value
+}
+
+const loadCharacterFromGallery = (characterName: string) => {
+  const character = browserStorage.loadCharacter(characterName)
+  if (character) {
+    store.loadCharacter(character)
+  }
+  charactersGalleryMode.value = false
+  showNavigationDrawer.value = !mobile.value
+}
+'''
+          new_modes = '''const characterExists = browserStorage.characterIsStored
+
+type UtilityMode = 'characters' | 'npc' | 'name' | null
+const utilityMode = ref<UtilityMode>(null)
+const charactersGalleryMode = computed(() => utilityMode.value === 'characters')
+const npcGeneratorMode = computed(() => utilityMode.value === 'npc')
+const nameGeneratorMode = computed(() => utilityMode.value === 'name')
+const npcTab = ref('detailed')
+
+const setUtilityMode = (mode: UtilityMode) => {
+  utilityMode.value = mode
+}
+
+;(window as any).__charactersGalleryMode = charactersGalleryMode
+;(window as any).__npcGeneratorMode = npcGeneratorMode
+;(window as any).__nameGeneratorMode = nameGeneratorMode
+
+const openNpcGenerator = () => {
+  setUtilityMode('npc')
+  showNavigationDrawer.value = !mobile.value
+}
+
+const openNameGenerator = () => {
+  setUtilityMode('name')
+  showNavigationDrawer.value = !mobile.value
+}
+
+const openCharactersGallery = () => {
+  setUtilityMode('characters')
+  showNavigationDrawer.value = !mobile.value
+}
+
+const loadCharacterFromGallery = (characterName: string) => {
+  const character = browserStorage.loadCharacter(characterName)
+  if (character) {
+    isSharedView.value = false
+    store.loadCharacter(character)
+    setUtilityMode(null)
+  }
+  showNavigationDrawer.value = !mobile.value
+}
+'''
+          replace_once(old_modes, new_modes, 'utility mode consolidation')
+
+          replace_once(
+              '''      if (parsed && parsed.storageVersion == 'v1') {
+        store.loadCharacter(parsed)
+        importForm.value?.reset()
+''',
+              '''      if (parsed && parsed.storageVersion === 'v1') {
+        setUtilityMode(null)
+        isSharedView.value = false
+        store.loadCharacter(parsed)
+        importForm.value?.reset()
+        showNavigationDrawer.value = !mobile.value
+''',
+              'imported character state reset',
+          )
+
+          # A locally stored character reached through a share URL is still an owned/local character.
+          replace_once(
+              '''        const local = browserStorage.loadCharacter(parsed.name)
+        if (local) store.loadCharacter(local)
+        ownCharSnackbar.value = true
+''',
+              '''        const local = browserStorage.loadCharacter(parsed.name)
+        if (local) {
+          isSharedView.value = false
+          store.loadCharacter(local)
+        }
+        ownCharSnackbar.value = true
+''',
+              'local shared-link handling',
+          )
+
+          forbidden = ('timelineMode', 'openTimeline', 'TimelineTab')
+          leftovers = [token for token in forbidden if token in text]
+          if leftovers:
+              raise SystemExit(f'Embedded timeline references remain: {leftovers}')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Lint app shell
+        run: npx eslint src/App.vue
+
+      - name: Build production site
+        run: npm run build-only
+
+      - name: Check whitespace
+        run: git diff --check
+
+      - name: Commit refined navigation
+        run: |
+          rm -f .github/workflows/refine-navigation.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add timeline link and streamline navigation"
+          git push
