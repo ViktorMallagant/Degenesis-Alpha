@@ -31,29 +31,13 @@ jobs:
           path = Path('src/App.vue')
           text = path.read_text(encoding='utf-8')
 
-          nav = '''          <v-list-item
-            role="button"
-            link
-            @click="openTimeline"
-            :variant="timelineMode ? 'tonal' : 'plain'"
-          >
-            Timeline
-            <template v-slot:prepend>
-              <v-icon :icon="mdiInformation"></v-icon>
-            </template>
-          </v-list-item>
-          '''
-          if nav not in text:
-              raise SystemExit('Timeline navigation block not found')
-          text = text.replace(nav, '', 1)
+          text, nav_count = re.subn(r'\n\s*<v-list-item\s*\n\s*role="button"\s*\n\s*link\s*\n\s*@click="openTimeline".*?\n\s*</v-list-item>', '', text, count=1, flags=re.S)
+          if nav_count != 1:
+              raise SystemExit(f'Expected one timeline navigation block, removed {nav_count}')
 
-          main = '''    <v-main v-else-if="timelineMode" class="bg-grey-darken-4">
-      <TimelineTab />
-    </v-main>
-          '''
-          if main not in text:
-              raise SystemExit('Timeline main block not found')
-          text = text.replace(main, '', 1)
+          text, main_count = re.subn(r'\n\s*<v-main v-else-if="timelineMode".*?</v-main>', '', text, count=1, flags=re.S)
+          if main_count != 1:
+              raise SystemExit(f'Expected one timeline main block, removed {main_count}')
 
           import_line = "import TimelineTab from '@/components/TimelineTab.vue'\n"
           if import_line not in text:
@@ -63,10 +47,10 @@ jobs:
           text = text.replace(' && !timelineMode', '')
           text = re.sub(r'(?m)^\s*timelineMode\.value = false\n', '', text)
 
-          pattern = r"\nconst timelineMode = ref\(false\)\nconst openTimeline = \(\) => \{\n.*?\n\}\n"
-          text, count = re.subn(pattern, '\n', text, count=1, flags=re.S)
-          if count != 1:
-              raise SystemExit(f'Expected one timeline state block, removed {count}')
+          state_pattern = r"\nconst timelineMode = ref\(false\)\nconst openTimeline = \(\) => \{\n.*?\n\}\n"
+          text, state_count = re.subn(state_pattern, '\n', text, count=1, flags=re.S)
+          if state_count != 1:
+              raise SystemExit(f'Expected one timeline state block, removed {state_count}')
 
           leftovers = [token for token in ('timelineMode', 'openTimeline', 'TimelineTab') if token in text]
           if leftovers:
