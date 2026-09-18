@@ -2,6 +2,7 @@ import { EditorMode } from "@/config/modes";
 import type { InventoryPurchase, ResourceMode } from "@/config/items";
 import type { CultRelationships } from '@/config/cultRelationships'
 import type { OtherDetails } from '@/config/otherDetails'
+import type { StatusSoftSelections } from '@/config/statusSoftSelections'
 
 
 export class Character {
@@ -40,6 +41,7 @@ export class Character {
     readonly renegadeCultNames?: string[],
     readonly cultRelationships?: Partial<CultRelationships>,
     readonly other?: Partial<OtherDetails>,
+    readonly statusSoftSelections?: Partial<StatusSoftSelections>,
   ) {
     this.storageVersion = 'v1'
     const legacyEditorMode = wasCreatedWithFreeMode ? (wasCreatedWithFreeMode ? EditorMode.Free : editorMode) : editorMode

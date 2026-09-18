@@ -5,7 +5,15 @@
     @touchstart="store.flashHighlighted(...constituents)"
   >
     <div class="d-flex justify-center">
-      <ValueBoxes class="text-caption" :count="max" :value="value" :interactive="false" />
+      <ValueBoxes
+        class="text-caption"
+        :count="max"
+        :value="value"
+        :interactive="false"
+        :soft-selected="store.statusSoftSelections[statusKey]"
+        :soft-interactive="store.editorMode === EditorMode.Free"
+        @soft-change="store.toggleStatusSoftSelection(statusKey, $event, value)"
+      />
     </div>
     <div class="d-flex justify-center mb-3 text-uppercase">
       {{ label }} <span style="margin-left:4px">({{ value }})</span>
@@ -24,13 +32,16 @@
 
 <script setup lang="ts">
 import ValueBoxes from '@/components/ValueBoxes.vue'
+import { EditorMode } from '@/config/modes'
 import type { Attribute, Skill } from '@/config/properties'
+import type { StatusTrackKey } from '@/config/statusSoftSelections'
 import { useCharacterStore } from '@/store';
 const store = useCharacterStore()
 export interface Props {
   label: string
   value: number
   max: number
+  statusKey: StatusTrackKey
   tooltip?: string
   constituents: (Attribute | Skill)[]
 }

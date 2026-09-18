@@ -1,5 +1,12 @@
 <template>
-  <div class="wrapper" :class="{ inverted: inverted, interactive: interactive }">
+  <div
+    class="wrapper"
+    :class="{
+      inverted: inverted,
+      interactive: interactive || softInteractive,
+      'soft-interactive': softInteractive
+    }"
+  >
     <div class="boxes">
       <div
         v-for="field in fieldValues"
@@ -12,7 +19,10 @@
       >
         <div
           class="box d-flex justify-center align-end"
-          :class="boxClasses(field)"
+          :class="[
+            boxClasses(field),
+            { 'soft-selectable': softInteractive && field <= value }
+          ]"
           :data-value="field"
         >
           <div
@@ -48,6 +58,8 @@ export interface Props {
   giftedMode?: boolean
   giftedPoints?: number
   giftedRemaining?: number
+  softSelected?: number[]
+  softInteractive?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -65,10 +77,13 @@ const props = withDefaults(defineProps<Props>(), {
   giftedMode: false,
   giftedPoints: 0,
   giftedRemaining: 0,
+  softSelected: () => [],
+  softInteractive: false,
 })
 const emit = defineEmits<{
   (e: 'change', value: number): void
   (e: 'giftedChange', newPoints: number): void
+  (e: 'softChange', point: number): void
 }>()
 
 const fieldValues = computed(() => [...Array(props.count).keys()].map((x) => x + 1))
@@ -77,8 +92,14 @@ const fieldValues = computed(() => [...Array(props.count).keys()].map((x) => x +
 const hovered = ref(-1)
 
 const handleClick = (event: any) => {
+  const field = parseInt(event.target.attributes['data-value'].value)
+  if (props.softInteractive) {
+    if (field <= props.value) emit('softChange', field)
+    hovered.value = -1
+    return
+  }
+
   if (props.interactive) {
-    const field = parseInt(event.target.attributes['data-value'].value)
     if (props.lockedLast && field > props.count - props.lockedLast) return
     if (props.giftedMode && field > props.value) {
       const requested = field - props.value
@@ -112,6 +133,7 @@ const handleClick = (event: any) => {
 }
 
 const handleMouseEnter = (field: number) => {
+  if (props.softInteractive) return
   if (props.interactive) {
     if (props.giftedMode) {
       hovered.value = field > props.value ? field : -1
@@ -128,6 +150,7 @@ const handleMouseEnter = (field: number) => {
 }
 
 const handleMouseLeave = () => {
+  if (props.softInteractive) return
   if (props.interactive) {
     hovered.value = -1
   }
@@ -147,6 +170,10 @@ function boxClasses(field: number): Record<string, boolean> {
     const previewEnd = props.value + (props.giftedPoints || 0) + (props.giftedRemaining || 0)
     if (hovered.value >= field && field <= previewEnd) return { 'gifted-preview': true }
     return {}
+  }
+
+  if (field <= props.value && props.softSelected.includes(field)) {
+    return { 'soft-selected': true }
   }
 
   if (bonus > 0) {
@@ -278,6 +305,20 @@ function boxClasses(field: number): Record<string, boolean> {
   background-color: rgba(198, 40, 40, 0.4) !important;
   border-color: #c62828 !important;
   cursor: pointer;
+}
+
+.soft-selectable {
+  cursor: pointer;
+}
+
+.soft-selectable:hover {
+  border-color: #c62828 !important;
+  box-shadow: 0 0 0 1px rgba(198, 40, 40, 0.25);
+}
+
+.soft-selected {
+  background-color: #ef9a9a !important;
+  border-color: #c62828 !important;
 }
 
 .locked-x {

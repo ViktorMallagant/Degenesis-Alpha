@@ -45,6 +45,12 @@ import {
   normalizeOtherDetails,
   type OtherDetails,
 } from '@/config/otherDetails'
+import {
+  defaultStatusSoftSelections,
+  normalizeStatusSoftSelections,
+  type StatusSoftSelections,
+  type StatusTrackKey,
+} from '@/config/statusSoftSelections'
 
 function translateModifier(text: string): string {
   const locale = i18n.global.locale.value
@@ -108,6 +114,7 @@ export type State = {
   giftedBonuses: Record<string, number>
   cultRelationships: CultRelationships
   other: OtherDetails
+  statusSoftSelections: StatusSoftSelections
   cultureSelected: boolean
   conceptSelected: boolean
   cultSelected: boolean
@@ -153,6 +160,7 @@ export const useCharacterStore = defineStore('character', {
     giftedBonuses: {},
     cultRelationships: defaultCultRelationships(),
     other: defaultOtherDetails(),
+    statusSoftSelections: defaultStatusSoftSelections(),
     cultureSelected: false,
     conceptSelected: false,
     cultSelected: false,
@@ -549,6 +557,7 @@ export const useCharacterStore = defineStore('character', {
         state.renegadeCultNames.length > 0 ? state.renegadeCultNames : undefined,
         state.cultRelationships,
         normalizeOtherDetails(state.other),
+        normalizeStatusSoftSelections(state.statusSoftSelections),
       )
     },
     maxEgo(): number {
@@ -847,7 +856,17 @@ export const useCharacterStore = defineStore('character', {
       this.renegadeCultNames = character.renegadeCultNames ?? []
       this.cultRelationships = normalizeCultRelationships(character.cultRelationships)
       this.other = normalizeOtherDetails(character.other)
+      this.statusSoftSelections = normalizeStatusSoftSelections(character.statusSoftSelections)
       this.isLoading = false
+    },
+    toggleStatusSoftSelection(track: StatusTrackKey, point: number, maximum: number) {
+      const normalizedPoint = Math.trunc(Number(point))
+      if (!Number.isFinite(normalizedPoint) || normalizedPoint < 1 || normalizedPoint > maximum) return
+
+      const selected = this.statusSoftSelections[track]
+      this.statusSoftSelections[track] = selected.includes(normalizedPoint)
+        ? selected.filter(value => value !== normalizedPoint)
+        : [...selected, normalizedPoint].sort((left, right) => left - right)
     },
     setCultRelationship(cult: CultRelationshipKey, value: number) {
       this.cultRelationships[cult] = clampCultRelationship(value)

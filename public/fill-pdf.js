@@ -74,6 +74,54 @@
     }
   }
 
+  function fillStatusBoxes(pdf, form, prefix, maximum, count, softSelections) {
+    var PDFLib = window.PDFLib;
+    var selected = new Set(
+      (Array.isArray(softSelections) ? softSelections : [])
+        .map(Number)
+        .filter(function (point) {
+          return Number.isFinite(point) && point >= 1 && point <= maximum;
+        })
+        .map(Math.trunc)
+    );
+
+    for (var index = 1; index <= count; index++) {
+      try {
+        var checkBox = form.getCheckBox(prefix + index);
+        if (index <= maximum) checkBox.check();
+        else checkBox.uncheck();
+
+        if (index <= maximum && selected.has(index)) {
+          checkBox.updateAppearances(function (_field, widget) {
+            var rectangle = widget.getRectangle();
+            var width = rectangle.width;
+            var height = rectangle.height;
+            var inset = Math.max(1.15, Math.min(width, height) * 0.13);
+            var path = [
+              "M", width / 2, inset,
+              "L", width - inset, height / 2,
+              "L", width / 2, height - inset,
+              "L", inset, height / 2,
+              "Z"
+            ].join(" ");
+            var mark = PDFLib.drawSvgPath(path, {
+              x: 0,
+              y: height,
+              scale: 1,
+              color: PDFLib.rgb(0.62, 0.62, 0.62),
+              borderColor: undefined,
+              borderWidth: 0
+            });
+            return {
+              normal: { on: mark, off: [] },
+              down: { on: mark, off: [] }
+            };
+          });
+        }
+      } catch (e) {}
+    }
+  }
+
   function safeSetText(form, fieldName, value) {
     try {
       var field = form.getTextField(fieldName);
@@ -310,37 +358,11 @@
       }
     });
 
-    var egoMax = store.maxEgo || 0;
-    for (var i = 1; i <= 24; i++) {
-      try {
-        var cb = form.getCheckBox("EGO" + i);
-        if (i <= egoMax) cb.check(); else cb.uncheck();
-      } catch (e) {}
-    }
-
-    var sporuMax = store.maxSporeInfestations || 0;
-    for (var i = 1; i <= 24; i++) {
-      try {
-        var cb = form.getCheckBox("SPORU" + i);
-        if (i <= sporuMax) cb.check(); else cb.uncheck();
-      } catch (e) {}
-    }
-
-    var traumaMax = store.maxTrauma || 0;
-    for (var i = 1; i <= 12; i++) {
-      try {
-        var cb = form.getCheckBox("TRAUMA" + i);
-        if (i <= traumaMax) cb.check(); else cb.uncheck();
-      } catch (e) {}
-    }
-
-    var fleshMax = store.maxFleshwounds || 0;
-    for (var i = 1; i <= 24; i++) {
-      try {
-        var cb = form.getCheckBox("BS" + i);
-        if (i <= fleshMax) cb.check(); else cb.uncheck();
-      } catch (e) {}
-    }
+    var statusSoftSelections = store.statusSoftSelections || {};
+    fillStatusBoxes(pdf, form, "EGO", store.maxEgo || 0, 24, statusSoftSelections.ego);
+    fillStatusBoxes(pdf, form, "SPORU", store.maxSporeInfestations || 0, 24, statusSoftSelections.sporeInfestations);
+    fillStatusBoxes(pdf, form, "TRAUMA", store.maxTrauma || 0, 12, statusSoftSelections.trauma);
+    fillStatusBoxes(pdf, form, "BS", store.maxFleshwounds || 0, 24, statusSoftSelections.fleshwounds);
 
     fillInventory(form, store);
     fillOtherDetails(form, store, "fr");
@@ -629,37 +651,11 @@
       }
     });
 
-    var egoMax = store.maxEgo || 0;
-    for (var i = 1; i <= 24; i++) {
-      try {
-        var cb = form.getCheckBox("Ego" + i);
-        if (i <= egoMax) cb.check(); else cb.uncheck();
-      } catch (e) {}
-    }
-
-    var sporuMax = store.maxSporeInfestations || 0;
-    for (var i = 1; i <= 24; i++) {
-      try {
-        var cb = form.getCheckBox("Si" + i);
-        if (i <= sporuMax) cb.check(); else cb.uncheck();
-      } catch (e) {}
-    }
-
-    var traumaMax = store.maxTrauma || 0;
-    for (var i = 1; i <= 12; i++) {
-      try {
-        var cb = form.getCheckBox("Tr" + i);
-        if (i <= traumaMax) cb.check(); else cb.uncheck();
-      } catch (e) {}
-    }
-
-    var fleshMax = store.maxFleshwounds || 0;
-    for (var i = 1; i <= 24; i++) {
-      try {
-        var cb = form.getCheckBox("FW" + i);
-        if (i <= fleshMax) cb.check(); else cb.uncheck();
-      } catch (e) {}
-    }
+    var statusSoftSelections = store.statusSoftSelections || {};
+    fillStatusBoxes(pdf, form, "Ego", store.maxEgo || 0, 24, statusSoftSelections.ego);
+    fillStatusBoxes(pdf, form, "Si", store.maxSporeInfestations || 0, 24, statusSoftSelections.sporeInfestations);
+    fillStatusBoxes(pdf, form, "Tr", store.maxTrauma || 0, 12, statusSoftSelections.trauma);
+    fillStatusBoxes(pdf, form, "FW", store.maxFleshwounds || 0, 24, statusSoftSelections.fleshwounds);
 
     fillInventory_en(form, store);
     fillOtherDetails(form, store, "en");

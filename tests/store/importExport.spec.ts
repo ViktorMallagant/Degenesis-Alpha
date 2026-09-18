@@ -78,6 +78,8 @@ test('A character is exported', () => {
   expect(character.other?.scars.groupName).toEqual('test group')
   expect(character.other?.artifacts[0].name).toEqual('test artifact')
   expect(character.other?.notes[0]).toEqual('test note')
+  expect(character.statusSoftSelections?.ego).toEqual([2])
+  expect(character.statusSoftSelections?.fleshwounds).toEqual([1, 3])
 })
 
 test('Exporting and importing does not change a character', () => {
@@ -136,4 +138,6 @@ function inputSampleCharacter(store) {
   store.other.complications = 'test complication'
   store.other.artifacts[0].name = 'test artifact'
   store.other.notes[0] = 'test note'
+  store.statusSoftSelections.ego = [2]
+  store.statusSoftSelections.fleshwounds = [1, 3]
 }

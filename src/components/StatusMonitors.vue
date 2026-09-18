@@ -1,5 +1,6 @@
 <template>
   <StatusMonitor
+    status-key="ego"
     :label="$t('messages.ego')"
     :max="24"
     :value="store.maxEgo"
@@ -7,6 +8,7 @@
     :constituents="[store.mentalPowerSkill]"
   ></StatusMonitor>
   <StatusMonitor
+    status-key="sporeInfestations"
     :label="$t('messages.sporeInfestations')"
     :max="24"
     :value="store.maxSporeInfestations"
@@ -14,6 +16,7 @@
     :constituents="[store.mentalResistanceSkill]"
   ></StatusMonitor>
   <StatusMonitor
+    status-key="fleshwounds"
     :label="$t('messages.fleshwounds')"
     :max="24"
     :value="store.maxFleshwounds"
@@ -21,6 +24,7 @@
     :constituents="[Skills.toughness]"
   ></StatusMonitor>
   <StatusMonitor
+    status-key="trauma"
     :label="$t('messages.trauma')"
     :max="Math.max(12, store.maxTrauma)"
     :value="store.maxTrauma"
