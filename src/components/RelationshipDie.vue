@@ -8,6 +8,7 @@
     ]"
     :aria-label="`${value > 0 ? 'Positive' : 'Negative'} relationship ${absoluteValue}`"
     role="img"
+    @animationend="bouncing = false"
   >
     <span
       v-for="pip in pipLayouts[absoluteValue]"
@@ -41,6 +42,9 @@ watch(
   () => props.value,
   async (value, previousValue) => {
     if (value === previousValue || value === 0) return
+
+    // Remove and re-apply the animation class so every relationship change
+    // starts a fresh jump, even when changes happen in rapid succession.
     bouncing.value = false
     await nextTick()
     bouncing.value = true
