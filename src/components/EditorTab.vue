@@ -173,51 +173,33 @@
                               ></v-text-field>
                             </v-col>
                             <v-col cols="6" sm="2">
-                              <div class="d-flex align-start" style="min-width: 0;">
-                                <v-tooltip
-                                  :text="$t('messages.lcNegativeTooltip')"
-                                  :disabled="store.remainingLC >= 0"
-                                  location="bottom"
-                                >
-                                  <template v-slot:activator="{ props }">
-                                    <v-text-field
-                                      v-if="store.editorMode === 'free'"
-                                      v-bind="props"
-                                      :model-value="store.remainingLC"
-                                      :label="$t('messages.dinars')"
-                                      variant="underlined"
-                                      type="number"
-                                      :error="store.remainingLC < 0"
-                                      style="flex: 1 1 auto; min-width: 0;"
-                                      @update:model-value="val => { const bonus = store.hasLandlord ? 1000 : 0; store.setManualLC(val === '' || val === null ? null : Number(val) - bonus - store.lcAdjustment + store.spentLC) }"
-                                    ></v-text-field>
-                                    <v-text-field
-                                      v-else
-                                      v-bind="props"
-                                      :model-value="store.computedDinars ? `${store.remainingLC} ${store.computedDinars.currency}` : ''"
-                                      :label="$t('messages.dinars')"
-                                      variant="underlined"
-                                      :error="store.remainingLC < 0"
-                                      style="flex: 1 1 auto; min-width: 0;"
-                                      readonly
-                                    ></v-text-field>
-                                  </template>
-                                </v-tooltip>
-                                <v-tooltip text="Adds to or subtracts from the automatic Drafts/Dinars total." location="bottom">
-                                  <template v-slot:activator="{ props: adjustmentProps }">
-                                    <v-text-field
-                                      v-bind="adjustmentProps"
-                                      :model-value="store.lcAdjustment"
-                                      label="±"
-                                      variant="underlined"
-                                      type="number"
-                                      class="ml-2"
-                                      style="flex: 0 0 64px; max-width: 64px;"
-                                      @update:model-value="val => store.setLCAdjustment(val === '' || val === null ? 0 : Number(val))"
-                                    ></v-text-field>
-                                  </template>
-                                </v-tooltip>
-                              </div>
+                              <v-tooltip
+                                :text="$t('messages.lcNegativeTooltip')"
+                                :disabled="store.remainingLC >= 0"
+                                location="bottom"
+                              >
+                                <template v-slot:activator="{ props }">
+                                  <v-text-field
+                                    v-if="store.editorMode === 'free'"
+                                    v-bind="props"
+                                    :model-value="store.remainingLC"
+                                    :label="$t('messages.dinars')"
+                                    variant="underlined"
+                                    type="number"
+                                    :error="store.remainingLC < 0"
+@update:model-value="val => { const bonus = store.hasLandlord ? 1000 : 0; store.setManualLC(val === '' || val === null ? null : Number(val) - bonus + store.spentLC) }"
+                                  ></v-text-field>
+                                  <v-text-field
+                                    v-else
+                                    v-bind="props"
+                                    :model-value="store.computedDinars ? `${store.remainingLC} ${store.computedDinars.currency}` : ''"
+                                    :label="$t('messages.dinars')"
+                                    variant="underlined"
+                                    :error="store.remainingLC < 0"
+                                    readonly
+                                  ></v-text-field>
+                                </template>
+                              </v-tooltip>
                             </v-col>
                           </v-row>
                         </v-container>

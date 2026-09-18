@@ -9,7 +9,7 @@
           v-if="store.editorMode === 'free'"
           type="number"
           :value="store.remainingLC"
-          @change="e => { const v = (e.target as HTMLInputElement).value; const bonus = store.hasLandlord ? 1000 : 0; store.setManualLC(v === '' ? null : Number(v) - bonus - store.lcAdjustment + store.spentLC) }"
+          @change="e => { const v = (e.target as HTMLInputElement).value; const bonus = store.hasLandlord ? 1000 : 0; store.setManualLC(v === '' ? null : Number(v) - bonus + store.spentLC) }"
           class="inv-lc-inline-input"
           :class="store.remainingLC < 0 ? 'text-red' : ''"
         />
@@ -17,15 +17,6 @@
           {{ store.remainingLC }}
         </span>
         <span v-if="store.editorMode !== 'free'" class="inv-stat-sub inv-muted">(base : {{ store.computedDinars?.value ?? 0 }})</span>
-        <label class="inv-lc-adjustment" title="Adds to or subtracts from the automatic Drafts/Dinars total.">
-          <span class="inv-stat-sub inv-muted">±</span>
-          <input
-            type="number"
-            :value="store.lcAdjustment"
-            @change="e => store.setLCAdjustment(Number((e.target as HTMLInputElement).value) || 0)"
-            class="inv-lc-adjustment-input"
-          />
-        </label>
       </div>
 
       <v-divider vertical class="mx-2" style="height:40px"></v-divider>
@@ -708,32 +699,6 @@ const availableCategoryOptions = computed(() => {
 .inv-lc-inline-input::-webkit-inner-spin-button,
 .inv-lc-inline-input::-webkit-outer-spin-button { -webkit-appearance: none; }
 .inv-lc-inline-input:focus {
-  border-bottom-color: rgb(var(--v-theme-primary));
-}
-
-.inv-lc-adjustment {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 3px;
-}
-
-.inv-lc-adjustment-input {
-  width: 58px;
-  color: rgb(var(--v-theme-on-surface));
-  background: transparent;
-  border: none;
-  border-bottom: 1px dashed rgba(var(--v-theme-on-surface), 0.4);
-  outline: none;
-  text-align: center;
-  -moz-appearance: textfield;
-}
-
-.inv-lc-adjustment-input::-webkit-inner-spin-button,
-.inv-lc-adjustment-input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
-
-.inv-lc-adjustment-input:focus {
   border-bottom-color: rgb(var(--v-theme-primary));
 }
 

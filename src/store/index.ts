@@ -84,7 +84,6 @@ export type State = {
   inventory: InventoryPurchase[]
   resourceMode: ResourceMode
   manualLC: number | null
-  lcAdjustment: number
   expertLCModified: boolean
   ignoreAutoLC: boolean
   legacyChoices: Record<string, { attributes?: string[]; skills?: string[] }>
@@ -128,7 +127,6 @@ export const useCharacterStore = defineStore('character', {
     inventory: [],
     resourceMode: ResourceMode.A,
     manualLC: null,
-    lcAdjustment: 0,
     expertLCModified: false,
     ignoreAutoLC: false,
     legacyChoices: {},
@@ -533,7 +531,6 @@ export const useCharacterStore = defineStore('character', {
         Object.keys(state.giftedBonuses).length > 0 ? state.giftedBonuses : undefined,
         state.imposteurCultName,
         state.renegadeCultNames.length > 0 ? state.renegadeCultNames : undefined,
-        state.lcAdjustment || undefined,
       )
     },
     maxEgo(): number {
@@ -688,7 +685,7 @@ export const useCharacterStore = defineStore('character', {
         ? this.manualLC
         : (this.computedDinars?.value ?? 0)
       const landlordBonus = this.hasLandlord ? 1000 : 0
-      return base + landlordBonus + this.lcAdjustment - this.spentLC
+      return base + landlordBonus - this.spentLC
     },
     inventoryItems(): Array<{ purchase: InventoryPurchase; index: number }> {
       return this.inventory.map((purchase, index) => ({ purchase, index }))
@@ -823,7 +820,6 @@ export const useCharacterStore = defineStore('character', {
       this.inventory = character.inventory ? [...character.inventory] : []
       this.resourceMode = character.resourceMode ?? ResourceMode.A
       this.manualLC = character.manualLC ?? null
-      this.lcAdjustment = character.lcAdjustment ?? 0
       this.legacyChoices = character.legacyChoices ? { ...character.legacyChoices } : {}
       this.sidewinderOldCultName = character.sidewinderOldCultName ?? null
       this.mentalPowerChoice = character.mentalPowerChoice ?? null
@@ -1112,9 +1108,6 @@ export const useCharacterStore = defineStore('character', {
       if (this.editorMode === EditorMode.Free) {
         this.expertLCModified = true
       }
-    },
-    setLCAdjustment(value: number | null) {
-      this.lcAdjustment = value !== null && Number.isFinite(value) ? value : 0
     },
     setEditorMode(mode: EditorMode) {
       // We can't switch to HardLimits if any point limit is exceeded, because we can't decide what to truncate

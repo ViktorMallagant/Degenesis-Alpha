@@ -75,7 +75,6 @@ test('A character is exported', () => {
 
   // The legacy free mode flag is not exported, since it has been replaced by editorMode
   expect(character.editorMode).toEqual(EditorMode.Free)
-  expect(character.lcAdjustment).toEqual(125)
 })
 
 test('Exporting and importing does not change a character', () => {
@@ -108,7 +107,6 @@ test('Character without optional attributes can be deserialized', () => {
   expect(store.height).toEqual('')
   expect(store.weight).toEqual('')
   expect(store.editorMode).toEqual(EditorMode.Default)
-  expect(store.lcAdjustment).toEqual(0)
 
   expect(store.potentials).toEqual(new Map())
 })
@@ -125,7 +123,6 @@ function inputSampleCharacter(store) {
   store.setClan(config.clans.HunterGatherers)
   store.setRank(Scout)
   store.setPotential(Asceticism, 2)
-  store.setLCAdjustment(125)
 
   store.age = 'test age'
   store.gender = 'test gender'
