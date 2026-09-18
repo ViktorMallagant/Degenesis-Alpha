@@ -169,40 +169,40 @@
   async function appendCultRelationshipsPage(pdf, store) {
     if (!pdf || !store || !store.cultRelationships) return;
 
-    var pageWidth = 841.89;
-    var pageHeight = 595.28;
+    var pageWidth = 595.28;
+    var pageHeight = 841.89;
     var page = pdf.addPage([pageWidth, pageHeight]);
     var regular = await pdf.embedFont(PDFLib.StandardFonts.Helvetica);
     var bold = await pdf.embedFont(PDFLib.StandardFonts.HelveticaBold);
     var cardImages = await loadCardImages(pdf);
-    var white = PDFLib.rgb(0.96, 0.96, 0.96);
-    var muted = PDFLib.rgb(0.62, 0.62, 0.62);
+    var titleColor = PDFLib.rgb(0.06, 0.06, 0.06);
+    var muted = PDFLib.rgb(0.38, 0.38, 0.38);
     var margin = 24;
     var columnGap = 10;
-    var rowGap = 17;
-    var cardWidth = (pageWidth - margin * 2 - columnGap * 3) / 4;
+    var rowGap = 42;
+    var cardWidth = (pageWidth - margin * 2 - columnGap * 2) / 3;
     var cardHeight = cardWidth * CARD_HEIGHT / CARD_WIDTH;
-    var gridTop = pageHeight - 76;
+    var gridTop = pageHeight - 98;
 
     page.drawRectangle({
       x: 0,
       y: 0,
       width: pageWidth,
       height: pageHeight,
-      color: PDFLib.rgb(0.018, 0.018, 0.018)
+      color: PDFLib.rgb(1, 1, 1)
     });
     var title = safeForFont(
       bold,
       translate("messages.cultRelationships.title", "Cult Relationships").toUpperCase()
     );
-    drawTrackedText(page, bold, title, margin, pageHeight - 38, 18, white, 1.2);
+    drawTrackedText(page, bold, title, margin, pageHeight - 44, 18, titleColor, 1.2);
 
     if (store.characterName) {
       var characterName = safeForFont(regular, store.characterName);
       var nameWidth = regular.widthOfTextAtSize(characterName, 9);
       page.drawText(characterName, {
         x: Math.max(margin, pageWidth - margin - nameWidth),
-        y: pageHeight - 35,
+        y: pageHeight - 41,
         size: 9,
         font: regular,
         color: muted
@@ -210,8 +210,8 @@
     }
 
     CULT_CARDS.forEach(function (card, index) {
-      var row = Math.floor(index / 4);
-      var column = index % 4;
+      var row = Math.floor(index / 3);
+      var column = index % 3;
       var x = margin + column * (cardWidth + columnGap);
       if (index === CULT_CARDS.length - 1) x = (pageWidth - cardWidth) / 2;
       var y = gridTop - cardHeight - row * (cardHeight + rowGap);
@@ -228,7 +228,7 @@
           y: y,
           width: cardWidth,
           height: cardHeight,
-          borderColor: PDFLib.rgb(0.22, 0.22, 0.22),
+          borderColor: PDFLib.rgb(0.72, 0.72, 0.72),
           borderWidth: 0.65
         });
       } else {
@@ -236,8 +236,8 @@
       }
 
       var value = clampRelationship(store.cultRelationships[card[0]]);
-      var dieSize = 26;
-      drawDie(page, value, x + cardWidth - dieSize - 7, y + 7, dieSize);
+      var dieSize = 24;
+      drawDie(page, value, x + cardWidth - dieSize - 6, y + 6, dieSize);
     });
   }
 
