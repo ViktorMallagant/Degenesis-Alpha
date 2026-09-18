@@ -287,6 +287,14 @@
 
     fillInventory(form, store);
 
+    if (typeof window.appendCultRelationshipsPage === "function") {
+      try {
+        await window.appendCultRelationshipsPage(pdf, store);
+      } catch (error) {
+        console.warn("Could not export Cult Relationships to PDF.", error);
+      }
+    }
+
     var filledBytes = await pdf.save();
     var blob = new Blob([filledBytes], { type: "application/pdf" });
     var url = URL.createObjectURL(blob);
@@ -596,6 +604,14 @@
     }
 
     fillInventory_en(form, store);
+
+    if (typeof window.appendCultRelationshipsPage === "function") {
+      try {
+        await window.appendCultRelationshipsPage(pdf, store);
+      } catch (error) {
+        console.warn("Could not export Cult Relationships to PDF.", error);
+      }
+    }
 
     var filledBytes = await pdf.save();
     var blob = new Blob([filledBytes], { type: "application/pdf" });
