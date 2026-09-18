@@ -33,6 +33,13 @@ import { Character } from './character'
 import type { Culture, Concept, Cult } from '@/config/model'
 import { i18n } from '@/i18n'
 import { modifierTranslations } from '@/config/messages/modifiers'
+import {
+  clampCultRelationship,
+  defaultCultRelationships,
+  normalizeCultRelationships,
+  type CultRelationshipKey,
+  type CultRelationships,
+} from '@/config/cultRelationships'
 
 function translateModifier(text: string): string {
   const locale = i18n.global.locale.value
@@ -94,6 +101,7 @@ export type State = {
   mentalPowerChoice: 'primal' | 'focus' | null
   mentalResistanceChoice: 'faith' | 'willpower' | null
   giftedBonuses: Record<string, number>
+  cultRelationships: CultRelationships
   cultureSelected: boolean
   conceptSelected: boolean
   cultSelected: boolean
@@ -137,6 +145,7 @@ export const useCharacterStore = defineStore('character', {
     mentalPowerChoice: null,
     mentalResistanceChoice: null,
     giftedBonuses: {},
+    cultRelationships: defaultCultRelationships(),
     cultureSelected: false,
     conceptSelected: false,
     cultSelected: false,
@@ -531,6 +540,7 @@ export const useCharacterStore = defineStore('character', {
         Object.keys(state.giftedBonuses).length > 0 ? state.giftedBonuses : undefined,
         state.imposteurCultName,
         state.renegadeCultNames.length > 0 ? state.renegadeCultNames : undefined,
+        state.cultRelationships,
       )
     },
     maxEgo(): number {
@@ -827,7 +837,20 @@ export const useCharacterStore = defineStore('character', {
       this.giftedBonuses = character.giftedBonuses ? { ...character.giftedBonuses } : {}
       this.imposteurCultName = character.imposteurCultName ?? null
       this.renegadeCultNames = character.renegadeCultNames ?? []
+      this.cultRelationships = normalizeCultRelationships(character.cultRelationships)
       this.isLoading = false
+    },
+    setCultRelationship(cult: CultRelationshipKey, value: number) {
+      this.cultRelationships[cult] = clampCultRelationship(value)
+    },
+    increaseCultRelationship(cult: CultRelationshipKey) {
+      this.setCultRelationship(cult, this.cultRelationships[cult] + 1)
+    },
+    decreaseCultRelationship(cult: CultRelationshipKey) {
+      this.setCultRelationship(cult, this.cultRelationships[cult] - 1)
+    },
+    resetCultRelationships() {
+      this.cultRelationships = defaultCultRelationships()
     },
     adjustProperties() {
       if (this.editorMode == EditorMode.HardLimits) {

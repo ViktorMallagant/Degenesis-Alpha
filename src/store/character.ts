@@ -1,5 +1,6 @@
 import { EditorMode } from "@/config/modes";
 import type { InventoryPurchase, ResourceMode } from "@/config/items";
+import type { CultRelationships } from '@/config/cultRelationships'
 
 
 export class Character {
@@ -36,6 +37,7 @@ export class Character {
     readonly giftedBonuses?: Record<string, number>,
     readonly imposteurCultName?: string | null,
     readonly renegadeCultNames?: string[],
+    readonly cultRelationships?: Partial<CultRelationships>,
   ) {
     this.storageVersion = 'v1'
     const legacyEditorMode = wasCreatedWithFreeMode ? (wasCreatedWithFreeMode ? EditorMode.Free : editorMode) : editorMode
