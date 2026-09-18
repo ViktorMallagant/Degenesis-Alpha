@@ -81,6 +81,63 @@
     } catch (e) {}
   }
 
+  function splitLines(value, count) {
+    var lines = String(value || "").replace(/\r/g, "").split("\n");
+    return Array.from({ length: count }, function (_, index) {
+      return lines[index] || "";
+    });
+  }
+
+  function fillOtherDetails(form, store, language) {
+    var other = store.other || {};
+    var scars = other.scars || {};
+    var constellation = splitLines(scars.constellation, 2);
+    var complications = splitLines(other.complications, 6);
+    var artifacts = Array.isArray(other.artifacts) ? other.artifacts : [];
+    var infamy = Math.max(0, Math.min(6, Math.trunc(Number(scars.infamy) || 0)));
+
+    if (language === "fr") {
+      safeSetText(form, "GROUPE", scars.groupName);
+      safeSetText(form, "ALIGNEMENT", scars.alignment);
+      safeSetText(form, "CONSTELLATION", constellation[0]);
+      safeSetText(form, "CONSTELLATION 2", constellation[1]);
+      safeSetText(form, "VALEUR DES CICATRICES", scars.scarsValue);
+      checkBoxes(form, "REP", infamy, 1, 6);
+
+      complications.forEach(function (value, index) {
+        safeSetText(form, String(index + 1) + "_3", value);
+      });
+
+      artifacts.slice(0, 3).forEach(function (artifact, index) {
+        var number = index + 1;
+        safeSetText(form, "ARTEF" + number, artifact.name);
+        safeSetText(form, "ACTIVATIONRow" + number, artifact.activation);
+        safeSetText(form, "FONCTIONNEMENTRow" + number, artifact.operation);
+        safeSetText(form, "VALEUR APPROXRow" + number, artifact.appraisalValue);
+      });
+      return;
+    }
+
+    safeSetText(form, "Group Name", scars.groupName);
+    safeSetText(form, "Alignment", scars.alignment);
+    safeSetText(form, "Constellation", constellation[0]);
+    safeSetText(form, "ConstellationLine2", constellation[1]);
+    safeSetText(form, "Scars", scars.scarsValue);
+    checkBoxes(form, "Inf", infamy, 1, 6);
+
+    complications.forEach(function (value, index) {
+      safeSetText(form, "Complication" + (index + 1), value);
+    });
+
+    artifacts.slice(0, 3).forEach(function (artifact, index) {
+      var number = index + 1;
+      safeSetText(form, "Artifact" + number, artifact.name);
+      safeSetText(form, number === 3 ? "Activation13" : "Activation" + number, artifact.activation);
+      safeSetText(form, "Operation" + number, artifact.operation);
+      safeSetText(form, "Appraisal" + number, artifact.appraisalValue);
+    });
+  }
+
   function tr(i18n, key, prefix) {
     try { return (i18n.global || i18n).t(prefix + "." + key); }
     catch (e) { return key; }
@@ -286,6 +343,7 @@
     }
 
     fillInventory(form, store);
+    fillOtherDetails(form, store, "fr");
 
     if (typeof window.appendCultRelationshipsPage === "function") {
       try {
@@ -604,6 +662,7 @@
     }
 
     fillInventory_en(form, store);
+    fillOtherDetails(form, store, "en");
 
     if (typeof window.appendCultRelationshipsPage === "function") {
       try {
@@ -618,7 +677,7 @@
     var url = URL.createObjectURL(blob);
     var a = document.createElement("a");
     a.href = url;
-    a.download = (store.characterName || "character").replace(/[^a-zA-Z0-9À-ɏ\s\-]/g, "") + "_sheet.pdf";
+    a.download = (store.characterName || "character").replace(/[^a-zA-Z0-9À-ɏ\s\-]/g, "") + ".pdf";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

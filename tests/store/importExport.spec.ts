@@ -75,6 +75,9 @@ test('A character is exported', () => {
 
   // The legacy free mode flag is not exported, since it has been replaced by editorMode
   expect(character.editorMode).toEqual(EditorMode.Free)
+  expect(character.other?.scars.groupName).toEqual('test group')
+  expect(character.other?.artifacts[0].name).toEqual('test artifact')
+  expect(character.other?.notes[0]).toEqual('test note')
 })
 
 test('Exporting and importing does not change a character', () => {
@@ -128,4 +131,9 @@ function inputSampleCharacter(store) {
   store.gender = 'test gender'
   store.height = 'test height'
   store.weight = 'test weight'
+  store.other.scars.groupName = 'test group'
+  store.other.scars.infamy = 3
+  store.other.complications = 'test complication'
+  store.other.artifacts[0].name = 'test artifact'
+  store.other.notes[0] = 'test note'
 }

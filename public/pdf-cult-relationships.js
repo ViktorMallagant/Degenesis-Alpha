@@ -70,6 +70,52 @@
     });
   }
 
+  function trackedTextWidth(font, text, size, tracking) {
+    if (!text) return 0;
+    return font.widthOfTextAtSize(text, size) + tracking * Math.max(0, Array.from(text).length - 1);
+  }
+
+  function drawDiamond(page, x, y, radius, color) {
+    var points = [
+      [x, y + radius],
+      [x + radius, y],
+      [x, y - radius],
+      [x - radius, y]
+    ];
+    for (var index = 0; index < points.length; index++) {
+      page.drawLine({
+        start: { x: points[index][0], y: points[index][1] },
+        end: { x: points[(index + 1) % points.length][0], y: points[(index + 1) % points.length][1] },
+        thickness: 0.7,
+        color: color
+      });
+    }
+  }
+
+  function drawDecoratedHeading(page, font, text, centerY, pageWidth, margin, size, color, tracking) {
+    var width = trackedTextWidth(font, text, size, tracking);
+    var textX = (pageWidth - width) / 2;
+    var gap = 13;
+    var outerX = margin;
+    var leftEnd = textX - gap;
+    var rightStart = textX + width + gap;
+    var dogleg = 7;
+    var shoulder = 49;
+
+    drawDiamond(page, outerX, centerY, 3.5, color);
+    drawDiamond(page, pageWidth - outerX, centerY, 3.5, color);
+
+    page.drawLine({ start: { x: outerX + 4, y: centerY }, end: { x: outerX + shoulder, y: centerY }, thickness: 0.7, color: color });
+    page.drawLine({ start: { x: outerX + shoulder, y: centerY }, end: { x: outerX + shoulder + dogleg, y: centerY - 6 }, thickness: 0.7, color: color });
+    page.drawLine({ start: { x: outerX + shoulder + dogleg, y: centerY - 6 }, end: { x: leftEnd, y: centerY - 6 }, thickness: 0.7, color: color });
+
+    page.drawLine({ start: { x: pageWidth - outerX - 4, y: centerY }, end: { x: pageWidth - outerX - shoulder, y: centerY }, thickness: 0.7, color: color });
+    page.drawLine({ start: { x: pageWidth - outerX - shoulder, y: centerY }, end: { x: pageWidth - outerX - shoulder - dogleg, y: centerY - 6 }, thickness: 0.7, color: color });
+    page.drawLine({ start: { x: pageWidth - outerX - shoulder - dogleg, y: centerY - 6 }, end: { x: rightStart, y: centerY - 6 }, thickness: 0.7, color: color });
+
+    drawTrackedText(page, font, text, textX, centerY - size * 0.35, size, color, tracking);
+  }
+
   function imageToPngBytes(path) {
     return new Promise(function (resolve) {
       var image = new Image();
@@ -176,13 +222,12 @@
     var bold = await pdf.embedFont(PDFLib.StandardFonts.HelveticaBold);
     var cardImages = await loadCardImages(pdf);
     var titleColor = PDFLib.rgb(0.06, 0.06, 0.06);
-    var muted = PDFLib.rgb(0.38, 0.38, 0.38);
-    var margin = 24;
+    var margin = 28;
     var columnGap = 10;
-    var rowGap = 42;
+    var rowGap = 10;
     var cardWidth = (pageWidth - margin * 2 - columnGap * 2) / 3;
     var cardHeight = cardWidth * CARD_HEIGHT / CARD_WIDTH;
-    var gridTop = pageHeight - 98;
+    var gridTop = 752;
 
     page.drawRectangle({
       x: 0,
@@ -192,20 +237,33 @@
       color: PDFLib.rgb(1, 1, 1)
     });
     var title = safeForFont(
-      bold,
+      regular,
       translate("messages.cultRelationships.title", "Cult Relationships").toUpperCase()
     );
-    drawTrackedText(page, bold, title, margin, pageHeight - 44, 18, titleColor, 1.2);
+    drawDecoratedHeading(page, regular, title, 810, pageWidth, margin, 10, titleColor, 1.75);
 
+    var nameLabel = "NAME:";
+    var nameLabelSize = 7;
+    var nameLabelTracking = 0.35;
+    var nameBlockWidth = 280;
+    var nameBlockX = (pageWidth - nameBlockWidth) / 2;
+    var nameLabelWidth = trackedTextWidth(regular, nameLabel, nameLabelSize, nameLabelTracking);
+    var nameLineStart = nameBlockX + nameLabelWidth + 10;
+    var nameLineY = 779;
+    drawTrackedText(page, regular, nameLabel, nameBlockX, nameLineY + 2, nameLabelSize, titleColor, nameLabelTracking);
+    page.drawLine({
+      start: { x: nameLineStart, y: nameLineY },
+      end: { x: nameBlockX + nameBlockWidth, y: nameLineY },
+      thickness: 0.55,
+      color: titleColor
+    });
     if (store.characterName) {
-      var characterName = safeForFont(regular, store.characterName);
-      var nameWidth = regular.widthOfTextAtSize(characterName, 9);
-      page.drawText(characterName, {
-        x: Math.max(margin, pageWidth - margin - nameWidth),
-        y: pageHeight - 41,
-        size: 9,
+      page.drawText(safeForFont(regular, store.characterName), {
+        x: nameLineStart + 4,
+        y: nameLineY + 3,
+        size: 8.5,
         font: regular,
-        color: muted
+        color: titleColor
       });
     }
 
@@ -239,6 +297,31 @@
       var dieSize = 24;
       drawDie(page, value, x + cardWidth - dieSize - 6, y + 6, dieSize);
     });
+
+    drawDecoratedHeading(page, regular, "NOTES", 246, pageWidth, margin, 9, titleColor, 1.8);
+    var notes = store.other && Array.isArray(store.other.notes) ? store.other.notes : [];
+    var notesLeft = margin + 18;
+    var notesRight = pageWidth - margin - 18;
+    var notesTop = 220;
+    var notesStep = 16.2;
+    for (var noteIndex = 0; noteIndex < 10; noteIndex++) {
+      var lineY = notesTop - noteIndex * notesStep;
+      page.drawLine({
+        start: { x: notesLeft, y: lineY },
+        end: { x: notesRight, y: lineY },
+        thickness: 0.45,
+        color: PDFLib.rgb(0.42, 0.42, 0.42)
+      });
+      if (notes[noteIndex]) {
+        page.drawText(safeForFont(regular, notes[noteIndex]), {
+          x: notesLeft + 4,
+          y: lineY + 3,
+          size: 7.5,
+          font: regular,
+          color: titleColor
+        });
+      }
+    }
   }
 
   window.appendCultRelationshipsPage = appendCultRelationshipsPage;

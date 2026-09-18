@@ -40,6 +40,11 @@ import {
   type CultRelationshipKey,
   type CultRelationships,
 } from '@/config/cultRelationships'
+import {
+  defaultOtherDetails,
+  normalizeOtherDetails,
+  type OtherDetails,
+} from '@/config/otherDetails'
 
 function translateModifier(text: string): string {
   const locale = i18n.global.locale.value
@@ -102,6 +107,7 @@ export type State = {
   mentalResistanceChoice: 'faith' | 'willpower' | null
   giftedBonuses: Record<string, number>
   cultRelationships: CultRelationships
+  other: OtherDetails
   cultureSelected: boolean
   conceptSelected: boolean
   cultSelected: boolean
@@ -146,6 +152,7 @@ export const useCharacterStore = defineStore('character', {
     mentalResistanceChoice: null,
     giftedBonuses: {},
     cultRelationships: defaultCultRelationships(),
+    other: defaultOtherDetails(),
     cultureSelected: false,
     conceptSelected: false,
     cultSelected: false,
@@ -541,6 +548,7 @@ export const useCharacterStore = defineStore('character', {
         state.imposteurCultName,
         state.renegadeCultNames.length > 0 ? state.renegadeCultNames : undefined,
         state.cultRelationships,
+        normalizeOtherDetails(state.other),
       )
     },
     maxEgo(): number {
@@ -838,6 +846,7 @@ export const useCharacterStore = defineStore('character', {
       this.imposteurCultName = character.imposteurCultName ?? null
       this.renegadeCultNames = character.renegadeCultNames ?? []
       this.cultRelationships = normalizeCultRelationships(character.cultRelationships)
+      this.other = normalizeOtherDetails(character.other)
       this.isLoading = false
     },
     setCultRelationship(cult: CultRelationshipKey, value: number) {
