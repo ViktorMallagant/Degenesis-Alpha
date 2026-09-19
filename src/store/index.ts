@@ -52,6 +52,7 @@ import {
   type StatusSoftSelections,
   type StatusTrackKey,
 } from '@/config/statusSoftSelections'
+import { calculateInventoryEncumbrance } from '@/config/encumbrance'
 
 function translateModifier(text: string): string {
   const locale = i18n.global.locale.value
@@ -724,6 +725,9 @@ export const useCharacterStore = defineStore('character', {
     },
     inventoryItems(): Array<{ purchase: InventoryPurchase; index: number }> {
       return this.inventory.map((purchase, index) => ({ purchase, index }))
+    },
+    totalEncumbrance(): number {
+      return calculateInventoryEncumbrance(this.inventory)
     },
 
     attributeValues(): Value<Attribute>[] {

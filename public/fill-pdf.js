@@ -142,6 +142,14 @@
     } catch (e) {}
   }
 
+  function safeSetTextSize(form, fieldName, value, fontSize) {
+    try {
+      var field = form.getTextField(fieldName);
+      field.acroField.setDefaultAppearance("0 g /Helvetica " + fontSize + " Tf");
+      field.setText(value != null ? String(value) : "");
+    } catch (e) {}
+  }
+
   function splitLines(value, count) {
     var lines = String(value || "").replace(/\r/g, "").split("\n");
     return Array.from({ length: count }, function (_, index) {
@@ -232,18 +240,71 @@
     });
   }
 
+  function cropImageToAspect(dataUrl, targetAspect) {
+    return new Promise(function (resolve) {
+      var source = new Image();
+      source.onload = function () {
+        var sourceWidth = source.naturalWidth || source.width;
+        var sourceHeight = source.naturalHeight || source.height;
+        if (!sourceWidth || !sourceHeight) { resolve(null); return; }
+
+        var sourceAspect = sourceWidth / sourceHeight;
+        var cropX = 0;
+        var cropY = 0;
+        var cropWidth = sourceWidth;
+        var cropHeight = sourceHeight;
+
+        if (sourceAspect > targetAspect) {
+          cropWidth = sourceHeight * targetAspect;
+          cropX = (sourceWidth - cropWidth) / 2;
+        } else if (sourceAspect < targetAspect) {
+          cropHeight = sourceWidth / targetAspect;
+          cropY = (sourceHeight - cropHeight) / 2;
+        }
+
+        var longestSide = Math.min(1200, Math.max(cropWidth, cropHeight));
+        var outputWidth = targetAspect >= 1 ? longestSide : longestSide * targetAspect;
+        var outputHeight = targetAspect >= 1 ? longestSide / targetAspect : longestSide;
+        var canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.round(outputWidth));
+        canvas.height = Math.max(1, Math.round(outputHeight));
+        var context = canvas.getContext("2d");
+        if (!context) { resolve(null); return; }
+        context.drawImage(
+          source,
+          cropX, cropY, cropWidth, cropHeight,
+          0, 0, canvas.width, canvas.height
+        );
+        canvas.toBlob(function (blob) {
+          if (!blob) { resolve(null); return; }
+          var reader = new FileReader();
+          reader.onload = function () { resolve(new Uint8Array(reader.result)); };
+          reader.readAsArrayBuffer(blob);
+        }, "image/png");
+      };
+      source.onerror = function () { resolve(null); };
+      source.src = dataUrl;
+    });
+  }
+
   async function embedPortrait(pdf, form, fieldName, dataUrl) {
     try {
       if (!dataUrl) return;
+      var button = form.getButton(fieldName);
+      var widgets = button.acroField.getWidgets();
+      var rectangle = widgets.length > 0 ? widgets[0].getRectangle() : { width: 1, height: 1 };
+      var targetAspect = rectangle.height > 0 ? rectangle.width / rectangle.height : 1;
+      var croppedBytes = await cropImageToAspect(dataUrl, targetAspect);
       var base64 = dataUrl.split(",")[1];
       var bytes = Uint8Array.from(atob(base64), function(c) { return c.charCodeAt(0); });
       var image;
-      if (dataUrl.indexOf("image/png") >= 0) {
+      if (croppedBytes) {
+        image = await pdf.embedPng(croppedBytes);
+      } else if (dataUrl.indexOf("image/png") >= 0) {
         image = await pdf.embedPng(bytes);
       } else {
         image = await pdf.embedJpg(bytes);
       }
-      var button = form.getButton(fieldName);
       button.setImage(image);
     } catch (e) {}
   }
@@ -312,8 +373,9 @@
       safeSetText(form, "CULTEtxt", tr(i18n, store.cult.name, "culturesConceptsCults"));
       await embedImage(pdf, form, "Culte", "logotypes/cults/" + store.cult.name + ".svg", 200);
     }
-    if (store.portrait) {
-      await embedPortrait(pdf, form, "Portrait", store.portrait);
+    var portraitImage = store.portraitFiche || store.portraitOriginal || store.portrait;
+    if (portraitImage) {
+      await embedPortrait(pdf, form, "Portrait", portraitImage);
     }
     if (store.rank && store.rank.name) {
       safeSetText(form, "RANG", tr(i18n, store.rank.name, "ranks"));
@@ -503,6 +565,8 @@
       safeSetText(form, 'ÉQUIPEMENT' + (idx + 1), inventoryDisplayName(item));
       safeSetText(form, equipEncFields[idx], inventoryDisplayEncumbrance(item));
     });
+
+    safeSetTextSize(form, 'ENC TOTALRow1', store.totalEncumbrance != null ? store.totalEncumbrance : 0, 16);
   }
 
   window.downloadFilledPDF = downloadFilledPDF;
@@ -606,8 +670,9 @@
       safeSetText(form, "Cult", tr(i18n, store.cult.name, "culturesConceptsCults"));
       await embedImage(pdf, form, "CultImage", "logotypes/cults/" + store.cult.name + ".svg", 200);
     }
-    if (store.portrait) {
-      await embedPortrait(pdf, form, "CharPortrait", store.portrait);
+    var portraitImage = store.portraitFiche || store.portraitOriginal || store.portrait;
+    if (portraitImage) {
+      await embedPortrait(pdf, form, "CharPortrait", portraitImage);
     }
     if (store.rank && store.rank.name) {
       safeSetText(form, "Rank", tr(i18n, store.rank.name, "ranks"));
@@ -730,6 +795,8 @@
       safeSetText(form, 'Possessions' + col + row, inventoryDisplayName(item));
       safeSetText(form, 'PossessionsEnc' + col + row, inventoryDisplayEncumbrance(item));
     });
+
+    safeSetTextSize(form, 'TotalEnc', store.totalEncumbrance != null ? store.totalEncumbrance : 0, 16);
   }
 
   window.downloadFilledPDF_en = downloadFilledPDF_en;

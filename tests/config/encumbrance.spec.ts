@@ -1,6 +1,8 @@
-import { describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, test } from 'vitest'
 import { calculateInventoryEncumbrance } from '../../src/config/encumbrance'
 import type { InventoryPurchase } from '../../src/config/items'
+import { createPinia, setActivePinia } from 'pinia'
+import { useCharacterStore } from '../../src/store'
 
 function inventory(...itemIds: string[]): InventoryPurchase[] {
   return itemIds.map(itemId => ({
@@ -12,6 +14,10 @@ function inventory(...itemIds: string[]): InventoryPurchase[] {
 }
 
 describe('inventory encumbrance', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+  })
+
   test('counts ordinary items, weapons, and armor normally without carrying equipment', () => {
     expect(calculateInventoryEncumbrance(inventory(
       'tente',
@@ -62,5 +68,12 @@ describe('inventory encumbrance', () => {
       'charrette-bras',
       'charrette-bras',
     ))).toBe(0)
+  })
+
+  test('exposes the adjusted total through the character store for PDF export', () => {
+    const store = useCharacterStore()
+    store.inventory = inventory('sac-dos', 'tente', 'pistol-9mm')
+
+    expect(store.totalEncumbrance).toBe(2)
   })
 })
