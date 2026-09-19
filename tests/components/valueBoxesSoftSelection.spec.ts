@@ -38,4 +38,20 @@ describe('ValueBoxes soft selection', () => {
     await wrapper.find('.boxContainer').trigger('click')
     expect(wrapper.emitted('softChange')).toBeUndefined()
   })
+
+  test('displays permanent selections with the darker state taking precedence', () => {
+    const wrapper = mount(ValueBoxes, {
+      props: {
+        count: 4,
+        value: 4,
+        interactive: false,
+        softSelected: [2, 3],
+        permanentSelected: [3]
+      }
+    })
+
+    expect(wrapper.findAll('.box')[1].classes()).toContain('soft-selected')
+    expect(wrapper.findAll('.box')[2].classes()).toContain('permanent-selected')
+    expect(wrapper.findAll('.box')[2].classes()).not.toContain('soft-selected')
+  })
 })

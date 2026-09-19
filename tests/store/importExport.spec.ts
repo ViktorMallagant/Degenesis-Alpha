@@ -80,6 +80,7 @@ test('A character is exported', () => {
   expect(character.other?.notes[0]).toEqual('test note')
   expect(character.statusSoftSelections?.ego).toEqual([2])
   expect(character.statusSoftSelections?.fleshwounds).toEqual([1, 3])
+  expect(character.statusPermanentSporeInfestations).toEqual([2, 4])
 })
 
 test('Exporting and importing does not change a character', () => {
@@ -140,4 +141,5 @@ function inputSampleCharacter(store) {
   store.other.notes[0] = 'test note'
   store.statusSoftSelections.ego = [2]
   store.statusSoftSelections.fleshwounds = [1, 3]
+  store.statusPermanentSporeInfestations = [2, 4]
 }

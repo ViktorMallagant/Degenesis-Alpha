@@ -47,6 +47,7 @@ import {
 } from '@/config/otherDetails'
 import {
   defaultStatusSoftSelections,
+  normalizeStatusPoints,
   normalizeStatusSoftSelections,
   type StatusSoftSelections,
   type StatusTrackKey,
@@ -115,6 +116,7 @@ export type State = {
   cultRelationships: CultRelationships
   other: OtherDetails
   statusSoftSelections: StatusSoftSelections
+  statusPermanentSporeInfestations: number[]
   cultureSelected: boolean
   conceptSelected: boolean
   cultSelected: boolean
@@ -161,6 +163,7 @@ export const useCharacterStore = defineStore('character', {
     cultRelationships: defaultCultRelationships(),
     other: defaultOtherDetails(),
     statusSoftSelections: defaultStatusSoftSelections(),
+    statusPermanentSporeInfestations: [],
     cultureSelected: false,
     conceptSelected: false,
     cultSelected: false,
@@ -522,6 +525,10 @@ export const useCharacterStore = defineStore('character', {
       state.potentials.forEach((v, potential) => potentials.push([potential.name, v]))
       const legacies = [] as [string, number][]
       state.legacies.forEach((v, legacy) => legacies.push([legacy.name, v]))
+      const permanentSporeInfestations = normalizeStatusPoints(state.statusPermanentSporeInfestations)
+      const statusSoftSelections = normalizeStatusSoftSelections(state.statusSoftSelections)
+      statusSoftSelections.sporeInfestations = statusSoftSelections.sporeInfestations
+        .filter(point => !permanentSporeInfestations.includes(point))
       return new Character(
         state.characterName,
         state.cultureSelected ? state.culture.name : '',
@@ -557,7 +564,8 @@ export const useCharacterStore = defineStore('character', {
         state.renegadeCultNames.length > 0 ? state.renegadeCultNames : undefined,
         state.cultRelationships,
         normalizeOtherDetails(state.other),
-        normalizeStatusSoftSelections(state.statusSoftSelections),
+        statusSoftSelections,
+        permanentSporeInfestations,
       )
     },
     maxEgo(): number {
@@ -856,7 +864,10 @@ export const useCharacterStore = defineStore('character', {
       this.renegadeCultNames = character.renegadeCultNames ?? []
       this.cultRelationships = normalizeCultRelationships(character.cultRelationships)
       this.other = normalizeOtherDetails(character.other)
+      this.statusPermanentSporeInfestations = normalizeStatusPoints(character.statusPermanentSporeInfestations)
       this.statusSoftSelections = normalizeStatusSoftSelections(character.statusSoftSelections)
+      this.statusSoftSelections.sporeInfestations = this.statusSoftSelections.sporeInfestations
+        .filter(point => !this.statusPermanentSporeInfestations.includes(point))
       this.isLoading = false
     },
     toggleStatusSoftSelection(track: StatusTrackKey, point: number, maximum: number) {
@@ -864,6 +875,23 @@ export const useCharacterStore = defineStore('character', {
       if (!Number.isFinite(normalizedPoint) || normalizedPoint < 1 || normalizedPoint > maximum) return
 
       const selected = this.statusSoftSelections[track]
+
+      if (track === 'sporeInfestations') {
+        const permanent = this.statusPermanentSporeInfestations
+
+        if (permanent.includes(normalizedPoint)) {
+          this.statusPermanentSporeInfestations = permanent.filter(value => value !== normalizedPoint)
+          return
+        }
+
+        if (selected.includes(normalizedPoint)) {
+          this.statusSoftSelections[track] = selected.filter(value => value !== normalizedPoint)
+          this.statusPermanentSporeInfestations = [...permanent, normalizedPoint]
+            .sort((left, right) => left - right)
+          return
+        }
+      }
+
       this.statusSoftSelections[track] = selected.includes(normalizedPoint)
         ? selected.filter(value => value !== normalizedPoint)
         : [...selected, normalizedPoint].sort((left, right) => left - right)

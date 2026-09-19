@@ -255,7 +255,7 @@ export const messages = {
     trauma: 'trauma',
     fleshwounds: 'fleshwounds',
     ego: 'ego',
-    sporeInfestations: 'spore infestations',
+    sporeInfestations: 'spore infestation',
     attributePoints: 'Attribute points',
     skillPoints: 'Skill points',
     originPoints: 'Origin points',

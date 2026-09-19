@@ -18,7 +18,7 @@ export function defaultStatusSoftSelections(): StatusSoftSelections {
   }
 }
 
-function normalizePoints(value: unknown): number[] {
+export function normalizeStatusPoints(value: unknown): number[] {
   if (!Array.isArray(value)) return []
 
   return Array.from(
@@ -35,9 +35,9 @@ export function normalizeStatusSoftSelections(
   value?: Partial<StatusSoftSelections>
 ): StatusSoftSelections {
   return {
-    ego: normalizePoints(value?.ego),
-    sporeInfestations: normalizePoints(value?.sporeInfestations),
-    fleshwounds: normalizePoints(value?.fleshwounds),
-    trauma: normalizePoints(value?.trauma)
+    ego: normalizeStatusPoints(value?.ego),
+    sporeInfestations: normalizeStatusPoints(value?.sporeInfestations),
+    fleshwounds: normalizeStatusPoints(value?.fleshwounds),
+    trauma: normalizeStatusPoints(value?.trauma)
   }
 }

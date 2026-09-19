@@ -74,7 +74,7 @@
     }
   }
 
-  function fillStatusBoxes(pdf, form, prefix, maximum, count, softSelections) {
+  function fillStatusBoxes(pdf, form, prefix, maximum, count, softSelections, permanentSelections) {
     var PDFLib = window.PDFLib;
     var selected = new Set(
       (Array.isArray(softSelections) ? softSelections : [])
@@ -84,6 +84,42 @@
         })
         .map(Math.trunc)
     );
+    var permanent = new Set(
+      (Array.isArray(permanentSelections) ? permanentSelections : [])
+        .map(Number)
+        .filter(function (point) {
+          return Number.isFinite(point) && point >= 1 && point <= maximum;
+        })
+        .map(Math.trunc)
+    );
+
+    function createStatusAppearance(shade) {
+      return function (_field, widget) {
+        var rectangle = widget.getRectangle();
+        var width = rectangle.width;
+        var height = rectangle.height;
+        var inset = Math.max(1.15, Math.min(width, height) * 0.13);
+        var path = [
+          "M", width / 2, inset,
+          "L", width - inset, height / 2,
+          "L", width / 2, height - inset,
+          "L", inset, height / 2,
+          "Z"
+        ].join(" ");
+        var mark = PDFLib.drawSvgPath(path, {
+          x: 0,
+          y: height,
+          scale: 1,
+          color: PDFLib.rgb(shade, shade, shade),
+          borderColor: undefined,
+          borderWidth: 0
+        });
+        return {
+          normal: { on: mark, off: [] },
+          down: { on: mark, off: [] }
+        };
+      };
+    }
 
     for (var index = 1; index <= count; index++) {
       try {
@@ -91,32 +127,9 @@
         if (index <= maximum) checkBox.check();
         else checkBox.uncheck();
 
-        if (index <= maximum && selected.has(index)) {
-          checkBox.updateAppearances(function (_field, widget) {
-            var rectangle = widget.getRectangle();
-            var width = rectangle.width;
-            var height = rectangle.height;
-            var inset = Math.max(1.15, Math.min(width, height) * 0.13);
-            var path = [
-              "M", width / 2, inset,
-              "L", width - inset, height / 2,
-              "L", width / 2, height - inset,
-              "L", inset, height / 2,
-              "Z"
-            ].join(" ");
-            var mark = PDFLib.drawSvgPath(path, {
-              x: 0,
-              y: height,
-              scale: 1,
-              color: PDFLib.rgb(0.62, 0.62, 0.62),
-              borderColor: undefined,
-              borderWidth: 0
-            });
-            return {
-              normal: { on: mark, off: [] },
-              down: { on: mark, off: [] }
-            };
-          });
+        if (index <= maximum && (selected.has(index) || permanent.has(index))) {
+          var markShade = permanent.has(index) ? 0.32 : 0.62;
+          checkBox.updateAppearances(createStatusAppearance(markShade));
         }
       } catch (e) {}
     }
@@ -360,7 +373,7 @@
 
     var statusSoftSelections = store.statusSoftSelections || {};
     fillStatusBoxes(pdf, form, "EGO", store.maxEgo || 0, 24, statusSoftSelections.ego);
-    fillStatusBoxes(pdf, form, "SPORU", store.maxSporeInfestations || 0, 24, statusSoftSelections.sporeInfestations);
+    fillStatusBoxes(pdf, form, "SPORU", store.maxSporeInfestations || 0, 24, statusSoftSelections.sporeInfestations, store.statusPermanentSporeInfestations);
     fillStatusBoxes(pdf, form, "TRAUMA", store.maxTrauma || 0, 12, statusSoftSelections.trauma);
     fillStatusBoxes(pdf, form, "BS", store.maxFleshwounds || 0, 24, statusSoftSelections.fleshwounds);
 
@@ -653,7 +666,7 @@
 
     var statusSoftSelections = store.statusSoftSelections || {};
     fillStatusBoxes(pdf, form, "Ego", store.maxEgo || 0, 24, statusSoftSelections.ego);
-    fillStatusBoxes(pdf, form, "Si", store.maxSporeInfestations || 0, 24, statusSoftSelections.sporeInfestations);
+    fillStatusBoxes(pdf, form, "Si", store.maxSporeInfestations || 0, 24, statusSoftSelections.sporeInfestations, store.statusPermanentSporeInfestations);
     fillStatusBoxes(pdf, form, "Tr", store.maxTrauma || 0, 12, statusSoftSelections.trauma);
     fillStatusBoxes(pdf, form, "FW", store.maxFleshwounds || 0, 24, statusSoftSelections.fleshwounds);
 

@@ -42,6 +42,7 @@ export class Character {
     readonly cultRelationships?: Partial<CultRelationships>,
     readonly other?: Partial<OtherDetails>,
     readonly statusSoftSelections?: Partial<StatusSoftSelections>,
+    readonly statusPermanentSporeInfestations?: number[],
   ) {
     this.storageVersion = 'v1'
     const legacyEditorMode = wasCreatedWithFreeMode ? (wasCreatedWithFreeMode ? EditorMode.Free : editorMode) : editorMode

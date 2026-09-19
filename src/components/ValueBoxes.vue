@@ -59,6 +59,7 @@ export interface Props {
   giftedPoints?: number
   giftedRemaining?: number
   softSelected?: number[]
+  permanentSelected?: number[]
   softInteractive?: boolean
 }
 
@@ -78,6 +79,7 @@ const props = withDefaults(defineProps<Props>(), {
   giftedPoints: 0,
   giftedRemaining: 0,
   softSelected: () => [],
+  permanentSelected: () => [],
   softInteractive: false,
 })
 const emit = defineEmits<{
@@ -170,6 +172,10 @@ function boxClasses(field: number): Record<string, boolean> {
     const previewEnd = props.value + (props.giftedPoints || 0) + (props.giftedRemaining || 0)
     if (hovered.value >= field && field <= previewEnd) return { 'gifted-preview': true }
     return {}
+  }
+
+  if (field <= props.value && props.permanentSelected.includes(field)) {
+    return { 'permanent-selected': true }
   }
 
   if (field <= props.value && props.softSelected.includes(field)) {
@@ -319,6 +325,11 @@ function boxClasses(field: number): Record<string, boolean> {
 .soft-selected {
   background-color: #ef9a9a !important;
   border-color: #c62828 !important;
+}
+
+.permanent-selected {
+  background-color: #8e0000 !important;
+  border-color: #4a0000 !important;
 }
 
 .locked-x {

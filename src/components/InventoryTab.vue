@@ -415,6 +415,7 @@ import {
   type ItemCategory,
 } from '@/config/items'
 import { ResourceMode } from '@/config/items'
+import { calculateInventoryEncumbrance } from '@/config/encumbrance'
 import { getPropertyDescription, parseProperties } from '@/config/items/properties'
 import { Attributes, Skills } from '@/config/properties'
 import HoverTooltip from '@/components/HoverTooltip.vue'
@@ -432,12 +433,7 @@ onMounted(() => {
 })
 
 // ── Encombrement ──
-const totalEncumbrance = computed(() =>
-  store.inventoryItems.reduce((sum, { purchase }) => {
-    const item = ITEMS.find(i => i.id === purchase.itemId)
-    return sum + (item?.encumbrance ?? 0)
-  }, 0)
-)
+const totalEncumbrance = computed(() => calculateInventoryEncumbrance(store.inventory))
 
 const phyPlusForce = computed(() =>
   store.attributeValue(Attributes.body) + store.skillValue(Skills.force) + 3

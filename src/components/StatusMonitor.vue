@@ -11,12 +11,15 @@
         :value="value"
         :interactive="false"
         :soft-selected="store.statusSoftSelections[statusKey]"
+        :permanent-selected="statusKey === 'sporeInfestations' ? store.statusPermanentSporeInfestations : []"
         :soft-interactive="store.editorMode === EditorMode.Free"
         @soft-change="store.toggleStatusSoftSelection(statusKey, $event, value)"
       />
     </div>
     <div class="d-flex justify-center mb-3 text-uppercase">
-      {{ label }} <span style="margin-left:4px">({{ value }})</span>
+      {{ label }}
+      <span v-if="detailLabel" style="margin-left:4px">({{ detailLabel }})</span>
+      <span style="margin-left:4px">({{ value }})</span>
     </div>
     <v-tooltip
       v-if="tooltip.length > 0"
@@ -42,11 +45,13 @@ export interface Props {
   value: number
   max: number
   statusKey: StatusTrackKey
+  detailLabel?: string
   tooltip?: string
   constituents: (Attribute | Skill)[]
 }
 withDefaults(defineProps<Props>(), {
   tooltip: '',
+  detailLabel: '',
   constituents: () => []
 })
 </script>
