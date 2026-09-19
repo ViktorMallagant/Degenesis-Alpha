@@ -18,8 +18,8 @@
     </div>
     <div class="d-flex justify-center mb-3 text-uppercase">
       {{ label }}
-      <span v-if="detailLabel" style="margin-left:4px">({{ detailLabel }})</span>
       <span style="margin-left:4px">({{ value }})</span>
+      <span v-if="detailLabel" style="margin-left:4px">/ {{ detailLabel }}</span>
     </div>
     <v-tooltip
       v-if="tooltip.length > 0"

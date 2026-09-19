@@ -113,7 +113,9 @@
     page.drawLine({ start: { x: pageWidth - outerX - shoulder, y: centerY }, end: { x: pageWidth - outerX - shoulder - dogleg, y: centerY - 6 }, thickness: 0.7, color: color });
     page.drawLine({ start: { x: pageWidth - outerX - shoulder - dogleg, y: centerY - 6 }, end: { x: rightStart, y: centerY - 6 }, thickness: 0.7, color: color });
 
-    drawTrackedText(page, font, text, textX, centerY - size * 0.35, size, color, tracking);
+    // The title sits on the lower, inward-running part of the ornament.
+    // Centering it on that line keeps the text from appearing too high.
+    drawTrackedText(page, font, text, textX, centerY - 6 - size * 0.35, size, color, tracking);
   }
 
   function imageToPngBytes(path) {
@@ -258,10 +260,14 @@
       color: titleColor
     });
     if (store.characterName) {
-      page.drawText(safeForFont(regular, store.characterName), {
-        x: nameLineStart + 4,
+      var safeName = safeForFont(regular, store.characterName);
+      var nameSize = 8.5;
+      var nameWidth = regular.widthOfTextAtSize(safeName, nameSize);
+      var nameLineEnd = nameBlockX + nameBlockWidth;
+      page.drawText(safeName, {
+        x: nameLineStart + Math.max(4, (nameLineEnd - nameLineStart - nameWidth) / 2),
         y: nameLineY + 3,
-        size: 8.5,
+        size: nameSize,
         font: regular,
         color: titleColor
       });

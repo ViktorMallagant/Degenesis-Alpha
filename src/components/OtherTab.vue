@@ -169,17 +169,20 @@ function setInfamy(value: number) {
 .other-section {
   margin-bottom: 22px;
   padding: clamp(16px, 2vw, 24px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(var(--v-theme-on-surface), 0.14);
   border-radius: 10px;
-  background: rgba(20, 20, 20, 0.92);
+  background: rgb(var(--v-theme-surface));
 }
 
 .other-section h2 {
-  margin: 0 0 18px;
-  color: #d4d4d4;
+  margin: 0 0 12px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid rgba(var(--v-theme-on-surface), 0.15);
+  color: rgb(var(--v-theme-on-surface));
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.28em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .scars-grid {
@@ -194,13 +197,13 @@ function setInfamy(value: number) {
   align-items: center;
   gap: 18px;
   padding: 0 12px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(var(--v-theme-on-surface), 0.28);
   border-radius: 4px;
 }
 
 .infamy-field__label {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.75rem;
+  color: rgba(var(--v-theme-on-surface), 0.72);
+  font-size: 1rem;
 }
 
 .artifacts-grid {

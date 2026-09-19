@@ -336,6 +336,7 @@
     }
 
     var pdfUrl = new URL("fiche_degenesis.pdf", window.location.href).href;
+    pdfUrl += (pdfUrl.indexOf("?") === -1 ? "?" : "&") + "v=2";
     var pdfBytes = await fetch(pdfUrl).then(function (r) { return r.arrayBuffer(); });
     var pdf = await PDFLib.PDFDocument.load(pdfBytes);
     var form = pdf.getForm();
@@ -644,6 +645,7 @@
     }
 
     var pdfUrl = new URL("fiche_degenesis_en.pdf", window.location.href).href;
+    pdfUrl += (pdfUrl.indexOf("?") === -1 ? "?" : "&") + "v=2";
     var pdfBytes = await fetch(pdfUrl).then(function (r) { return r.arrayBuffer(); });
     var pdf = await PDFLib.PDFDocument.load(pdfBytes);
     var form = pdf.getForm();

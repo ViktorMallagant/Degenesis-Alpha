@@ -48,22 +48,63 @@ def make_overlay(width: float, height: float):
     stream = BytesIO()
     pdf = canvas.Canvas(stream, pagesize=(width, height))
 
-    # Remove the old diamond and its central ornaments while leaving the
-    # description/relationship tables and the PORTRAIT title bar untouched.
+    # Remove the old diamond and all of the overlapping top ornament while
+    # leaving the description/relationship tables and PORTRAIT title bar intact.
     pdf.setFillColorRGB(1, 1, 1)
     pdf.setStrokeColorRGB(1, 1, 1)
     pdf.rect(192.7, 606.0, 209.8, 202.5, stroke=0, fill=1)
+    pdf.rect(24.0, 741.0, width - 48.0, 25.0, stroke=0, fill=1)
 
     pdf.setFillColorRGB(0, 0, 0)
     pdf.setStrokeColorRGB(0, 0, 0)
     pdf.setLineWidth(0.35)
 
-    # Restore the decorative line through the newly cleared central area.
+    # Redraw the full top ornament as two clean, symmetrical lines. Each side
+    # steps down around the portrait and terminates in a rotated square, as in
+    # the supplied reference.
     ornament_y = FRAME_TOP + 7.0
-    pdf.line(192.7, ornament_y, FRAME_LEFT - 5.0, ornament_y)
-    pdf.line(FRAME_LEFT + FRAME_SIZE + 5.0, ornament_y, 402.5, ornament_y)
-    draw_diamond(pdf, FRAME_LEFT - 8.0, ornament_y)
-    draw_diamond(pdf, FRAME_LEFT + FRAME_SIZE + 8.0, ornament_y)
+    ornament_low_y = ornament_y - 6.0
+    outer_left = 28.0
+    outer_right = width - outer_left
+    shoulder = 46.0
+    dogleg = 6.0
+    inner_gap = 10.0
+    inner_left = FRAME_LEFT - inner_gap
+    inner_right = FRAME_LEFT + FRAME_SIZE + inner_gap
+
+    draw_diamond(pdf, outer_left, ornament_y)
+    pdf.line(outer_left + 3.0, ornament_y, outer_left + shoulder, ornament_y)
+    pdf.line(
+        outer_left + shoulder,
+        ornament_y,
+        outer_left + shoulder + dogleg,
+        ornament_low_y,
+    )
+    pdf.line(
+        outer_left + shoulder + dogleg,
+        ornament_low_y,
+        inner_left - dogleg,
+        ornament_low_y,
+    )
+    pdf.line(inner_left - dogleg, ornament_low_y, inner_left, ornament_y)
+    draw_diamond(pdf, inner_left, ornament_y)
+
+    draw_diamond(pdf, outer_right, ornament_y)
+    pdf.line(outer_right - 3.0, ornament_y, outer_right - shoulder, ornament_y)
+    pdf.line(
+        outer_right - shoulder,
+        ornament_y,
+        outer_right - shoulder - dogleg,
+        ornament_low_y,
+    )
+    pdf.line(
+        outer_right - shoulder - dogleg,
+        ornament_low_y,
+        inner_right + dogleg,
+        ornament_low_y,
+    )
+    pdf.line(inner_right + dogleg, ornament_low_y, inner_right, ornament_y)
+    draw_diamond(pdf, inner_right, ornament_y)
 
     # Double-line upright frame, retaining the original document's fine linework.
     pdf.rect(FRAME_LEFT, FRAME_BOTTOM, FRAME_SIZE, FRAME_SIZE, stroke=1, fill=0)
@@ -75,9 +116,6 @@ def make_overlay(width: float, height: float):
         stroke=1,
         fill=0,
     )
-    draw_diamond(pdf, FRAME_LEFT - 4.0, FRAME_TOP - 25.0, 1.8)
-    draw_diamond(pdf, FRAME_LEFT + FRAME_SIZE + 4.0, FRAME_TOP - 25.0, 1.8)
-
     pdf.save()
     stream.seek(0)
     return PdfReader(stream).pages[0]

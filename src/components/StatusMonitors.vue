@@ -10,7 +10,7 @@
   <StatusMonitor
     status-key="sporeInfestations"
     :label="$t('messages.sporeInfestations')"
-    :detail-label="`Permanent: ${store.statusPermanentSporeInfestations.filter(point => point <= store.maxSporeInfestations).length}`"
+    :detail-label="`Permanent (${store.statusPermanentSporeInfestations.filter(point => point <= store.maxSporeInfestations).length})`"
     :max="24"
     :value="store.maxSporeInfestations"
     :tooltip="`2 × ${store.mentalResistanceSkill.withAttribute().format($t)}`"
