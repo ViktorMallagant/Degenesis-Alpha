@@ -33,20 +33,23 @@ export function calculateInventoryEncumbrance(
 ): number {
   const itemsById = new Map(items.map(item => [item.id, item]))
   const ownedItems = inventory
-    .map(purchase => itemsById.get(purchase.itemId))
-    .filter((item): item is Item => item !== undefined)
+    .map(purchase => {
+      const item = itemsById.get(purchase.itemId)
+      return item ? { item, purchase } : undefined
+    })
+    .filter((entry): entry is { item: Item; purchase: InventoryPurchase } => entry !== undefined)
 
   const activeContainerIds = new Set<string>()
-  if (ownedItems.some(item => item.id === BACKPACK_ID)) activeContainerIds.add(BACKPACK_ID)
-  if (ownedItems.some(item => item.id === SLEIGH_ID)) activeContainerIds.add(SLEIGH_ID)
+  if (ownedItems.some(({ item }) => item.id === BACKPACK_ID)) activeContainerIds.add(BACKPACK_ID)
+  if (ownedItems.some(({ item }) => item.id === SLEIGH_ID)) activeContainerIds.add(SLEIGH_ID)
 
   const countedContainers = new Set<string>()
   let protectedEncumbrance = 0
   let packableEncumbrance = 0
-  let carryingRigs = 0
+  let carryingRigLevels = 0
 
-  for (const item of ownedItems) {
-    if (item.id === CARRYING_RIG_ID) carryingRigs += 1
+  for (const { item, purchase } of ownedItems) {
+    if (item.id === CARRYING_RIG_ID) carryingRigLevels += purchase.level ?? 1
 
     if (activeContainerIds.has(item.id) && !countedContainers.has(item.id)) {
       countedContainers.add(item.id)
@@ -61,7 +64,7 @@ export function calculateInventoryEncumbrance(
   const containerCount = activeContainerIds.size
   const containerCapacity = containerCount * 3
   const packedEncumbrance = containerCount + Math.max(0, packableEncumbrance - containerCapacity)
-  const rigReduction = Math.min(3, carryingRigs)
+  const rigReduction = Math.min(3, carryingRigLevels)
 
   return Math.max(0, protectedEncumbrance + packedEncumbrance - rigReduction)
 }

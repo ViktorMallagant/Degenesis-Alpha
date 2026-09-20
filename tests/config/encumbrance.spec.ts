@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test } from 'vitest'
 import { calculateInventoryEncumbrance } from '../../src/config/encumbrance'
-import type { InventoryPurchase } from '../../src/config/items'
+import { ITEMS, type InventoryPurchase } from '../../src/config/items'
 import { createPinia, setActivePinia } from 'pinia'
 import { useCharacterStore } from '../../src/store'
 
@@ -70,10 +70,32 @@ describe('inventory encumbrance', () => {
     ))).toBe(0)
   })
 
+  test('a carrying rig exposes levels and reduces encumbrance by its level', () => {
+    expect(ITEMS.find(item => item.id === 'charrette-bras')?.levelable).toBe(true)
+
+    const levelThreeRig = inventory('tente', 'charrette-bras')
+    levelThreeRig[1].level = 3
+    expect(calculateInventoryEncumbrance(levelThreeRig)).toBe(0)
+
+    const cappedRigs = inventory('tente', 'tente', 'charrette-bras', 'charrette-bras')
+    cappedRigs[2].level = 2
+    cappedRigs[3].level = 2
+    expect(calculateInventoryEncumbrance(cappedRigs)).toBe(3)
+  })
+
   test('exposes the adjusted total through the character store for PDF export', () => {
     const store = useCharacterStore()
     store.inventory = inventory('sac-dos', 'tente', 'pistol-9mm')
 
     expect(store.totalEncumbrance).toBe(2)
+  })
+
+  test('updates the store and PDF encumbrance total when a carrying rig level changes', () => {
+    const store = useCharacterStore()
+    store.inventory = inventory('tente', 'charrette-bras')
+
+    expect(store.totalEncumbrance).toBe(2)
+    store.setInventoryItemLevel(1, 3)
+    expect(store.totalEncumbrance).toBe(0)
   })
 })
