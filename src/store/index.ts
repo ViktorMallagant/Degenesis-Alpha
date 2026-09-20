@@ -1249,7 +1249,7 @@ export const useCharacterStore = defineStore('character', {
       if (this.remainingLC < item.value * level) return
       this.inventory.push({ itemId, purchasedWithResources: false, decrementedResources: false, level: level > 1 ? level : undefined })
     },
-    buyItemWithResources(itemId: string) {
+    buyItemWithResources(itemId: string, itemLevel = 1) {
       const item = ITEMS.find(i => i.id === itemId)
       if (!item || item.resources === undefined) return
 
@@ -1286,7 +1286,7 @@ export const useCharacterStore = defineStore('character', {
         }
 
         if (!canBuy) return
-        this.inventory.push({ itemId, purchasedWithResources: true, decrementedResources: decrements, entrepreneurResources: !isExpertMode })
+        this.inventory.push({ itemId, purchasedWithResources: true, decrementedResources: decrements, entrepreneurResources: !isExpertMode, level: itemLevel > 1 ? itemLevel : undefined })
         return
       }
 
@@ -1305,10 +1305,16 @@ export const useCharacterStore = defineStore('character', {
       }
 
       if (!canBuy) return
-      this.inventory.push({ itemId, purchasedWithResources: true, decrementedResources: decrements })
+      this.inventory.push({ itemId, purchasedWithResources: true, decrementedResources: decrements, level: itemLevel > 1 ? itemLevel : undefined })
     },
     removeInventoryItem(index: number) {
       this.inventory.splice(index, 1)
+    },
+    setInventoryItemLevel(index: number, level: number) {
+      const purchase = this.inventory[index]
+      if (!purchase) return
+      const normalizedLevel = Math.max(1, Math.trunc(level))
+      purchase.level = normalizedLevel > 1 ? normalizedLevel : undefined
     },
     setGiftedBonus(skillName: string, points: number) {
       const capped = Math.max(0, Math.min(points, (this.giftedBonuses[skillName] || 0) + this.giftedRemaining))

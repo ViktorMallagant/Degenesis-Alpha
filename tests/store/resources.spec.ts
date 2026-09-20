@@ -4,7 +4,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import config from '../../src/config'
 import { AllLegacies } from '../../src/config/legacies'
 import { ranksByCult } from '../../src/config/cults/cults'
-import { levelToMinAdvancements } from '../../src/config/items'
+import { ITEMS, levelToMinAdvancements } from '../../src/config/items'
 import { EditorMode } from '../../src/config/modes'
 import { Origins } from '../../src/config/properties'
 import { useCharacterStore } from '../../src/store'
@@ -59,4 +59,20 @@ test('Inventory Resources honor a Resources minimum granted by rank', () => {
 
   expect(store.baseResourcesLevel).toBe(6)
   expect(store.effectiveResourcesLevel).toBe(6)
+})
+
+test('Inventory item levels can be changed after acquisition', () => {
+  const store = useCharacterStore()
+  const levelableItem = ITEMS.find(item => item.levelable)
+
+  expect(levelableItem).toBeDefined()
+
+  store.addFreeItem(levelableItem!.id)
+  expect(store.inventory[0].level).toBeUndefined()
+
+  store.setInventoryItemLevel(0, 3)
+  expect(store.inventory[0].level).toBe(3)
+
+  store.setInventoryItemLevel(0, 1)
+  expect(store.inventory[0].level).toBeUndefined()
 })

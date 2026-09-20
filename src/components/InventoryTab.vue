@@ -183,7 +183,25 @@
                   </div>
                 </td>
                 <td>
-                  <button class="inv-remove-btn" @click="removeOneFromGroup(group)">×</button>
+                  <div class="d-flex align-center gap-1">
+                    <select
+                      v-if="group.item.levelable"
+                      class="inv-level-select"
+                      :value="group.level ?? 1"
+                      :title="group.count > 1 ? 'Change the level of one item in this group' : 'Change item level'"
+                      @change="changeOneInventoryLevel(group, $event)"
+                    >
+                      <option
+                        v-for="lvl in availableLevels(group.item)"
+                        :key="lvl"
+                        :value="lvl"
+                        :disabled="!canChangeOneInventoryLevel(group, lvl)"
+                      >
+                        Lv. {{ lvl }}
+                      </option>
+                    </select>
+                    <button class="inv-remove-btn" title="Remove one item" @click="removeOneFromGroup(group)">×</button>
+                  </div>
                 </td>
               </template>
             </tr>
@@ -330,14 +348,23 @@
                   <span v-else class="inv-muted">—</span>
                 </td>
                 <td class="text-no-wrap">
+                  <select
+                    v-if="item.levelable"
+                    class="inv-level-select mr-1"
+                    :value="catalogLevel(item)"
+                    title="Select item level"
+                    @change="setCatalogLevel(item, $event)"
+                  >
+                    <option v-for="lvl in availableLevels(item)" :key="lvl" :value="lvl">Lv. {{ lvl }}</option>
+                  </select>
                   <v-btn
                     v-if="!isOtherCultBlocked(item)"
                     size="x-small"
                     variant="outlined"
                     color="green-darken-2"
-                    :disabled="!canBuyWithLC(item)"
+                    :disabled="!canBuyWithLC(item, catalogLevel(item))"
                     class="mr-1"
-                    @click="item.levelable ? openLevelDialog(item, false) : store.buyItemWithLC(item.id)"
+                    @click="store.buyItemWithLC(item.id, catalogLevel(item))"
                   >
                     {{ currencyLabel }}
                   </v-btn>
@@ -348,7 +375,7 @@
                     color="blue-darken-2"
                     :disabled="!canBuyWithResources(item)"
                     class="mr-1"
-                    @click="store.buyItemWithResources(item.id)"
+                    @click="store.buyItemWithResources(item.id, catalogLevel(item))"
                   >
                     Res.
                   </v-btn>
@@ -356,7 +383,7 @@
                     size="x-small"
                     variant="outlined"
                     color="purple-darken-2"
-                    @click="item.levelable ? openLevelDialog(item, true) : store.addFreeItem(item.id)"
+                    @click="store.addFreeItem(item.id, catalogLevel(item))"
                   >
                     +
                   </v-btn>
@@ -369,50 +396,10 @@
     </div>
   </div>
 
-  <!-- ── Dialog sélection de niveau ── -->
-  <v-dialog v-model="levelDialog" max-width="400" persistent>
-    <v-card v-if="levelDialogItem">
-      <v-card-title class="text-h6">Choose the level</v-card-title>
-      <v-card-text>
-        <p class="mb-3">
-          <strong>{{ levelDialogItem.name }}</strong><br>
-          <span v-if="!levelDialogFree" class="text-caption inv-muted">Unit price: {{ levelDialogItem.value }} {{ currencyLabel }}</span>
-          <span v-else class="text-caption" style="color: rgb(var(--v-theme-purple-darken-2))">Free addition</span>
-        </p>
-        <v-btn-toggle v-model="selectedLevel" mandatory density="compact" variant="outlined" divided class="mb-3">
-          <v-btn
-            v-for="lvl in [1, 2, 3]"
-            :key="lvl"
-            :value="lvl"
-            :disabled="!levelDialogFree && !canAffordLevel(levelDialogItem, lvl)"
-          >
-            Niv. {{ lvl }}
-            <br>
-            <span v-if="!levelDialogFree" class="text-caption">{{ levelCost(levelDialogItem, lvl) }} {{ currencyLabel }}</span>
-          </v-btn>
-        </v-btn-toggle>
-        <div v-if="!levelDialogFree" class="text-caption inv-muted">
-          Remaining after purchase: {{ store.remainingLC - levelCost(levelDialogItem, selectedLevel) }} {{ currencyLabel }}
-        </div>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn variant="text" @click="levelDialog = false">Cancel</v-btn>
-        <v-btn
-          :color="levelDialogFree ? 'purple-darken-2' : 'green-darken-2'"
-          variant="flat"
-          :disabled="!levelDialogFree && !canAffordLevel(levelDialogItem, selectedLevel)"
-          @click="confirmLevelPurchase"
-        >
-          {{ levelDialogFree ? 'Add' : 'Buy' }}
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, nextTick, onMounted } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useCharacterStore } from '@/store'
 import {
@@ -451,27 +438,29 @@ const encumbrancePenalty = computed(() =>
   Math.max(0, totalEncumbrance.value - phyPlusForce.value)
 )
 
-// ── Level dialog ──
-const levelDialog = ref(false)
-const levelDialogItem = ref<Item | null>(null)
-const levelDialogFree = ref(false)
-const selectedLevel = ref(1)
+// ── Item levels ──
+const catalogLevels = ref<Record<string, number>>({})
 
-function openLevelDialog(item: Item, free = false) {
-  levelDialogItem.value = item
-  levelDialogFree.value = free
-  selectedLevel.value = 1
-  levelDialog.value = true
+function maxLevelForItem(item: Item): number {
+  const text = `${item.properties ?? ''} ${item.description ?? ''}`.replace(/<[^>]+>/g, ' ')
+  const explicitRange = text.match(/(?:level|rating)s?\s*(?:from\s*)?1\s*(?:-|–|to)\s*(\d+)/i)
+    || text.match(/upgradable\s*\(\s*1\s*-\s*(\d+)\s*\)/i)
+  return explicitRange ? Math.max(1, Number(explicitRange[1])) : 3
 }
 
-function confirmLevelPurchase() {
-  if (!levelDialogItem.value) return
-  if (levelDialogFree.value) {
-    store.addFreeItem(levelDialogItem.value.id, selectedLevel.value)
-  } else {
-    store.buyItemWithLC(levelDialogItem.value.id, selectedLevel.value)
+function availableLevels(item: Item): number[] {
+  return Array.from({ length: maxLevelForItem(item) }, (_, index) => index + 1)
+}
+
+function catalogLevel(item: Item): number {
+  return item.levelable ? (catalogLevels.value[item.id] ?? 1) : 1
+}
+
+function setCatalogLevel(item: Item, event: Event) {
+  catalogLevels.value = {
+    ...catalogLevels.value,
+    [item.id]: Number((event.target as HTMLSelectElement).value),
   }
-  levelDialog.value = false
 }
 
 // ── Stacking : groupe les entrées identiques (même item + niveau) ──
@@ -511,6 +500,38 @@ const groupedInventory = computed(() => {
   return [...map.values()]
 })
 
+type InventoryGroup = (typeof groupedInventory.value)[number]
+
+function inventoryLevelChangeIndex(group: InventoryGroup, targetLevel: number): number | null {
+  const currentLevel = group.level ?? 1
+  if (targetLevel === currentLevel || !group.item) return null
+
+  for (let position = group.indices.length - 1; position >= 0; position--) {
+    const index = group.indices[position]
+    const purchase = store.inventory[index]
+    if (!purchase) continue
+    if (targetLevel < currentLevel || purchase.free || purchase.purchasedWithResources) return index
+    if (store.remainingLC >= group.item.value * (targetLevel - currentLevel)) return index
+  }
+  return null
+}
+
+function canChangeOneInventoryLevel(group: InventoryGroup, targetLevel: number): boolean {
+  const currentLevel = group.level ?? 1
+  return targetLevel === currentLevel || inventoryLevelChangeIndex(group, targetLevel) !== null
+}
+
+function changeOneInventoryLevel(group: InventoryGroup, event: Event) {
+  const select = event.target as HTMLSelectElement
+  const targetLevel = Number(select.value)
+  const index = inventoryLevelChangeIndex(group, targetLevel)
+  if (index === null) {
+    select.value = String(group.level ?? 1)
+    return
+  }
+  store.setInventoryItemLevel(index, targetLevel)
+}
+
 function purchaseMethodColor(method: PurchaseMethod): string {
   if (method === 'entrepreneur') return 'orange-darken-2'
   if (method === 'resources') return 'blue-darken-1'
@@ -528,14 +549,6 @@ function purchaseMethodLabel(method: PurchaseMethod): string {
 function removeOneFromGroup(group: { indices: number[] }) {
   const idx = group.indices[group.indices.length - 1]
   store.removeInventoryItem(idx)
-}
-
-function levelCost(item: Item, lvl: number): number {
-  return item.value * lvl
-}
-
-function canAffordLevel(item: Item, lvl: number): boolean {
-  return store.remainingLC >= levelCost(item, lvl)
 }
 
 const search = ref('')
@@ -584,9 +597,9 @@ function isOtherCultBlocked(item: Item): boolean {
   return true
 }
 
-function canBuyWithLC(item: Item): boolean {
+function canBuyWithLC(item: Item, level = 1): boolean {
   if (isOtherCultBlocked(item)) return false
-  return store.remainingLC >= item.value
+  return store.remainingLC >= item.value * level
 }
 
 function canBuyWithResources(item: Item): boolean {
@@ -833,6 +846,24 @@ const availableCategoryOptions = computed(() => {
 .inv-has-tooltip {
   border-bottom: 1px dotted rgba(var(--v-theme-on-surface), 0.4);
   cursor: help;
+}
+
+.inv-level-select {
+  height: 26px;
+  min-width: 64px;
+  padding: 0 4px;
+  border: 1px solid rgba(var(--v-theme-on-surface), 0.28);
+  border-radius: 4px;
+  background: rgb(var(--v-theme-surface));
+  color: rgb(var(--v-theme-on-surface));
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.inv-level-select:focus {
+  outline: 2px solid rgba(var(--v-theme-primary), 0.35);
+  outline-offset: 1px;
 }
 
 .inv-remove-btn {
