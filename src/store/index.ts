@@ -627,9 +627,11 @@ export const useCharacterStore = defineStore('character', {
       }
     },
     baseResourcesLevel(): number {
-      let val = 0
-      this.origins.forEach((v, o) => { if (o.name === 'resources') val = v })
-      return val
+      const effectiveResources = this.effectiveOriginValue(Origins.resources)
+      const rankMinimums = (this.rank as Rank & {
+        originMinimums?: Record<string, number>
+      }).originMinimums
+      return Math.max(effectiveResources, rankMinimums?.resources ?? 0)
     },
     resourceDecrements(): number {
       return this.inventory.filter(p => p.decrementedResources).length
