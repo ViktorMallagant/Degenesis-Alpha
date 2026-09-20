@@ -147,7 +147,7 @@
                     <span :class="group.item.description ? 'inv-has-tooltip' : ''">{{ group.item.name }}</span>
                   </HoverTooltip>
                   <v-chip v-if="group.level" size="x-small" color="orange-darken-2" class="ml-1">Niv. {{ group.level }}</v-chip>
-                  <v-chip v-if="group.count > 1" size="x-small" color="grey-darken-1" class="ml-1">×{{ group.count }}</v-chip>
+                  <v-chip v-if="group.count > 1" size="x-small" color="grey-darken-1" class="ml-1">x{{ group.count }}</v-chip>
                 </td>
                 <td class="text-caption inv-muted">{{ categoryLabel(group.item.category) }}</td>
                 <td>{{ group.item.armorValue ?? '—' }}</td>
@@ -165,13 +165,22 @@
                   </template>
                   <span v-else class="inv-muted">—</span>
                 </td>
-                <td>{{ group.item.encumbrance ?? '—' }}</td>
+                <td>{{ group.item.encumbrance != null ? group.item.encumbrance * group.count : '—' }}</td>
                 <td>{{ group.item.techLevel ?? '—' }}</td>
                 <td>{{ group.item.slots ?? '—' }}</td>
                 <td>
-                  <v-chip size="x-small" :color="group.purchaseMethod === 'entrepreneur' ? 'orange-darken-2' : group.purchaseMethod === 'resources' ? 'blue-darken-1' : group.purchaseMethod === 'free' ? 'purple-darken-2' : 'green-darken-1'" text-color="white">
-                    {{ group.purchaseMethod === 'entrepreneur' ? 'Ress. Entrepreneur' : group.purchaseMethod === 'resources' ? 'Ressources' : group.purchaseMethod === 'free' ? 'Gratuit' : currencyLabel }}
-                  </v-chip>
+                  <div class="d-flex flex-wrap gap-1">
+                    <v-chip
+                      v-for="source in group.purchaseMethods"
+                      :key="source.method"
+                      size="x-small"
+                      :color="purchaseMethodColor(source.method)"
+                      text-color="white"
+                    >
+                      {{ purchaseMethodLabel(source.method) }}
+                      <span v-if="group.purchaseMethods.length > 1"> x{{ source.count }}</span>
+                    </v-chip>
+                  </div>
                 </td>
                 <td>
                   <button class="inv-remove-btn" @click="removeOneFromGroup(group)">×</button>
@@ -465,8 +474,9 @@ function confirmLevelPurchase() {
   levelDialog.value = false
 }
 
-// ── Stacking : groupe les entrées identiques (même item + niveau + source) ──
+// ── Stacking : groupe les entrées identiques (même item + niveau) ──
 type PurchaseMethod = 'lc' | 'resources' | 'entrepreneur' | 'free'
+type PurchaseMethodGroup = { method: PurchaseMethod; count: number }
 
 function purchaseMethodOf(p: { purchasedWithResources: boolean; entrepreneurResources?: boolean; free?: boolean }): PurchaseMethod {
   if (p.free) return 'free'
@@ -476,27 +486,44 @@ function purchaseMethodOf(p: { purchasedWithResources: boolean; entrepreneurReso
 }
 
 const groupedInventory = computed(() => {
-  const map = new Map<string, { key: string; item: ReturnType<typeof getItem>; level: number | undefined; count: number; purchaseMethod: PurchaseMethod; indices: number[] }>()
+  const map = new Map<string, { key: string; item: ReturnType<typeof getItem>; level: number | undefined; count: number; purchaseMethods: PurchaseMethodGroup[]; indices: number[] }>()
   store.inventoryItems.forEach(({ purchase, index }) => {
     const method = purchaseMethodOf(purchase)
-    const key = `${purchase.itemId}|${purchase.level ?? 1}|${method}`
+    const key = `${purchase.itemId}|${purchase.level ?? 1}`
     if (map.has(key)) {
       const g = map.get(key)!
       g.count++
       g.indices.push(index)
+      const source = g.purchaseMethods.find(entry => entry.method === method)
+      if (source) source.count++
+      else g.purchaseMethods.push({ method, count: 1 })
     } else {
       map.set(key, {
         key,
         item: getItem(purchase.itemId),
         level: purchase.level,
         count: 1,
-        purchaseMethod: method,
+        purchaseMethods: [{ method, count: 1 }],
         indices: [index],
       })
     }
   })
   return [...map.values()]
 })
+
+function purchaseMethodColor(method: PurchaseMethod): string {
+  if (method === 'entrepreneur') return 'orange-darken-2'
+  if (method === 'resources') return 'blue-darken-1'
+  if (method === 'free') return 'purple-darken-2'
+  return 'green-darken-1'
+}
+
+function purchaseMethodLabel(method: PurchaseMethod): string {
+  if (method === 'entrepreneur') return 'Ress. Entrepreneur'
+  if (method === 'resources') return 'Ressources'
+  if (method === 'free') return 'Gratuit'
+  return currencyLabel.value
+}
 
 function removeOneFromGroup(group: { indices: number[] }) {
   const idx = group.indices[group.indices.length - 1]

@@ -471,7 +471,7 @@
 
   function inventoryItemsForPdf(store) {
     var allItems = window.__items || [];
-    var ammoGroups = {};
+    var itemGroups = {};
     var items = [];
 
     (store.inventory || []).forEach(function(p) {
@@ -483,15 +483,13 @@
         _count: 1
       });
 
-      if (item.category === 'ammunition') {
-        var ammoKey = item.id + '|' + (p.level || 1);
-        if (ammoGroups[ammoKey]) {
-          ammoGroups[ammoKey]._count += 1;
-          return;
-        }
-        ammoGroups[ammoKey] = resolved;
+      var groupKey = item.id + '|' + (p.level || 1);
+      if (itemGroups[groupKey]) {
+        itemGroups[groupKey]._count += 1;
+        return;
       }
 
+      itemGroups[groupKey] = resolved;
       items.push(resolved);
     });
 
@@ -500,6 +498,7 @@
 
   function inventoryDisplayName(item) {
     var name = item.name || '';
+    if (item._level > 1) name += ' (Lv. ' + item._level + ')';
     return item._count > 1 ? name + ' x' + item._count : name;
   }
 
@@ -561,7 +560,7 @@
       'ENCRow1_4', 'ENCRow2_4', 'ENCRow3_4', 'ENCRow4_3', 'ENCRow5_3', 'ENCRow6_2','ENCRow7_2'
     ];
 
-    // Other equipment (up to 14), including grouped ammunition and dedicated-section overflow.
+    // Other equipment (up to 14), including grouped items and dedicated-section overflow.
     possessions.slice(0, 14).forEach(function(item, idx) {
       safeSetText(form, 'ÉQUIPEMENT' + (idx + 1), inventoryDisplayName(item));
       safeSetText(form, equipEncFields[idx], inventoryDisplayEncumbrance(item));

@@ -129,8 +129,7 @@
   function inventoryItems(store) {
     var allItems = window.__items || [];
     var result = [];
-
-    var ammunition = {};
+    var itemGroups = {};
 
     (store && store.inventory ? store.inventory : []).forEach(function (purchase) {
       var item = allItems.find(function (candidate) {
@@ -143,15 +142,13 @@
         _count: 1
       });
 
-      if (item.category === "ammunition") {
-        var ammunitionKey = item.id + "|" + (purchase.level || 1);
-        if (ammunition[ammunitionKey]) {
-          ammunition[ammunitionKey]._count += 1;
-          return;
-        }
-        ammunition[ammunitionKey] = resolved;
+      var groupKey = item.id + "|" + (purchase.level || 1);
+      if (itemGroups[groupKey]) {
+        itemGroups[groupKey]._count += 1;
+        return;
       }
 
+      itemGroups[groupKey] = resolved;
       result.push(resolved);
     });
 
@@ -182,6 +179,7 @@
 
   function displayName(item) {
     var name = item && item.name ? item.name : "";
+    if (item && item._level > 1) name += " (Lv. " + item._level + ")";
     return item && item._count > 1 ? name + " x" + item._count : name;
   }
 
