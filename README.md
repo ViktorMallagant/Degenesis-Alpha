@@ -10,7 +10,7 @@ Available in **French, English and German**.
 
 ### Character Management
 - Full character creation flow (Culture / Concept / Cult / Clan, attributes, skills, origins, Potentials, Legacies, ranks…)
-- Three editor modes: Strict, Normal, and Expert (no limits, manual Dinars/LC entry)
+- Three editor modes: Strict, Normal, and Expert (no limits, manual Dinars/Drafts entry)
 - Character gallery page with portrait cards, quick share, and delete
 - Characters are saved locally in your browser (no account, no server-side storage)
 
@@ -22,7 +22,7 @@ Available in **French, English and German**.
 
 ### Inventory & Economy
 - Inventory management with an in-game weapon, armor and equipment catalog
-- Purchase items with Dinars (LC) or Resources, or add them for free
+- Purchase items with Dinars (Drafts) or Resources, or add them for free
 - Stacked display for duplicate items (×2, ×3…)
 
 ### Character Sheet & Export
@@ -36,8 +36,8 @@ Available in **French, English and German**.
 
 ### Other
 - Hover tooltips explaining attribute and skill quality scales
-- Warning tooltip when LC/Dinars balance is negative
-- Dialog when leaving Expert mode after manually editing LC
+- Warning tooltip when Drafts/Dinars balance is negative
+- Dialog when leaving Expert mode after manually editing Drafts
 - Optional ambient background music
 - Light and dark theme
 

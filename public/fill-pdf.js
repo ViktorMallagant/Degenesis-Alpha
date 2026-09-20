@@ -349,13 +349,13 @@
     safeSetText(form, "EXPÉRIENCE", store.experience || "");
 
     var CULT_FACTORS = {
-      "anabaptists": [50, "LC"], "anubians": [100, "dinars"],
-      "apocalyptics": [200, "LC"], "palers": [50, "LC"],
-      "chroniclers": [128, "LC"], "clanners": [50, "LC"],
-      "scrappers": [50, "LC"], "scourgers": [100, "dinars"],
-      "hellvetics": [50, "LC"], "jehammedans": [100, "LC"],
-      "judges": [50, "LC"], "neolibyans": [1000, "dinars"],
-      "spitalians": [100, "LC"]
+      "anabaptists": [50, "Drafts"], "anubians": [100, "dinars"],
+      "apocalyptics": [200, "Drafts"], "palers": [50, "Drafts"],
+      "chroniclers": [128, "Drafts"], "clanners": [50, "Drafts"],
+      "scrappers": [50, "Drafts"], "scourgers": [100, "dinars"],
+      "hellvetics": [50, "Drafts"], "jehammedans": [100, "Drafts"],
+      "judges": [50, "Drafts"], "neolibyans": [1000, "dinars"],
+      "spitalians": [100, "Drafts"]
     };
     if (store.cult && store.cult.name && CULT_FACTORS[store.cult.name]) {
       var cf = CULT_FACTORS[store.cult.name];

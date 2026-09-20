@@ -24,9 +24,9 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     en: "CHA+Leadership +2S when leading former disciples. When Renown reaches 5, your enemies send assassins.",
     de: "CHA+Führung +2E, wenn du frühere Anhänger führst. Wenn Ruf 5 erreicht, schicken deine Feinde Attentäter."
   },
-  "1 000 LC de revenus mensuels. Si Ressources < 2 : perte de la propriété, -3 Autorité et -3 Renommée.": {
-    en: "1,000 LC monthly income. If Resources < 2: loss of the property, -3 Authority and -3 Renown.",
-    de: "1.000 LC monatliches Einkommen. Wenn Ressourcen < 2: Verlust des Besitzes, -3 Autorität und -3 Ruf."
+  "1 000 Drafts de revenus mensuels. Si Ressources < 2 : perte de la propriété, -3 Autorité et -3 Renommée.": {
+    en: "1,000 Drafts monthly income. If Resources < 2: loss of the property, -3 Authority and -3 Renown.",
+    de: "1.000 Drafts monatliches Einkommen. Wenn Ressourcen < 2: Verlust des Besitzes, -3 Autorität und -3 Ruf."
   },
   "Si le secret est révélé publiquement, un agent de haut rang est envoyé pour vous éliminer.": {
     en: "If the secret is revealed publicly, a high-ranking agent is sent to eliminate you.",
@@ -52,9 +52,9 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     en: "+1D Mental Defense. Each failed Mental Defense = Ego loss equal to the roll's difficulty.",
     de: "+1W mentale Verteidigung. Jeder fehlgeschlagene Wurf auf mentale Verteidigung = Ego-Verlust in Höhe der Schwierigkeit des Wurfs."
   },
-  "+1D interactions sociales avec criminels. Prime sur votre tête : 250 LC × somme de vos 2 plus hauts Historiques.": {
+  "+1D interactions sociales avec criminels. Prime sur votre tête : 250 Drafts × somme de vos 2 plus hauts Historiques.": {
     en: "+1D social interactions with criminals. Bounty on your head: 250 Drafts X the sum of your 2 highest Origins.",
-    de: "+1W soziale Interaktionen mit Kriminellen. Kopfgeld auf dich: 250 LC × die Summe deiner 2 höchsten Hintergründe."
+    de: "+1W soziale Interaktionen mit Kriminellen. Kopfgeld auf dich: 250 Drafts × die Summe deiner 2 höchsten Hintergründe."
   },
   "Coût XP -2 pour attributs privilégiés, -1 pour compétences privilégiées. Coût XP +2 pour attributs non-privilégiés, +1 pour compétences non-privilégiées.": {
     en: "XP cost -2 for privileged attributes, -1 for privileged skills. XP cost +2 for non-privileged attributes, +1 for non-privileged skills.",

@@ -30,7 +30,7 @@ export const Firebrand = new Legacy('firebrand', [], [], [atLeastOrigin(Origins.
 ])
 export const Landlord = new Legacy('landlord', [], [], [atLeastOrigin(Origins.resources, 3), atLeastOrigin(Origins.authority, 1)], undefined, undefined, [], [
   origin('renown', 1),
-  m('1 000 LC de revenus mensuels. Si Ressources < 2 : perte de la propriété, -3 Autorité et -3 Renommée.'),
+  m('1 000 Drafts de revenus mensuels. Si Ressources < 2 : perte de la propriété, -3 Autorité et -3 Renommée.'),
 ])
 export const Offspring = new Legacy('offspring', [], [atLeastAttribute(Attributes.intellect, 2), atLeastAttribute(Attributes.charisma, 2)], [], undefined, undefined, [], [
   attrEx('body', 1),
@@ -67,7 +67,7 @@ export const Rawhide = new Legacy('rawhide', [], [], [], undefined, undefined, [
 export const Outlaw = new Legacy('outlaw', [], [], [atLeastOrigin(Origins.renown, 2), atLeastOrigin(Origins.authority, 2)], undefined, undefined, [], [
   skill('stealth', 1),
   skill('cunning', 1),
-  m('+1D interactions sociales avec criminels. Prime sur votre tête : 250 LC × somme de vos 2 plus hauts Historiques.'),
+  m('+1D interactions sociales avec criminels. Prime sur votre tête : 250 Drafts × somme de vos 2 plus hauts Historiques.'),
 ])
 export const CreatureOfHabit = new Legacy('creatureofhabit', [], [], [], Skills.focus, undefined, [], [
   m('Coût XP -2 pour attributs privilégiés, -1 pour compétences privilégiées. Coût XP +2 pour attributs non-privilégiés, +1 pour compétences non-privilégiées.'),
