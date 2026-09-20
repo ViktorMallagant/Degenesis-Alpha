@@ -113,11 +113,6 @@ const handleClick = (event: any) => {
     }
     const bonus = props.bonus ?? 0
     if (bonus > 0) {
-      // In hover layout: bonus zone is max+1..max+bonus → ignore
-      if (field > props.max) {
-        hovered.value = -1
-        return
-      }
       if (props.value === field) {
         emit('change', props.min)
       } else {
@@ -143,8 +138,8 @@ const handleMouseEnter = (field: number) => {
     }
     const bonus = props.bonus ?? 0
     if (bonus > 0) {
-      // Switch to hover layout; bonus zone has no fill preview
-      hovered.value = field > props.max ? 0 : field
+      // Preview the purchased value independently of any stacked bonus.
+      hovered.value = field
     } else {
       hovered.value = field
     }
@@ -189,9 +184,6 @@ function boxClasses(field: number): Record<string, boolean> {
     const h = hovered.value // -1=rest, 0=bonus zone, >0=normal field
     const fillEnd = isHovering && h > props.value ? h : props.value
     const bonusStart = fillEnd + 1
-    const bonusThreshold = props.max + bonus
-
-    if (field > bonusThreshold) return { 'bg-grey-lighten-2': true }
 
     if (field >= bonusStart && field < bonusStart + bonus) {
       return { 'bg-red': true }
@@ -209,7 +201,7 @@ function boxClasses(field: number): Record<string, boolean> {
     } else {
       if (field <= props.value) return { 'bg-grey-darken-4': true }
     }
-    return {}
+    return { 'bg-grey-lighten-2': field > props.max }
   }
 
   // ── Original behavior (no bonus) ──────────────────────────────────────────

@@ -55,3 +55,38 @@ describe('ValueBoxes soft selection', () => {
     expect(wrapper.findAll('.box')[2].classes()).not.toContain('soft-selected')
   })
 })
+
+describe('ValueBoxes stacked bonuses', () => {
+  test('allows purchased points to be selected beyond the normal maximum', async () => {
+    const wrapper = mount(ValueBoxes, {
+      props: {
+        count: 6,
+        value: 3,
+        max: 3,
+        bonus: 2
+      }
+    })
+
+    await wrapper.findAll('.boxContainer')[3].trigger('click')
+
+    expect(wrapper.emitted('change')).toEqual([[4]])
+  })
+
+  test('draws bonus points after all purchased points', () => {
+    const wrapper = mount(ValueBoxes, {
+      props: {
+        count: 6,
+        value: 4,
+        max: 3,
+        bonus: 2
+      }
+    })
+    const boxes = wrapper.findAll('.box')
+
+    for (let index = 0; index < 4; index++) {
+      expect(boxes[index].classes()).toContain('bg-grey-darken-4')
+    }
+    expect(boxes[4].classes()).toContain('bg-red')
+    expect(boxes[5].classes()).toContain('bg-red')
+  })
+})

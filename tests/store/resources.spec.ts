@@ -31,6 +31,21 @@ test('Inventory Resources include selected points and Legacy bonuses', () => {
   expect(store.resourceAdvancements).toBe(levelToMinAdvancements(4))
 })
 
+test('Legacy Background bonuses stack above the selected Background value', () => {
+  const store = useCharacterStore()
+  const familyBond = AllLegacies.find(legacy => legacy.name === 'familybond')
+
+  expect(familyBond).toBeDefined()
+
+  store.setEditorMode(EditorMode.Free)
+  store.setLegacy(familyBond!, 1)
+  store.setOrigin(Origins.resources, 4)
+
+  expect(store.originValue(Origins.resources)).toBe(4)
+  expect(store.effectiveOriginValue(Origins.resources)).toBe(6)
+  expect(store.spentPoints.origins).toBe(4)
+})
+
 test('Inventory Resources honor a Resources minimum granted by rank', () => {
   const store = useCharacterStore()
   const whaler = ranksByCult(config.cults.Clanners, config.clans.Britoni)
