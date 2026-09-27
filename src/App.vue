@@ -98,6 +98,15 @@
           </v-list-item>
           <v-list-item
             link
+            href="https://viktormallagant.github.io/Degenesis-Lorebook/"
+          >
+            Lorebook
+            <template v-slot:prepend>
+              <v-icon :icon="mdiBookOpenVariant"></v-icon>
+            </template>
+          </v-list-item>
+          <v-list-item
+            link
             href="https://viktormallagant.github.io/Degenesis-Timeline/"
           >
             Timeline
@@ -263,6 +272,7 @@ import {
   mdiAccountGroup,
   mdiAccountPlusOutline,
   mdiAccountQuestionOutline,
+  mdiBookOpenVariant,
   mdiClockOutline,
   mdiCogOutline,
   mdiImport,
