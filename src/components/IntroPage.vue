@@ -19,6 +19,7 @@
               <p class="mt-0">{{ $t('messages.introduction.credits.diskordanz') }}</p>
               <p class="mt-0">{{ $t('messages.introduction.credits.miokido') }}</p>
               <p class="mt-0">{{ $t('messages.introduction.credits.katsu') }}</p>
+              <p class="mt-0">Mara: Developer</p>
 
               <div class="bottom-row mt-4">
                 <img
