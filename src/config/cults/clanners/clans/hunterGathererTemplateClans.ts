@@ -6,6 +6,7 @@ const enemoiTemplate = createHunterGathererClan('enemoi')
 const stukovNomadsTemplate = createHunterGathererClan('stukovNomads')
 const storskisTemplate = createHunterGathererClan('storskis')
 const corpseEatersTemplate = createHunterGathererClan('corpseEaters')
+const corredoresTemplate = createHunterGathererClan('corredores')
 const gargantiTemplate = createHunterGathererClan('garganti')
 const voivodulesTemplate = createHunterGathererClan('voivodules')
 const matadorsTemplate = createHunterGathererClan('matadors')
@@ -23,6 +24,7 @@ export const Enemoi = enemoiTemplate.clan
 export const StukovNomads = stukovNomadsTemplate.clan
 export const Storskis = storskisTemplate.clan
 export const CorpseEaters = corpseEatersTemplate.clan
+export const Corredores = corredoresTemplate.clan
 export const Garganti = gargantiTemplate.clan
 export const Voivodules = voivodulesTemplate.clan
 export const Matadors = matadorsTemplate.clan
@@ -41,6 +43,7 @@ export const HunterGathererTemplateClanRanks = [
   ...stukovNomadsTemplate.ranks,
   ...storskisTemplate.ranks,
   ...corpseEatersTemplate.ranks,
+  ...corredoresTemplate.ranks,
   ...gargantiTemplate.ranks,
   ...voivodulesTemplate.ranks,
   ...matadorsTemplate.ranks,

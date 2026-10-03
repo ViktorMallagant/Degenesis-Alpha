@@ -26,6 +26,9 @@ const templateClanMessages = {
   corpseEaters: 'Corpse Eaters',
   corpseEatersDescription: `The <b>Corpse Eaters</b> are a primitive, cannibalistic Clanner people associated with the wilderness around the <b>Janus Crater and the western fringes of the Protectorate</b>, feared by nearby settlements as raiders and predators rather than merely another neighboring tribe. They are <b>Tech Level I</b>, living in tribal groups and practicing ritual consumption of human remains; <b>Frekka</b>, for example, is a Corpse Eater <b>Shaman who directs her tribe in the consumption of the dead and fallen</b>.`,
 
+  corredores: 'Corredores',
+  corredoresDescription: `The <b>Corredores</b> are a <b>Tech Level IV Hybrispanian Clan</b> whose ancestors lived near the shell caves of old Portugal. Girls blessed by the Pregnoctics become <b>Sabia</b>, wise ones carrying memories of their own future lives. Guided by those memories, the Corredores serve as the vanguard of the Hybrispanian resistance, anticipating African attacks and turning remembered ambushes against their enemies.`,
+
   garganti: 'Garganti',
   gargantiDescription: `The <b>Garganti</b> are a nomadic Clanner people from the far northeast of <b>Pollen</b>, renowned for living in an unusually close symbiosis with enormous <b>mammoths</b> that serve as mounts, pack animals, shelter, and a fundamental part of their culture. Garganti travel immense distances across the frozen wastes atop these beasts, wrapping themselves in heavy mammoth furs and sustaining themselves partly on mammoth milk; their relationship with the animals is deeply spiritual, and harming or poisoning a mammoth is treated as an almost unforgivable offense. They are generally described as stern, quiet, hardy people whose survival depends more on animal mastery, endurance, and knowledge of the frozen wilderness than on advanced technology; mechanically they are associated with <b>Tech Level II</b> and exceptional animal-handling traditions.`,
 
@@ -315,6 +318,7 @@ const HUNTER_GATHERER_TEMPLATE_CLANS = [
   'stukovNomads',
   'storskis',
   'corpseEaters',
+  'corredores',
   'garganti',
   'voivodules',
   'matadors',

@@ -54,6 +54,7 @@ const hunterGathererTemplateClans = [
   config.clans.StukovNomads,
   config.clans.Storskis,
   config.clans.CorpseEaters,
+  config.clans.Corredores,
   config.clans.Garganti,
   config.clans.Voivodules,
   config.clans.Matadors,

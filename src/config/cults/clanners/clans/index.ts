@@ -9,6 +9,7 @@ import { HunterGathererRanks, HunterGatherers } from "./hunterGatherers";
 import {
   Adriani,
   CorpseEaters,
+  Corredores,
   Enemoi,
   Flayers,
   Garganti,
@@ -43,6 +44,7 @@ export const Clans = {
   StukovNomads: StukovNomads,
   Storskis: Storskis,
   CorpseEaters: CorpseEaters,
+  Corredores: Corredores,
   Garganti: Garganti,
   Voivodules: Voivodules,
   Matadors: Matadors,
