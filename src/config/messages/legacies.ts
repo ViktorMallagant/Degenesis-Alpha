@@ -21,7 +21,7 @@ export const legacies = {
       renegade: 'Renegade',
       vindicated: 'Vindicated',
       unforgiven: 'Unforgiven',
-      lurker: 'Middleman',
+      lurker: 'Lurker',
       solo: 'Solo',
       abducted: 'Abducted',
       veteran: 'Veteran',
