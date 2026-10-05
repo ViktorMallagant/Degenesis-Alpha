@@ -107,7 +107,7 @@
           </v-list-item>
           <v-list-item
             link
-            href="https://viktormallagant.github.io/Degenesis-Timeline/"
+            href="https://viktormallagant.github.io/Degenesis-Lorebook/timeline/"
           >
             Timeline
             <template v-slot:prepend>
