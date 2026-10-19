@@ -6,3 +6,9 @@ test('normalizes Réactivité to Reaction in English without changing French', (
   expect(localizedMessages.en.culturesConceptsCults.hellveticsDescription).toContain('Reaction')
   expect(localizedMessages.fr.skills.reaction).toBe('Réactivité')
 })
+
+test('normalizes Distributor terminology to Dispenser in English', () => {
+  expect(JSON.stringify(localizedMessages.en)).not.toMatch(/\bDistributors?\b/)
+  expect(localizedMessages.en.ranks.solarDescription).toContain("Dispensers' generators")
+  expect(localizedMessages.en.ranks.solarDescription).toContain("Dispenser's technology")
+})
