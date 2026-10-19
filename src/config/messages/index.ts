@@ -24,7 +24,7 @@ const normalizeEnglishText = <T>(value: T): T => {
       .replace(/\bCompétences\b/g, 'Skills')
       .replace(/\bVigueur\b/g, 'Stamina')
       .replace(/\bCommandement\b/g, 'Leadership')
-      .replace(/\bRéactivité\b/g, 'Reaction') as T;
+      .replace(/Réactivité/g, 'Reaction') as T;
   }
 
   if (Array.isArray(value)) {
