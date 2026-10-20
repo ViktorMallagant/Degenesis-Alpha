@@ -12,3 +12,13 @@ test('normalizes Distributor terminology to Dispenser in English', () => {
   expect(localizedMessages.en.ranks.solarDescription).toContain("Dispensers' generators")
   expect(localizedMessages.en.ranks.solarDescription).toContain("Dispenser's technology")
 })
+
+test('normalizes the Drives skill to Primal without changing ordinary prose', () => {
+  const englishMessages = JSON.stringify(localizedMessages.en)
+
+  expect(englishMessages).not.toMatch(/\bDrives\b/)
+  expect(localizedMessages.en.potentials.artifactSenseDescription).toContain('INS+Primal')
+  expect(localizedMessages.en.potentials.afterlifeDescription).toContain('Primal value')
+  expect(localizedMessages.en.potentials.soulDrainDescription).toContain('Primal skill')
+  expect(localizedMessages.en.potentials.dangerSenseDescription).toContain('wariness drives them')
+})

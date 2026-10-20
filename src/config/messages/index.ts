@@ -26,6 +26,7 @@ const normalizeEnglishText = <T>(value: T): T => {
       .replace(/\bCommandement\b/g, 'Leadership')
       .replace(/\bDistributors\b/g, 'Dispensers')
       .replace(/\bDistributor\b/g, 'Dispenser')
+      .replace(/\bDrives\b/g, 'Primal')
       .replace(/Réactivité/g, 'Reaction') as T;
   }
 
