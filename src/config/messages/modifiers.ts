@@ -17,7 +17,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "-2W auf alle sozialen Interaktionswürfe in jedem Gebiet, in dem dein Kult dominant ist."
   },
   "Max 1 point dans les historiques à la création. -1D INS+Empathie en permanence.": {
-    en: "Max 1 point in Origins at creation. Permanent -1D to INS+Empathy.",
+    en: "Max 1 point in Backgrounds at creation. Permanent -1D to INS+Empathy.",
     de: "Max. 1 Punkt in Hintergründen bei der Erstellung. Dauerhaft -1W auf INS+Empathie."
   },
   "CHA+Commandement +2S quand vous dirigez d'anciens disciples. Quand Renommée atteint 5, vos ennemis envoient des assassins.": {
@@ -33,7 +33,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Wird das Geheimnis öffentlich aufgedeckt, wird ein hochrangiger Agent geschickt, um dich auszuschalten."
   },
   "Aucun historique ne peut dépasser 4 sans approbation.": {
-    en: "No Origin can exceed 4 without approval.",
+    en: "No Background can exceed 4 without approval.",
     de: "Kein Hintergrund kann ohne Genehmigung 4 überschreiten."
   },
   "-2D interactions sociales avec marchands qui vous connaissent. -4D avec ceux que vous avez escroqués.": {
@@ -53,7 +53,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "+1W mentale Verteidigung. Jeder fehlgeschlagene Wurf auf mentale Verteidigung = Ego-Verlust in Höhe der Schwierigkeit des Wurfs."
   },
   "+1D interactions sociales avec criminels. Prime sur votre tête : 250 Drafts × somme de vos 2 plus hauts Historiques.": {
-    en: "+1D social interactions with criminals. Bounty on your head: 250 Drafts X the sum of your 2 highest Origins.",
+    en: "+1D social interactions with criminals. Bounty on your head: 250 Drafts X the sum of your 2 highest Backgrounds.",
     de: "+1W soziale Interaktionen mit Kriminellen. Kopfgeld auf dich: 250 Drafts × die Summe deiner 2 höchsten Hintergründe."
   },
   "Coût XP -2 pour attributs privilégiés, -1 pour compétences privilégiées. Coût XP +2 pour attributs non-privilégiés, +1 pour compétences non-privilégiées.": {
@@ -69,7 +69,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Der Fertigkeitsbonus des früheren Kults bleibt bei der Erstellung anwendbar. -5W soziale Interaktionen mit dem früheren Kult, falls erkannt."
   },
   "Vous pouvez appliquer vos historiques à deux Cultes différents du vôtre. -2D avec eux si vous agissez contre eux.": {
-    en: "You can apply your Origins to two Cults different from your own. -2D with them if you act against them.",
+    en: "You can apply your Backgrounds to two Cults different from your own. -2D with them if you act against them.",
     de: "Du kannst deine Hintergründe auf zwei Kulte anwenden, die nicht deine eigenen sind. -2W mit ihnen, wenn du gegen sie handelst."
   },
   "+1D interactions sociales avec criminels. -2D avec individus qui connaissent votre passé.": {
@@ -81,7 +81,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Ziel: den Mörder eines geliebten Menschen finden. Jagst du ihn nicht aktiv für 1 Woche, kannst du deinen Ego-Vorrat nicht mehr über dein Konzept auffüllen."
   },
   "Si votre Historique Secrets atteint 4, ceux qui vous faisaient confiance se retournent contre vous.": {
-    en: "If your Secrets Origin reaches 4, those who trusted you turn against you.",
+    en: "If your Secrets Background reaches 4, those who trusted you turn against you.",
     de: "Erreicht dein Hintergrund Geheimnisse 4, wenden sich diejenigen, die dir vertraut haben, gegen dich."
   },
   "2 points d'Égo pour agir en étroite collaboration avec quelqu'un, sinon -1D à toutes vos actions.": {
@@ -97,7 +97,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Du beginnst mit 3 Punkten dauerhaftem Sporenbefall."
   },
   "Si vous perdez un combat ou une mission, tous vos Historiques baissent de 2.": {
-    en: "If you lose a fight or a mission, all your Origins drop by 2.",
+    en: "If you lose a fight or a mission, all your Backgrounds drop by 2.",
     de: "Verlierst du einen Kampf oder eine Mission, sinken alle deine Hintergründe um 2."
   },
   "+1D INS+Orientation. Alliés et Autorité ne peuvent pas dépasser 3.": {
@@ -109,7 +109,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Kann das normale Maximum überschreiten. Wissenschaft und Technik können 0 nicht überschreiten."
   },
   "Bonus applicables dans votre Culture d'origine. Si vous rejetez votre famille, tous vos Historiques baissent de 2.": {
-    en: "Bonuses apply within your home Culture. If you reject your family, all your Origins drop by 2.",
+    en: "Bonuses apply within your home Culture. If you reject your family, all your Backgrounds drop by 2.",
     de: "Boni gelten in deiner Heimat-Kultur. Verstößt du deine Familie, sinken alle deine Hintergründe um 2."
   },
   "+6 points dans des compétences de CHA ou d'INT (peut dépasser le max normal). -2D à tous les jets de Défense mentale.": {
@@ -165,7 +165,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Sinkt Verbündete unter 2, fällt Ressourcen auf 0."
   },
   "Tous vos Historiques peuvent être appliqués à un autre Culte. 1 Égo pour maintenir votre histoire cohérente lors d'un mensonge, sinon +2D pour détecter le mensonge.": {
-    en: "All your Origins can be applied to another Cult. 1 Ego to keep your story consistent during a lie, otherwise +2D to detect the lie.",
+    en: "All your Backgrounds can be applied to another Cult. 1 Ego to keep your story consistent during a lie, otherwise +2D to detect the lie.",
     de: "Alle deine Hintergründe können auf einen anderen Kult angewendet werden. 1 Ego, um deine Geschichte bei einer Lüge konsistent zu halten, sonst +2W, um die Lüge zu entdecken."
   },
   "Peut sauter (1) repas par niveau de Potentiel sans malus.": {
@@ -449,7 +449,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Kann (Stufe) verschiedene Kulte perfekt imitieren. +1 automatischer Erfolg pro Stufe auf PSY+Täuschung und PSY+Gerissenheit für diese Imitationen."
   },
   "Peut échanger (1) Réseau contre (1) point dans n'importe quel autre historique par niveau.": {
-    en: "Can exchange (1) Network for (1) point in any other Origin per level.",
+    en: "Can exchange (1) Network for (1) point in any other Background per level.",
     de: "Kann pro Stufe (1) Netzwerk gegen (1) Punkt in einem beliebigen anderen Hintergrund eintauschen."
   },
   "Peut changer de Rang pour un autre du même niveau sans remplir ses conditions, par niveau de Potentiel acquis.": {
@@ -701,7 +701,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Finte: erhöht die Eigenschaft Schock = Stufe. Gelingt der Angriff: Eigenschaft Furchteinflößend und erhöhter Schaden = Stufe."
   },
   "+1 dans un historique par niveau acquis. Dans Justitienne/Protectorat/Europe : historiques ne peuvent pas descendre sous (3).": {
-    en: "+1 in an Origin per acquired level. In Justitienne/Protectorate/Europe: Origins cannot drop below (3).",
+    en: "+1 in a Background per acquired level. In Justitienne/Protectorate/Europe: Backgrounds cannot drop below (3).",
     de: "+1 auf einen Hintergrund pro erworbener Stufe. In Justitienne/Protektorat/Europa: Hintergründe können nicht unter (3) fallen."
   },
   "+1D par niveau à l'Initiative avec arme à chargement par la bouche. (2)/(1)/0 déclencheurs pour recharger en 1 action selon niveau.": {
@@ -733,7 +733,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Vor einem Wurf: auf bis zu (2×Stufe) Würfel verzichten. Bei Erfolg → (1) Auslöser pro Paar nicht gewürfelter Würfel für den nächsten Angriff."
   },
   "Si Renommée ≥ 6/5/4 (selon niveau) : les autres historiques ne peuvent pas baisser involontairement.": {
-    en: "If Renown ≥ 6/5/4 (depending on level): other Origins cannot decrease involuntarily.",
+    en: "If Renown ≥ 6/5/4 (depending on level): other Backgrounds cannot decrease involuntarily.",
     de: "Wenn Ruf ≥ 6/5/4 (je nach Stufe): andere Hintergründe können nicht unfreiwillig sinken."
   },
   "+1D par niveau à PSY et CHA lors d'une première rencontre. (3) déclencheurs → +1 Renommée/mois. Parle 3×niveau dialectes étrangers.": {
@@ -785,7 +785,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Alle Mali durch schlechte Sichtverhältnisse, Blindheit oder Dunkelheit werden um 1W pro Stufe verringert."
   },
   "À chaque nouveau niveau de Potentiel : +niveau aux historiques Autorité et Secrets.": {
-    en: "At each new Potential level: +level to the Authority and Secrets Origins.",
+    en: "At each new Potential level: +level to the Authority and Secrets Backgrounds.",
     de: "Bei jeder neuen Potenzial-Stufe: +Stufe auf die Hintergründe Autorität und Geheimnisse."
   },
   "Après AGI+Furtivité réussi : CHA+Négociation +2D par niveau vs Défense mentale pour imposer une opinion à la cible.": {
@@ -945,7 +945,7 @@ export const modifierTranslations: Record<string, { en: string; de: string }> = 
     de: "Mit der letzten Kugel: +2 Auslöser pro Stufe auf den GEW+Schusswaffen-Wurf. Einmal pro Schlacht."
   },
   "Sacrifier (1) point d'historique pour +1D au jet ; si échec : historique −1. Minimum 0/1/2 selon niveau.": {
-    en: "Sacrifice (1) Origin point for +1D to the roll; on failure: Origin −1. Minimum 0/1/2 depending on level.",
+    en: "Sacrifice (1) Background point for +1D to the roll; on failure: Background −1. Minimum 0/1/2 depending on level.",
     de: "(1) Hintergrund-Punkt für +1W auf den Wurf opfern; bei Misserfolg: Hintergrund −1. Minimum 0/1/2 je nach Stufe."
   },
   "Technique active : (2) déclencheurs → +1 Défense passive et +1D maniement pour le round ; cumulable jusqu'au niveau de Potentiel.": {

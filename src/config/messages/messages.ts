@@ -258,7 +258,7 @@ export const messages = {
     sporeInfestations: 'spore infestation',
     attributePoints: 'Attribute points',
     skillPoints: 'Skill points',
-    originPoints: 'Origin points',
+    originPoints: 'Background points',
     potentialPoints: 'Potential points',
     legaciesPoints: 'Legacies',
     origins: 'Backgrounds',
